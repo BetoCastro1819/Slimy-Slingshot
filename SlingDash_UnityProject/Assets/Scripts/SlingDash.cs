@@ -5,19 +5,20 @@ using UnityEngine;
 public class SlingDash : MonoBehaviour
 {
 	public GameObject aimHandle;
-	public GameObject forceSprite;
+	public GameObject forceDir;
 	public float maxThrowForceLength = 2f;
 	public float forceMultiplier = 100f;
 
-	Rigidbody2D rb;
-	Vector3 mousePos;
-	float throwForce;
+	private Rigidbody2D rb;
+	private Vector3 mousePos;
+	private Vector2 dir;
+	private float throwForce;
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		aimHandle.SetActive(false);
-		forceSprite.SetActive(false);
+		forceDir.SetActive(false);
 	}
 	
 	void Update ()
@@ -32,36 +33,34 @@ public class SlingDash : MonoBehaviour
 			Slingshot();
 	}
 
+	void CreateAimingHandle()
+	{
+		aimHandle.transform.position = new Vector2(mousePos.x, mousePos.y);
+		aimHandle.SetActive(true);
+
+		forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
+		forceDir.SetActive(true);
+		forceDir.transform.localScale = new Vector3(0.1f, 0, 0);
+	}
+
 	void SetDirection()
 	{
 		mousePos = Input.mousePosition;
 		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-		Vector2 dir = new Vector2(
+		dir = new Vector2(
 			mousePos.x - aimHandle.transform.position.x,
 			mousePos.y - aimHandle.transform.position.y
 		);
 
 		aimHandle.transform.up = -dir;
 
-		transform.rotation = aimHandle.transform.rotation;
+		forceDir.transform.rotation = aimHandle.transform.rotation;
+		transform.rotation = forceDir.transform.rotation;
 
+		forceDir.transform.position = transform.position;
 
-
-		// SetForce();
-		float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
-
-		if (forceAmount > maxThrowForceLength)
-			forceAmount = maxThrowForceLength;
-
-		forceSprite.transform.localScale = new Vector3(0.1f, forceAmount, 0);
-		forceSprite.transform.up = dir;
-
-
-
-		throwForce = forceAmount;
-
-		rb.velocity = Vector2.zero;
+		SetForce();
 
 		// If player collides, it keeps rotating after slingshot release
 		//rb.rotation = 0;
@@ -72,6 +71,15 @@ public class SlingDash : MonoBehaviour
 
 	void SetForce()
 	{
+		float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
+
+		if (forceAmount > maxThrowForceLength)
+			forceAmount = maxThrowForceLength;
+
+		forceDir.transform.localScale = new Vector3(0.1f, forceAmount, 0);
+		throwForce = forceAmount;
+		rb.velocity = Vector2.zero;
+
 	}
 
 	void Slingshot()
@@ -79,18 +87,6 @@ public class SlingDash : MonoBehaviour
 		//Time.timeScale = 1f;
 		rb.AddForce(transform.up * throwForce * forceMultiplier);
 		aimHandle.SetActive(false);
-		forceSprite.SetActive(false);
-
-		Debug.Log("Force to throw: " + throwForce * forceMultiplier);
-	}
-
-	void CreateAimingHandle()
-	{
-		aimHandle.transform.position = new Vector2(mousePos.x, mousePos.y);
-		aimHandle.SetActive(true);
-
-		forceSprite.transform.position = new Vector2(mousePos.x, mousePos.y);
-		forceSprite.SetActive(true);
-		forceSprite.transform.localScale = new Vector3(0.1f, 0, 0);
+		forceDir.SetActive(false);
 	}
 }
