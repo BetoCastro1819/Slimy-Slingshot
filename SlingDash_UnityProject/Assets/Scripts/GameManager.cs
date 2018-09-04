@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log(cam.transform.position.y + cam.orthographicSize + offsetToSpawnObstacles);
-
 		camTopEdgePos = cam.transform.position.y + cam.orthographicSize;
 		posToSpawnObstacle = camTopEdgePos + offsetToSpawnObstacles + distBtwnObjs;
 	}

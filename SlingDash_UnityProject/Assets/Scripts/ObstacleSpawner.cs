@@ -5,14 +5,21 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
 	public GameObject obstaclePrefab;
-	public Transform obstacelSpawnerPos;
+	public List<Transform> obstacleSpawners;
 	public Transform ObstaclesParent;
 
 	private GameObject obstacle;
 
 	public void SpawnObstacles()
 	{
-		obstacle = Instantiate(obstaclePrefab, obstacelSpawnerPos.position, Quaternion.identity);
-		obstacle.transform.parent = ObstaclesParent;
+		int rand = Random.Range(0, obstacleSpawners.Count - 1);
+		for (int i = 0; i < obstacleSpawners.Count; i++)
+		{
+			if (i != rand)
+			{
+				obstacle = Instantiate(obstaclePrefab, obstacleSpawners[i].position, Quaternion.identity);
+				obstacle.transform.parent = ObstaclesParent;
+			}
+		}
 	}
 }
