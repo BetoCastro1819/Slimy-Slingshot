@@ -6,13 +6,14 @@ public class Player : MonoBehaviour
 {
 	public GameObject aimHandle;
 	public GameObject forceDir;
-	public float maxThrowForceLength = 2f;
-	public float forceMultiplier = 100f;
+	public float throwForce = 300f;
+
+	//public float maxThrowForceLength = 2f;
+	//public float forceMultiplier = 100f;
 
 	private Rigidbody2D rb;
 	private Vector3 mousePos;
 	private Vector2 dir;
-	private float throwForce;
 	private bool onBulletTime;
 
 	void Start ()
@@ -47,6 +48,9 @@ public class Player : MonoBehaviour
 
 	void SetDirection()
 	{
+		// Stops the player from falling
+		rb.velocity = Vector2.zero;
+
 		mousePos = Input.mousePosition;
 		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
@@ -62,7 +66,11 @@ public class Player : MonoBehaviour
 
 		forceDir.transform.position = transform.position;
 
-		SetForce();
+		forceDir.transform.localScale = new Vector3(0.1f, 1, 0);
+
+
+		// UNCOMMENT TO ENABLE 
+		//SetForce();
 
 		// Set bullet time to true
 		onBulletTime = true;
@@ -76,6 +84,7 @@ public class Player : MonoBehaviour
 
 	void SetForce()
 	{
+		/*
 		float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
 
 		if (forceAmount > maxThrowForceLength)
@@ -83,14 +92,13 @@ public class Player : MonoBehaviour
 
 		forceDir.transform.localScale = new Vector3(0.1f, forceAmount, 0);
 		throwForce = forceAmount;
-		rb.velocity = Vector2.zero;
-
+		*/
 	}
 
 	void Slingshot()
 	{
 		//Time.timeScale = 1f;
-		rb.AddForce(transform.up * throwForce * forceMultiplier);
+		rb.AddForce(transform.up * throwForce);	/* * forceMultiplier*/
 		aimHandle.SetActive(false);
 		forceDir.SetActive(false);
 
