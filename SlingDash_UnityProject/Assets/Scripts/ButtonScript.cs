@@ -16,4 +16,8 @@ public class ButtonScript : MonoBehaviour {
             Application.Quit();
         #endif
     }
+
+    public void RestartCurrentScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
