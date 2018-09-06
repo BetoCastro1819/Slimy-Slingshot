@@ -73,8 +73,8 @@ public class Player : MonoBehaviour
 
 		aimHandle.transform.up = -dir;
 
-		forceDir.transform.rotation = aimHandle.transform.rotation;
-		transform.rotation = forceDir.transform.rotation;
+		forceDir.transform.up = dir;
+		transform.up = -dir;
 
 		forceDir.transform.position = transform.position;
 
