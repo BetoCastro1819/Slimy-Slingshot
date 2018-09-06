@@ -27,12 +27,14 @@ public class CameraMovement : MonoBehaviour
 
 	void FollowPlayer()
 	{
+        /*
 		cameraGuide.y += constantSpeed * Time.deltaTime;
 
 		if (player.transform.position.y > cameraGuide.y)
 			cameraGuide.y = player.transform.position.y;
+        */
 
-		cameraPos = new Vector3(0, cameraGuide.y + yAxisOffset, zAxisOffset);
+		cameraPos = new Vector3(0, player.transform.position.y + yAxisOffset, zAxisOffset);
 		Vector3 lerpMovement = Vector3.Lerp(transform.position, cameraPos, lerpSpeed);
 
 		transform.position = lerpMovement;

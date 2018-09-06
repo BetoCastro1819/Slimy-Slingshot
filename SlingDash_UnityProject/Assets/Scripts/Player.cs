@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
 	public GameObject aimHandle;
 	public GameObject forceDir;
+    public GameObject playerBulletPrefab;
 	public float throwForce = 300f;
 	public float energyBarRechargeValue = 5f;
 
@@ -116,6 +117,10 @@ public class Player : MonoBehaviour
 
 		// Set bullet time to false;
 		onBulletTime = false;
+
+        // SHOOT BULLET
+        GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
+        playerBullet.transform.up = dir;
 	}
 
 	void BulletTime()
