@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
 	public float throwForce = 300f;
 	public float energyBarRechargeValue = 5f;
 
-	//public float maxThrowForceLength = 2f;
-	//public float forceMultiplier = 100f;
+	public float maxThrowForceLength = 2f;
+	public float forceMultiplier = 100f;
 
 	private Rigidbody2D rb;
 	private Vector3 mousePos;
@@ -78,11 +78,9 @@ public class Player : MonoBehaviour
 
 		forceDir.transform.position = transform.position;
 
-		forceDir.transform.localScale = new Vector3(0.1f, 1, 0);
 
 
-		// UNCOMMENT TO ENABLE 
-		//SetForce();
+		SetForce();
 
 		// ON BULLET TIME
 		BulletTime();
@@ -97,21 +95,20 @@ public class Player : MonoBehaviour
 
 	void SetForce()
 	{
-		/*
 		float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
 
 		if (forceAmount > maxThrowForceLength)
 			forceAmount = maxThrowForceLength;
 
-		forceDir.transform.localScale = new Vector3(0.1f, forceAmount, 0);
-		throwForce = forceAmount;
-		*/
+		forceDir.transform.localScale = new Vector3(0.2f, forceAmount, 0);
+
+        throwForce = forceAmount;
 	}
 
 	void Slingshot()
 	{
-		//Time.timeScale = 1f;
-		rb.AddForce(transform.up * throwForce);	/* * forceMultiplier*/
+        //Time.timeScale = 1f;
+        rb.AddForce(transform.up * throwForce * forceMultiplier);
 		aimHandle.SetActive(false);
 		forceDir.SetActive(false);
 
