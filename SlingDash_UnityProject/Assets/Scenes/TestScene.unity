@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 511852834}
   playerPos: {fileID: 511852835}
-  yAxisOffset: 6
+  yAxisOffset: 5
   zAxisOffset: -10
   lerpSpeed: 0.1
   constantSpeed: 0
@@ -1000,26 +1000,13 @@ Prefab:
       objectReference: {fileID: 2002233390}
     - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
         type: 2}
-      propertyPath: throwForce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
-        type: 2}
       propertyPath: forceMultiplier
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
         type: 2}
-      propertyPath: maxThrowForceLength
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546781290395256, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546781290395256, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: bulletTimeFactor
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}

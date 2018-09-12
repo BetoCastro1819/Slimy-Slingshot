@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
 	public GameObject aimHandle;
 	public GameObject forceDir;
-    public GameObject playerBulletPrefab;
+	public GameObject playerBulletPrefab;
+	public float bulletTimeFactor = 0.02f;
 	public float throwForce = 300f;
 	public float energyBarRechargeValue = 5f;
 
@@ -19,6 +20,14 @@ public class Player : MonoBehaviour
 	private bool onBulletTime;
 	private float energyBarValue;
 
+	public PlayerState playerState;
+
+	public enum PlayerState
+	{
+		MOVING,
+		AIMING,
+		GOT_HURT
+	}
 
 	void Start ()
 	{
@@ -27,35 +36,66 @@ public class Player : MonoBehaviour
 		forceDir.SetActive(false);
 		onBulletTime = false;
 		energyBarValue = 100;
+		playerState = PlayerState.MOVING;
 	}
 	
 	void Update ()
 	{
-		if (energyBarValue > 0)
-		{
-			if (Input.GetKey(KeyCode.Mouse0))
-				SetDirection();
-			else
-				RechargeEnergyBar();
-
-			if (Input.GetKeyDown(KeyCode.Mouse0))
-				CreateAimingHandle();
-
-			if (Input.GetKeyUp(KeyCode.Mouse0))
-				Slingshot();
-		}
-		else
-			MakeStuffDisappear();
+		PlayerFSM(playerState);
 	}
 
-	void CreateAimingHandle()
+	void PlayerFSM(PlayerState state)
 	{
-		aimHandle.transform.position = new Vector2(mousePos.x, mousePos.y);
-		aimHandle.SetActive(true);
+		switch (state)
+		{
+			case PlayerState.MOVING:
+				OnPlayerTap();
+				break;
+			case PlayerState.AIMING:
+				OnPlayerHold();
+				break;
+			case PlayerState.GOT_HURT:
+				break;
+		}
+	}
 
-		forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
-		forceDir.SetActive(true);
-		forceDir.transform.localScale = new Vector3(0.1f, 0, 0);
+	void OnPlayerTap()
+	{
+		if (Input.GetKeyDown(KeyCode.Mouse0))
+		{
+			// ENABLE BULLET TIME
+			BulletTime(true);
+
+			mousePos = Input.mousePosition;
+			mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+			aimHandle.transform.position = new Vector2(mousePos.x, mousePos.y);
+			aimHandle.SetActive(true);
+
+			forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
+			forceDir.SetActive(true);
+			forceDir.transform.localScale = new Vector3(0.1f, 0, 0);
+
+			playerState = PlayerState.AIMING;
+		}
+	}
+
+	void OnPlayerHold()
+	{
+		if (Input.GetKey(KeyCode.Mouse0))
+		{
+			SetDirection();
+			SetForce();
+		}
+		else if (Input.GetKeyUp(KeyCode.Mouse0))
+		{
+			Shoot();
+
+			// DISABLE BULLET TIME
+			BulletTime(false);
+
+			playerState = PlayerState.MOVING;
+		}
 	}
 
 	void SetDirection()
@@ -77,20 +117,6 @@ public class Player : MonoBehaviour
 		transform.up = -dir;
 
 		forceDir.transform.position = transform.position;
-
-
-
-		SetForce();
-
-		// ON BULLET TIME
-		BulletTime();
-
-
-		// If player collides, it keeps rotating after slingshot release
-		//rb.rotation = 0;
-
-		// Ask how to make slow mo effect non-gittery
-		//Time.timeScale = 0.1f;
 	}
 
 	void SetForce()
@@ -105,25 +131,35 @@ public class Player : MonoBehaviour
         throwForce = forceAmount;
 	}
 
-	void Slingshot()
+	void Shoot()
 	{
-        //Time.timeScale = 1f;
         rb.AddForce(transform.up * throwForce * forceMultiplier);
 		aimHandle.SetActive(false);
 		forceDir.SetActive(false);
-
-		// Set bullet time to false;
-		onBulletTime = false;
 
         // SHOOT BULLET
         GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
         playerBullet.transform.up = dir;
 	}
 
-	void BulletTime()
+	void BulletTime(bool bulletTimeActive)
 	{
-		onBulletTime = true;
+		onBulletTime = bulletTimeActive;
 
+		if (bulletTimeActive)
+		{
+			Time.timeScale = bulletTimeFactor;
+			Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
+		}
+		else
+		{
+			Time.timeScale = 1;
+			Time.fixedDeltaTime = Time.timeScale * .02f;
+		}
+	}
+
+	void EnergyBar()
+	{
 		if (energyBarValue <= 0)
 			energyBarValue = 0;
 		else

@@ -124,8 +124,10 @@ MonoBehaviour:
   forceDir: {fileID: 0}
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
-  throwForce: 700
+  throwForce: 0
   energyBarRechargeValue: 0
+  maxThrowForceLength: 3
+  forceMultiplier: 500
 --- !u!198 &198745305903588342
 ParticleSystem:
   m_ObjectHideFlags: 1

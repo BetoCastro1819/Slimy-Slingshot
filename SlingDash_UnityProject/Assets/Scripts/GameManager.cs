@@ -22,12 +22,12 @@ public class GameManager : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;
-		cam = Camera.main;
 	}
 	#endregion
 
 	private void Start()
 	{
+		cam = Camera.main;
 		camTopEdgePos = cam.transform.position.y + cam.orthographicSize;
 		posToSpawnObstacle = camTopEdgePos + offsetToSpawnObstacles + distBtwnObjs;
 	}
