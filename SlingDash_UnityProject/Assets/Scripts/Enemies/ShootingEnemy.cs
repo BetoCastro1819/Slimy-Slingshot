@@ -16,6 +16,6 @@ public class ShootingEnemy : Enemy
 	
 	void Update ()
     {
-		
+        timer += Time.deltaTime;
 	}
 }

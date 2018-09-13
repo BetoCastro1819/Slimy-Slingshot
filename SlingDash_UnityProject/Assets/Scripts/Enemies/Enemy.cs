@@ -11,4 +11,10 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerBulet")
+            Destroy(gameObject);
+    }
 }
