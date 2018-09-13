@@ -148,6 +148,7 @@ public class Player : MonoBehaviour
     {
         onBulletTime = bulletTimeActive;
 
+        // Use AnimationCurve
         if (bulletTimeActive)
         {
             Time.timeScale = bulletTimeFactor;
