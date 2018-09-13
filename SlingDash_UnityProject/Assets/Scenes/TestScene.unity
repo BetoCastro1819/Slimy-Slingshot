@@ -540,9 +540,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 511852834}
   playerPos: {fileID: 511852835}
-  yAxisOffset: 5
+  yAxisOffset: 3
   zAxisOffset: -10
-  lerpSpeed: 0.1
+  lerpSpeed: 0.3
   constantSpeed: 0
 --- !u!20 &519420031
 Camera:
@@ -998,12 +998,6 @@ Prefab:
       propertyPath: forceDir
       value: 
       objectReference: {fileID: 2002233390}
-    - target: {fileID: 212221075973117880, guid: ebef7a266a08edf46a4bc80e73cbe751,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f645e253dbbed6449826b7f49f6891b9,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
   m_IsPrefabAsset: 0

@@ -124,7 +124,7 @@ MonoBehaviour:
   forceDir: {fileID: 0}
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
-  bulletTimeFactor: 0.5
+  bulletTimeFactor: 0.1
   throwForce: 0
   energyBarRechargeValue: 0
   maxThrowForceLength: 3
@@ -262,7 +262,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -378,7 +378,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 8
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -903,7 +903,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4755,7 +4755,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 206002d77237ccf4f9d73c35dba64ad7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f645e253dbbed6449826b7f49f6891b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
