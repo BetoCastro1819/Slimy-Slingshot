@@ -998,16 +998,6 @@ Prefab:
       propertyPath: forceDir
       value: 
       objectReference: {fileID: 2002233390}
-    - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
-        type: 2}
-      propertyPath: forceMultiplier
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
-        type: 2}
-      propertyPath: bulletTimeFactor
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
   m_IsPrefabAsset: 0

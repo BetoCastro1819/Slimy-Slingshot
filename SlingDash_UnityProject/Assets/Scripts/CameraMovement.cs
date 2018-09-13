@@ -21,9 +21,12 @@ public class CameraMovement : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		if (!player.OnBulletTime())
-			FollowPlayer();
-	}
+        if (player != null)
+        {
+            if (!player.OnBulletTime())
+                FollowPlayer();
+        }
+    }
 
 	void FollowPlayer()
 	{
@@ -34,9 +37,9 @@ public class CameraMovement : MonoBehaviour
 			cameraGuide.y = player.transform.position.y;
         */
 
-		cameraPos = new Vector3(0, player.transform.position.y + yAxisOffset, zAxisOffset);
-		Vector3 lerpMovement = Vector3.Lerp(transform.position, cameraPos, lerpSpeed);
+        cameraPos = new Vector3(0, player.transform.position.y + yAxisOffset, zAxisOffset);
+        Vector3 lerpMovement = Vector3.Lerp(transform.position, cameraPos, lerpSpeed);
 
-		transform.position = lerpMovement;
-	}
+        transform.position = lerpMovement;
+    }
 }

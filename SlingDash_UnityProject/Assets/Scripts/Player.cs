@@ -4,161 +4,178 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	public GameObject aimHandle;
-	public GameObject forceDir;
-	public GameObject playerBulletPrefab;
-	public float bulletTimeFactor = 0.02f;
-	public float throwForce = 300f;
-	public float energyBarRechargeValue = 5f;
+    public GameObject aimHandle;
+    public GameObject forceDir;
+    public GameObject playerBulletPrefab;
+    public float bulletTimeFactor = 0.02f;
+    public float throwForce = 300f;
+    public float energyBarRechargeValue = 5f;
 
-	public float maxThrowForceLength = 2f;
-	public float forceMultiplier = 100f;
+    public float maxThrowForceLength = 2f;
+    public float forceMultiplier = 100f;
 
-	private Rigidbody2D rb;
-	private Vector3 mousePos;
-	private Vector2 dir;
-	private bool onBulletTime;
-	private float energyBarValue;
+    private Rigidbody2D rb;
+    private Vector3 mousePos;
+    private Vector2 dir;
+    private float energyBarValue;
 
-	public PlayerState playerState;
+    private bool onBulletTime;
+    public bool OnBulletTime() { return onBulletTime; }
 
-	public enum PlayerState
-	{
-		MOVING,
-		AIMING,
-		GOT_HURT
-	}
+    public PlayerState playerState;
+    public enum PlayerState
+    {
+        MOVING,
+        AIMING,
+        GOT_HURT,
+        KILLED
+    }
 
-	void Start ()
-	{
-		rb = GetComponent<Rigidbody2D>();
-		aimHandle.SetActive(false);
-		forceDir.SetActive(false);
-		onBulletTime = false;
-		energyBarValue = 100;
-		playerState = PlayerState.MOVING;
-	}
-	
-	void Update ()
-	{
-		PlayerFSM(playerState);
-	}
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        aimHandle.SetActive(false);
+        forceDir.SetActive(false);
+        onBulletTime = false;
+        energyBarValue = 100;
+        playerState = PlayerState.MOVING;
+    }
 
-	void PlayerFSM(PlayerState state)
-	{
-		switch (state)
-		{
-			case PlayerState.MOVING:
-				OnPlayerTap();
-				break;
-			case PlayerState.AIMING:
-				OnPlayerHold();
-				break;
-			case PlayerState.GOT_HURT:
-				break;
-		}
-	}
+    void Update()
+    {
+        PlayerFSM(playerState);
+    }
 
-	void OnPlayerTap()
-	{
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{
-			// ENABLE BULLET TIME
-			BulletTime(true);
+    void PlayerFSM(PlayerState state)
+    {
+        switch (state)
+        {
+            case PlayerState.MOVING:
+                OnPlayerTap();
+                break;
+            case PlayerState.AIMING:
+                OnPlayerHold();
+                break;
+            case PlayerState.GOT_HURT:
+                break;
+            case PlayerState.KILLED:
+                KillPlayer();
+                break;
+        }
+    }
 
-			mousePos = Input.mousePosition;
-			mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+    void OnPlayerTap()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            // ENABLE BULLET TIME
+            BulletTime(true);
 
-			aimHandle.transform.position = new Vector2(mousePos.x, mousePos.y);
-			aimHandle.SetActive(true);
+            mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-			forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
-			forceDir.SetActive(true);
-			forceDir.transform.localScale = new Vector3(0.1f, 0, 0);
+            aimHandle.transform.position = new Vector2(mousePos.x, mousePos.y);
+            aimHandle.SetActive(true);
 
-			playerState = PlayerState.AIMING;
-		}
-	}
+            forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
+            forceDir.SetActive(true);
+            forceDir.transform.localScale = new Vector3(0.1f, 0, 0);
 
-	void OnPlayerHold()
-	{
-		if (Input.GetKey(KeyCode.Mouse0))
-		{
-			SetDirection();
-			SetForce();
-		}
-		else if (Input.GetKeyUp(KeyCode.Mouse0))
-		{
-			Shoot();
+            playerState = PlayerState.AIMING;
+        }
+    }
 
-			// DISABLE BULLET TIME
-			BulletTime(false);
+    void OnPlayerHold()
+    {
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            SetDirection();
+            SetForce();
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            // DISABLE BULLET TIME
+            BulletTime(false);
+            Shoot();
+            playerState = PlayerState.MOVING;
+        }
+    }
 
-			playerState = PlayerState.MOVING;
-		}
-	}
+    void SetDirection()
+    {
+        // Stops the player from falling
+        rb.velocity = Vector2.zero;
 
-	void SetDirection()
-	{
-		// Stops the player from falling
-		rb.velocity = Vector2.zero;
+        mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-		mousePos = Input.mousePosition;
-		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        dir = new Vector2(
+            mousePos.x - aimHandle.transform.position.x,
+            mousePos.y - aimHandle.transform.position.y
+        );
 
-		dir = new Vector2(
-			mousePos.x - aimHandle.transform.position.x,
-			mousePos.y - aimHandle.transform.position.y
-		);
+        aimHandle.transform.up = -dir;
 
-		aimHandle.transform.up = -dir;
+        forceDir.transform.up = dir;
+        transform.up = -dir;
 
-		forceDir.transform.up = dir;
-		transform.up = -dir;
+        forceDir.transform.position = transform.position;
+    }
 
-		forceDir.transform.position = transform.position;
-	}
+    void SetForce()
+    {
+        float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
 
-	void SetForce()
-	{
-		float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
+        if (forceAmount > maxThrowForceLength)
+            forceAmount = maxThrowForceLength;
 
-		if (forceAmount > maxThrowForceLength)
-			forceAmount = maxThrowForceLength;
-
-		forceDir.transform.localScale = new Vector3(0.2f, forceAmount, 0);
+        forceDir.transform.localScale = new Vector3(0.2f, forceAmount, 0);
 
         throwForce = forceAmount;
-	}
+    }
 
-	void Shoot()
-	{
+    void Shoot()
+    {
         rb.AddForce(transform.up * throwForce * forceMultiplier);
-		aimHandle.SetActive(false);
-		forceDir.SetActive(false);
+        MakeStuffDisappear();
 
         // SHOOT BULLET
         GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
         playerBullet.transform.up = dir;
-	}
+    }
 
-	void BulletTime(bool bulletTimeActive)
-	{
-		onBulletTime = bulletTimeActive;
+    void BulletTime(bool bulletTimeActive)
+    {
+        onBulletTime = bulletTimeActive;
 
-		if (bulletTimeActive)
-		{
-			Time.timeScale = bulletTimeFactor;
-			Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
-		}
-		else
-		{
-			Time.timeScale = 1;
-			Time.fixedDeltaTime = Time.timeScale * .02f;
-		}
-	}
+        if (bulletTimeActive)
+        {
+            Time.timeScale = bulletTimeFactor;
+            Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
+        }
+    }
 
-	void EnergyBar()
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            playerState = PlayerState.KILLED;
+            Debug.Log("morite wacho");
+        }
+    }
+
+    // TURN INTO IENUMERATOR
+    void KillPlayer()
+    {
+        Destroy(gameObject);
+    }
+
+    void EnergyBar()
 	{
 		if (energyBarValue <= 0)
 			energyBarValue = 0;
@@ -166,7 +183,6 @@ public class Player : MonoBehaviour
 			energyBarValue -= energyBarRechargeValue;
 
 		UI_Manager.Get().energyBar.value = energyBarValue / 100;
-
 	}
 
 	void RechargeEnergyBar()
@@ -178,12 +194,7 @@ public class Player : MonoBehaviour
 
 		UI_Manager.Get().energyBar.value = energyBarValue / 100;
 	}
-
-	public bool OnBulletTime()
-	{
-		return onBulletTime;
-	}
-
+	
 	// PROTOTYPE MODE ONLY
 	private void MakeStuffDisappear()
 	{
