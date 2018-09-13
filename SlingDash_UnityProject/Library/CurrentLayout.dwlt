@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 0
     width: 413
     height: 364
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -95,7 +95,11 @@ MonoBehaviour:
   m_MinSize: {x: 332, y: 271}
   m_MaxSize: {x: 14002, y: 10021}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 33
+=======
+  controlID: 129
+>>>>>>> Stashed changes
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,7 +123,11 @@ MonoBehaviour:
   m_MinSize: {x: 885, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 66
+=======
+  controlID: 9
+>>>>>>> Stashed changes
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -282,7 +290,11 @@ MonoBehaviour:
   m_MinSize: {x: 608, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 1
+<<<<<<< Updated upstream
   controlID: 67
+=======
+  controlID: 10
+>>>>>>> Stashed changes
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -307,7 +319,11 @@ MonoBehaviour:
   m_MinSize: {x: 608, y: 221}
   m_MaxSize: {x: 12008, y: 4021}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 68
+=======
+  controlID: 11
+>>>>>>> Stashed changes
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,7 +398,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 20330000
     m_LastClickedID: 13088
-    m_ExpandedIDs: 00000000962b0000342c00006a2c0000602d0000dc2d0000
+    m_ExpandedIDs: 00000000702c00000e2d0000442d00003a2e0000b62e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -410,21 +426,36 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< Updated upstream
     m_ExpandedIDs: 625ffcffffffffff00000000962b00009e2b0000342c00006a2c0000602d0000dc2d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: EnemyBullets
       m_OriginalName: EnemyBullets
+=======
+    m_ExpandedIDs: ffffffff00000000702c00000e2d0000442d00003a2e0000b62e0000
+    m_RenameOverlay:
+      m_UserAcceptedRename: 0
+      m_Name: BigEnemy
+      m_OriginalName: BigEnemy
+>>>>>>> Stashed changes
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
+<<<<<<< Updated upstream
       m_UserData: 14354
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
+=======
+      m_UserData: 16478
+      m_IsWaitingForDelay: 0
+      m_IsRenaming: 0
+      m_OriginalEventType: 4
+>>>>>>> Stashed changes
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -526,9 +557,15 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< Updated upstream
     m_SelectedIDs: 202f0000
     m_LastClickedID: 12064
     m_ExpandedIDs: e475fcff423ffdff0a80fdff0c83fdff5a9afdff0a4fffff66d5ffffe0fbffff000000001c2f0000202f0000
+=======
+    m_SelectedIDs: 782c0000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 4cfbffff00000000942f0000b62f0000
+>>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -578,14 +615,24 @@ MonoBehaviour:
     height: 343
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
+<<<<<<< Updated upstream
   lastFramingTime: 581.074976583151
+=======
+  lastFramingTime: 1579.4709319607205
+>>>>>>> Stashed changes
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< Updated upstream
     m_Target: {x: 0.23023842, y: 34.72428, z: 0}
     speed: 2
     m_Value: {x: 0.23023842, y: 34.72428, z: 0}
+=======
+    m_Target: {x: 0.033913832, y: 4.3466682, z: -0.09113301}
+    speed: 2
+    m_Value: {x: 0.033913832, y: 4.3466682, z: -0.09113301}
+>>>>>>> Stashed changes
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -617,9 +664,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< Updated upstream
     m_Target: 21.77815
     speed: 2
     m_Value: 21.77815
+=======
+    m_Target: 11.47306
+    speed: 2
+    m_Value: 11.47306
+>>>>>>> Stashed changes
   m_Ortho:
     m_Target: 1
     speed: 2
