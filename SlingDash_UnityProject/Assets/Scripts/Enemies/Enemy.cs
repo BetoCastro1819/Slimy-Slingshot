@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 0;
+    public int health = 1;
     public float speed = 5f;
+
+    void Update()
+    {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void TakeDamage(int damage)
     {
@@ -14,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "PlayerBulet")
-            Destroy(gameObject);
+        if (collision.gameObject.tag == "PlayerBullet")
+            TakeDamage(1);
     }
 }
