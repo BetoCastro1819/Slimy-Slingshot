@@ -15,9 +15,9 @@ public class ObstacleSpawner : MonoBehaviour
 		int rand = Random.Range(0, obstacleSpawners.Count - 1);
 		for (int i = 0; i < obstacleSpawners.Count; i++)
 		{
-			if (i != rand)
+			if (i == rand)
 			{
-				obstacle = Instantiate(obstaclePrefab, obstacleSpawners[i].position, Quaternion.identity);
+				obstacle = Instantiate(obstaclePrefab, obstacleSpawners[i].position, obstacleSpawners[i].rotation);
 				obstacle.transform.parent = ObstaclesParent;
 			}
 		}
