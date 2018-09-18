@@ -12,7 +12,7 @@ public class ObstacleSpawner : MonoBehaviour
 
 	public void SpawnObstacles()
 	{
-		int rand = Random.Range(0, obstacleSpawners.Count - 1);
+		int rand = Random.Range(0, obstacleSpawners.Count);
 		for (int i = 0; i < obstacleSpawners.Count; i++)
 		{
 			if (i == rand)

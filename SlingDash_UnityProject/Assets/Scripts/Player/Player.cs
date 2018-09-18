@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float bulletTimeFactor = 0.02f;
     public float throwForce = 300f;
     public float energyBarRechargeValue = 5f;
+	public float lerpBulletTime = 0.125f;
 
     public float maxThrowForceLength = 2f;
     public float forceMultiplier = 100f;
@@ -68,9 +69,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            // ENABLE BULLET TIME
-            SetBulletTime(true);
-
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
@@ -89,7 +87,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            SetDirection();
+			SetBulletTime(true);
+			SetDirection();
             SetForce();
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -150,13 +149,13 @@ public class Player : MonoBehaviour
         // Use AnimationCurve
         if (bulletTimeActive)
         {
-            Time.timeScale = bulletTimeFactor;
+            Time.timeScale = Mathf.Lerp(Time.timeScale, bulletTimeFactor, lerpBulletTime * Time.deltaTime);
             Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
         }
         else
         {
             Time.timeScale = 1;
-            Time.fixedDeltaTime = Time.timeScale * .02f;
+			Time.fixedDeltaTime = Time.timeScale * .02f;
         }
     }
 
@@ -172,7 +171,8 @@ public class Player : MonoBehaviour
     // TURN INTO IENUMERATOR
     void KillPlayer()
     {
-        Destroy(gameObject);
+		MakeStuffDisappear();
+		Destroy(gameObject);
     }
 
     void EnergyBar()
