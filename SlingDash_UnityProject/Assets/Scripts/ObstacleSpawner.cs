@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-	public GameObject obstaclePrefab;
+	public List<GameObject> obstacles;
 	public List<Transform> obstacleSpawners;
 	public Transform ObstaclesParent;
+	public float offsetToSpawnObstacles = 2f;
+	public float distBtwnObjs = 5f;
 
-	private GameObject obstacle;
+	private float posToSpawnObstacle;
 
-	public void SpawnObstacles()
+	private void Start()
 	{
-		int rand = Random.Range(0, obstacleSpawners.Count);
-		for (int i = 0; i < obstacleSpawners.Count; i++)
+		posToSpawnObstacle = transform.position.y + distBtwnObjs;
+	}
+
+	private void Update()
+	{
+		if (transform.position.y + offsetToSpawnObstacles > posToSpawnObstacle)
 		{
-			if (i == rand)
-			{
-				obstacle = Instantiate(obstaclePrefab, obstacleSpawners[i].position, obstacleSpawners[i].rotation);
-				obstacle.transform.parent = ObstaclesParent;
-			}
+			SpawnObstacles();
+			posToSpawnObstacle = transform.position.y + distBtwnObjs;
 		}
+	}
+
+
+	private void SpawnObstacles()
+	{
+		int randSpawner = Random.Range(0, obstacleSpawners.Count);
+		int randObstacle = Random.Range(0, obstacles.Count);
+
+		GameObject obstacle = Instantiate(obstacles[randObstacle], obstacleSpawners[randSpawner].position, obstacleSpawners[randSpawner].rotation);
+		obstacle.transform.parent = ObstaclesParent;
 	}
 }

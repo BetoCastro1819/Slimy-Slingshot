@@ -5,20 +5,30 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     public float bulletSpeed = 20f;
+	public float outOfBoundsOffset = 2f;
 
-    private Rigidbody2D rb;
+	private Rigidbody2D rb;
+	private Camera cam;
 
-    private void Start()
+	private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
+		cam = Camera.main;
+		//offScreen = cam.transform.position.y + cam.orthographicSize + outOfBoundsOffset;
+	}
 
-    private void Update()
+	private void Update()
     {
-        rb.velocity = (Vector2)transform.up * bulletSpeed * Time.deltaTime;
-    }
+		float topScreenEdge = cam.transform.position.y + cam.orthographicSize + outOfBoundsOffset;
+		float bottomScreenEdge = cam.transform.position.y - cam.orthographicSize - outOfBoundsOffset;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+		if (transform.position.y > topScreenEdge || transform.position.y < bottomScreenEdge)
+			Destroy(gameObject);
+
+		rb.velocity = (Vector2)transform.up * bulletSpeed * Time.deltaTime;
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
     }

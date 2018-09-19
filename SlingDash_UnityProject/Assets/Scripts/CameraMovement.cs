@@ -17,6 +17,21 @@ public class CameraMovement : MonoBehaviour
 	private void Start()
 	{
 		cameraGuide = Vector3.zero;
+		cameraGuide.y -= yAxisOffset;
+	}
+
+	private void Update()
+	{
+		if (GameManager.GetInstance().GetState() == GameManager.GameState.PLAYING)
+		{
+			if (player != null)
+			{
+				cameraGuide.y += constantSpeed * Time.deltaTime;
+
+				if (player.transform.position.y > cameraGuide.y)
+					cameraGuide.y = player.transform.position.y;
+			}
+		}
 	}
 
 	void FixedUpdate ()
@@ -30,11 +45,6 @@ public class CameraMovement : MonoBehaviour
 
 	void FollowPlayer()
 	{
-		cameraGuide.y += constantSpeed * Time.deltaTime;
-
-		if (player.transform.position.y > cameraGuide.y)
-			cameraGuide.y = player.transform.position.y;
-
         cameraPos = new Vector3(0, cameraGuide.y + yAxisOffset, zAxisOffset);
         Vector3 lerpMovement = Vector3.Lerp(transform.position, cameraPos, lerpSpeed);
 

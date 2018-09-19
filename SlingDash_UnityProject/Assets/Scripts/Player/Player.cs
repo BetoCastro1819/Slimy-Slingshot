@@ -7,14 +7,18 @@ public class Player : MonoBehaviour
     public GameObject aimHandle;
     public GameObject forceDir;
     public GameObject playerBulletPrefab;
+	public GameObject deathEffect;
+	public int health = 1;
     public float bulletTimeFactor = 0.02f;
     public float throwForce = 300f;
     public float energyBarRechargeValue = 5f;
 	public float lerpBulletTime = 0.125f;
+	public float offBoundOffset = 2f;
 
     public float maxThrowForceLength = 2f;
     public float forceMultiplier = 100f;
 
+	private Camera cam;
     private Rigidbody2D rb;
     private Vector3 mousePos;
     private Vector2 dir;
@@ -35,6 +39,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+		cam = Camera.main;
         aimHandle.SetActive(false);
         forceDir.SetActive(false);
         onBulletTime = false;
@@ -45,6 +50,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerFSM(playerState);
+		CheckHealth();
+		CheckPlayerOffBounds();
     }
 
     void PlayerFSM(PlayerState state)
@@ -64,6 +71,24 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+
+	void CheckPlayerOffBounds()
+	{
+		float offBound = cam.transform.position.y - cam.orthographicSize - offBoundOffset;
+		if (transform.position.y < offBound)
+		{
+			Debug.Log("Player off bounds");
+			Vector3 effectPos = new Vector3(transform.position.x, cam.transform.position.y - cam.orthographicSize, 0);
+			Instantiate(deathEffect, effectPos, Quaternion.identity);
+			KillPlayer();
+		}
+	}
+
+	void CheckHealth()
+	{
+		if (health <= 0)
+			playerState = PlayerState.KILLED;
+	}
 
     void OnPlayerTap()
     {
@@ -164,7 +189,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             playerState = PlayerState.KILLED;
-            Debug.Log("morite wacho");
         }
     }
 
@@ -174,6 +198,11 @@ public class Player : MonoBehaviour
 		MakeStuffDisappear();
 		Destroy(gameObject);
     }
+
+	public void TakeDamage(int damage)
+	{
+		health -= damage;
+	}
 
     void EnergyBar()
 	{

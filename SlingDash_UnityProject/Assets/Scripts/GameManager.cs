@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	public ObstacleSpawner obstacleSpawner;
-	public float offsetToSpawnObstacles = 2f;
-	public float distBtwnObjs = 5f;
+	public GameObject startText;
+	public Player player;
 
 	private Camera cam;
-	private float camTopEdgePos;
-	private float posToSpawnObstacle;
+
+	private GameState gameState;
+	public enum GameState
+	{
+		ON_START,
+		PLAYING,
+		PAUSE,
+		GAME_OVER
+	}
+
+	public GameState GetState()
+	{
+		return gameState;
+	}
 
 	#region Singleton
 	private static GameManager instance;
@@ -28,18 +39,52 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		cam = Camera.main;
-		camTopEdgePos = cam.transform.position.y + cam.orthographicSize;
-		posToSpawnObstacle = camTopEdgePos + offsetToSpawnObstacles + distBtwnObjs;
+		gameState = GameState.ON_START;
+		Time.timeScale = 0;
+		startText.SetActive(true);
 	}
 
 	void Update ()
 	{
-		camTopEdgePos = cam.transform.position.y + cam.orthographicSize;
-		if (camTopEdgePos + offsetToSpawnObstacles > posToSpawnObstacle)
+		GameFSM();
+	}
+
+	void GameFSM()
+	{
+		switch (gameState)
 		{
-			// spawn object
-			obstacleSpawner.SpawnObstacles();
-			posToSpawnObstacle = camTopEdgePos + offsetToSpawnObstacles + distBtwnObjs;
+			case GameState.ON_START:
+				StartGame();
+				break;
+			case GameState.PLAYING:
+				CheckForPlayer();
+				break;
+			case GameState.GAME_OVER:
+				break;
+			case GameState.PAUSE:
+				break;
+		}
+	}
+
+	void StartGame()
+	{
+		if (Input.GetKey(KeyCode.Mouse0))
+		{
+			Debug.Log("GAME STARTED");
+			startText.SetActive(false);
+			Time.timeScale = 1;
+			gameState = GameState.PLAYING;
+		}
+	}
+
+	void CheckForPlayer()
+	{
+		if (player != null)
+		{
+			float playerOffBound = cam.transform.position.y - cam.orthographicSize;
+
+			if (player.transform.position.y < playerOffBound)
+				Debug.Log("OFF BOUNDS");
 		}
 	}
 }

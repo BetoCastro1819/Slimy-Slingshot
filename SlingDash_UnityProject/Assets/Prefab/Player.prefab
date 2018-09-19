@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995908675237558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4165991656909634}
@@ -155,10 +155,14 @@ MonoBehaviour:
   forceDir: {fileID: 0}
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
+  deathEffect: {fileID: 1070006641812860, guid: 16ecb6858ae5a20468783fa3ef9b81e2,
+    type: 2}
+  health: 1
   bulletTimeFactor: 0.1
   throwForce: 0
   energyBarRechargeValue: 0
   lerpBulletTime: 15
+  offBoundOffset: 2
   maxThrowForceLength: 2
   forceMultiplier: 400
   playerState: 0

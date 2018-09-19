@@ -36,5 +36,8 @@ public class ShootingEnemy : Enemy
             );
             transform.up = -dir;
         }
-    }
+
+		if (health <= 0 || transform.position.y < offBounds)
+			Destroy(gameObject);
+	}
 }
