@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 		float offBound = cam.transform.position.y - cam.orthographicSize - offBoundOffset;
 		if (transform.position.y < offBound)
 		{
-			Debug.Log("Player off bounds");
+			//Debug.Log("Player off bounds");
 			Vector3 effectPos = new Vector3(transform.position.x, cam.transform.position.y - cam.orthographicSize, 0);
 			Instantiate(deathEffect, effectPos, Quaternion.identity);
 			KillPlayer();
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
 
             forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
             forceDir.SetActive(true);
-            forceDir.transform.localScale = new Vector3(0.1f, 0, 0);
+            forceDir.transform.localScale = new Vector3(0.2f, 1, 0);
 
             playerState = PlayerState.AIMING;
         }
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
         {
 			SetBulletTime(true);
 			SetDirection();
-            SetForce();
+            //SetForce();
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
     {
         rb.velocity = Vector2.zero; // Resets player velocity
 
-        rb.AddForce(transform.up * throwForce * forceMultiplier);
+        rb.AddForce(transform.up * throwForce); // * forceMultiplier);
         MakeStuffDisappear();
 
         // SHOOT BULLET
@@ -230,4 +230,10 @@ public class Player : MonoBehaviour
 		aimHandle.SetActive(false);
 		forceDir.SetActive(false);
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "LevelComplete")
+            GameManager.GetInstance().LevelComplete();
+    }
 }

@@ -12,14 +12,17 @@ public class ShootingEnemy : Enemy
     private Player player;
     private float timer;
 
-    void Start()
+    override public void Start()
     {
+        base.Start();
         timer = fireRate;
         player = FindObjectOfType<Player>();
     }
 	
-	void Update ()
+	override public void Update ()
     {
+        base.Update();
+
         timer += Time.deltaTime;
         if (timer > fireRate)
         {
@@ -36,8 +39,5 @@ public class ShootingEnemy : Enemy
             );
             transform.up = -dir;
         }
-
-		if (health <= 0 || transform.position.y < offBounds)
-			Destroy(gameObject);
 	}
 }

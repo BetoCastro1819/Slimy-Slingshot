@@ -11,13 +11,13 @@ public class Enemy : MonoBehaviour
 	private Camera cam;
 	protected float offBounds;
 
-	private void Start()
+	public virtual void Start()
 	{
 		cam = Camera.main;
 		offBounds = cam.transform.position.y - cam.orthographicSize - offBoundsOffset; 
 	}
 
-	void Update()
+	public virtual void Update()
     {
 		offBounds = cam.transform.position.y - cam.orthographicSize - offBoundsOffset;
 
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 		Debug.Log(health);
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	public virtual void OnCollisionEnter2D(Collision2D collision)
     {
 		if (collision.gameObject.tag == "PlayerBullet")
 		{

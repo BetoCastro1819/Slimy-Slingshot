@@ -9,6 +9,7 @@ public class ObstacleSpawner : MonoBehaviour
 	public Transform ObstaclesParent;
 	public float offsetToSpawnObstacles = 2f;
 	public float distBtwnObjs = 5f;
+    public bool level2 = false;
 
 	private float posToSpawnObstacle;
 
