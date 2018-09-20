@@ -20,4 +20,13 @@ public class ButtonScript : MonoBehaviour {
     public void RestartCurrentScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void ActivateGameObject(GameObject obj) {
+            obj.SetActive(true);
+    }
+
+    public void DeactivateGameObject(GameObject obj)
+    {
+            obj.SetActive(false);
+    }
 }
