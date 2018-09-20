@@ -159,7 +159,7 @@ MonoBehaviour:
     type: 2}
   health: 1
   bulletTimeFactor: 0.1
-  throwForce: 0
+  throwForce: 700
   energyBarRechargeValue: 0
   lerpBulletTime: 15
   offBoundOffset: 2

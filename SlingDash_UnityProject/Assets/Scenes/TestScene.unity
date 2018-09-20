@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a7a725d721cc6459feec6772f0b360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelCompleteScreen: {fileID: 0}
   startText: {fileID: 1198782189}
   player: {fileID: 511852834}
 --- !u!4 &165870476
@@ -849,7 +850,7 @@ GameObject:
   - component: {fileID: 1024308000}
   m_Layer: 9
   m_Name: RightWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1311,7 +1312,7 @@ GameObject:
   - component: {fileID: 1742703331}
   m_Layer: 9
   m_Name: LeftWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1557,6 +1558,7 @@ MonoBehaviour:
   ObstaclesParent: {fileID: 1776360723}
   offsetToSpawnObstacles: 2
   distBtwnObjs: 15
+  level2: 0
 --- !u!1 &1903529387
 GameObject:
   m_ObjectHideFlags: 0

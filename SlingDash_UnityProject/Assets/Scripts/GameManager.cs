@@ -44,7 +44,10 @@ public class GameManager : MonoBehaviour
 		gameState = GameState.ON_START;
 		Time.timeScale = 0;
 		startText.SetActive(true);
-        levelCompleteScreen.SetActive(false);
+        if (levelCompleteScreen != null)
+        {
+            levelCompleteScreen.SetActive(false);
+        }
 	}
 
 	void Update ()
