@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     public GameObject playerBulletPrefab;
 	public GameObject deathEffect;
 	public int health = 1;
+	public int energyCostPerJump = 20;
     public float bulletTimeFactor = 0.02f;
     public float throwForce = 300f;
-    public float energyBarRechargeValue = 5f;
 	public float lerpBulletTime = 0.125f;
 	public float offBoundOffset = 2f;
 
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         KILLED
     }
 
-    void Start()
+	private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 		cam = Camera.main;
@@ -47,19 +47,20 @@ public class Player : MonoBehaviour
         playerState = PlayerState.MOVING;
     }
 
-    void Update()
+	private void Update()
     {
         PlayerFSM(playerState);
 		CheckHealth();
 		CheckPlayerOffBounds();
     }
 
-    void PlayerFSM(PlayerState state)
+	private void PlayerFSM(PlayerState state)
     {
         switch (state)
         {
             case PlayerState.MOVING:
-                OnPlayerTap();
+				if (energyBarValue > 0)
+					OnPlayerTap();
                 break;
             case PlayerState.AIMING:
                 OnPlayerHold();
@@ -72,7 +73,7 @@ public class Player : MonoBehaviour
         }
     }
 
-	void CheckPlayerOffBounds()
+	private void CheckPlayerOffBounds()
 	{
 		float offBound = cam.transform.position.y - cam.orthographicSize - offBoundOffset;
 		if (transform.position.y < offBound)
@@ -84,13 +85,13 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void CheckHealth()
+	private void CheckHealth()
 	{
 		if (health <= 0)
 			playerState = PlayerState.KILLED;
 	}
 
-    void OnPlayerTap()
+	private void OnPlayerTap()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -104,11 +105,13 @@ public class Player : MonoBehaviour
             forceDir.SetActive(true);
             forceDir.transform.localScale = new Vector3(0.2f, 1, 0);
 
-            playerState = PlayerState.AIMING;
+			UseBulletTimeEnergy();
+
+			playerState = PlayerState.AIMING;
         }
     }
 
-    void OnPlayerHold()
+	private void OnPlayerHold()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -125,7 +128,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void SetDirection()
+	private void SetDirection()
     {
         mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -143,7 +146,7 @@ public class Player : MonoBehaviour
         forceDir.transform.position = transform.position;
     }
 
-    void SetForce()
+	private void SetForce()
     {
         float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
 
@@ -155,7 +158,7 @@ public class Player : MonoBehaviour
         throwForce = forceAmount;
     }
 
-    void Shoot()
+	private void Shoot()
     {
         rb.velocity = Vector2.zero; // Resets player velocity
 
@@ -167,15 +170,14 @@ public class Player : MonoBehaviour
         playerBullet.transform.up = dir;
     }
 
-    void SetBulletTime(bool bulletTimeActive)
+    private void SetBulletTime(bool bulletTimeActive)
     {
         onBulletTime = bulletTimeActive;
 
-        // Use AnimationCurve
         if (bulletTimeActive)
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, bulletTimeFactor, lerpBulletTime * Time.deltaTime);
-            Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
+			Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
         }
         else
         {
@@ -193,33 +195,18 @@ public class Player : MonoBehaviour
     }
 
     // TURN INTO IENUMERATOR
-    void KillPlayer()
+    private void KillPlayer()
     {
 		MakeStuffDisappear();
 		Destroy(gameObject);
     }
 
-	public void TakeDamage(int damage)
-	{
-		health -= damage;
-	}
-
-    void EnergyBar()
+    private void UseBulletTimeEnergy()
 	{
 		if (energyBarValue <= 0)
 			energyBarValue = 0;
 		else
-			energyBarValue -= energyBarRechargeValue;
-
-		UI_Manager.Get().energyBar.value = energyBarValue / 100;
-	}
-
-	void RechargeEnergyBar()
-	{
-		if (energyBarValue >= 100)
-			energyBarValue = 100;
-		else
-			energyBarValue += energyBarRechargeValue / 3;
+			energyBarValue -= energyCostPerJump;
 
 		UI_Manager.Get().energyBar.value = energyBarValue / 100;
 	}
@@ -236,4 +223,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "LevelComplete")
             GameManager.GetInstance().LevelComplete();
     }
+
+	public void TakeDamage(int damage)
+	{
+		health -= damage;
+	}
+
+	public void RechargeEnergyBar(int rechargeValue)
+	{
+		if (energyBarValue + rechargeValue >= 100)
+			energyBarValue = 100;
+		else
+			energyBarValue += rechargeValue;
+
+		UI_Manager.Get().energyBar.value = energyBarValue / 100;
+	}
 }

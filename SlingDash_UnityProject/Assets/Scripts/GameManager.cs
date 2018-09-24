@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;
+
+		// Caps processing frame rate at 60 FPS
+		Application.targetFrameRate = 60;
 	}
 	#endregion
 

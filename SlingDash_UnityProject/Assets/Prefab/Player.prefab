@@ -158,6 +158,7 @@ MonoBehaviour:
   deathEffect: {fileID: 1070006641812860, guid: 16ecb6858ae5a20468783fa3ef9b81e2,
     type: 2}
   health: 1
+  energyCostPerJump: 10
   bulletTimeFactor: 0.1
   throwForce: 700
   energyBarRechargeValue: 0

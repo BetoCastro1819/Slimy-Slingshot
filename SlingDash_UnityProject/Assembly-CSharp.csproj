@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Enemies\EnemyBullets.cs" />
     <Compile Include="Assets\Scripts\Enemies\MovingEnemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\ShootingEnemy.cs" />
+    <Compile Include="Assets\Scripts\EnergyPickUp.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ObstacleDestroyer.cs" />
     <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
@@ -284,6 +285,9 @@
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="Vuforia.UnityExtensions">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GoogleAudioSpatializer">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
