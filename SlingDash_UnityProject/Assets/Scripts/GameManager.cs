@@ -48,9 +48,7 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 0;
 		startText.SetActive(true);
         if (levelCompleteScreen != null)
-        {
             levelCompleteScreen.SetActive(false);
-        }
 	}
 
 	void Update ()
@@ -83,7 +81,6 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.Mouse0))
 		{
-			//Debug.Log("GAME STARTED");
 			startText.SetActive(false);
 			Time.timeScale = 1;
 			gameState = GameState.PLAYING;
@@ -95,9 +92,6 @@ public class GameManager : MonoBehaviour
 		if (player != null)
 		{
 			float playerOffBound = cam.transform.position.y - cam.orthographicSize;
-
-			//if (player.transform.position.y < playerOffBound)
-				//Debug.Log("OFF BOUNDS");
 		}
 	}
 
@@ -106,7 +100,5 @@ public class GameManager : MonoBehaviour
         gameState = GameState.LEVEL_COMPLETE;
         Time.timeScale = 0;
         levelCompleteScreen.SetActive(true);
-
-        // call ui manager
     }
 }

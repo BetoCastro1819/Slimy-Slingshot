@@ -5,7 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health = 1;
-    public float speed = 5f;
+	public int rechargeEnergyBarValue = 40;
+	public float speed = 5f;
 	public float offBoundsOffset = 2f;
 
 	private Camera cam;
@@ -28,7 +29,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-		Debug.Log(health);
 	}
 
 	public virtual void OnCollisionEnter2D(Collision2D collision)

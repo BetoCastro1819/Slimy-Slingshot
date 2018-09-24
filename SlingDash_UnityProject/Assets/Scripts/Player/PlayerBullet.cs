@@ -9,12 +9,12 @@ public class PlayerBullet : MonoBehaviour
 
 	private Rigidbody2D rb;
 	private Camera cam;
-
+	private Player player;
 	private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 		cam = Camera.main;
-		//offScreen = cam.transform.position.y + cam.orthographicSize + outOfBoundsOffset;
+		player = GameManager.GetInstance().player;
 	}
 
 	private void Update()
@@ -30,6 +30,11 @@ public class PlayerBullet : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
     {
+		Enemy e = collision.gameObject.GetComponent<Enemy>();
+
+		if (e != null)
+			player.RechargeEnergyBar(e.rechargeEnergyBarValue);
+
         Destroy(gameObject);
     }
 }
