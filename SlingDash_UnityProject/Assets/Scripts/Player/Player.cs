@@ -168,6 +168,9 @@ public class Player : MonoBehaviour
         // SHOOT BULLET
         GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
         playerBullet.transform.up = dir;
+
+		//-------------- UNCOMMENT TO ENABLE PHONE VIBRATIONS ----------------//
+		//Handheld.Vibrate();
     }
 
     private void SetBulletTime(bool bulletTimeActive)
