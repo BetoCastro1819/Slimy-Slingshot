@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b61fc10779fb3042a8221cc87714b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rechargeValue: 30
+  rechargeValue: 20
   posOffsetForDestroy: 2
 --- !u!198 &198433863582132046
 ParticleSystem:

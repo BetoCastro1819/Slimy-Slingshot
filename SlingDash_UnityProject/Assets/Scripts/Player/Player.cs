@@ -105,7 +105,6 @@ public class Player : MonoBehaviour
             forceDir.SetActive(true);
             forceDir.transform.localScale = new Vector3(0.2f, 1, 0);
 
-			UseBulletTimeEnergy();
 
 			playerState = PlayerState.AIMING;
         }
@@ -169,11 +168,14 @@ public class Player : MonoBehaviour
         GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
         playerBullet.transform.up = dir;
 
+		// Reduces energy bar value
+		UseBulletTimeEnergy();
+
 		//-------------- UNCOMMENT TO ENABLE PHONE VIBRATIONS ----------------//
 		//Handheld.Vibrate();
-    }
+	}
 
-    private void SetBulletTime(bool bulletTimeActive)
+	private void SetBulletTime(bool bulletTimeActive)
     {
         onBulletTime = bulletTimeActive;
 
