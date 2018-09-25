@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
 	public Slider energyBar;
+    public Text meterText;
 
 	#region Singleton
 	private static UI_Manager instance;
