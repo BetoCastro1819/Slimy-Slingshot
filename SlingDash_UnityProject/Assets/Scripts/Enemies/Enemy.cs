@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 	public int rechargeEnergyBarValue = 40;
 	public float speed = 5f;
 	public float offBoundsOffset = 2f;
+    public int scoreValue = 50;
 
 	private Camera cam;
 	protected float offBounds;
@@ -39,12 +40,14 @@ public class Enemy : MonoBehaviour
 		if (collision.gameObject.tag == "PlayerBullet")
 		{
 			TakeDamage(1);
-			Debug.Log(health);
 		}
 	}
 
 	private void KillEnemy()
 	{
-		// Camera shake
+        // Camera shake
+        ScoreManager.Get().AddScore(scoreValue);
+        UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + " p";
+        Destroy(gameObject);
 	}
 }

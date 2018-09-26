@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4026041782715348}
-  - component: {fileID: 114039157287040032}
   - component: {fileID: 114661294816982850}
   - component: {fileID: 212162056749331406}
   - component: {fileID: 61292274336633292}
@@ -155,20 +154,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114039157287040032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028790002239912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3bb712dd2cd1ce49b645bdc37cfd41a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  speed: 0
-  offBoundsOffset: 2
 --- !u!114 &114661294816982850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,8 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
+  scoreValue: 50
   enemyBullet: {fileID: 1405741431081630, guid: c711f33b1188b1241a27dd7483425830,
     type: 2}
   bulletsParent: {fileID: 4473175418301474}

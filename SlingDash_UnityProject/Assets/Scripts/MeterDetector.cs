@@ -21,6 +21,6 @@ public class MeterDetector : MonoBehaviour {
             meters = 0;
         }
 
-        UI_Manager.Get().meterText.text = meters.ToString("0000");
+        UI_Manager.Get().meterText.text = meters.ToString("0000") + " m";
 	}
 }
