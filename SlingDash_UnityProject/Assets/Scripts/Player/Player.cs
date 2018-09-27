@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float throwForce = 300f;
 	public float lerpBulletTime = 0.125f;
 	public float offBoundOffset = 2f;
+    public bool energyBarEnabled = false;
 
     public float maxThrowForceLength = 2f;
     public float forceMultiplier = 100f;
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour
         {
             case PlayerState.MOVING:
 				if (energyBarValue > 0)
-					OnPlayerTap();
+				    OnPlayerTap();
                 break;
             case PlayerState.AIMING:
                 OnPlayerHold();
@@ -169,7 +170,8 @@ public class Player : MonoBehaviour
         playerBullet.transform.up = dir;
 
 		// Reduces energy bar value
-		UseBulletTimeEnergy();
+        if (energyBarEnabled)
+		    UseBulletTimeEnergy();
 
 		//-------------- UNCOMMENT TO ENABLE PHONE VIBRATIONS ----------------//
 		//Handheld.Vibrate();
