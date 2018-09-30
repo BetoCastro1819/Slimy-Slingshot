@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBullets : MonoBehaviour
 {
+	public GameObject particleEffect;
     public float bulletSpeed = 20f;
 	public float outOfBoundsOffset = 2f;
 
@@ -29,13 +30,11 @@ public class EnemyBullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
-
 		Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)
-        {
 			player.TakeDamage(1);
-			Destroy(gameObject);
-		}
+
+		Instantiate(particleEffect, transform.position, transform.rotation);
+		Destroy(gameObject);
 	}
 }
