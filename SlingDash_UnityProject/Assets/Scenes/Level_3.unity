@@ -435,6 +435,15 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1119337451643682, guid: 200d9464fd7cf844993892719676d7c8, type: 2}
+      propertyPath: m_Name
+      value: EnemiesTutorialText
+      objectReference: {fileID: 0}
+    - target: {fileID: 114198183896841740, guid: 200d9464fd7cf844993892719676d7c8,
+        type: 2}
+      propertyPath: m_Text
+      value: Enemies refill your stamina
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 200d9464fd7cf844993892719676d7c8, type: 2}
   m_IsPrefabAsset: 0
