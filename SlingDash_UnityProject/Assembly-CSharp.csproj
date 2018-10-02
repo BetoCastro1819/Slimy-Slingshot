@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ButtonScript.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\CoinManager.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyBullets.cs" />
     <Compile Include="Assets\Scripts\Enemies\MovingEnemy.cs" />
