@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-	public GameObject particleEffect;
     public float bulletSpeed = 20f;
 	public float outOfBoundsOffset = 2f;
 
@@ -36,7 +35,6 @@ public class PlayerBullet : MonoBehaviour
 		if (e != null)
 			player.RechargeEnergyBar(e.rechargeEnergyBarValue);
 
-		Instantiate(particleEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

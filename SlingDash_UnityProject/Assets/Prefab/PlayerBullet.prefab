@@ -251,8 +251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf240913f94bb24c83e25ba3de9cd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleEffect: {fileID: 1032927981083648, guid: dde2ce30393df0648b26ab79dc996e74,
-    type: 2}
   bulletSpeed: 1000
   outOfBoundsOffset: 2
 --- !u!198 &198700759834538748
