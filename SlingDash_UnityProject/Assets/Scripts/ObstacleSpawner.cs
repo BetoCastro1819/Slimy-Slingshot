@@ -32,7 +32,7 @@ public class ObstacleSpawner : MonoBehaviour
 		int randSpawner = Random.Range(0, obstacleSpawners.Count);
 		int randObstacle = Random.Range(0, obstacles.Count);
 
-		GameObject obstacle = Instantiate(obstacles[randObstacle], obstacleSpawners[randSpawner].position, obstacleSpawners[randSpawner].rotation);
+		GameObject obstacle = Instantiate(obstacles[randObstacle], obstacleSpawners[randSpawner].position, Quaternion.identity);
 		obstacle.transform.parent = ObstaclesParent;
 	}
 }

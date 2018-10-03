@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 1995908675237558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4165991656909634}
   - {fileID: 4114466077009202}
@@ -167,9 +167,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.05}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!114 &114277271195220482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,12 +187,14 @@ MonoBehaviour:
     type: 2}
   deathEffect: {fileID: 1070006641812860, guid: 16ecb6858ae5a20468783fa3ef9b81e2,
     type: 2}
+  playerOnHold: {fileID: 21300000, guid: fb5553d67b9120444b6f1f7135abe042, type: 3}
   health: 1
   energyCostPerJump: 10
   bulletTimeFactor: 0.1
   throwForce: 700
   lerpBulletTime: 15
   offBoundOffset: 2
+  energyBarEnabled: 0
   maxThrowForceLength: 2
   forceMultiplier: 400
   playerState: 0
@@ -9421,8 +9423,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f645e253dbbed6449826b7f49f6891b9, type: 3}
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 21300000, guid: d7427c49074de04419d2053beb150ef4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

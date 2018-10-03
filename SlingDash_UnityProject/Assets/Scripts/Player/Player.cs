@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public GameObject forceDir;
     public GameObject playerBulletPrefab;
 	public GameObject deathEffect;
+	public Sprite playerOnHold;
 	public int health = 1;
 	public int energyCostPerJump = 20;
     public float bulletTimeFactor = 0.02f;
@@ -25,7 +26,11 @@ public class Player : MonoBehaviour
     private Vector2 dir;
     private float energyBarValue;
 
-    private bool onBulletTime;
+	private SpriteRenderer spriteRenderer;
+	private Sprite playerDefault;
+
+
+	private bool onBulletTime;
     public bool OnBulletTime() { return onBulletTime; }
 
     public PlayerState playerState;
@@ -46,6 +51,9 @@ public class Player : MonoBehaviour
         onBulletTime = false;
         energyBarValue = 100;
         playerState = PlayerState.MOVING;
+
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		playerDefault = spriteRenderer.sprite;
     }
 
 	private void Update()
@@ -62,10 +70,12 @@ public class Player : MonoBehaviour
             case PlayerState.MOVING:
 				if (energyBarValue > 0)
 				    OnPlayerTap();
+				spriteRenderer.sprite = playerDefault;
                 break;
             case PlayerState.AIMING:
                 OnPlayerHold();
-                break;
+				spriteRenderer.sprite = playerOnHold;
+				break;
             case PlayerState.GOT_HURT:
                 break;
             case PlayerState.KILLED:
@@ -104,7 +114,7 @@ public class Player : MonoBehaviour
 
             forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
             forceDir.SetActive(true);
-            forceDir.transform.localScale = new Vector3(0.2f, 1, 0);
+            forceDir.transform.localScale = new Vector3(0.2f, 1.5f, 0);
 
 
 			playerState = PlayerState.AIMING;
