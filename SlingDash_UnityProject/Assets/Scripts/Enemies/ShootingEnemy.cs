@@ -37,7 +37,7 @@ public class ShootingEnemy : Enemy
                 transform.position.x - player.transform.position.x,
                 transform.position.y - player.transform.position.y
             );
-            transform.up = -dir;
+            transform.up = dir;
         }
 	}
 }

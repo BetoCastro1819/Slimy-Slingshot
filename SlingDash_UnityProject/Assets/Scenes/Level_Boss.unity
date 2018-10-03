@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyBar: {fileID: 1333698912}
+  meterText: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!4 &5670602
 Transform:
   m_ObjectHideFlags: 0
@@ -632,7 +634,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 349840585}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 551203317}
@@ -1170,8 +1172,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  rechargeEnergyBarValue: 40
   speed: 1
   offBoundsOffset: 2
+  scoreValue: 50
 --- !u!50 &551203321
 Rigidbody2D:
   serializedVersion: 4
@@ -1204,13 +1208,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 5
+  rechargeEnergyBarValue: 40
+  speed: 1
   offBoundsOffset: 2
+  scoreValue: 50
   enemyBullet: {fileID: 1405741431081630, guid: c711f33b1188b1241a27dd7483425830,
     type: 2}
   bulletsParent: {fileID: 424393669}
   shootinPoint: {fileID: 349840586}
-  fireRate: 0.8
+  fireRate: 1
 --- !u!1 &553428963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1710,10 @@ Prefab:
         type: 2}
       propertyPath: throwForce
       value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337287593631070, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
@@ -2506,7 +2516,6 @@ MonoBehaviour:
   ObstaclesParent: {fileID: 1776360723}
   offsetToSpawnObstacles: 2
   distBtwnObjs: 15
-  level2: 0
 --- !u!1 &1903529387
 GameObject:
   m_ObjectHideFlags: 0
