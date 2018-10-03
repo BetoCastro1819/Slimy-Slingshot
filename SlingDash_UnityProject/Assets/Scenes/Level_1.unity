@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a7a725d721cc6459feec6772f0b360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCompleteScreen: {fileID: 0}
+  levelCompleteScreen: {fileID: 479505158}
   startText: {fileID: 1198782189}
   player: {fileID: 511852834}
 --- !u!4 &165870476
@@ -403,6 +403,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 200d9464fd7cf844993892719676d7c8, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &479505158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1777323686559796, guid: 2e356d424089db84ea1fe97c6aa35b6d,
+    type: 2}
+  m_PrefabInternal: {fileID: 919120235}
 --- !u!114 &511852834 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
