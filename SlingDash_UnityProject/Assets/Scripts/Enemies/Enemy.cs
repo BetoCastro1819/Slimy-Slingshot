@@ -47,7 +47,9 @@ public class Enemy : MonoBehaviour
 	{
         // Camera shake
         ScoreManager.Get().AddScore(scoreValue);
-        UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + " p";
+        CoinManager.Get().AddCoins(Random.Range(1,4));
+        UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
+        UI_Manager.Get().coinsText.text = CoinManager.Get().GetCoins().ToString("0000") + "c";
         Destroy(gameObject);
 	}
 }
