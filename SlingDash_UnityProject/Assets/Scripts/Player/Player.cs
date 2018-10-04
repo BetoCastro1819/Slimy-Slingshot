@@ -12,11 +12,11 @@ public class Player : MonoBehaviour
 	public int health = 1;
 	public int energyCostPerJump = 20;
     public float bulletTimeFactor = 0.02f;
-    public float throwForce = 300f;
 	public float lerpBulletTime = 0.125f;
 	public float offBoundOffset = 2f;
     public bool energyBarEnabled = false;
 
+    public float throwForce = 300f;
     public float maxThrowForceLength = 2f;
     public float forceMultiplier = 100f;
 
@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
 	private SpriteRenderer spriteRenderer;
 	private Sprite playerDefault;
-
 
 	private bool onBulletTime;
     public bool OnBulletTime() { return onBulletTime; }
@@ -58,7 +57,9 @@ public class Player : MonoBehaviour
 
 	private void Update()
     {
+        // Player Finite State Machine
         PlayerFSM(playerState);
+
 		CheckHealth();
 		CheckPlayerOffBounds();
     }
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
 				spriteRenderer.sprite = playerOnHold;
 				break;
             case PlayerState.GOT_HURT:
+                // Not enabled for 1 shot 1 kill on player
                 break;
             case PlayerState.KILLED:
                 KillPlayer();
@@ -89,7 +91,6 @@ public class Player : MonoBehaviour
 		float offBound = cam.transform.position.y - cam.orthographicSize - offBoundOffset;
 		if (transform.position.y < offBound)
 		{
-			//Debug.Log("Player off bounds");
 			Vector3 effectPos = new Vector3(transform.position.x, cam.transform.position.y - cam.orthographicSize, 0);
 			Instantiate(deathEffect, effectPos, Quaternion.identity);
 			KillPlayer();
@@ -106,6 +107,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            // Store Vector2 position, where player´s finger touches the screen
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
@@ -114,8 +116,7 @@ public class Player : MonoBehaviour
 
             forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
             forceDir.SetActive(true);
-            forceDir.transform.localScale = new Vector3(0.2f, 1.5f, 0);
-
+            forceDir.transform.localScale = new Vector3(0.2f, 0.5f, 0);
 
 			playerState = PlayerState.AIMING;
         }
