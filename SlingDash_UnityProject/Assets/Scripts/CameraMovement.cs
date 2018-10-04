@@ -26,9 +26,9 @@ public class CameraMovement : MonoBehaviour
 		{
 			if (player != null)
 			{
-				cameraGuide.y += constantSpeed * Time.deltaTime;
+                cameraGuide.y += constantSpeed * Time.unscaledDeltaTime;
 
-				if (player.transform.position.y > cameraGuide.y)
+                if (player.transform.position.y > cameraGuide.y)
 					cameraGuide.y = player.transform.position.y;
 			}
 		}
@@ -37,10 +37,7 @@ public class CameraMovement : MonoBehaviour
 	void FixedUpdate ()
 	{
         if (player != null)
-        {
-            //if (!player.OnBulletTime())
-                FollowPlayer();
-        }
+            FollowPlayer();
     }
 
 	void FollowPlayer()

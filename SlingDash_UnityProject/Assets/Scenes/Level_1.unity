@@ -460,7 +460,7 @@ MonoBehaviour:
   yAxisOffset: 3
   zAxisOffset: -10
   lerpSpeed: 0.3
-  constantSpeed: 5
+  constantSpeed: 3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

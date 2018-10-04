@@ -164,7 +164,6 @@ public class Player : MonoBehaviour
             forceAmount = maxThrowForceLength;
 
         forceDir.transform.localScale = new Vector3(0.2f, forceAmount, 0);
-
         throwForce = forceAmount;
     }
 

@@ -605,6 +605,11 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: c1811963c619aa840ad89e85e41c187b,
         type: 3}
+    - target: {fileID: 114805845399373800, guid: 200d9464fd7cf844993892719676d7c8,
+        type: 2}
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 1368520920}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 200d9464fd7cf844993892719676d7c8, type: 2}
   m_IsPrefabAsset: 0
