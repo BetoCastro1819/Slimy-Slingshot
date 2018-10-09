@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour {
 
+    bool isPaused = false;
+
     public void SceneLoad(string name) {
         SceneManager.LoadScene(name);
     }
@@ -28,5 +30,10 @@ public class ButtonScript : MonoBehaviour {
     public void DeactivateGameObject(GameObject obj)
     {
             obj.SetActive(false);
+    }
+
+    public void Pause() {
+
+        Time.timeScale = 0;
     }
 }
