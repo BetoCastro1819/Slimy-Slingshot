@@ -1082,7 +1082,7 @@ Prefab:
         type: 2}
       propertyPath: forceDir
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1092580279}
     - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
         type: 2}
       propertyPath: energyBarEnabled
@@ -1101,6 +1101,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1092580279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1354065153659112, guid: ebef7a266a08edf46a4bc80e73cbe751,
+    type: 2}
+  m_PrefabInternal: {fileID: 1092580278}
 --- !u!1 &1371127402
 GameObject:
   m_ObjectHideFlags: 0

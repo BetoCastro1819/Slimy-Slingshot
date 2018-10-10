@@ -9,21 +9,24 @@ public class ButtonScript : MonoBehaviour
 
 	public void SceneLoad(string name)
 	{
-		if (TutorialManager.Get() != null && TutorialManager.Get().GetTutorialPlayed() == true)
+		if (PlayerPrefs.GetInt("TutorialPlayed") == 0)
 			name = "Tutorial";
 
         SceneManager.LoadScene(name);
     }
 
     public void Quit() {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif
-    }
+#if UNITY_EDITOR
+		PlayerPrefs.DeleteAll();
+		UnityEditor.EditorApplication.isPlaying = false;
 
-    public void RestartCurrentScene() {
+#else
+		PlayerPrefs.DeleteAll();
+		Application.Quit();
+#endif
+	}
+
+	public void RestartCurrentScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

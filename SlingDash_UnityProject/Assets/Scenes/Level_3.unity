@@ -705,10 +705,11 @@ Transform:
   m_Children:
   - {fileID: 1259031387}
   - {fileID: 1356287845}
+  - {fileID: 2002233392}
   - {fileID: 859767782}
   - {fileID: 948620371}
-  - {fileID: 875690172}
   - {fileID: 185798718}
+  - {fileID: 875690172}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -871,7 +872,7 @@ Transform:
   - {fileID: 329901221}
   - {fileID: 1371127403}
   m_Father: {fileID: 519420032}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &859767783
 MonoBehaviour:
@@ -961,7 +962,7 @@ Transform:
   - {fileID: 1742703330}
   - {fileID: 1024307999}
   m_Father: {fileID: 519420032}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &948620370
 GameObject:
@@ -993,7 +994,7 @@ Transform:
   - {fileID: 38001812}
   - {fileID: 1273993384}
   m_Father: {fileID: 519420032}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &948620372
 MonoBehaviour:
@@ -1387,7 +1388,7 @@ Prefab:
         type: 2}
       propertyPath: forceDir
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1092580279}
     - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
         type: 2}
       propertyPath: energyBarEnabled
@@ -1406,6 +1407,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1092580279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1354065153659112, guid: ebef7a266a08edf46a4bc80e73cbe751,
+    type: 2}
+  m_PrefabInternal: {fileID: 1092580278}
 --- !u!114 &1180472962 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114007904744999418, guid: 200d9464fd7cf844993892719676d7c8,
@@ -1961,7 +1967,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 519420032}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2112256536
 Prefab:
