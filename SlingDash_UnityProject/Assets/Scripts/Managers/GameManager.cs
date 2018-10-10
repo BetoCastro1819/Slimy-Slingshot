@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject levelCompleteScreen;
 	public GameObject startText;
+    public GameObject gameOverScreen;
 	public Player player;
 
 	private Camera cam;
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
 				CheckForPlayer();
 				break;
 			case GameState.GAME_OVER:
+                GameOver();
 				break;
 			case GameState.PAUSE:
 				break;
@@ -104,5 +106,9 @@ public class GameManager : MonoBehaviour
         gameState = GameState.LEVEL_COMPLETE;
         Time.timeScale = 0;
         levelCompleteScreen.SetActive(true);
+    }
+
+    void GameOver() {
+        gameOverScreen.SetActive(true);
     }
 }

@@ -219,7 +219,13 @@ public class Player : MonoBehaviour
     private void KillPlayer()
     {
 		MakeStuffDisappear();
-		Destroy(gameObject);
+
+        if (GameManager.GetInstance() != null)
+        {
+            GameManager gm = GameManager.GetInstance();
+            gm.SetState(GameManager.GameState.GAME_OVER);
+        }
+        Destroy(gameObject);
     }
 
     private void UseBulletTimeEnergy()
