@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject aimHandle;
-    public GameObject forceDir;
+	// Digital analog stick
+    public GameObject analogStick;
+	public GameObject stick;
+	public float digitalAnalogLimit = 1f;
+
+	public GameObject forceDir;
     public GameObject playerBulletPrefab;
 	public GameObject deathEffect;
 	public Sprite playerOnHold;
@@ -46,7 +50,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 		cam = Camera.main;
-        aimHandle.SetActive(false);
+        analogStick.SetActive(false);
         forceDir.SetActive(false);
         onBulletTime = false;
         energyBarValue = 100;
@@ -115,12 +119,13 @@ public class Player : MonoBehaviour
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-            aimHandle.transform.position = new Vector2(mousePos.x, mousePos.y);
-            aimHandle.SetActive(true);
+            analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
+			stick.transform.position = new Vector2(mousePos.x, mousePos.y);
+			analogStick.SetActive(true);
 
             forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
             forceDir.SetActive(true);
-            forceDir.transform.localScale = new Vector3(0.2f, 0.5f, 0);
+            forceDir.transform.localScale = new Vector3(0.2f, 0f, 0);
 
 			playerState = PlayerState.AIMING;
         }
@@ -132,7 +137,7 @@ public class Player : MonoBehaviour
         {
 			SetBulletTime(true);
 			SetDirection();
-            //SetForce();
+            SetForce();
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -149,27 +154,33 @@ public class Player : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
         dir = new Vector2(
-            mousePos.x - aimHandle.transform.position.x,
-            mousePos.y - aimHandle.transform.position.y
+            mousePos.x - analogStick.transform.position.x,
+            mousePos.y - analogStick.transform.position.y
         );
 
-        aimHandle.transform.up = -dir;
+        analogStick.transform.up = -dir;
 
         forceDir.transform.up = dir;
         transform.up = -dir;
 
         forceDir.transform.position = transform.position;
+
+		Vector2 stickPos = new Vector2(mousePos.x, mousePos.y);
+
+		if (Vector2.Distance(analogStick.transform.position, stickPos) < digitalAnalogLimit)
+			stick.transform.position = stickPos;
+
     }
 
 	private void SetForce()
     {
-        float forceAmount = Vector2.Distance(mousePos, aimHandle.transform.position);
+        float forceAmount = Vector2.Distance(mousePos, analogStick.transform.position);
 
         if (forceAmount > maxThrowForceLength)
             forceAmount = maxThrowForceLength;
 
         forceDir.transform.localScale = new Vector3(0.2f, forceAmount, 0);
-        throwForce = forceAmount;
+        //throwForce = forceAmount;
     }
 
 	private void Shoot()
@@ -241,7 +252,7 @@ public class Player : MonoBehaviour
 	// PROTOTYPE MODE ONLY
 	private void MakeStuffDisappear()
 	{
-		aimHandle.SetActive(false);
+		analogStick.SetActive(false);
 		forceDir.SetActive(false);
 	}
 
