@@ -181,7 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8806024c28bb7e044a54e3b279bc5fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimHandle: {fileID: 0}
+  analogStick: {fileID: 0}
+  stick: {fileID: 0}
+  digitalAnalogLimit: 1
   forceDir: {fileID: 0}
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
@@ -191,10 +193,10 @@ MonoBehaviour:
   health: 1
   energyCostPerJump: 10
   bulletTimeFactor: 0.1
-  throwForce: 700
   lerpBulletTime: 15
   offBoundOffset: 2
   energyBarEnabled: 0
+  throwForce: 700
   maxThrowForceLength: 2
   forceMultiplier: 400
   playerState: 0
