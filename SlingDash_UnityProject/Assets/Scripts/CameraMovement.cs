@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -22,7 +23,7 @@ public class CameraMovement : MonoBehaviour
 
 	private void Update()
 	{
-		if (GameManager.GetInstance().GetState() == GameManager.GameState.PLAYING)
+        if (GameManager.GetInstance().GetState() == GameManager.GameState.PLAYING)
 		{
 			if (player != null)
 			{
@@ -36,8 +37,11 @@ public class CameraMovement : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-        if (player != null)
-            FollowPlayer();
+        if (GameManager.GetInstance().GetState() == GameManager.GameState.PLAYING)
+        {
+            if (player != null)
+                FollowPlayer();
+        }
     }
 
 	void FollowPlayer()

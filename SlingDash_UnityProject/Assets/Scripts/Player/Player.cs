@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -57,6 +58,9 @@ public class Player : MonoBehaviour
 
 	private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         // Player Finite State Machine
         PlayerFSM(playerState);
 

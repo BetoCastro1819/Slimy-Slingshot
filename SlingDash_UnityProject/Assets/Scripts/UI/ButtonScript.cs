@@ -34,6 +34,27 @@ public class ButtonScript : MonoBehaviour {
 
     public void Pause() {
 
-        Time.timeScale = 0;
+        if (!isPaused)
+        {
+            if (GameManager.GetInstance() != null)
+            {
+                GameManager gameManager = GameManager.GetInstance();
+                gameManager.SetState(GameManager.GameState.PAUSE);
+            }
+
+            isPaused = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            if (GameManager.GetInstance() != null)
+            {
+                GameManager gameManager = GameManager.GetInstance();
+                gameManager.SetState(GameManager.GameState.PLAYING);
+            }
+
+            isPaused = false;
+            Time.timeScale = 1;
+        }
     }
 }

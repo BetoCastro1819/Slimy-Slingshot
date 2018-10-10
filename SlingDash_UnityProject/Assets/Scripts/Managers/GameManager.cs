@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
         LEVEL_COMPLETE
 	}
 
+    public void SetState(GameState gs) {
+        gameState = gs;
+    }
+
 	public GameState GetState()
 	{
 		return gameState;
