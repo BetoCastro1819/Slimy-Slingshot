@@ -111,4 +111,9 @@ public class GameManager : MonoBehaviour
     void GameOver() {
         gameOverScreen.SetActive(true);
     }
+
+	public void TutorialComplete()
+	{
+		TutorialManager.Get().SetTutorialPlayed(true);
+	}
 }
