@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
 
             forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
             forceDir.SetActive(true);
-            forceDir.transform.localScale = new Vector3(0.2f, 0.5f, 0);
+            forceDir.transform.localScale = new Vector3(0.2f, 0f, 0);
 
 			playerState = PlayerState.AIMING;
         }
@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
         {
 			SetBulletTime(true);
 			SetDirection();
-            //SetForce();
+            SetForce();
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -169,6 +169,7 @@ public class Player : MonoBehaviour
 
 		if (Vector2.Distance(analogStick.transform.position, stickPos) < digitalAnalogLimit)
 			stick.transform.position = stickPos;
+
     }
 
 	private void SetForce()
@@ -179,7 +180,7 @@ public class Player : MonoBehaviour
             forceAmount = maxThrowForceLength;
 
         forceDir.transform.localScale = new Vector3(0.2f, forceAmount, 0);
-        throwForce = forceAmount;
+        //throwForce = forceAmount;
     }
 
 	private void Shoot()

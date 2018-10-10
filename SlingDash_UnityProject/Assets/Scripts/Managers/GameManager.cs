@@ -51,7 +51,9 @@ public class GameManager : MonoBehaviour
 		cam = Camera.main;
 		gameState = GameState.ON_START;
 		Time.timeScale = 0;
-		startText.SetActive(true);
+		if (startText != null)
+			startText.SetActive(true);
+
         if (levelCompleteScreen != null)
             levelCompleteScreen.SetActive(false);
 	}
@@ -87,7 +89,9 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.Mouse0))
 		{
-			startText.SetActive(false);
+			if (startText != null)
+				startText.SetActive(false);
+
 			Time.timeScale = 1;
 			gameState = GameState.PLAYING;
 		}
