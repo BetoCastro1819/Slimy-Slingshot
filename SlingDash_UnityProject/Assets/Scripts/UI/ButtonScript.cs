@@ -9,7 +9,7 @@ public class ButtonScript : MonoBehaviour
 
 	public void SceneLoad(string name)
 	{
-		if (TutorialManager.Get().GetTutorialPlayed() == true)
+		if (TutorialManager.Get() != null && TutorialManager.Get().GetTutorialPlayed() == true)
 			name = "Tutorial";
 
         SceneManager.LoadScene(name);
