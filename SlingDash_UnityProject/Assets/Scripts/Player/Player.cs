@@ -241,7 +241,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "LevelComplete")
+		if (collision.gameObject.tag == "TutorialTrigger")
+		{
+			GameManager.GetInstance().TutorialComplete();
+			GameManager.GetInstance().LevelComplete();
+		}
+
+		if (collision.gameObject.tag == "LevelComplete")
             GameManager.GetInstance().LevelComplete();
     }
 

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonScript : MonoBehaviour {
-
+public class ButtonScript : MonoBehaviour
+{
     bool isPaused = false;
 
-    public void SceneLoad(string name) {
+	public void SceneLoad(string name)
+	{
+		if (TutorialManager.Get().GetTutorialPlayed() == true)
+			name = "Tutorial";
+
         SceneManager.LoadScene(name);
     }
 

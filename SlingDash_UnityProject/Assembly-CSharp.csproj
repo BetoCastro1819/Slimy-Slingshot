@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
     <Compile Include="Assets\Scripts\TilingBackground.cs" />
+    <Compile Include="Assets\Scripts\TutorialManager.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonScript.cs" />
     <Compile Include="Assets\Scripts\UI\UI_Manager.cs" />
     <Compile Include="Assets\Scripts\VersionText.cs" />

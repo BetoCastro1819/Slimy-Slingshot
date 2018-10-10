@@ -105,4 +105,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         levelCompleteScreen.SetActive(true);
     }
+
+	public void TutorialComplete()
+	{
+		TutorialManager.Get().SetTutorialPlayed(true);
+	}
 }
