@@ -62,8 +62,10 @@ public class Player : MonoBehaviour
 
 	private void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
+        if (GameManager.GetInstance() != null)
+            if (GameManager.GetInstance().GetState() == GameManager.GameState.PAUSE)
+                return;
+            
 
         // Player Finite State Machine
         PlayerFSM(playerState);
