@@ -11,19 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 505cf25dac9fd3742870ec27148444cf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level_1.unity
     guid: d9d52c96c0bf0224091d6dbe0f5ea8d5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level_2.unity
     guid: fce8761d7c2ef2347b92439062738f9f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level_3.unity
     guid: fd765b36813a30c45a420787805fe982
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level_Boss.unity
     guid: c047a12310ccc704d9431def1e1fc859
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EndlessLevels/StaminaDisabled.unity
     guid: 3f9ab425dac9a4c4eb75c48eca999a63
   - enabled: 1

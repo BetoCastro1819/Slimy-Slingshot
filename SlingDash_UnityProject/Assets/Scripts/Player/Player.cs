@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		playerDefault = spriteRenderer.sprite;
 
-        DebugScreen.Get().AddButton("Add speed", AddSpeed);
+        //DebugScreen.Get().AddButton("Add speed", AddSpeed);
     }
 
 	private void Update()
