@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		playerDefault = spriteRenderer.sprite;
+
+        DebugScreen.Get().AddButton("Add speed", AddSpeed);
     }
 
 	private void Update()
@@ -284,4 +286,11 @@ public class Player : MonoBehaviour
 
 		UI_Manager.Get().energyBar.value = energyBarValue / 100;
 	}
+
+
+    // DEBUG SCRIPT
+    void AddSpeed()
+    {
+        throwForce += 100;
+    }
 }
