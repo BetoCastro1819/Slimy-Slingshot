@@ -64,4 +64,9 @@ public class ButtonScript : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+
+    public void Revive(Revive revive) {
+        Vector3 rpos = new Vector3(0, revive.GetReviveY());
+        revive.RevivePlayerAtPoint(rpos);
+    }
 }

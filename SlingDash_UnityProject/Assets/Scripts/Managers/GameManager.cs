@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	void CheckForPlayer()
+    void CheckForPlayer()
 	{
 		if (player != null)
 		{

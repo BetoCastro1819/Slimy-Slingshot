@@ -23,4 +23,8 @@ public class MeterDetector : MonoBehaviour {
 
         UI_Manager.Get().meterText.text = meters.ToString("0000") + " m";
 	}
+
+    public float GetMaxMeters() {
+        return maxMeters;
+    }
 }

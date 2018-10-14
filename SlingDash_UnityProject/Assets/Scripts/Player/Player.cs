@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 	// Digital analog stick
     public GameObject analogStick;
 	public GameObject stick;
-	public float digitalAnalogLimit = 1f;
+    public float digitalAnalogLimit = 1f;
 
 	public GameObject forceDir;
     public GameObject playerBulletPrefab;
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         KILLED
     }
 
-	private void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 		cam = Camera.main;
@@ -122,7 +122,6 @@ public class Player : MonoBehaviour
             // Store Vector2 position, where player´s finger touches the screen
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
             analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			stick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			analogStick.SetActive(true);
@@ -240,7 +239,7 @@ public class Player : MonoBehaviour
             GameManager gm = GameManager.GetInstance();
             gm.SetState(GameManager.GameState.GAME_OVER);
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void UseBulletTimeEnergy()
