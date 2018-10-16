@@ -251,6 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd38af7d21cef744e874c9bf4d46f764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletEffect: {fileID: 1730684588987226, guid: 633d7c0b374c5aa40b2f8033e4f447eb,
+    type: 2}
   bulletSpeed: 500
   outOfBoundsOffset: 2
 --- !u!198 &198700759834538748

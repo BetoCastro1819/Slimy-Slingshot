@@ -713,7 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 511852834}
   playerPos: {fileID: 511852835}
-  yAxisOffset: 3
+  yAxisOffset: 1
   zAxisOffset: -10
   lerpSpeed: 0.3
   constantSpeed: 5

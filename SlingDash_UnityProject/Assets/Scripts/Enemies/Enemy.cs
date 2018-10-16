@@ -5,29 +5,33 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 	public int health = 1;
+    public int scoreValue = 50;
 	public int rechargeEnergyBarValue = 40;
 	public float speed = 5f;
 	public float offBoundsOffset = 2f;
-    public int scoreValue = 50;
+	public float forceWhenKilled = 50f;
 
 	private Camera cam;
+	private Rigidbody2D rb;
+
 	protected float offBounds;
 
 	public virtual void Start()
 	{
 		cam = Camera.main;
 		offBounds = cam.transform.position.y - cam.orthographicSize - offBoundsOffset;
+		rb = GetComponent<Rigidbody2D>();
 	}
 
 	public virtual void Update()
 	{
 		offBounds = cam.transform.position.y - cam.orthographicSize - offBoundsOffset;
 
-		if (health <= 0)
-			KillEnemy();
-
-			if (transform.position.y < offBounds)
-				Destroy(gameObject);
+		// Check if enemy is below cameras limit
+		if (transform.position.y < offBounds)
+		{
+			Destroy(gameObject);
+		}
 	}
 
 	public void TakeDamage(int damage)
@@ -40,16 +44,40 @@ public class Enemy : MonoBehaviour
 		if (collision.gameObject.tag == "PlayerBullet")
 		{
 			TakeDamage(1);
+
+			if (health <= 0)
+			{
+				KillEnemy();
+			}
 		}
 	}
 
 	private void KillEnemy()
 	{
-        // Camera shake
-        ScoreManager.Get().AddScore(scoreValue);
-        CoinManager.Get().AddCoins(Random.Range(1,4));
-        UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
-        UI_Manager.Get().coinsText.text = CoinManager.Get().GetCoins().ToString("0000") + "c";
-        Destroy(gameObject);
+		// Camera shake
+		UpdatePlayerScore();
+		transform.Rotate(0, 0, 180);
+
+		if (rb != null)
+		{
+			rb.constraints = RigidbodyConstraints2D.None;
+			rb.AddForce(Vector2.up * forceWhenKilled);
+		}
+
+		Collider2D collider = GetComponent<Collider2D>();
+		if (collider != null)
+		{
+			collider.enabled = false;
+		}
+
+        //Destroy(gameObject);
+	}
+
+	private void UpdatePlayerScore()
+	{
+		ScoreManager.Get().AddScore(scoreValue);
+		CoinManager.Get().AddCoins(Random.Range(1, 4));
+		UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
+		UI_Manager.Get().coinsText.text = CoinManager.Get().GetCoins().ToString("0000") + "c";
 	}
 }
