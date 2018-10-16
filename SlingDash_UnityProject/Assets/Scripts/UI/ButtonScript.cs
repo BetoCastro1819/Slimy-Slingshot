@@ -66,7 +66,12 @@ public class ButtonScript : MonoBehaviour
     }
 
     public void Revive(Revive revive) {
-        Vector3 rpos = new Vector3(0, revive.GetReviveY());
-        revive.RevivePlayerAtPoint(rpos);
+        if (CoinManager.Get().GetCoins() >= 100)
+        {
+            Vector3 rpos = new Vector3(0, revive.GetReviveY());
+            revive.RevivePlayerAtPoint(rpos);
+
+            CoinManager.Get().AddCoins(-100);
+        }
     }
 }
