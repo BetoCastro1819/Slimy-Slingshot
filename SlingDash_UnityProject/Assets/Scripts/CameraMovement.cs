@@ -12,7 +12,6 @@ public class CameraMovement : MonoBehaviour
 	public float lerpSpeed = 0.5f;
 	public float constantSpeed = 2f;
 
-	private Vector3 cameraPos;
 	private Vector3 cameraGuide;
 
 	private void Start()
@@ -46,7 +45,7 @@ public class CameraMovement : MonoBehaviour
 
 	void FollowPlayer()
 	{
-        cameraPos = new Vector3(0, cameraGuide.y + yAxisOffset, zAxisOffset);
+        Vector3 cameraPos = new Vector3(0, cameraGuide.y + yAxisOffset, zAxisOffset);
         Vector3 lerpMovement = Vector3.Lerp(transform.position, cameraPos, lerpSpeed);
 
         transform.position = lerpMovement;

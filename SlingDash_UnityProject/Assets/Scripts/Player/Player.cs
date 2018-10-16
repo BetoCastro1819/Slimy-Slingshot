@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public float forceMultiplier = 100f;
 
 	private Camera cam;
+	private CameraShake cameraShake;
+
     private Rigidbody2D rb;
     private Vector3 mousePos;
     private Vector2 dir;
@@ -48,8 +50,10 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
 		cam = Camera.main;
+		cameraShake = cam.GetComponent<CameraShake>();
+
+		rb = GetComponent<Rigidbody2D>();
         analogStick.SetActive(false);
         forceDir.SetActive(false);
         onBulletTime = false;
@@ -229,9 +233,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    // TURN INTO IENUMERATOR
     private void KillPlayer()
     {
+		StartCoroutine(cameraShake.Shake());
+
 		MakeStuffDisappear();
 
         if (GameManager.GetInstance() != null)

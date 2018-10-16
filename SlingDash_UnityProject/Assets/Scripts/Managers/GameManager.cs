@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
 	public Player player;
 
+	public float timeForGameOver = 2f;
+
 	private Camera cam;
+	private float timer = 0;
 
 	private GameState gameState;
 	public enum GameState
@@ -21,7 +24,8 @@ public class GameManager : MonoBehaviour
         LEVEL_COMPLETE
 	}
 
-    public void SetState(GameState gs) {
+    public void SetState(GameState gs)
+	{
         gameState = gs;
     }
 
@@ -74,7 +78,8 @@ public class GameManager : MonoBehaviour
 				CheckForPlayer();
 				break;
 			case GameState.GAME_OVER:
-                GameOver();
+				timer += Time.deltaTime;
+				if (timer > timeForGameOver) GameOver();
 				break;
 			case GameState.PAUSE:
 				break;
@@ -112,7 +117,8 @@ public class GameManager : MonoBehaviour
         levelCompleteScreen.SetActive(true);
     }
 
-    void GameOver() {
+    void GameOver()
+	{
         gameOverScreen.SetActive(true);
     }
 

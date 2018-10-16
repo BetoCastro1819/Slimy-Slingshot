@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 	public float forceWhenKilled = 50f;
 
 	private Camera cam;
+	private CameraShake cameraShake;
 	private Rigidbody2D rb;
 
 	protected float offBounds;
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
 	public virtual void Start()
 	{
 		cam = Camera.main;
+		cameraShake = cam.GetComponent<CameraShake>();
 		offBounds = cam.transform.position.y - cam.orthographicSize - offBoundsOffset;
 		rb = GetComponent<Rigidbody2D>();
 	}
@@ -54,8 +56,10 @@ public class Enemy : MonoBehaviour
 
 	private void KillEnemy()
 	{
-		// Camera shake
+		StartCoroutine(cameraShake.Shake());
+
 		UpdatePlayerScore();
+
 		transform.Rotate(0, 0, 180);
 
 		if (rb != null)
