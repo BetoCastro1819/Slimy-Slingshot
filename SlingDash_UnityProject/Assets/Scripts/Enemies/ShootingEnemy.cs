@@ -17,27 +17,40 @@ public class ShootingEnemy : Enemy
         base.Start();
         timer = fireRate;
         player = FindObjectOfType<Player>();
+		killed = false;
     }
 	
 	override public void Update ()
     {
         base.Update();
 
-        timer += Time.deltaTime;
-        if (timer > fireRate)
-        {
-            GameObject bullets = Instantiate(enemyBullet, shootinPoint.position, shootinPoint.rotation);
-            bullets.transform.parent = bulletsParent;
-            timer = 0;
-        }
+		if (!killed)
+		{
+			ShootBullet();
+			AimTowardsPlayer();
+		}
+	}
 
-        if (player != null)
-        {
-            Vector2 dir = new Vector2(
-                transform.position.x - player.transform.position.x,
-                transform.position.y - player.transform.position.y
-            );
-            transform.up = dir;
-        }
+	void ShootBullet()
+	{
+		timer += Time.deltaTime;
+		if (timer > fireRate)
+		{
+			GameObject bullets = Instantiate(enemyBullet, shootinPoint.position, shootinPoint.rotation);
+			bullets.transform.parent = bulletsParent;
+			timer = 0;
+		}
+	}
+
+	void AimTowardsPlayer()
+	{
+		if (player != null)
+		{
+			Vector2 dir = new Vector2(
+				transform.position.x - player.transform.position.x,
+				transform.position.y - player.transform.position.y
+			);
+			transform.up = dir;
+		}
 	}
 }

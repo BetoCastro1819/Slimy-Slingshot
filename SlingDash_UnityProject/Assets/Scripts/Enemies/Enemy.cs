@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 	private CameraShake cameraShake;
 	private Rigidbody2D rb;
 
+	protected bool killed;
 	protected float offBounds;
 
 	public virtual void Start()
@@ -56,6 +57,8 @@ public class Enemy : MonoBehaviour
 
 	private void KillEnemy()
 	{
+		killed = true;
+
 		StartCoroutine(cameraShake.Shake());
 
 		UpdatePlayerScore();

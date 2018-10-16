@@ -10,12 +10,15 @@ public class MovingEnemy : Enemy
 	override public void Update ()
 	{
         base.Update();
-	    transform.position += speed * dir * Time.deltaTime;
+
+		if (!killed)
+			transform.position += speed * dir * Time.deltaTime;
 	}
 
     override public void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+
         if (collision.gameObject.tag == "Wall")
             dir *= -1;
     }
