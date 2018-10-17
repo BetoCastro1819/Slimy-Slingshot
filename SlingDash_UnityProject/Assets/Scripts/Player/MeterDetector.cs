@@ -27,4 +27,8 @@ public class MeterDetector : MonoBehaviour {
     public float GetMaxMeters() {
         return maxMeters;
     }
+
+    public float GetMeters() {
+        return meters;
+    }
 }
