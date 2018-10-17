@@ -9,8 +9,8 @@ public class ButtonScript : MonoBehaviour
 
 	public void SceneLoad(string name)
 	{
-		if (PlayerPrefs.GetInt("TutorialPlayed") == 0)
-			name = "Tutorial";
+		/*if (PlayerPrefs.GetInt("TutorialPlayed") == 0)
+			name = "TutorialLevel";*/
 
         SceneManager.LoadScene(name);
     }

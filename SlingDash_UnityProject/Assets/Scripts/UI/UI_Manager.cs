@@ -19,6 +19,6 @@ public class UI_Manager : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;
-	}
-	#endregion
+    }
+    #endregion
 }
