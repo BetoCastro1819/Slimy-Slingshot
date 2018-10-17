@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinManager : MonoBehaviour {
+public class CoinManager : MonoBehaviour
+{
 
     #region Singleton
     private static CoinManager instance;
@@ -18,7 +19,12 @@ public class CoinManager : MonoBehaviour {
 
     int coins = 0;
 
-    public int GetCoins() {
+	private void Start()
+	{
+		coins = 1000;
+	}
+
+	public int GetCoins() {
         return coins;
     }
 

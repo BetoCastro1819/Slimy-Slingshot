@@ -9,6 +9,7 @@ TagManager:
   - LevelComplete
   - Wall
   - TutorialTrigger
+  - ClearScreenTrigger
   layers:
   - Default
   - TransparentFX

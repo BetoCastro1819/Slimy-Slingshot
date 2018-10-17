@@ -11,11 +11,16 @@ public class PlayerBullet : MonoBehaviour
 	private Rigidbody2D rb;
 	private Camera cam;
 	private Player player;
+
 	private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 		cam = Camera.main;
-		player = GameManager.GetInstance().player;
+
+		if (GameManager.GetInstance() != null)
+		{
+			player = GameManager.GetInstance().player;
+		}
 	}
 
 	private void Update()

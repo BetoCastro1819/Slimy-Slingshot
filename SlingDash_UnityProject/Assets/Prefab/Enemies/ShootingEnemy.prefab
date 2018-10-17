@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 212162056749331406}
   - component: {fileID: 61292274336633292}
   - component: {fileID: 50624392624247942}
+  - component: {fileID: 114058962892370494}
   m_Layer: 10
   m_Name: ShootingEnemy
   m_TagString: Enemy
@@ -175,6 +176,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114058962892370494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028790002239912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4591d9409f4010647bfa2b620a2eeb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114661294816982850
 MonoBehaviour:
   m_ObjectHideFlags: 1
