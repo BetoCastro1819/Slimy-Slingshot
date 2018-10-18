@@ -49,13 +49,15 @@ public class UI_Manager : MonoBehaviour
 
 	private void Update()
 	{
-		if (coinManager.GetCoins() > currentCoins)
+		if (coinManager != null && 
+			coinManager.GetCoins() != currentCoins)
 		{
 			currentCoins = coinManager.GetCoins();
 			coinsText.text = currentCoins.ToString("0");
 		}
 
-		if (scoreManager.GetScore() > currentScore)
+		if (scoreManager != null &&
+			scoreManager.GetScore() != currentScore)
 		{
 			currentScore = scoreManager.GetScore();
 			scoreText.text = currentScore.ToString("0");
