@@ -24,11 +24,13 @@ public class CoinManager : MonoBehaviour
 		coins = 1000;
 	}
 
-	public int GetCoins() {
+	public int GetCoins()
+	{
         return coins;
     }
 
-    public void AddCoins(int _coins) {
+    public void AddCoins(int _coins)
+	{
         coins += _coins;
     }
 }

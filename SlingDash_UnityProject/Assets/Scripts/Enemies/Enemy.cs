@@ -86,8 +86,7 @@ public class Enemy : MonoBehaviour
 	private void UpdatePlayerScore()
 	{
 		ScoreManager.Get().AddScore(scoreValue);
-		CoinManager.Get().AddCoins(Random.Range(1, 4));
+		CoinManager.Get().AddCoins(20);
 		UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
-		UI_Manager.Get().coinsText.text = CoinManager.Get().GetCoins().ToString("0000") + "c";
 	}
 }
