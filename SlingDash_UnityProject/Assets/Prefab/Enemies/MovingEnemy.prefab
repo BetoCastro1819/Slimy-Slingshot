@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36fcf348a6beda4791e39012d8f633d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinParticleEffect: {fileID: 1818375870569830, guid: 8b34d56a73dcbee4db6c05926c707b60,
+    type: 2}
   health: 1
   scoreValue: 60
   rechargeEnergyBarValue: 40

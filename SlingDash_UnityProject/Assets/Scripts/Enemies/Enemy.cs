@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject coinParticleEffect;
 	public int health = 1;
     public int scoreValue = 50;
 	public int rechargeEnergyBarValue = 40;
@@ -57,6 +58,8 @@ public class Enemy : MonoBehaviour
 
 	private void KillEnemy()
 	{
+		Instantiate(coinParticleEffect, transform.position, Quaternion.identity);
+
 		killed = true;
 
 		StartCoroutine(cameraShake.Shake());
