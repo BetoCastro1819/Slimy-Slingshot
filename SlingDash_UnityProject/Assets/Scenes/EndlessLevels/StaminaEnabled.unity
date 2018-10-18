@@ -325,6 +325,9 @@ MonoBehaviour:
   startText: {fileID: 1493756702}
   gameOverScreen: {fileID: 908047096}
   player: {fileID: 511852834}
+  meterDetector: {fileID: 1872033879}
+  meterEventList:
+  - {fileID: 11400000, guid: 166d06bd7640f6c41a85caa167ad9645, type: 2}
   timeForGameOver: 2
 --- !u!4 &165870476
 Transform:
@@ -2479,7 +2482,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1736109537984534, guid: 200d9464fd7cf844993892719676d7c8, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 200d9464fd7cf844993892719676d7c8, type: 2}
@@ -2536,7 +2539,7 @@ Prefab:
     - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
         type: 2}
       propertyPath: energyBarEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
         type: 2}
@@ -2671,7 +2674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1149934885
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4733550977026352}
+  - component: {fileID: 114789867720098210}
   - component: {fileID: 212502255175647668}
   - component: {fileID: 61126882258358610}
   - component: {fileID: 50064288921352526}
@@ -309,12 +310,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!50 &50243093151693830
 Rigidbody2D:
   serializedVersion: 4
@@ -329,12 +330,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!50 &50377895703705894
 Rigidbody2D:
   serializedVersion: 4
@@ -349,12 +350,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!50 &50787918207538006
 Rigidbody2D:
   serializedVersion: 4
@@ -369,12 +370,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!50 &50883153451385908
 Rigidbody2D:
   serializedVersion: 4
@@ -389,12 +390,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!50 &50887219830267354
 Rigidbody2D:
   serializedVersion: 4
@@ -409,12 +410,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!50 &50970911986927076
 Rigidbody2D:
   serializedVersion: 4
@@ -429,12 +430,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!61 &61126882258358610
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -647,10 +648,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 1000
   rechargeEnergyBarValue: 40
   speed: 5
   offBoundsOffset: 2
-  scoreValue: 1000
+  forceWhenKilled: 50
 --- !u!114 &114539141064673672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -663,10 +665,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 50
   rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
-  scoreValue: 50
+  forceWhenKilled: 50
   myBoss: {fileID: 114926951528289446}
 --- !u!114 &114544572009530884
 MonoBehaviour:
@@ -680,10 +683,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 50
   rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
-  scoreValue: 50
+  forceWhenKilled: 50
   myBoss: {fileID: 114926951528289446}
 --- !u!114 &114561235436180086
 MonoBehaviour:
@@ -697,10 +701,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 50
   rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
-  scoreValue: 50
+  forceWhenKilled: 50
   myBoss: {fileID: 114926951528289446}
 --- !u!114 &114665270714740020
 MonoBehaviour:
@@ -714,10 +719,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 50
   rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
-  scoreValue: 50
+  forceWhenKilled: 50
   myBoss: {fileID: 114926951528289446}
 --- !u!114 &114698590755942522
 MonoBehaviour:
@@ -731,10 +737,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 50
   rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
-  scoreValue: 50
+  forceWhenKilled: 50
   myBoss: {fileID: 114926951528289446}
 --- !u!114 &114745102671334566
 MonoBehaviour:
@@ -748,11 +755,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 50
   rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
-  scoreValue: 50
+  forceWhenKilled: 50
   myBoss: {fileID: 114926951528289446}
+--- !u!114 &114789867720098210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1646893529748018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4591d9409f4010647bfa2b620a2eeb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114797516150924812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -765,10 +784,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  scoreValue: 50
   rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
-  scoreValue: 50
+  forceWhenKilled: 50
   myBoss: {fileID: 114926951528289446}
 --- !u!114 &114926951528289446
 MonoBehaviour:

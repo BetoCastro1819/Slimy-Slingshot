@@ -8,7 +8,8 @@ public enum EventType
 }
 
 [CreateAssetMenu(fileName = "newMeterEvent", menuName = "MeterEvent")]
-public class MeterEvent : ScriptableObject {
+public class MeterEvent : ScriptableObject
+{
     public int eventAt;
     public EventType type;
     public GameObject prefabToSPAWN;

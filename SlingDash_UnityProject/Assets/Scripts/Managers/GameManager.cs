@@ -5,11 +5,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject levelCompleteScreen;
-	public GameObject startText;
+    public GameObject startText;
     public GameObject gameOverScreen;
-	public Player player;
+    public Player player;
 
-	public float timeForGameOver = 2f;
+    // Meter Events
+    public MeterDetector meterDetector;
+    public List<MeterEvent> meterEventList;
+    private int eventListIndex;
+    public bool BossIsActive { get; set; }
+
+    public float timeForGameOver = 2f;
 
 	private Camera cam;
 	private float timer = 0;
@@ -60,6 +66,9 @@ public class GameManager : MonoBehaviour
 
         if (levelCompleteScreen != null)
             levelCompleteScreen.SetActive(false);
+
+        eventListIndex = 0;
+        BossIsActive = false;
 	}
 
 	void Update ()
@@ -76,9 +85,10 @@ public class GameManager : MonoBehaviour
 				break;
 			case GameState.PLAYING:
 				CheckForPlayer();
+                CheckForMeterEvents();
 				break;
 			case GameState.GAME_OVER:
-				timer += Time.deltaTime;
+				timer += Time.unscaledDeltaTime;
 				if (timer > timeForGameOver) GameOver();
 				break;
 			case GameState.PAUSE:
@@ -109,6 +119,28 @@ public class GameManager : MonoBehaviour
 			float playerOffBound = cam.transform.position.y - cam.orthographicSize;
 		}
 	}
+
+    void CheckForMeterEvents()
+    {
+        // Check if there are any events on the list
+        if (meterEventList.Count > 0 &&
+            eventListIndex < meterEventList.Count)
+        {
+            if (meterDetector.GetMeters() >= meterEventList[eventListIndex].eventAt)
+            {
+                switch (meterEventList[eventListIndex].type)
+                {
+                    case EventType.SPAWN:
+                        BossIsActive = true;
+                        Instantiate(meterEventList[eventListIndex].prefabToSPAWN, Camera.main.transform);
+                        break;
+                    default:
+                        break;
+                }
+                eventListIndex++;
+            }
+        }
+    }
 
     public void LevelComplete()
     {

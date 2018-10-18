@@ -1,0 +1,69 @@
+clase 18/10/2018
+
+Pulido de los juegos.
+
+Como tarea.
+
+https://sourcemaking.com/antipatterns/software-development-antipatterns
+https://sourcemaking.com/antipatterns/software-architecture-antipatterns
+
+Analizar todos los diferentes antipatterns y ver cual puede estar aplicandose en su proyecto.
+
+Zemea
+
+    Laburar principalmente en el movimiento del player.
+    Apretar abajo y jump en vez de saltar baja de la plataforma.
+    Aumentar aceleracion. Que la velocidad maxima se llegue más rápido.
+    Probar el oneway collider.
+    Las escaleras no se entienden.
+    Resolucion de la UI. En que resolución se va a correr el juego.
+    Textos más cortos. Tiempo para leerlos: Esto es menos enemigos al principio.
+    Cantidad de enemigos en las waves.
+    Glow Amarrillo circular y no cuadrado.
+    Sacar el tiempo de Fake Loading o acelerarlo;
+    El screenshake constante es insoportable
+    Inicio random de las animaciones de los enemigos
+    Feedback al estar arriba en la torre.
+    Feedback en el player cuando aumentas de nivel. En el portrait tambien. Particulas? el shader ese?
+    Font crisp on hit.
+    Elevar el ground de los enemies?
+    How to play en el loading. Press any key to start.
+    Flechas hit ground y quedan el piso clavadas.
+    Persistencia de los enemigos muertos? Feeback al morir?
+    //Animacion de ataque de los enemigos.
+    //Enemigos voladores. ponerles un sprite o algo.
+    Animation speed en base a la velocidad que se mueven los enemigos.
+    Animacion en la UI de que baje la energía. Lo mismo para la xp de los players. Gradient colors.
+    Animacion al sprite del trampolin.
+
+Sling Dash:
+
+    Muerte del player. Feedback. Desaparece?
+    Animaciones. Si no hay sprites jugar con el scale del sprite que hay. Puede engordarse un poco el player de alguna manera.
+    Feedback blanco on hit. Animacion.
+    Stamina dinamica. en base a cuanto mantengo apretado? engordación dinamica? ponerle un limite?
+	Distancia ingame con lineas o algo.
+	Animacion de cuando haces plata
+	Animacion de monedita yendo parriba
+	Boton de pausa mas comodo
+	Monedas de un lado, pausa del otro, distancia en el medio.
+	
+	Barra de estamina mas integrada en el juego.
+	Cola del bicho. Investigar que puede ir ahi. Joint zarlanga. Algo mas dinamico.
+	Cuando reinicias que te cargue la barra de estamina.
+	Press to start al reiniciar.
+	Plata al superar hitos como 100 metros o algo.
+	Barrita de distance to boss.
+	De base es bastante complicado. Quizas desacelerar un poco la camara.
+
+
+Car runner
+
+	Trail al auto
+	Animacion al chocar.
+	Timer para empezar.
+	Aumentar la calidad en la textura de los pisos.
+	Quizas se le puede meter unas luces al auto. Cuando chocas se van rompiendo, izq derecha.
+	Atenti a la resolucion de la UI.
+	Guarda con las curvas tan pronunciadas que no se llega a poder doblar del todo.
+	Probar jugar con el fov.

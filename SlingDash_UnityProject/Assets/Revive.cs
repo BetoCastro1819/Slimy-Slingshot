@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Revive : MonoBehaviour {
-
+public class Revive : MonoBehaviour
+{
 	public GameObject clearScreenTrigger;
     public GameObject playerPrefab;
 
@@ -20,11 +20,13 @@ public class Revive : MonoBehaviour {
         ReviveY = pmd.GetMaxMeters();
     }
 
-    public void RevivePlayerAtPoint(Vector3 revivePos) {
+    public void RevivePlayerAtPoint(Vector3 revivePos)
+    {
         GameManager.GetInstance().SetState(GameManager.GameState.PLAYING);
 
-		GameObject clearScreen = Instantiate(clearScreenTrigger, revivePos, Quaternion.identity);
-		//Destroy(clearScreen, 2f);
+        // Creates a trigger the bigger than the screen
+        // Destroys every object that has the "Erasable" component
+		Instantiate(clearScreenTrigger, revivePos, Quaternion.identity);
 
         Player player = GameManager.GetInstance().player;
         player.gameObject.SetActive(true);
@@ -33,7 +35,8 @@ public class Revive : MonoBehaviour {
         player.health = 1;
     }
 
-    public float GetReviveY() {
+    public float GetReviveY()
+    {
         return ReviveY;
     }
 }

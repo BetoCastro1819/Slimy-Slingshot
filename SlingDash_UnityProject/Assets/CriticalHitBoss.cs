@@ -8,19 +8,36 @@ public class CriticalHitBoss : MonoBehaviour {
 
     [HideInInspector]
     public int criticalPointsQuant;
-    bool isdone = false;
+
+    private GameManager gm;
+    private bool canBeKilled;
 
     private void Start()
     {
+        gm = GameManager.GetInstance();
         criticalPointsQuant = criticalPoints.Count;
+        canBeKilled = false;
     }
 
     private void Update()
     {
-        if (criticalPointsQuant <= 0 && !isdone)
+        if (criticalPointsQuant <= 0 )
         {
+            canBeKilled = true;
             gameObject.layer = LayerMask.NameToLayer("Boss");
-            isdone = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+
+            if (canBeKilled)
+            {
+                gm.BossIsActive = false;
+                Destroy(gameObject);
+            }
         }
     }
 }
