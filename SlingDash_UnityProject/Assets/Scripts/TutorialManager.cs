@@ -4,95 +4,114 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-	public GameObject tapAndHold;
-	public GameObject dragDown;
-	public GameObject moveToAim;
-	public GameObject releaseToShoot;
-	public GameObject getToFinishLine;
-	public GameObject tutorialCircle;
+	// Movement tutorial
+	public GameObject movementAnim;
+	public GameObject movementAnimText;
 
-	public float timeToChangeText = 2f;
+	// Slow-motion tutorial
+	public GameObject slowMoAnim;
+	public GameObject slowMoAnimText;
 
-	private float timer = 0;
-	private string tutorialKey = "TutorialPlayed";
+	// Shooting enemies tutorial
+	public GameObject shootingAnim;
+	public GameObject shootingAnimText;
 
-	#region Singleton
-	private static TutorialManager instance;
-	public static TutorialManager Get()
+	// Buttons
+	public GameObject prevBtn;
+	public GameObject nextBtn;
+
+	private GameObject currentAnim;
+	private GameObject currentText;
+	private int tutorialIndex;
+
+	private void Start()
 	{
-		return instance;
+		tutorialIndex = 0;
 	}
 
-	private void Awake()
+	private void Update()
 	{
-		instance = this;
-	}
-	#endregion
-	void Start ()
-	{
-		PlayerPrefs.SetInt(tutorialKey, 0); // 0 = false
-
-		tapAndHold.SetActive(true);
-		tutorialCircle.SetActive(true);
-		dragDown.SetActive(false);
-		moveToAim.SetActive(false);
-		releaseToShoot.SetActive(false);
-		getToFinishLine.SetActive(false);
-		timer = 0;
+		PlayTutorialAnimation(tutorialIndex);
 	}
 
-	void Update ()
+	void PlayTutorialAnimation(int index)
 	{
-		if (tapAndHold.activeSelf == true)
+		switch (index)
 		{
-			if (Input.GetKeyDown(KeyCode.Mouse0))
-			{
-				tapAndHold.SetActive(false);
-				tutorialCircle.SetActive(false);
-				dragDown.SetActive(true);
-			}
-		}
-
-		if (dragDown.activeSelf == true)
-		{
-			timer += Time.unscaledDeltaTime;
-			if (timer > timeToChangeText)
-			{
-				timer = 0;
-				dragDown.SetActive(false);
-				moveToAim.SetActive(true);
-			}
-		}
-
-		if (moveToAim.activeSelf == true)
-		{
-			timer += Time.unscaledDeltaTime;
-			if (timer > timeToChangeText)
-			{
-				timer = 0;
-				moveToAim.SetActive(false);
-				releaseToShoot.SetActive(true);
-			}
-		}
-
-		if (releaseToShoot.activeSelf == true)
-		{
-			if (Input.GetKeyUp(KeyCode.Mouse0))
-			{
-				releaseToShoot.SetActive(false);
-				getToFinishLine.SetActive(true);
-			}
+			case 0:
+				MovementTutorial();
+				break;
+			case 1:
+				SlowMoTutorial();
+				break;
+			case 2:
+				ShootingTutorial();
+				break;
 		}
 	}
 
-	public bool GetTutorialPlayed()
+	void MovementTutorial()
 	{
-		return PlayerPrefs.GetInt(tutorialKey) == 1;
+		nextBtn.SetActive(true);
+		prevBtn.SetActive(false);
+
+		if (movementAnim.activeInHierarchy == false)
+		{
+			movementAnim.SetActive(true);
+			movementAnimText.SetActive(true);
+
+			slowMoAnim.SetActive(false);
+			slowMoAnimText.SetActive(false);
+
+			shootingAnim.SetActive(false);
+			shootingAnimText.SetActive(false);
+		}
 	}
 
-	public void SetTutorialPlayed(bool tutorialCompleted)
+	void SlowMoTutorial()
 	{
-		if (tutorialCompleted)
-			PlayerPrefs.SetInt(tutorialKey, 1);
+		nextBtn.SetActive(true);
+		prevBtn.SetActive(true);
+
+		if (slowMoAnim.activeInHierarchy == false)
+		{
+			movementAnim.SetActive(false);
+			movementAnimText.SetActive(false);
+
+			slowMoAnim.SetActive(true);
+			slowMoAnimText.SetActive(true);
+
+			shootingAnim.SetActive(false);
+			shootingAnimText.SetActive(false);
+		}
 	}
+
+	void ShootingTutorial()
+	{
+		nextBtn.SetActive(false);
+		prevBtn.SetActive(true);
+
+		if (shootingAnim.activeInHierarchy == false)
+		{
+			movementAnim.SetActive(false);
+			movementAnimText.SetActive(false);
+
+			slowMoAnim.SetActive(false);
+			slowMoAnimText.SetActive(false);
+
+			shootingAnim.SetActive(true);
+			shootingAnimText.SetActive(true);
+		}
+	}
+
+	public void Next()
+	{
+		tutorialIndex++;
+	}
+
+	public void Previous()
+	{
+		tutorialIndex--;
+	}
+
 }

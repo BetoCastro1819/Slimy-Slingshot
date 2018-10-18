@@ -38,8 +38,10 @@ public class PlayerBullet : MonoBehaviour
     {
 		Enemy e = collision.gameObject.GetComponent<Enemy>();
 
-		if (e != null)
+		if (e != null && player != null)
+		{
 			player.RechargeEnergyBar(e.rechargeEnergyBarValue);
+		}
 
 		Instantiate(bulletEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);

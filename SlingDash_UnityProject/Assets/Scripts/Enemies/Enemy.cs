@@ -62,7 +62,10 @@ public class Enemy : MonoBehaviour
 
 		killed = true;
 
-		StartCoroutine(cameraShake.Shake());
+		if (cameraShake != null)
+		{
+			StartCoroutine(cameraShake.Shake());
+		}
 
 		UpdatePlayerScore();
 
@@ -85,8 +88,19 @@ public class Enemy : MonoBehaviour
 
 	private void UpdatePlayerScore()
 	{
-		ScoreManager.Get().AddScore(scoreValue);
-		CoinManager.Get().AddCoins(20);
-		UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
+		if (ScoreManager.Get() != null)
+		{
+			ScoreManager.Get().AddScore(scoreValue);
+		}
+
+		if (CoinManager.Get() != null)
+		{
+			CoinManager.Get().AddCoins(20);
+		}
+
+		if (UI_Manager.Get() != null)
+		{
+			UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
+		}
 	}
 }

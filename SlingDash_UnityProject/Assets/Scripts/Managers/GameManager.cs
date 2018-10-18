@@ -153,9 +153,4 @@ public class GameManager : MonoBehaviour
 	{
         gameOverScreen.SetActive(true);
     }
-
-	public void TutorialComplete()
-	{
-		TutorialManager.Get().SetTutorialPlayed(true);
-	}
 }
