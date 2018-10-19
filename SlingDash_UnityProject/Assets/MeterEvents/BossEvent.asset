@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9867e3a07771f046bf49c6684145172, type: 3}
   m_Name: BossEvent
   m_EditorClassIdentifier: 
-  eventAt: 100
+  eventAt: 200
   type: 0
-  prefabToSPAWN: {fileID: 1646893529748018, guid: d190b252eb0020043a5bb92960cfdd84,
+  prefabToSPAWN: {fileID: 1363198640357784, guid: d190b252eb0020043a5bb92960cfdd84,
     type: 2}

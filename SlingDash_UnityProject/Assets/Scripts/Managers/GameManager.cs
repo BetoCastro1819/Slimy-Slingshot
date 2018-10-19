@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     // Meter Events
     public MeterDetector meterDetector;
     public List<MeterEvent> meterEventList;
+	private int spawnBossAt;
     private int eventListIndex;
     public bool BossIsActive { get; set; }
 
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
             levelCompleteScreen.SetActive(false);
 
         eventListIndex = 0;
+		spawnBossAt = meterEventList[eventListIndex].eventAt;
         BossIsActive = false;
 	}
 
@@ -129,21 +131,30 @@ public class GameManager : MonoBehaviour
         if (meterEventList.Count > 0 &&
             eventListIndex < meterEventList.Count)
         {
-            if (meterDetector.GetMeters() >= meterEventList[eventListIndex].eventAt)
+            if (meterDetector.GetMeters() >= spawnBossAt)
             {
                 switch (meterEventList[eventListIndex].type)
                 {
                     case EventType.SPAWN:
-                        BossIsActive = true;
-                        Instantiate(meterEventList[eventListIndex].prefabToSPAWN, Camera.main.transform);
-                        break;
+						if (!BossIsActive)
+							SpawnBoss();
+						else
+							spawnBossAt += meterEventList[eventListIndex].eventAt;      // Spawn boss at next meter event point
+						break;
                     default:
                         break;
                 }
-                eventListIndex++;
+                //eventListIndex++;
             }
         }
     }
+
+	private void SpawnBoss()
+	{
+		BossIsActive = true;
+		Instantiate(meterEventList[eventListIndex].prefabToSPAWN, Camera.main.transform);
+		spawnBossAt += meterEventList[eventListIndex].eventAt;
+	}
 
     public void LevelComplete()
     {

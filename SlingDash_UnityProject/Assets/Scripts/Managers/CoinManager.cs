@@ -17,11 +17,11 @@ public class CoinManager : MonoBehaviour
     }
     #endregion
 
-    int coins = 0;
+    private int coins;
 
 	private void Start()
 	{
-		coins = 1000;
+		coins = 0;
 	}
 
 	public int GetCoins()
