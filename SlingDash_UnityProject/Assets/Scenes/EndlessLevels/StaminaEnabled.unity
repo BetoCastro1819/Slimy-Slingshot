@@ -331,7 +331,14 @@ MonoBehaviour:
   player: {fileID: 511852834}
   meterDetector: {fileID: 1872033879}
   meterEventList:
+  - {fileID: 11400000, guid: 8140d98879469fb43b6e10ab1de60ba1, type: 2}
+  - {fileID: 11400000, guid: 8efb5c0e955c1844c827036ebd2297e4, type: 2}
+  - {fileID: 11400000, guid: ae3c84f8439e9ee4da38ef3ffe69a712, type: 2}
   - {fileID: 11400000, guid: 166d06bd7640f6c41a85caa167ad9645, type: 2}
+  obstaclesSpawnerLeft: {fileID: 456018389}
+  obstaclesSpawnerRight: {fileID: 573137582}
+  movingEnemiesSpawner: {fileID: 948620370}
+  shootingEnemiesSpawner: {fileID: 859767781}
   timeForGameOver: 2
 --- !u!4 &165870476
 Transform:
@@ -683,6 +690,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1828628198101230, guid: 049fbcd4f03b58c4fb4710d0890d31e7,
     type: 2}
   m_PrefabInternal: {fileID: 443585362}
+--- !u!1 &456018389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1783343014395256, guid: 42d2cff3e3ea8f04dba93d6bf2f1cbf5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1037294249}
 --- !u!114 &511852834 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114277271195220482, guid: ebef7a266a08edf46a4bc80e73cbe751,
@@ -785,6 +797,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.2
   magnitude: 0.1
+--- !u!1 &573137582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1106369160937012, guid: 632b9cad330fe7944aa3caa2678936a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 24585948}
 --- !u!1 &614954497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1728,7 @@ GameObject:
   - component: {fileID: 859767782}
   - component: {fileID: 859767783}
   m_Layer: 0
-  m_Name: PickUpSpawners
+  m_Name: ShootingEnemiesSpawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1745,7 +1762,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 1340109176481736, guid: 56a4436140b1347409a30bbfbb637e2b, type: 2}
   - {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
   obstacleSpawners:
   - {fileID: 1784460599}
@@ -2075,7 +2091,7 @@ GameObject:
   - component: {fileID: 948620371}
   - component: {fileID: 948620372}
   m_Layer: 0
-  m_Name: EnemySpawners
+  m_Name: MovingEnemiesSpawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2110,7 +2126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles:
   - {fileID: 1340109176481736, guid: 56a4436140b1347409a30bbfbb637e2b, type: 2}
-  - {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
   obstacleSpawners:
   - {fileID: 1795288829}
   - {fileID: 38001812}

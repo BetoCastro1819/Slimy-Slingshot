@@ -9,12 +9,26 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public Player player;
 
-    // Meter Events
+
+
+    /* Meter Events */
     public MeterDetector meterDetector;
     public List<MeterEvent> meterEventList;
+	private int eventListIndex;
+
+	// Boss
 	private int spawnBossAt;
-    private int eventListIndex;
     public bool BossIsActive { get; set; }
+
+	// Obstacles
+	public GameObject obstaclesSpawnerLeft;
+	public GameObject obstaclesSpawnerRight;
+
+	// Moving enemies
+	public GameObject movingEnemiesSpawner;
+
+	// Shooting enemies
+	public GameObject shootingEnemiesSpawner;
 
     public float timeForGameOver = 2f;
 
@@ -70,8 +84,15 @@ public class GameManager : MonoBehaviour
             levelCompleteScreen.SetActive(false);
 
         eventListIndex = 0;
-		spawnBossAt = meterEventList[eventListIndex].eventAt;
+
+		/* WILL CHANGE THIS AFTER PROTOTYPE MODE */
+		spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
+
         BossIsActive = false;
+		obstaclesSpawnerLeft.SetActive(false);
+		obstaclesSpawnerRight.SetActive(false);
+		movingEnemiesSpawner.SetActive(false);
+		shootingEnemiesSpawner.SetActive(false);
 	}
 
 	void Update ()
@@ -127,33 +148,55 @@ public class GameManager : MonoBehaviour
 
     void CheckForMeterEvents()
     {
-        // Check if there are any events on the list
-        if (meterEventList.Count > 0 &&
-            eventListIndex < meterEventList.Count)
-        {
-            if (meterDetector.GetMeters() >= spawnBossAt)
-            {
-                switch (meterEventList[eventListIndex].type)
-                {
-                    case EventType.SPAWN:
+		for (int i = 0; i < meterEventList.Count; i++)
+		{
+			switch (meterEventList[i].type)
+			{
+				case EventType.SPAWN:
+					if (meterDetector.GetMeters() >= spawnBossAt)
+					{
 						if (!BossIsActive)
 							SpawnBoss();
 						else
-							spawnBossAt += meterEventList[eventListIndex].eventAt;      // Spawn boss at next meter event point
-						break;
-                    default:
-                        break;
-                }
-                //eventListIndex++;
-            }
-        }
-    }
+							spawnBossAt += meterEventList[i].eventAt;      // Spawn boss at next meter event point
+					}
+					break;
+				case EventType.ENABLE_OBSTACLES:
+					if (meterDetector.GetMeters() >= meterEventList[i].eventAt)
+					{
+						if (obstaclesSpawnerLeft.activeInHierarchy == false)
+							obstaclesSpawnerLeft.SetActive(true);
+
+						if (obstaclesSpawnerRight.activeInHierarchy == false)
+							obstaclesSpawnerRight.SetActive(true);
+
+					}
+					break;
+				case EventType.ENABLE_MOVING_ENEMIES:
+					if (meterDetector.GetMeters() >= meterEventList[i].eventAt)
+					{
+						if (movingEnemiesSpawner.activeInHierarchy == false)
+							movingEnemiesSpawner.SetActive(true);
+					}
+					break;
+				case EventType.ENABLE_SHOOTING_ENEMIES:
+					if (meterDetector.GetMeters() >= meterEventList[i].eventAt)
+					{
+						if (shootingEnemiesSpawner.activeInHierarchy == false)
+							shootingEnemiesSpawner.SetActive(true);
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}
 
 	private void SpawnBoss()
 	{
 		BossIsActive = true;
-		Instantiate(meterEventList[eventListIndex].prefabToSPAWN, Camera.main.transform);
-		spawnBossAt += meterEventList[eventListIndex].eventAt;
+		Instantiate(meterEventList[3].prefabToSPAWN, Camera.main.transform);
+		spawnBossAt += meterEventList[3].eventAt;
 	}
 
     public void LevelComplete()

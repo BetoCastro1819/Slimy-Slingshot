@@ -5,6 +5,9 @@ using UnityEngine;
 public enum EventType
 {
     SPAWN,
+	ENABLE_OBSTACLES,
+	ENABLE_MOVING_ENEMIES,
+	ENABLE_SHOOTING_ENEMIES,
 }
 
 [CreateAssetMenu(fileName = "newMeterEvent", menuName = "MeterEvent")]

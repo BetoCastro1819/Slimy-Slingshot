@@ -34,10 +34,13 @@ public class ObstacleSpawner : MonoBehaviour
 
 	private void SpawnObstacles()
 	{
-		int randSpawner = Random.Range(0, obstacleSpawners.Count);
-		int randObstacle = Random.Range(0, obstacles.Count);
+		int obstacleIndex = 0;
+		if (obstacles.Count > 1)
+			obstacleIndex = Random.Range(0, obstacles.Count);
 
-		GameObject obstacle = Instantiate(obstacles[randObstacle], obstacleSpawners[randSpawner].position, Quaternion.identity);
+		int randSpawner = Random.Range(0, obstacleSpawners.Count);
+
+		GameObject obstacle = Instantiate(obstacles[obstacleIndex], obstacleSpawners[randSpawner].position, Quaternion.identity);
 		obstacle.transform.parent = ObstaclesParent;
 	}
 }

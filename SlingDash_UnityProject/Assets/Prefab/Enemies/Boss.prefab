@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 50643060710871118}
   - component: {fileID: 114228522855075826}
   - component: {fileID: 114671232112449838}
+  - component: {fileID: 95623104167517410}
   m_Layer: 13
   m_Name: Boss
   m_TagString: Enemy
@@ -695,6 +696,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.01, y: 13.88}
   m_EdgeRadius: 0
+--- !u!95 &95623104167517410
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363198640357784}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55fe4c4155dfdc441b58d2f90a7c8f8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114054265052411784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -734,7 +753,7 @@ MonoBehaviour:
   speed: 3
   offBoundsOffset: 2
   forceWhenKilled: 50
-  enemyBullet: {fileID: 1405741431081630, guid: c711f33b1188b1241a27dd7483425830,
+  enemyBullet: {fileID: 1405741431081630, guid: 82a86716020498149876c0fa13d913ba,
     type: 2}
   bulletsParent: {fileID: 0}
   shootinPoint: {fileID: 4339809689731612}
