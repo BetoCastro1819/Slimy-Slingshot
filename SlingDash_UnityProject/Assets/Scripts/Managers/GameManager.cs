@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
 	private Camera cam;
 	private float timer = 0;
+    private bool isGameOver = false;
 
 	private GameState gameState;
 	public enum GameState
@@ -86,10 +87,12 @@ public class GameManager : MonoBehaviour
 			case GameState.PLAYING:
 				CheckForPlayer();
                 CheckForMeterEvents();
+                isGameOver = false;
 				break;
 			case GameState.GAME_OVER:
 				timer += Time.unscaledDeltaTime;
 				if (timer > timeForGameOver) GameOver();
+                isGameOver = true;
 				break;
 			case GameState.PAUSE:
 				break;
@@ -152,5 +155,9 @@ public class GameManager : MonoBehaviour
     void GameOver()
 	{
         gameOverScreen.SetActive(true);
+    }
+
+    public bool IsGameOver() {
+        return isGameOver;
     }
 }
