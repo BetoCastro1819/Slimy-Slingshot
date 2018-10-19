@@ -61,6 +61,10 @@ public class ButtonScript : MonoBehaviour
                 {
                     gameManager.SetState(GameManager.GameState.GAME_OVER);
                 }
+                else
+                {
+                    gameManager.SetState(GameManager.GameState.PLAYING);
+                }
             }
 
             isPaused = false;
