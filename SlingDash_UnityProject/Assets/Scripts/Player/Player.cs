@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private Vector2 dir;
     private float energyBarValue;
 
+	private bool playerKilled;
+
 	private SpriteRenderer spriteRenderer;
 	private Sprite playerDefault;
 
@@ -55,13 +57,15 @@ public class Player : MonoBehaviour
 
 		rb = GetComponent<Rigidbody2D>();
         analogStick.SetActive(false);
-        forceDir.SetActive(false);
+        forceDir.SetActive(true);
         onBulletTime = false;
         energyBarValue = 100;
         playerState = PlayerState.MOVING;
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		playerDefault = spriteRenderer.sprite;
+
+		playerKilled = false;
 
         //DebugScreen.Get().AddButton("Add speed", AddSpeed);
     }
@@ -76,9 +80,12 @@ public class Player : MonoBehaviour
         // Player Finite State Machine
         PlayerFSM(playerState);
 
-		CheckHealth();
-		CheckPlayerOffBounds();
-    }
+		if (!playerKilled)
+		{
+			CheckHealth();
+			CheckPlayerOffBounds();
+		}
+	}
 
 	private void PlayerFSM(PlayerState state)
     {
@@ -97,7 +104,8 @@ public class Player : MonoBehaviour
                 // Not enabled for 1 shot 1 kill on player
                 break;
             case PlayerState.KILLED:
-                KillPlayer();
+				if (!playerKilled)
+					KillPlayer();
                 break;
         }
     }
@@ -130,9 +138,9 @@ public class Player : MonoBehaviour
 			stick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			analogStick.SetActive(true);
 
-            forceDir.transform.position = new Vector2(transform.position.x, transform.position.y);
+            forceDir.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
             forceDir.SetActive(true);
-            forceDir.transform.localScale = new Vector3(0.2f, 0f, 0);
+            forceDir.transform.localScale = new Vector3(0.5f, 0f, 0);
 
 			playerState = PlayerState.AIMING;
         }
@@ -167,10 +175,10 @@ public class Player : MonoBehaviour
 
         analogStick.transform.up = -dir;
 
-        forceDir.transform.up = dir;
+        forceDir.transform.right = dir;
         transform.up = -dir;
 
-        forceDir.transform.position = transform.position;
+		forceDir.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
 
 		Vector2 stickPos = new Vector2(mousePos.x, mousePos.y);
 
@@ -186,7 +194,7 @@ public class Player : MonoBehaviour
         if (forceAmount > maxThrowForceLength)
             forceAmount = maxThrowForceLength;
 
-        forceDir.transform.localScale = new Vector3(0.2f, forceAmount, 0);
+        forceDir.transform.localScale = new Vector3(forceAmount, 1, 0);
         //throwForce = forceAmount;
     }
 
@@ -235,6 +243,8 @@ public class Player : MonoBehaviour
 
     private void KillPlayer()
     {
+		//playerKilled = true;
+
 		StartCoroutine(cameraShake.Shake());
 
 		MakeStuffDisappear();
@@ -261,7 +271,7 @@ public class Player : MonoBehaviour
 	private void MakeStuffDisappear()
 	{
 		analogStick.SetActive(false);
-		forceDir.SetActive(false);
+		forceDir.transform.localScale = new Vector3(0.5f, 1, 1);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
