@@ -134,10 +134,14 @@ public class Player : MonoBehaviour
             // Store Vector2 position, where player´s finger touches the screen
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+			// Display the analog stick on finger's position
             analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			stick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			analogStick.SetActive(true);
 
+			// Enable handle on player's position
+			// This will store the angle of shooting based on the player's finger position
             forceDir.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
             forceDir.SetActive(true);
             forceDir.transform.localScale = new Vector3(0.5f, 0f, 0);
@@ -168,10 +172,18 @@ public class Player : MonoBehaviour
         mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+		// Point to finger position
         dir = new Vector2(
             mousePos.x - analogStick.transform.position.x,
             mousePos.y - analogStick.transform.position.y
         );
+
+		// If the player's finger is at the same position as the analog stick
+		// Set shooting direction to be "down" as default
+		if (dir.x == 0 && dir.y == 0)
+		{
+			dir = -transform.up;
+		}
 
         analogStick.transform.up = -dir;
 
@@ -195,14 +207,14 @@ public class Player : MonoBehaviour
             forceAmount = maxThrowForceLength;
 
         forceDir.transform.localScale = new Vector3(forceAmount, 1, 0);
-        //throwForce = forceAmount;
+        throwForce = forceAmount;
     }
 
 	private void Shoot()
     {
         rb.velocity = Vector2.zero; // Resets player velocity
 
-        rb.AddForce(transform.up * throwForce); // * forceMultiplier);
+        rb.AddForce(transform.up * throwForce * forceMultiplier);
         MakeStuffDisappear();
 
         // SHOOT BULLET
