@@ -10,8 +10,13 @@ public class Player : MonoBehaviour
 	public GameObject stick;
     public float digitalAnalogLimit = 1f;
 
-	public GameObject forceDir;
-    public GameObject playerBulletPrefab;
+	// Player tail
+	public GameObject tail;
+	private SpriteRenderer tailSpriteRenderer;
+	public Sprite tailDefault;
+	public Sprite tailStreched;
+
+	public GameObject playerBulletPrefab;
 	public GameObject deathEffect;
 	public Sprite playerOnHold;
 	public int health = 1;
@@ -38,6 +43,7 @@ public class Player : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	private Sprite playerDefault;
 
+
 	private bool onBulletTime;
     public bool OnBulletTime() { return onBulletTime; }
 
@@ -57,28 +63,32 @@ public class Player : MonoBehaviour
 
 		rb = GetComponent<Rigidbody2D>();
         analogStick.SetActive(false);
-        forceDir.SetActive(true);
         onBulletTime = false;
         energyBarValue = 100;
-        playerState = PlayerState.MOVING;
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		playerDefault = spriteRenderer.sprite;
 
+		tailSpriteRenderer = tail.GetComponent<SpriteRenderer>();
+
 		playerKilled = false;
 
-        //DebugScreen.Get().AddButton("Add speed", AddSpeed);
-    }
+		playerState = PlayerState.MOVING;
+
+		//DebugScreen.Get().AddButton("Add speed", AddSpeed);
+	}
 
 	private void Update()
     {
-        if (GameManager.GetInstance() != null)
-            if (GameManager.GetInstance().GetState() == GameManager.GameState.PAUSE)
-                return;
-            
+		// Return if game is PAUSED
+		if (GameManager.GetInstance() != null)
+		{
+			if (GameManager.GetInstance().GetState() == GameManager.GameState.PAUSE)
+				return;
+		}
 
-        // Player Finite State Machine
-        PlayerFSM(playerState);
+		// Player Finite State Machine
+		PlayerFSM(playerState);
 
 		if (!playerKilled)
 		{
@@ -95,12 +105,14 @@ public class Player : MonoBehaviour
 				if (energyBarValue > 0)
 				    OnPlayerTap();
 				spriteRenderer.sprite = playerDefault;
+				tailSpriteRenderer.sprite = tailDefault;
                 break;
             case PlayerState.AIMING:
                 OnPlayerHold();
 				spriteRenderer.sprite = playerOnHold;
+				tailSpriteRenderer.sprite = tailStreched;
 				break;
-            case PlayerState.GOT_HURT:
+			case PlayerState.GOT_HURT:
                 // Not enabled for 1 shot 1 kill on player
                 break;
             case PlayerState.KILLED:
@@ -129,18 +141,16 @@ public class Player : MonoBehaviour
 
 	private void OnPlayerTap()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))				// PLAYER TAPS THE SCREEN
         {
             // Store Vector2 position, where player´s finger touches the screen
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+			// Enable the analog stick on TAP position
             analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			stick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			analogStick.SetActive(true);
-
-            forceDir.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
-            forceDir.SetActive(true);
-            forceDir.transform.localScale = new Vector3(0.5f, 0f, 0);
 
 			playerState = PlayerState.AIMING;
         }
@@ -148,14 +158,14 @@ public class Player : MonoBehaviour
 
 	private void OnPlayerHold()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
+        if (Input.GetKey(KeyCode.Mouse0))                   // PLAYER HOLDS FINGER ON SCREEN
+		{
 			SetBulletTime(true);
 			SetDirection();
             SetForce();
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
+        else if (Input.GetKeyUp(KeyCode.Mouse0))            // PLAYER RELEASES FINGER FROM SCREEN
+		{
             // DISABLE BULLET TIME
             SetBulletTime(false);
             Shoot();
@@ -165,47 +175,58 @@ public class Player : MonoBehaviour
 
 	private void SetDirection()
     {
+		// Get player's finger position
         mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        dir = new Vector2(
-            mousePos.x - analogStick.transform.position.x,
-            mousePos.y - analogStick.transform.position.y
-        );
+		// Get the direction from curretn player's finger position
+		// to the center of the analogStick
+		dir = mousePos - analogStick.transform.position;
 
-        analogStick.transform.up = -dir;
-
-        forceDir.transform.right = dir;
-        transform.up = -dir;
-
-		forceDir.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
-
+		// Make the stick from the digital josytick, follow the player's finger position
 		Vector2 stickPos = new Vector2(mousePos.x, mousePos.y);
 
+		// Follow finger's position if the distance is lower than de digitalAnalogLimit
 		if (Vector2.Distance(analogStick.transform.position, stickPos) < digitalAnalogLimit)
+		{
 			stick.transform.position = stickPos;
+		}
 
-    }
+		// Rotate relevant transforms in opposite direction
+		// to player's finger current position 
+		analogStick.transform.up = -dir;
+		tail.transform.up = -dir;
+		transform.up = -dir;
+	}
 
 	private void SetForce()
     {
-        float forceAmount = Vector2.Distance(mousePos, analogStick.transform.position);
+		// Get player's drag length from center of the analogStick to finger's position
+        float dragLength = Vector2.Distance(mousePos, analogStick.transform.position);
 
-        if (forceAmount > maxThrowForceLength)
-            forceAmount = maxThrowForceLength;
+		// Set a max to the drag length
+        if (dragLength > maxThrowForceLength)
+            dragLength = maxThrowForceLength;
 
-        forceDir.transform.localScale = new Vector3(forceAmount, 1, 0);
-        //throwForce = forceAmount;
+		// Adjust tail's length in relation to drag's length
+		tail.transform.localScale = new Vector3(1, dragLength, 0);
+
+		// Store drag's length as a moving force to use later for Shoot()
+        throwForce = dragLength;
     }
 
 	private void Shoot()
     {
-        rb.velocity = Vector2.zero; // Resets player velocity
+		// Reset player velocity
+		rb.velocity = Vector2.zero; 
 
-        rb.AddForce(transform.up * throwForce); // * forceMultiplier);
+		// Throw player in his local UP direction
+        rb.AddForce(transform.up * throwForce * forceMultiplier);
+
+		// Disables some game objects 
         MakeStuffDisappear();
 
-        // SHOOT BULLET
+        // Instantiate bullet
         GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
         playerBullet.transform.up = dir;
 
@@ -223,11 +244,13 @@ public class Player : MonoBehaviour
 
         if (bulletTimeActive)
         {
+			// Smooth transition from normal to slow-mo timeScale
             Time.timeScale = Mathf.Lerp(Time.timeScale, bulletTimeFactor, lerpBulletTime * Time.deltaTime);
 			Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
         }
-        else
+		else
         {
+			// Resets timeScales to default
             Time.timeScale = 1;
 			Time.fixedDeltaTime = Time.timeScale * .02f;
         }
@@ -245,25 +268,36 @@ public class Player : MonoBehaviour
     {
 		//playerKilled = true;
 
+		// CAMERA SHAKE
 		StartCoroutine(cameraShake.Shake());
 
+		// Disable some gameObjects
 		MakeStuffDisappear();
 
+		// Set GameState to GAME_OVER
         if (GameManager.GetInstance() != null)
         {
             GameManager gm = GameManager.GetInstance();
             gm.SetState(GameManager.GameState.GAME_OVER);
         }
+
+		// Disable player's gameObject, instead of destroying it
         gameObject.SetActive(false);
     }
 
     private void UseBulletTimeEnergy()
 	{
+		// Decrements energyBar value if it's higher or equal to 0
 		if (energyBarValue <= 0)
+		{
 			energyBarValue = 0;
+		}
 		else
+		{
 			energyBarValue -= energyCostPerJump;
+		}
 
+		// Update energy bar's value on the player's UI
 		UI_Manager.Get().energyBar.value = energyBarValue / 100;
 	}
 	
@@ -271,7 +305,7 @@ public class Player : MonoBehaviour
 	private void MakeStuffDisappear()
 	{
 		analogStick.SetActive(false);
-		forceDir.transform.localScale = new Vector3(0.5f, 1, 1);
+		tail.transform.localScale = new Vector3(1, 1, 1);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -287,14 +321,19 @@ public class Player : MonoBehaviour
 
 	public void RechargeEnergyBar(int rechargeValue)
 	{
+		// Recharges the energyBar only if it's value is lower than 100
 		if (energyBarValue + rechargeValue >= 100)
+		{
 			energyBarValue = 100;
+		}
 		else
+		{
 			energyBarValue += rechargeValue;
+		}
 
+		// Update energy bar's value on player's UI
 		UI_Manager.Get().energyBar.value = energyBarValue / 100;
 	}
-
 
     // DEBUG SCRIPT
     void AddSpeed()
