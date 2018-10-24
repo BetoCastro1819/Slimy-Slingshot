@@ -212,16 +212,21 @@ public class Player : MonoBehaviour
 		tail.transform.localScale = new Vector3(1, dragLength, 0);
 
 		// Store drag's length as a moving force to use later for Shoot()
-        throwForce = dragLength;
-    }
+		// maxThrowForce = 100%
+		// dragLength = throwForce%
+		throwForce = (dragLength * 100) / maxThrowForceLength;
+
+	}
 
 	private void Shoot()
     {
 		// Reset player velocity
-		rb.velocity = Vector2.zero; 
+		rb.velocity = Vector2.zero;
 
-		// Throw player in his local UP direction
-        rb.AddForce(transform.up * throwForce * forceMultiplier);
+		// Slingshot player in his local UP direction
+		throwForce *= forceMultiplier;
+        rb.AddForce(transform.up * throwForce);
+		Debug.Log("Force = " + throwForce);
 
 		// Disables some game objects 
         MakeStuffDisappear();
@@ -287,7 +292,7 @@ public class Player : MonoBehaviour
 
     private void UseBulletTimeEnergy()
 	{
-		// Decrements energyBar value if it's higher or equal to 0
+		// Decrements energyBar value if it's higher than 0
 		if (energyBarValue <= 0)
 		{
 			energyBarValue = 0;
