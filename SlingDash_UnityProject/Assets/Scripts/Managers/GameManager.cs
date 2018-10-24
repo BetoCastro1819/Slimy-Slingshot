@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     /* Meter Events */
     public MeterDetector meterDetector;
     public List<MeterEvent> meterEventList;
-	private int eventListIndex;
 
 	// Boss
 	private int spawnBossAt;
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     public float timeForGameOver = 2f;
 
-	private Camera cam;
 	private float timer = 0;
     private bool isGameOver = false;
 
@@ -74,7 +72,6 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		cam = Camera.main;
 		gameState = GameState.ON_START;
 		Time.timeScale = 0;
 		if (startText != null)
@@ -82,8 +79,6 @@ public class GameManager : MonoBehaviour
 
         if (levelCompleteScreen != null)
             levelCompleteScreen.SetActive(false);
-
-        eventListIndex = 0;
 
 		/* WILL CHANGE THIS AFTER PROTOTYPE MODE */
 		spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
@@ -142,7 +137,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (player != null)
 		{
-			float playerOffBound = cam.transform.position.y - cam.orthographicSize;
+			//float playerOffBound = cam.transform.position.y - cam.orthographicSize;
 		}
 	}
 
@@ -153,7 +148,7 @@ public class GameManager : MonoBehaviour
 			switch (meterEventList[i].type)
 			{
 				case EventType.SPAWN:
-					if (meterDetector.GetMeters() >= spawnBossAt)
+					if (meterDetector.GetMetersTravelled() >= spawnBossAt)
 					{
 						if (!BossIsActive)
 							SpawnBoss();
@@ -162,7 +157,7 @@ public class GameManager : MonoBehaviour
 					}
 					break;
 				case EventType.ENABLE_OBSTACLES:
-					if (meterDetector.GetMeters() >= meterEventList[i].eventAt)
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
 					{
 						if (obstaclesSpawnerLeft.activeInHierarchy == false)
 							obstaclesSpawnerLeft.SetActive(true);
@@ -173,14 +168,14 @@ public class GameManager : MonoBehaviour
 					}
 					break;
 				case EventType.ENABLE_MOVING_ENEMIES:
-					if (meterDetector.GetMeters() >= meterEventList[i].eventAt)
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
 					{
 						if (movingEnemiesSpawner.activeInHierarchy == false)
 							movingEnemiesSpawner.SetActive(true);
 					}
 					break;
 				case EventType.ENABLE_SHOOTING_ENEMIES:
-					if (meterDetector.GetMeters() >= meterEventList[i].eventAt)
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
 					{
 						if (shootingEnemiesSpawner.activeInHierarchy == false)
 							shootingEnemiesSpawner.SetActive(true);
@@ -211,7 +206,8 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(true);
     }
 
-    public bool IsGameOver() {
+    public bool IsGameOver()
+	{
         return isGameOver;
     }
 }

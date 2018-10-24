@@ -2,33 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeterDetector : MonoBehaviour {
+public class MeterDetector : MonoBehaviour
+{
+    private float metersTravelled;
+	private float startingOffset;
 
-    float maxMeters = 0;
-    float meters = 0;
+	private void Start()
+	{
+		// Offset to be substracted from current position
+		// Allows to start at 0 meters, even when the player is not at position 0 in real world
+		startingOffset = transform.position.y;
 
-	// Update is called once per frame
-	void Update () {
-        meters = transform.position.y;
-
-        if (meters >= maxMeters)
-        {
-            maxMeters = meters;
-        }
-
-        if (meters <= 0)
-        {
-            meters = 0;
-        }
-
-        UI_Manager.Get().meterText.text = meters.ToString("0000") + " m";
+		// Initialize current meters record at 0
+		metersTravelled = 0;
 	}
 
-    public float GetMaxMeters() {
-        return maxMeters;
-    }
+	void Update ()
+	{
+		// Saves the amount of travelled meters only when it's 
+		// higher than the max high previously reached
+		if (transform.position.y - startingOffset >= metersTravelled)
+		{
+			// Store position
+			metersTravelled = transform.position.y - startingOffset;
 
-    public float GetMeters() {
-        return meters;
+			// Only updates UI when player's beats previous stored record
+			UI_Manager.Get().meterText.text = metersTravelled.ToString("0000") + " m";
+		}
+	}
+    
+    public float GetMetersTravelled()
+	{
+        return metersTravelled;
     }
 }

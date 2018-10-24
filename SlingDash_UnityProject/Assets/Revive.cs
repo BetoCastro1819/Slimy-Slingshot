@@ -17,7 +17,7 @@ public class Revive : MonoBehaviour
 
     private void Update()
     {
-        ReviveY = pmd.GetMaxMeters();
+        ReviveY = pmd.GetMetersTravelled();
     }
 
     public void RevivePlayerAtPoint(Vector3 revivePos)

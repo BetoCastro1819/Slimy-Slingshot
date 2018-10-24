@@ -111,9 +111,6 @@ public class Player : MonoBehaviour
                 OnPlayerHold();
 				spriteRenderer.sprite = playerOnHold;
 				tailSpriteRenderer.sprite = tailStreched;
-				break;
-			case PlayerState.GOT_HURT:
-                // Not enabled for 1 shot 1 kill on player
                 break;
             case PlayerState.KILLED:
 				if (!playerKilled)
@@ -192,6 +189,14 @@ public class Player : MonoBehaviour
 			stick.transform.position = stickPos;
 		}
 
+		// If the player's finger doesn't move from the center of the analogStick
+		// Set dir to be down as default
+		if (mousePos.x == analogStick.transform.position.x &&
+			mousePos.y == analogStick.transform.position.y)
+		{
+			dir = -Vector3.up;
+		}
+
 		// Rotate relevant transforms in opposite direction
 		// to player's finger current position 
 		analogStick.transform.up = -dir;
@@ -226,7 +231,6 @@ public class Player : MonoBehaviour
 		// Slingshot player in his local UP direction
 		throwForce *= forceMultiplier;
         rb.AddForce(transform.up * throwForce);
-		Debug.Log("Force = " + throwForce);
 
 		// Disables some game objects 
         MakeStuffDisappear();
