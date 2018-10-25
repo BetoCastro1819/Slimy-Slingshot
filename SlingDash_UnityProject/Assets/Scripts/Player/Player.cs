@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
     // based on finger drag distance
     public GameObject futurePosition;
 
+	// AIMING DOTED LINE
+	public GameObject dotedLine;
+	public float dotedLineOffsetPos;
+
 	public GameObject playerBulletPrefab;
 	public GameObject deathEffect;
 	public Sprite playerOnHold;
@@ -80,6 +84,8 @@ public class Player : MonoBehaviour
 		playerState = PlayerState.MOVING;
 
         futurePosition.SetActive(true);
+
+		dotedLine.SetActive(false);
 
 		//DebugScreen.Get().AddButton("Add speed", AddSpeed);
 	}
@@ -203,10 +209,10 @@ public class Player : MonoBehaviour
 			dir = -Vector3.up;
 		}
 
-		// Rotate relevant transforms in opposite direction
-		// to player's finger current position 
+		// Rotate analogStick based on direction 
 		analogStick.transform.up = -dir;
-		tail.transform.up = -dir;
+
+		// Rotate Slimy based on direction 
 		transform.up = -dir;
 	}
 
@@ -231,11 +237,17 @@ public class Player : MonoBehaviour
 
         // Calculate player´s future position for feedback
         Vector2 futureDistanceTravelled = new Vector2(
-                                            0,                                         // Keep it centered  on X axis
-                                            (throwForce * forceMultiplier) / (maxThrowForceLength * 100));    // Get force that will be aplied to Slimy
+                                            0,																	// Keep it centered  on X axis
+                                            dragLength * maxThrowForceLength);		// Get force that will be aplied to Slimy
 
+		// Set the position of the crosshair
         futurePosition.transform.localPosition = futureDistanceTravelled;
-    }
+
+		// Enable aiming doted line
+		dotedLine.SetActive(true);
+		dotedLine.transform.localPosition = new Vector2(dotedLine.transform.localPosition.x,					// Keep it centered on the X axis
+														-dragLength - dotedLineOffsetPos);		// Lower the sprite on the local Y axis based on dragLength
+	}
 
 	private void Shoot()
     {
@@ -248,7 +260,6 @@ public class Player : MonoBehaviour
 
 		// Disables some game objects 
         MakeStuffDisappear();
-        futurePosition.transform.position = transform.position;
 
         // Instantiate bullet
         GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
@@ -330,10 +341,12 @@ public class Player : MonoBehaviour
 	private void MakeStuffDisappear()
 	{
 		analogStick.SetActive(false);
+		dotedLine.SetActive(false);
 		tail.transform.localScale = new Vector3(1, 1, 1);
+		futurePosition.transform.position = transform.position;
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
     {
 		if (collision.gameObject.tag == "LevelComplete")
             GameManager.GetInstance().LevelComplete();

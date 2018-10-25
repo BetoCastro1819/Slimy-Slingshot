@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletEffect: {fileID: 1026011240827350, guid: 84f0397d368ab344897da5421282b988,
     type: 2}
-  bulletSpeed: 1000
+  bulletSpeed: 2000
   outOfBoundsOffset: 2
 --- !u!198 &198700759834538748
 ParticleSystem:
