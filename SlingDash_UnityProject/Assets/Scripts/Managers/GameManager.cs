@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverScreen;
     public Player player;
 
-
-
     /* Meter Events */
     public MeterDetector meterDetector;
     public List<MeterEvent> meterEventList;
@@ -81,7 +79,7 @@ public class GameManager : MonoBehaviour
             levelCompleteScreen.SetActive(false);
 
 		/* WILL CHANGE THIS AFTER PROTOTYPE MODE */
-		//spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
+		spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
 
         BossIsActive = false;
 		obstaclesSpawnerLeft.SetActive(false);
