@@ -1,0 +1,40 @@
+Defender of Neon
+================
+Ver como funca el char controller del lovers in a dangerous zarlanga.
+Personanlización de los 2 player. Que sean personajes diferentes. Con habilidades diferentes.
+Store de items.
+    Diferentes ultis para los personajes. (Meteoritos, lightning, nuke, etc) (mirar juego Worms)
+    Bombas.
+    Initial shield, algo con el shield, mas shield, doble shield, trippleshield.com, triple shield for ever and ever.
+    Resistance.
+    
+Seleccion de personajes por control. 
+Input de controles
+Nuevos controles de uso de items y ultis.
+
+Fondo con vida. Animales volando. Algun parallax. Minimo movimiento de camara.
+Quizas cambiar las plataformas saltarinas por un doble jump?
+Acceleracion al mover la mira.
+
+
+Sling Dong
+==========
+Objectives on level
+    Dead Ahead, luftrauser, Jetpack Joyride?
+Pantalla de finalizacion con data de la partida. Monedas generadas. Objetivos logrados.
+Achievements
+Event matar chabon, agarrar monedas, metros maximos, metros totales.
+Store de items. 
+    Advance meters.
+    Magnet para coins.
+    Shield?
+    Ver juegos.
+
+Cuteness de la colita.
+
+
+Para todos
+==========
+Generar documento de diseño muy basico como lo que vimos en clase.
+SONIDOS BASICOS y MUSICA
+Rever todas las ideas vistas la clase pasada.

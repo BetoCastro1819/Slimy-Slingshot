@@ -1,0 +1,47 @@
+PARA HACE ESTO CHECKEAR Clase 01 y 02 de carpeta DVJ03 en el proyecto.
+
+Store: (Profundizacion)
+
+	Resources/Texturas/Car01 - resourceName = "Texturas/Car01"
+	Resources/Particulas/GreenFire
+
+    ItemsDataBase (SO) (lastItemID, items) button createItem
+    ItemData (ScriptableObject) (id, name, price, buttonTexture, ItemType, resourceName, object instanceReference)
+    
+    En carpeta Resources de Unity
+        CarPinta (texture)
+        FireFromCar (GameObject)
+        
+    StoreManager
+        ItemsDataBase itemsDB
+        GetItem<T>(id)
+        GetItemDuplicate<T>(id)
+        
+    UserProfile (name, guita, acquaried items(idsArray) ) - Save() Load() 
+	
+	esto en un futuro es online con el tema de google.
+	
+    UIStore
+	
+	
+	
+	Player 
+		Awake()
+		{
+			ItemData item = StoreManager.instance.GetItem<Texture>(data de items[0]);
+		}
+	
+	
+	
+	public ItemData getItem<T>(int itemID) where T : UnityEngine.Object
+    {
+        ItemData item = items.items[0];
+        //search items con itemID
+
+        T sprite = Resources.Load<T>(item.resourceName);
+        item.instanceReference = sprite;
+
+        return item;
+
+    }
+	
