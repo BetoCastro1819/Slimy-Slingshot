@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4310299868378350}
+  - component: {fileID: 114668589164240326}
   - component: {fileID: 114431913978295102}
   - component: {fileID: 198866727413763904}
   - component: {fileID: 199816105474801584}
@@ -53,7 +54,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb3507b82df25443838ee384cf6980f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDestroyObject: 2
+  timeToDestroyObject: 5
+--- !u!114 &114668589164240326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1818375870569830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f553670bbed135a4fafd5d2abcfbd0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSpeed: 2000
+  timeToGoToPosition: 0.6
 --- !u!198 &198866727413763904
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -133,7 +147,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -618,13 +632,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

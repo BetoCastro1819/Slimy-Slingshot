@@ -330,11 +330,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 908047096}
   player: {fileID: 511852834}
   meterDetector: {fileID: 1872033879}
-  meterEventList:
-  - {fileID: 11400000, guid: 8140d98879469fb43b6e10ab1de60ba1, type: 2}
-  - {fileID: 11400000, guid: 8efb5c0e955c1844c827036ebd2297e4, type: 2}
-  - {fileID: 11400000, guid: ae3c84f8439e9ee4da38ef3ffe69a712, type: 2}
-  - {fileID: 11400000, guid: 166d06bd7640f6c41a85caa167ad9645, type: 2}
+  meterEventList: []
   obstaclesSpawnerLeft: {fileID: 456018389}
   obstaclesSpawnerRight: {fileID: 573137582}
   movingEnemiesSpawner: {fileID: 948620370}
@@ -2096,7 +2092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &948620371
 Transform:
   m_ObjectHideFlags: 0

@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             levelCompleteScreen.SetActive(false);
 
 		/* WILL CHANGE THIS AFTER PROTOTYPE MODE */
-		spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
+		//spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
 
         BossIsActive = false;
 		obstaclesSpawnerLeft.SetActive(false);
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 				break;
 			case GameState.PLAYING:
 				CheckForPlayer();
-                CheckForMeterEvents();
+				CheckForMeterEvents();
                 isGameOver = false;
 				break;
 			case GameState.GAME_OVER:
