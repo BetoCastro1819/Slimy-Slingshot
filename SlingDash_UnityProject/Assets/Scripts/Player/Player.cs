@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
 	public Sprite tailDefault;
 	public Sprite tailStreched;
 
+    // Feedback for player to show how far Slimy will travel
+    // based on finger drag distance
+    public GameObject futurePosition;
+
 	public GameObject playerBulletPrefab;
 	public GameObject deathEffect;
 	public Sprite playerOnHold;
@@ -74,6 +78,8 @@ public class Player : MonoBehaviour
 		playerKilled = false;
 
 		playerState = PlayerState.MOVING;
+
+        futurePosition.SetActive(true);
 
 		//DebugScreen.Get().AddButton("Add speed", AddSpeed);
 	}
@@ -209,19 +215,27 @@ public class Player : MonoBehaviour
 		// Get player's drag length from center of the analogStick to finger's position
         float dragLength = Vector2.Distance(mousePos, analogStick.transform.position);
 
-		// Set a max to the drag length
+        // Set a max to the drag length
         if (dragLength > maxThrowForceLength)
+        {
             dragLength = maxThrowForceLength;
+        }
 
-		// Adjust tail's length in relation to drag's length
-		tail.transform.localScale = new Vector3(1, dragLength, 0);
+        // Adjust tail's length in relation to drag's length
+        tail.transform.localScale = new Vector3(1, dragLength, 0);
 
 		// Store drag's length as a moving force to use later for Shoot()
 		// maxThrowForce = 100%
 		// dragLength = throwForce%
 		throwForce = (dragLength * 100) / maxThrowForceLength;
 
-	}
+        // Calculate player´s future position for feedback
+        Vector2 futureDistanceTravelled = new Vector2(
+                                            0,                                         // Keep it centered  on X axis
+                                            (throwForce * forceMultiplier) / (maxThrowForceLength * 100));    // Get force that will be aplied to Slimy
+
+        futurePosition.transform.localPosition = futureDistanceTravelled;
+    }
 
 	private void Shoot()
     {
@@ -234,6 +248,7 @@ public class Player : MonoBehaviour
 
 		// Disables some game objects 
         MakeStuffDisappear();
+        futurePosition.transform.position = transform.position;
 
         // Instantiate bullet
         GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
@@ -282,8 +297,9 @@ public class Player : MonoBehaviour
 
 		// Disable some gameObjects
 		MakeStuffDisappear();
+        futurePosition.SetActive(false);
 
-		// Set GameState to GAME_OVER
+        // Set GameState to GAME_OVER
         if (GameManager.GetInstance() != null)
         {
             GameManager gm = GameManager.GetInstance();
