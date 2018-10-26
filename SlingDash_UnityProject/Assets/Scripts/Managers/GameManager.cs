@@ -80,12 +80,13 @@ public class GameManager : MonoBehaviour
 
 		/* WILL CHANGE THIS AFTER PROTOTYPE MODE */
 		//spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
-
+		/*
         BossIsActive = false;
 		obstaclesSpawnerLeft.SetActive(false);
 		obstaclesSpawnerRight.SetActive(false);
 		movingEnemiesSpawner.SetActive(false);
 		shootingEnemiesSpawner.SetActive(false);
+		*/
 	}
 
 	void Update ()
@@ -107,8 +108,8 @@ public class GameManager : MonoBehaviour
 				break;
 			case GameState.GAME_OVER:
 				timer += Time.unscaledDeltaTime;
-				if (timer > timeForGameOver) GameOver();
-                isGameOver = true;
+				if (timer > timeForGameOver)
+					GameOver();
 				break;
 			case GameState.PAUSE:
 				break;
@@ -201,7 +202,8 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
 	{
-        gameOverScreen.SetActive(true);
+		isGameOver = true;
+		gameOverScreen.SetActive(true);
     }
 
     public bool IsGameOver()
