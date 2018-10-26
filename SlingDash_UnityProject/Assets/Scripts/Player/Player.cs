@@ -26,11 +26,15 @@ public class Player : MonoBehaviour
 	public GameObject dotedLine;
 	public float dotedLineOffsetPos;
 
+	// SHOOTING RELATED VARIABLES
 	public GameObject playerBulletPrefab;
 	public GameObject deathEffect;
 	public Sprite playerOnHold;
 	public int health = 1;
 	public int energyCostPerJump = 20;
+	public float maxBulletScale = 2f;
+	public float minBulletScale = 0.5f;
+	public float minDragLengthForBulletSize = 1f;
     public float bulletTimeFactor = 0.02f;
 	public float lerpBulletTime = 0.125f;
 	public float offBoundOffset = 2f;
@@ -53,6 +57,7 @@ public class Player : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	private Sprite playerDefault;
 
+	private float dragLength;
 
 	private bool onBulletTime;
     public bool OnBulletTime() { return onBulletTime; }
@@ -228,7 +233,7 @@ public class Player : MonoBehaviour
 	private void SetForce()
     {
 		// Get player's drag length from center of the analogStick to finger's position
-        float dragLength = Vector2.Distance(mousePos, analogStick.transform.position);
+        dragLength = Vector2.Distance(mousePos, analogStick.transform.position);
 
         // Set a max to the drag length
         if (dragLength > maxThrowForceLength)
@@ -260,6 +265,24 @@ public class Player : MonoBehaviour
 
 	private void Shoot()
     {
+		// Instantiate bullet
+		GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
+
+		// Calculate bullet scale based on player's finger drag distance
+		// maxBulletScale = 100%
+		// bulletScale = throwForce%
+		if (dragLength > minDragLengthForBulletSize)
+		{
+			float bulletScale = (throwForce * maxBulletScale) / 100;
+			playerBullet.transform.localScale = new Vector3(bulletScale, bulletScale, bulletScale);
+		}
+		else
+		{
+			playerBullet.transform.localScale = new Vector3(minBulletScale, minBulletScale, minBulletScale);
+		}
+
+		playerBullet.transform.up = dir;
+
 		// Reset player velocity
 		rb.velocity = Vector2.zero;
 
@@ -270,9 +293,6 @@ public class Player : MonoBehaviour
 		// Disables some game objects 
         MakeStuffDisappear();
 
-        // Instantiate bullet
-        GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
-        playerBullet.transform.up = dir;
 
 		// Reduces energy bar value
         if (energyBarEnabled)
@@ -317,7 +337,6 @@ public class Player : MonoBehaviour
 
 		// Disable some gameObjects
 		MakeStuffDisappear();
-        futurePosition.SetActive(false);
 
         // Set GameState to GAME_OVER
         if (GameManager.GetInstance() != null)
@@ -352,6 +371,7 @@ public class Player : MonoBehaviour
 		analogStick.SetActive(false);
 		dotedLine.SetActive(false);
 		tail.transform.localScale = new Vector3(1, 1, 1);
+        futurePosition.SetActive(false);
 		futurePosition.transform.position = transform.position;
 	}
 

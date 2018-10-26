@@ -219,7 +219,7 @@ MonoBehaviour:
   - {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
   meterDetector: {fileID: 1872033879}
   meterEventList: []
-  distBtwnObjects: 20
+  distBtwnObjects: 15
   spawningOffset: 2
 --- !u!4 &149419386
 Transform:

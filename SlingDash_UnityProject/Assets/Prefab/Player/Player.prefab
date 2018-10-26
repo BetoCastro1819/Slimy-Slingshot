@@ -277,7 +277,7 @@ MonoBehaviour:
   tail: {fileID: 1354065153659112}
   tailDefault: {fileID: 21300000, guid: 9470cacb5d8b70540bcb2c13a7bbca6a, type: 3}
   tailStreched: {fileID: 21300000, guid: 1c105dcc4b5c27842b819710b7ca1b02, type: 3}
-  tailStretchFactor: 7
+  tailStretchFactor: 5
   futurePosition: {fileID: 1555942577648508}
   crosshairDistanceReducer: 50
   dotedLine: {fileID: 1206694085200236}
@@ -289,12 +289,15 @@ MonoBehaviour:
   playerOnHold: {fileID: 21300000, guid: fb5553d67b9120444b6f1f7135abe042, type: 3}
   health: 1
   energyCostPerJump: 10
+  maxBulletScale: 1
+  minBulletScale: 0.5
+  minDragLengthForBulletSize: 1
   bulletTimeFactor: 0.1
   lerpBulletTime: 15
   offBoundOffset: 2
   energyBarEnabled: 0
   throwForce: 700
-  maxThrowForceLength: 8
+  maxThrowForceLength: 6
   forceMultiplier: 10
   playerState: 0
 --- !u!114 &114649029311539172
