@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: cc2c5f9d1d7df16499b185bb6bba6762
   - enabled: 1
-    path: Assets/Scenes/EndlessLevels/TutorialLevel.unity
-    guid: d9a012f0f538fdf448b9144f3d0ac5a5
-  - enabled: 1
-    path: Assets/Scenes/EndlessLevels/StaminaEnabled.unity
+    path: Assets/Scenes/MainScene.unity
     guid: cc1ad528e72411747a49364aeafd6bdb
+  - enabled: 1
+    path: Assets/Scenes/TutorialLevel.unity
+    guid: d9a012f0f538fdf448b9144f3d0ac5a5
   m_configObjects: {}

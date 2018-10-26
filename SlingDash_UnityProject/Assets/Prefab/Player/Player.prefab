@@ -192,13 +192,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1555942577648508}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 3, y: 3, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4546781290395256}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!4 &4793370821015096
 Transform:
   m_ObjectHideFlags: 1
@@ -277,7 +277,9 @@ MonoBehaviour:
   tail: {fileID: 1354065153659112}
   tailDefault: {fileID: 21300000, guid: 9470cacb5d8b70540bcb2c13a7bbca6a, type: 3}
   tailStreched: {fileID: 21300000, guid: 1c105dcc4b5c27842b819710b7ca1b02, type: 3}
+  tailStretchFactor: 7
   futurePosition: {fileID: 1555942577648508}
+  crosshairDistanceReducer: 50
   dotedLine: {fileID: 1206694085200236}
   dotedLineOffsetPos: 0.5
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
@@ -292,7 +294,7 @@ MonoBehaviour:
   offBoundOffset: 2
   energyBarEnabled: 0
   throwForce: 700
-  maxThrowForceLength: 1.5
+  maxThrowForceLength: 8
   forceMultiplier: 10
   playerState: 0
 --- !u!114 &114649029311539172
@@ -9659,7 +9661,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 206002d77237ccf4f9d73c35dba64ad7, type: 3}
+  m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -326,11 +326,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 908047096}
   player: {fileID: 511852834}
   meterDetector: {fileID: 1872033879}
-  meterEventList:
-  - {fileID: 11400000, guid: 8efb5c0e955c1844c827036ebd2297e4, type: 2}
-  - {fileID: 11400000, guid: 8140d98879469fb43b6e10ab1de60ba1, type: 2}
-  - {fileID: 11400000, guid: ae3c84f8439e9ee4da38ef3ffe69a712, type: 2}
-  - {fileID: 11400000, guid: 166d06bd7640f6c41a85caa167ad9645, type: 2}
+  meterEventList: []
   obstaclesSpawnerLeft: {fileID: 456018389}
   obstaclesSpawnerRight: {fileID: 573137582}
   movingEnemiesSpawner: {fileID: 948620370}
@@ -2571,43 +2567,6 @@ Prefab:
       propertyPath: stick
       value: 
       objectReference: {fileID: 443585363}
-    - target: {fileID: 212851612847970422, guid: ebef7a266a08edf46a4bc80e73cbe751,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672775330018526, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
   m_IsPrefabAsset: 0

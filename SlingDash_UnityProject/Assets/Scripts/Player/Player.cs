@@ -15,10 +15,12 @@ public class Player : MonoBehaviour
 	private SpriteRenderer tailSpriteRenderer;
 	public Sprite tailDefault;
 	public Sprite tailStreched;
+	public float tailStretchFactor = 5f;
 
     // Feedback for player to show how far Slimy will travel
     // based on finger drag distance
     public GameObject futurePosition;
+	public float crosshairDistanceReducer = 50;
 
 	// AIMING DOTED LINE
 	public GameObject dotedLine;
@@ -200,6 +202,13 @@ public class Player : MonoBehaviour
 		{
 			stick.transform.position = stickPos;
 		}
+		// If the finger's drag is faster than the frame rate
+		// set stick's position at max distance
+		else
+		{
+			stick.transform.localPosition = new Vector2(0,
+														-digitalAnalogLimit / 2);
+		}
 
 		// If the player's finger doesn't move from the center of the analogStick
 		// Set dir to be down as default
@@ -228,7 +237,7 @@ public class Player : MonoBehaviour
         }
 
         // Adjust tail's length in relation to drag's length
-        tail.transform.localScale = new Vector3(1, dragLength, 0);
+        tail.transform.localScale = new Vector3(1, dragLength / tailStretchFactor, 0);
 
 		// Store drag's length as a moving force to use later for Shoot()
 		// maxThrowForce = 100%
@@ -238,7 +247,7 @@ public class Player : MonoBehaviour
         // Calculate player´s future position for feedback
         Vector2 futureDistanceTravelled = new Vector2(
                                             0,																	// Keep it centered  on X axis
-                                            dragLength * maxThrowForceLength);		// Get force that will be aplied to Slimy
+                                            throwForce / crosshairDistanceReducer);		// Get force that will be aplied to Slimy
 
 		// Set the position of the crosshair
         futurePosition.transform.localPosition = futureDistanceTravelled;
@@ -246,7 +255,7 @@ public class Player : MonoBehaviour
 		// Enable aiming doted line
 		dotedLine.SetActive(true);
 		dotedLine.transform.localPosition = new Vector2(dotedLine.transform.localPosition.x,					// Keep it centered on the X axis
-														-dragLength - dotedLineOffsetPos);		// Lower the sprite on the local Y axis based on dragLength
+														(-dragLength / tailStretchFactor) - dotedLineOffsetPos);		// Lower the sprite on the local Y axis based on dragLength
 	}
 
 	private void Shoot()
