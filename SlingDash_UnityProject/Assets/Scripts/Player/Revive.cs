@@ -22,7 +22,6 @@ public class Revive : MonoBehaviour
 
     public void RevivePlayerAtPoint(Vector3 revivePos)
     {
-        GameManager.GetInstance().SetState(GameManager.GameState.PLAYING);
 
         // Creates a trigger the bigger than the screen
         // Destroys every object that has the "Erasable" component
@@ -33,9 +32,11 @@ public class Revive : MonoBehaviour
         player.transform.SetPositionAndRotation(revivePos, Quaternion.identity);
         player.playerState = Player.PlayerState.MOVING;
         player.health = 1;
-    }
 
-    public float GetReviveY()
+		GameManager.GetInstance().SetState(GameManager.GameState.ON_START);
+	}
+
+	public float GetReviveY()
     {
         return ReviveY;
     }

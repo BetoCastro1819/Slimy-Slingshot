@@ -120,9 +120,15 @@ public class GameManager : MonoBehaviour
                 isGameOver = false;
 				break;
 			case GameState.GAME_OVER:
-				timer += Time.unscaledDeltaTime;
-				if (timer > timeForGameOver)
-					GameOver();
+				if (!isGameOver)
+				{
+					timer += Time.unscaledDeltaTime;
+					if (timer > timeForGameOver)
+					{
+						timer = 0;
+						GameOver();
+					}
+				}
 				break;
 			case GameState.PAUSE:
 				break;
@@ -135,6 +141,12 @@ public class GameManager : MonoBehaviour
 
 	void StartGame()
 	{
+		Time.timeScale = 0;
+
+		if (startText != null)
+			startText.SetActive(true);
+
+
 		if (Input.GetKey(KeyCode.Mouse0))
 		{
 			if (startText != null)

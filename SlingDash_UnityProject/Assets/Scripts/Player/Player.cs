@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	// Effects
+	public GameObject offScreenDeathEffect;
+	public GameObject standardDeathEffect;
+
 	// Digital analog stick
-    public GameObject analogStick;
+	public GameObject analogStick;
 	public GameObject stick;
     public float digitalAnalogLimit = 1f;
 
@@ -28,7 +32,6 @@ public class Player : MonoBehaviour
 
 	// SHOOTING RELATED VARIABLES
 	public GameObject playerBulletPrefab;
-	public GameObject deathEffect;
 	public Sprite playerOnHold;
 	public int health = 1;
 	public int energyCostPerJump = 20;
@@ -147,7 +150,7 @@ public class Player : MonoBehaviour
 		if (transform.position.y < offBound)
 		{
 			Vector3 effectPos = new Vector3(transform.position.x, cam.transform.position.y - cam.orthographicSize, 0);
-			Instantiate(deathEffect, effectPos, Quaternion.identity);
+			Instantiate(offScreenDeathEffect, effectPos, Quaternion.identity);
 			KillPlayer();
 		}
 	}
@@ -334,6 +337,9 @@ public class Player : MonoBehaviour
     private void KillPlayer()
     {
 		//playerKilled = true;
+
+		// Spawn death particles
+		Instantiate(standardDeathEffect, transform.position, Quaternion.identity);
 
 		// CAMERA SHAKE
 		StartCoroutine(cameraShake.Shake());

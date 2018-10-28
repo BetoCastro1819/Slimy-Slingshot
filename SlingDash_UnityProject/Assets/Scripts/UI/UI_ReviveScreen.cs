@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UI_ReviveScreen : MonoBehaviour
 {
+	public GameObject reviveScreen;
+
 	public MeterDetector meterDetector;
 	public CoinManager coinManager;
 
@@ -48,6 +50,14 @@ public class UI_ReviveScreen : MonoBehaviour
 			previousMetersReached = meterDetector.GetMetersTravelled();
 			metersTravelled.text = previousMetersReached.ToString("0m");
 			Debug.Log("Meters Travelled: " + previousMetersReached);
+		}
+	}
+
+	public void ReviveButton()
+	{
+		if (previousCoinsEarned >= GameManager.GetInstance().coinsForRevive)
+		{
+			reviveScreen.SetActive(false);
 		}
 	}
 }
