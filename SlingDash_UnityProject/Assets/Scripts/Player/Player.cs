@@ -140,7 +140,10 @@ public class Player : MonoBehaviour
 
 	private void CheckPlayerOffBounds()
 	{
+		// Cameras lower edge 
 		float offBound = cam.transform.position.y - cam.orthographicSize - offBoundOffset;
+
+		// Check if player is below camera's view
 		if (transform.position.y < offBound)
 		{
 			Vector3 effectPos = new Vector3(transform.position.x, cam.transform.position.y - cam.orthographicSize, 0);

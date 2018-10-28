@@ -5,12 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject levelCompleteScreen;
-    public GameObject startText;
-    public GameObject gameOverScreen;
     public Player player;
 
-    /* Meter Events */
-    public MeterDetector meterDetector;
+	// UI elements
+    public GameObject startText;
+	public GameObject gameOverScreen;
+	public GameObject reviveScreen;
+	public int coinsForRevive = 50;
+
+	// Meter Events
+	public MeterDetector meterDetector;
     public List<MeterEvent> meterEventList;
 
 	// Boss
@@ -29,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public float timeForGameOver = 2f;
 
+	private CoinManager coinManager;
 	private float timer = 0;
     private bool isGameOver = false;
 
@@ -77,6 +82,14 @@ public class GameManager : MonoBehaviour
 
         if (levelCompleteScreen != null)
             levelCompleteScreen.SetActive(false);
+
+		if (reviveScreen != null)
+		{
+			reviveScreen.SetActive(false);
+		}
+
+		coinManager = CoinManager.Get();
+
 
 		/* WILL CHANGE THIS AFTER PROTOTYPE MODE */
 		//spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 
@@ -200,12 +213,19 @@ public class GameManager : MonoBehaviour
         levelCompleteScreen.SetActive(true);
     }
 
-    void GameOver()
+	void GameOver()
 	{
 		isGameOver = true;
-		gameOverScreen.SetActive(true);
-    }
 
+		if (reviveScreen != null)
+		{
+			reviveScreen.SetActive(true);
+		}
+		else
+		{
+			gameOverScreen.SetActive(true);
+		}
+	}
     public bool IsGameOver()
 	{
         return isGameOver;
