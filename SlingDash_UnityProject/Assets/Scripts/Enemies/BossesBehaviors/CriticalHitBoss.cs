@@ -1,20 +1,24 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CriticalHitBoss : MonoBehaviour {
 
-    public List<GameObject> criticalPoints;
+    public List<CriticalPoint> criticalPoints;
 
     [HideInInspector]
     public int criticalPointsQuant;
+    public float timeToAttack = 2f;
 
     private GameManager gm;
+    private Player player;
     private bool canBeKilled;
+    private float timer;
 
     private void Start()
     {
         gm = GameManager.GetInstance();
+        player = FindObjectOfType<Player>();
         criticalPointsQuant = criticalPoints.Count;
         canBeKilled = false;
     }
@@ -25,6 +29,20 @@ public class CriticalHitBoss : MonoBehaviour {
         {
             canBeKilled = true;
             gameObject.layer = LayerMask.NameToLayer("Boss");
+        }
+
+        timer += Time.deltaTime;
+        if (timer >= timeToAttack)
+        {
+            for (int i = 0; i < criticalPoints.Count; i++)
+            {
+                if (criticalPoints[i].IsAlive())
+                {
+                    criticalPoints[i].Attack(player.transform.position);
+                    timer = 0;
+                    return;
+                }
+            }
         }
     }
 
