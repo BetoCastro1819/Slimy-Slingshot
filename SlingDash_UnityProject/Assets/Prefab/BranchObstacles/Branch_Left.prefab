@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 212475407367199648}
   - component: {fileID: 60110064301350540}
   - component: {fileID: 50684602161638132}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Branch_Left
   m_TagString: Wall
   m_Icon: {fileID: 0}
