@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9867e3a07771f046bf49c6684145172, type: 3}
-  m_Name: BossEvent
+  m_Name: TentacleBoss
   m_EditorClassIdentifier: 
   eventAt: 400
   type: 0

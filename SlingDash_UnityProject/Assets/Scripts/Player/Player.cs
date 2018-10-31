@@ -396,7 +396,7 @@ public class Player : MonoBehaviour
 
 	private void Dash()
 	{
-		clearScreenTrigger.SetActive(true);
+		//clearScreenTrigger.SetActive(true);
 
 		Time.timeScale = 1;
 
@@ -407,7 +407,7 @@ public class Player : MonoBehaviour
 		futurePosY = currentPosY + metersToDash;
 		if (transform.position.y >= futurePosY)
 		{
-			clearScreenTrigger.SetActive(false);
+			//clearScreenTrigger.SetActive(false);
 			rb.AddForce(Vector2.up * 1000f);
 			circleCollider.enabled = true;
 			playerState = PlayerState.MOVING;

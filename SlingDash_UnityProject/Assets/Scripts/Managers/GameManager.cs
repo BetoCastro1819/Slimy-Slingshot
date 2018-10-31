@@ -172,12 +172,9 @@ public class GameManager : MonoBehaviour
 			switch (meterEventList[i].type)
 			{
 				case EventType.SPAWN:
-					if (meterDetector.GetMetersTravelled() >= spawnBossAt)
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt && !BossIsActive)
 					{
-						if (!BossIsActive)
-							SpawnBoss();
-						else
-							spawnBossAt += meterEventList[i].eventAt;      // Spawn boss at next meter event point
+                          SpawnBoss(meterEventList[i].prefabToSPAWN);     // Spawn boss at next meter event point
 					}
 					break;
 				case EventType.ENABLE_OBSTACLES:
@@ -211,11 +208,10 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void SpawnBoss()
+	private void SpawnBoss(GameObject spawn)
 	{
 		BossIsActive = true;
-		Instantiate(meterEventList[3].prefabToSPAWN, Camera.main.transform);
-		spawnBossAt += meterEventList[3].eventAt;
+        Instantiate(spawn, Camera.main.transform,false);
 	}
 
     public void LevelComplete()
