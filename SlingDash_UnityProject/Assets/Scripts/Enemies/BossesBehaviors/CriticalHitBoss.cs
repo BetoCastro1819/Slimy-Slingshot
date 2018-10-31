@@ -50,7 +50,6 @@ public class CriticalHitBoss : MonoBehaviour {
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
-
             if (canBeKilled)
             {
                 gm.BossIsActive = false;
