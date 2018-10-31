@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 58523090451597816}
   - component: {fileID: 50672818478063720}
   m_Layer: 8
-  m_Name: PlayerBullet
+  m_Name: PlayerBullet_Circle
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4881,7 +4881,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 68b303ebddc439b4aa6a901fc940b603, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 206002d77237ccf4f9d73c35dba64ad7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1

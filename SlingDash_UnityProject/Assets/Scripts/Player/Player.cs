@@ -47,6 +47,16 @@ public class Player : MonoBehaviour
     public float maxThrowForceLength = 2f;
     public float forceMultiplier = 100f;
 
+	/* POWER UPS */
+	private CircleCollider2D circleCollider;
+
+	// DASH
+	public GameObject clearScreenTrigger;
+	public float dashVelocity = 100f;
+	public float metersToDash = 50;
+	private float currentPosY;
+	private float futurePosY;
+
 	private Camera cam;
 	private CameraShake cameraShake;
 
@@ -62,16 +72,16 @@ public class Player : MonoBehaviour
 
 	private float dragLength;
 
-	private bool onBulletTime;
-    public bool OnBulletTime() { return onBulletTime; }
+    public bool OnBulletTime { get; set; }
 
-    public PlayerState playerState;
+	public PlayerState playerState { get; set; }
     public enum PlayerState
     {
         MOVING,
         AIMING,
         GOT_HURT,
-        KILLED
+        KILLED,
+		ON_DASH
     }
 
     private void Start()
@@ -81,7 +91,7 @@ public class Player : MonoBehaviour
 
 		rb = GetComponent<Rigidbody2D>();
         analogStick.SetActive(false);
-        onBulletTime = false;
+        OnBulletTime = false;
         energyBarValue = 100;
 
 		spriteRenderer = GetComponent<SpriteRenderer>();
@@ -96,6 +106,14 @@ public class Player : MonoBehaviour
         futurePosition.SetActive(true);
 
 		dotedLine.SetActive(false);
+
+		clearScreenTrigger.SetActive(false);
+
+		currentPosY = transform.position.y;
+		futurePosY = 0;
+
+		circleCollider = GetComponent<CircleCollider2D>();
+		circleCollider.enabled = true;
 
 		//DebugScreen.Get().AddButton("Add speed", AddSpeed);
 	}
@@ -125,9 +143,12 @@ public class Player : MonoBehaviour
         {
             case PlayerState.MOVING:
 				if (energyBarValue > 0)
-				    OnPlayerTap();
+				{
+					OnPlayerTap();
+				}
 				spriteRenderer.sprite = playerDefault;
 				tailSpriteRenderer.sprite = tailDefault;
+				currentPosY = transform.position.y;
                 break;
             case PlayerState.AIMING:
                 OnPlayerHold();
@@ -136,8 +157,13 @@ public class Player : MonoBehaviour
                 break;
             case PlayerState.KILLED:
 				if (!playerKilled)
+				{
 					KillPlayer();
-                break;
+				}
+				break;
+			case PlayerState.ON_DASH:
+				Dash();
+				break;
         }
     }
 
@@ -173,6 +199,9 @@ public class Player : MonoBehaviour
             analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			stick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			analogStick.SetActive(true);
+
+			// Enable crosshair to know how far the player will be slingshoted
+			futurePosition.SetActive(true);
 
 			playerState = PlayerState.AIMING;
         }
@@ -274,6 +303,11 @@ public class Player : MonoBehaviour
 		// Instantiate bullet
 		GameObject playerBullet = Instantiate(playerBulletPrefab, transform.position, Quaternion.identity);
 
+		// Get trail's component inside trail GameObject
+		// Which is a child from playerBullet
+		GameObject playerBulletTrail = playerBullet.GetComponent<PlayerBullet>().trail;
+		TrailRenderer trail = playerBulletTrail.GetComponent<TrailRenderer>();
+
 		// Calculate bullet scale based on player's finger drag distance
 		// maxBulletScale = 100%
 		// bulletScale = throwForce%
@@ -281,10 +315,12 @@ public class Player : MonoBehaviour
 		{
 			float bulletScale = (throwForce * maxBulletScale) / 100;
 			playerBullet.transform.localScale = new Vector3(bulletScale, bulletScale, bulletScale);
+			trail.startWidth = bulletScale;
 		}
 		else
 		{
 			playerBullet.transform.localScale = new Vector3(minBulletScale, minBulletScale, minBulletScale);
+			trail.startWidth = minBulletScale;
 		}
 
 		playerBullet.transform.up = dir;
@@ -310,7 +346,7 @@ public class Player : MonoBehaviour
 
 	private void SetBulletTime(bool bulletTimeActive)
     {
-        onBulletTime = bulletTimeActive;
+        OnBulletTime = bulletTimeActive;
 
         if (bulletTimeActive)
         {
@@ -357,6 +393,26 @@ public class Player : MonoBehaviour
 		// Disable player's gameObject, instead of destroying it
         gameObject.SetActive(false);
     }
+
+	private void Dash()
+	{
+		clearScreenTrigger.SetActive(true);
+
+		Time.timeScale = 1;
+
+		circleCollider.enabled = false;
+
+		transform.position += Vector3.up * dashVelocity * Time.deltaTime;
+
+		futurePosY = currentPosY + metersToDash;
+		if (transform.position.y >= futurePosY)
+		{
+			clearScreenTrigger.SetActive(false);
+			rb.AddForce(Vector2.up * 1000f);
+			circleCollider.enabled = true;
+			playerState = PlayerState.MOVING;
+		}
+	}
 
     private void UseBulletTimeEnergy()
 	{

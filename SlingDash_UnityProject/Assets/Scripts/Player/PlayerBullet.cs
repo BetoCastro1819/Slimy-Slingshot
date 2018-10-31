@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
 	public GameObject bulletEffect;
+	public GameObject trail;
 	public float bulletSpeed = 20f;
 	public float outOfBoundsOffset = 2f;
 
