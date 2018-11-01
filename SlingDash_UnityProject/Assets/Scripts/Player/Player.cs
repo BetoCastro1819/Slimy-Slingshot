@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
 
 		dotedLine.SetActive(false);
 
-		clearScreenTrigger.SetActive(false);
+		//clearScreenTrigger.SetActive(false);
 
 		currentPosY = transform.position.y;
 		futurePosY = 0;

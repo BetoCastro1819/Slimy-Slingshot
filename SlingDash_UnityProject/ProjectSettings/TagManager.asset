@@ -10,6 +10,9 @@ TagManager:
   - Wall
   - TutorialTrigger
   - ClearScreenTrigger
+  - MovingEnemy
+  - ShootingEnemy
+  - Branch
   layers:
   - Default
   - TransparentFX
