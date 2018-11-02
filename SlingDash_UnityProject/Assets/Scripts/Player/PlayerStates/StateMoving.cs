@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class StateMoving : PlayerState
 {
+	public Sprite playerDefaultSprite;
+
+	public override void Enter()
+	{
+		base.Enter();
+
+		player.SetSprite(playerDefaultSprite);
+
+		Debug.Log("StateMoving.Enter()");
+	}
+
 	public override void HandleInput()
 	{
 		if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -20,12 +31,15 @@ public class StateMoving : PlayerState
 	public override void UpdateState()
 	{
 		base.UpdateState();
+
+
+
 	}
 
-	public override void Enter()
+	public override void Exit()
 	{
-		base.Enter();
+		base.Exit();
 
-		Debug.Log("StateMoving is now active");
+		Debug.Log("StateMoving.Exit()");
 	}
 }

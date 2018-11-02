@@ -25,10 +25,14 @@ public class PlayerSlimy : MonoBehaviour
 	public Rigidbody2D m_Rigidbody;
 
 	private PlayerState m_State;
+	private SpriteRenderer m_sRenderer;
 
 	void Start ()
 	{
+		m_sRenderer = GetComponent<SpriteRenderer>();
+
 		m_State = stateMoving;
+		m_State.Enter();
 	}
 
 	void Update ()
@@ -42,4 +46,8 @@ public class PlayerSlimy : MonoBehaviour
 		m_State = state;
 	}
 
+	public void SetSprite(Sprite sprite)
+	{
+		m_sRenderer.sprite = sprite;
+	}
 }

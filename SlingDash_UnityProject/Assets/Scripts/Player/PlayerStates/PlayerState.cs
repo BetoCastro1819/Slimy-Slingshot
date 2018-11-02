@@ -6,13 +6,17 @@ public class PlayerState : MonoBehaviour
 {
 	protected PlayerSlimy player;
 
-	private void Start()
+	public virtual void Start()
 	{
 		player = PlayerSlimy.Get();
-		//Debug.Log("PlayerState.Start()");
+		Debug.Log("PlayerState.Start()");
 	}
 
 	public virtual void Enter()
+	{ }
+
+
+	public virtual void Exit()
 	{ }
 
 	public virtual void UpdateState ()
