@@ -195,13 +195,25 @@ public class Player : MonoBehaviour
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+<<<<<<< HEAD
 			// Enable the analog stick on TAP position
+=======
+			// Display the analog stick on finger's position
+>>>>>>> TestPlayground
             analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			stick.transform.position = new Vector2(mousePos.x, mousePos.y);
 			analogStick.SetActive(true);
 
+<<<<<<< HEAD
 			// Enable crosshair to know how far the player will be slingshoted
 			futurePosition.SetActive(true);
+=======
+			// Enable handle on player's position
+			// This will store the angle of shooting based on the player's finger position
+            forceDir.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
+            forceDir.SetActive(true);
+            forceDir.transform.localScale = new Vector3(0.5f, 0f, 0);
+>>>>>>> TestPlayground
 
 			playerState = PlayerState.AIMING;
         }
@@ -230,9 +242,31 @@ public class Player : MonoBehaviour
         mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+<<<<<<< HEAD
 		// Get the direction from curretn player's finger position
 		// to the center of the analogStick
 		dir = mousePos - analogStick.transform.position;
+=======
+		// Point to finger position
+        dir = new Vector2(
+            mousePos.x - analogStick.transform.position.x,
+            mousePos.y - analogStick.transform.position.y
+        );
+
+		// If the player's finger is at the same position as the analog stick
+		// Set shooting direction to be "down" as default
+		if (dir.x == 0 && dir.y == 0)
+		{
+			dir = -transform.up;
+		}
+
+        analogStick.transform.up = -dir;
+
+        forceDir.transform.right = dir;
+        transform.up = -dir;
+
+		forceDir.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
+>>>>>>> TestPlayground
 
 		// Make the stick from the digital josytick, follow the player's finger position
 		Vector2 stickPos = new Vector2(mousePos.x, mousePos.y);
@@ -279,6 +313,7 @@ public class Player : MonoBehaviour
         // Adjust tail's length in relation to drag's length
         tail.transform.localScale = new Vector3(1, dragLength / tailStretchFactor, 0);
 
+<<<<<<< HEAD
 		// Store drag's length as a moving force to use later for Shoot()
 		// maxThrowForce = 100%
 		// dragLength = throwForce%
@@ -297,6 +332,11 @@ public class Player : MonoBehaviour
 		dotedLine.transform.localPosition = new Vector2(dotedLine.transform.localPosition.x,					// Keep it centered on the X axis
 														(-dragLength / tailStretchFactor) - dotedLineOffsetPos);		// Lower the sprite on the local Y axis based on dragLength
 	}
+=======
+        forceDir.transform.localScale = new Vector3(forceAmount, 1, 0);
+        throwForce = forceAmount;
+    }
+>>>>>>> TestPlayground
 
 	private void Shoot()
     {
@@ -328,11 +368,15 @@ public class Player : MonoBehaviour
 		// Reset player velocity
 		rb.velocity = Vector2.zero;
 
+<<<<<<< HEAD
 		// Slingshot player in his local UP direction
 		throwForce *= forceMultiplier;
         rb.AddForce(transform.up * throwForce);
 
 		// Disables some game objects 
+=======
+        rb.AddForce(transform.up * throwForce * forceMultiplier);
+>>>>>>> TestPlayground
         MakeStuffDisappear();
 
 
