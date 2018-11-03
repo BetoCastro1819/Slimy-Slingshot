@@ -35,17 +35,20 @@ public class StateAiming : PlayerState
 	public float minBulletScale;
 	public float maxBulletScale;
 
+	[Header("Bullet Time")]
+	public float bulletTimeFactor;
+	public float lerpBulletTime;
 
-	private SpriteRenderer m_sRenderer;
-	private Vector3 m_MousePos;
-	private Vector2 m_ShootingDir;
+	private SpriteRenderer tailSpriteRenderer;
+	private Vector3 mousePos;
+	private Vector2 shootingDir;
 	private float dragLength;
 
 	public override void Start()
 	{
 		base.Start();
 
-		m_sRenderer = GetComponent<SpriteRenderer>();
+		tailSpriteRenderer = tail.GetComponent<SpriteRenderer>();
 		Debug.Log("StateAiming.Start()");
 	}
 
@@ -54,11 +57,12 @@ public class StateAiming : PlayerState
 		base.Enter();
 
 		player.SetSprite(playerAiming);
+		tailSpriteRenderer.sprite = tailStreched;
 
-		m_MousePos = Input.mousePosition;
-		m_MousePos = Camera.main.ScreenToWorldPoint(m_MousePos);
+		mousePos = Input.mousePosition;
+		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-		analogStick.transform.position = new Vector2(m_MousePos.x, m_MousePos.y);
+		analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
 		analogStick.SetActive(true);
 
 		dotedLine.SetActive(true);
@@ -85,6 +89,7 @@ public class StateAiming : PlayerState
 	{
 		base.UpdateState();
 
+		EnableBulletTime();
 		SetDirection();
 		SetForce();
 	}
@@ -92,6 +97,11 @@ public class StateAiming : PlayerState
 	public override void Exit()
 	{
 		base.Exit();
+
+		DisableBulletTime();
+
+		tailSpriteRenderer.sprite = tailDefault;
+		tail.transform.localScale = new Vector3(1, 1, 1);
 
 		analogStick.SetActive(false);
 
@@ -106,25 +116,25 @@ public class StateAiming : PlayerState
 	void SetDirection()
 	{
 		// Get player's finger position
-		m_MousePos = Input.mousePosition;
-		m_MousePos = Camera.main.ScreenToWorldPoint(m_MousePos);
+		mousePos = Input.mousePosition;
+		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
 		// Get the direction from curretn player's finger position
 		// to the center of the analogStick
-		m_ShootingDir = m_MousePos - analogStick.transform.position;
+		shootingDir = mousePos - analogStick.transform.position;
 		
 		// If the player's finger is at the same position as the analog stick
 		// Set shooting direction to be "down" as default
-		if (m_ShootingDir.x == 0 && m_ShootingDir.y == 0)
+		if (shootingDir.x == 0 && shootingDir.y == 0)
 		{
-			m_ShootingDir = -transform.up;
+			shootingDir = -transform.up;
 		}
 
-		analogStick.transform.up = -m_ShootingDir;
-		transform.up = -m_ShootingDir;
+		analogStick.transform.up = -shootingDir;
+		transform.up = -shootingDir;
 
 		// Make the stick from the digital josytick, follow the player's finger position
-		Vector2 stickPos = m_MousePos;
+		Vector2 stickPos = mousePos;
 
 		// Follow finger's position if the distance is lower than de digitalAnalogLimit
 		if (Vector2.Distance(analogStick.transform.position, stickPos) < digitalAnalogLimit)
@@ -139,16 +149,16 @@ public class StateAiming : PlayerState
 		}
 
 		// Rotate analogStick based on direction 
-		analogStick.transform.up = -m_ShootingDir;
+		analogStick.transform.up = -shootingDir;
 
 		// Rotate Slimy based on direction 
-		transform.up = -m_ShootingDir;
+		transform.up = -shootingDir;
 	}
 
 	void SetForce()
 	{
 		// Get player's drag length from center of the analogStick to finger's position
-		dragLength = Vector2.Distance(m_MousePos, analogStick.transform.position);
+		dragLength = Vector2.Distance(mousePos, analogStick.transform.position);
 
 		// Set a max to the drag length
 		if (dragLength > maxDragLength)
@@ -205,7 +215,7 @@ public class StateAiming : PlayerState
 			trail.startWidth = minBulletScale;
 		}
 
-		playerBullet.transform.up = m_ShootingDir;
+		playerBullet.transform.up = shootingDir;
 
 		// Reset player velocity
 		player.m_Rigidbody.velocity = Vector2.zero;
@@ -216,5 +226,20 @@ public class StateAiming : PlayerState
 
 		//-------------- UNCOMMENT TO ENABLE PHONE VIBRATIONS ----------------//
 		//Handheld.Vibrate();
+	}
+
+	void EnableBulletTime()
+	{
+		// Smooth transition from normal to slow-mo timeScale
+		Time.timeScale = Mathf.Lerp(Time.timeScale, bulletTimeFactor, lerpBulletTime * Time.deltaTime);
+		Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
+	}
+
+
+	void DisableBulletTime()
+	{
+		// Resets timeScales to default
+		Time.timeScale = 1;
+		Time.fixedDeltaTime = Time.timeScale * .02f;
 	}
 }
