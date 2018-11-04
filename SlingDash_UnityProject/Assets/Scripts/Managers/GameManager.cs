@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     public float timeForGameOver = 2f;
 
-	private CoinManager coinManager;
 	private float timer = 0;
     private bool isGameOver = false;
 
@@ -87,9 +86,6 @@ public class GameManager : MonoBehaviour
 		{
 			reviveScreen.SetActive(false);
 		}
-
-		coinManager = CoinManager.Get();
-
 
 		/* WILL CHANGE THIS AFTER PROTOTYPE MODE */
 		//spawnBossAt = meterEventList[3].eventAt;	// 3 = BossEvent 

@@ -13,6 +13,7 @@ TagManager:
   - MovingEnemy
   - ShootingEnemy
   - Branch
+  - PowerUp
   layers:
   - Default
   - TransparentFX

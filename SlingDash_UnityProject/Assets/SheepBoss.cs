@@ -24,8 +24,10 @@ public class SheepBoss : Enemy {
         spawningTimer = spawningTime;
     }
 
-    public void Update()
+    public override void Update()
     {
+		base.Update();
+
         shootingTimer += Time.deltaTime;
         spawningTimer += Time.deltaTime;
 

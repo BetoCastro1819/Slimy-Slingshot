@@ -20,9 +20,6 @@ public class UI_ReviveScreen : MonoBehaviour
 
 	private int previousCoinsEarned;
 	private float previousMetersReached;
-	private float timer;
-
-	private bool doneCountingMeters;
 
 	void Start ()
 	{
@@ -31,9 +28,6 @@ public class UI_ReviveScreen : MonoBehaviour
 
 		previousCoinsEarned = coinManager.GetCoins();
 		coinsEarned.text = previousCoinsEarned.ToString("0");
-
-		timer = 0;
-		doneCountingMeters = false;
 	}
 	
 	void Update ()

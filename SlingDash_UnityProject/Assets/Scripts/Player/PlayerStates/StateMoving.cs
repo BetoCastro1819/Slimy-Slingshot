@@ -10,7 +10,7 @@ public class StateMoving : PlayerState
 	{
 		base.Enter();
 
-		player.m_Rigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
+		player.PlayerRigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
 
 		player.SetSprite(playerDefaultSprite);
 

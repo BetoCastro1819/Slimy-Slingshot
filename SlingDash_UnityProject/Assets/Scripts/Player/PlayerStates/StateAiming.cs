@@ -35,10 +35,6 @@ public class StateAiming : PlayerState
 	public float minBulletScale;
 	public float maxBulletScale;
 
-	[Header("Bullet Time")]
-	public float bulletTimeFactor;
-	public float lerpBulletTime;
-
 	private SpriteRenderer tailSpriteRenderer;
 	private Vector3 mousePos;
 	private Vector2 shootingDir;
@@ -56,7 +52,7 @@ public class StateAiming : PlayerState
 	{
 		base.Enter();
 
-		player.m_Rigidbody.interpolation = RigidbodyInterpolation2D.None;
+		player.PlayerRigidbody.interpolation = RigidbodyInterpolation2D.None;
 
 		player.SetSprite(playerAiming);
 		tailSpriteRenderer.sprite = tailStreched;
@@ -91,7 +87,7 @@ public class StateAiming : PlayerState
 	{
 		base.UpdateState();
 
-		EnableBulletTime();
+		TimeManager.GetInstance().SetTime(TimeManager.TimeScales.SLOW_MO);
 		SetDirection();
 		SetForce();
 	}
@@ -100,7 +96,7 @@ public class StateAiming : PlayerState
 	{
 		base.Exit();
 
-		DisableBulletTime();
+		TimeManager.GetInstance().SetTime(TimeManager.TimeScales.DEFAULT);
 
 		tailSpriteRenderer.sprite = tailDefault;
 		tail.transform.localScale = new Vector3(1, 1, 1);
@@ -220,28 +216,13 @@ public class StateAiming : PlayerState
 		playerBullet.transform.up = shootingDir;
 
 		// Reset player velocity
-		player.m_Rigidbody.velocity = Vector2.zero;
+		player.PlayerRigidbody.velocity = Vector2.zero;
 
 		// Slingshot player in his local UP direction
 		slingshotForce *= forceMultiplier;
-		player.m_Rigidbody.AddForce(transform.up * slingshotForce * forceMultiplier);
+		player.PlayerRigidbody.AddForce(transform.up * slingshotForce * forceMultiplier);
 
 		//-------------- UNCOMMENT TO ENABLE PHONE VIBRATIONS ----------------//
 		//Handheld.Vibrate();
-	}
-
-	void EnableBulletTime()
-	{
-		// Smooth transition from normal to slow-mo timeScale
-		Time.timeScale = Mathf.Lerp(Time.timeScale, bulletTimeFactor, lerpBulletTime * Time.deltaTime);
-		Time.fixedDeltaTime = Time.timeScale * .02f; // 1/50 = 0.02 Assuming game runs at a fixed rate of 50fps
-	}
-
-
-	void DisableBulletTime()
-	{
-		// Resets timeScales to default
-		Time.timeScale = 1;
-		Time.fixedDeltaTime = Time.timeScale * .02f;
 	}
 }

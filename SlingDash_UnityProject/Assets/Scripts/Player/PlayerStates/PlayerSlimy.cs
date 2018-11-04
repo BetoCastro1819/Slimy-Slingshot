@@ -20,13 +20,12 @@ public class PlayerSlimy : MonoBehaviour
 	public int health = 1;
 	public float offBoundOffset = 2f;
 	// Components
-	public Rigidbody2D m_Rigidbody { get; set; }
+	public Rigidbody2D PlayerRigidbody { get; set; }
 
 	// States
 	public StateMoving StateMoving { get; set; }
 	public StateAiming StateAiming { get; set; }
 	public StateKilled StateKilled { get; set; }
-	public StateRevive StateRevive { get; set; }
 
 	private PlayerState currentState;
 
@@ -36,14 +35,13 @@ public class PlayerSlimy : MonoBehaviour
 	void Start ()
 	{
 		cam = Camera.main;
-		m_Rigidbody = GetComponent<Rigidbody2D>(); 
+		PlayerRigidbody = GetComponent<Rigidbody2D>(); 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		// Initialize States
 		StateMoving = GetComponent<StateMoving>();
 		StateAiming = GetComponent<StateAiming>();
 		StateKilled = GetComponent<StateKilled>();
-		StateRevive = GetComponent<StateRevive>();
 
 		// Set current state
 		currentState = StateMoving;
@@ -112,8 +110,12 @@ public class PlayerSlimy : MonoBehaviour
 		if (enemy != null)
 		{
 			KillPlayer();
-			Debug.Log("Collided with Enemy");
-			//playerState = PlayerState.KILLED;
+		}
+
+		if (collision.gameObject.tag == "PowerUp")
+		{
+			// Randomly pick one of the power up states
+			
 		}
 	}
 }

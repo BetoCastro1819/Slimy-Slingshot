@@ -9,13 +9,13 @@ public class CriticalPoint : Enemy {
     private bool isAlive = true;
     private bool isAttacking = false;
     private Vector3 targetPos;
-    private Vector3 startingPos;
+    //private Vector3 startingPos;
 
     new private void Update()
     {
         if (isAttacking)
         {
-            startingPos = transform.parent.localPosition;
+            //startingPos = transform.parent.localPosition;
             transform.position = Vector3.Lerp(gameObject.transform.position, targetPos, speed * Time.deltaTime);
         }
     }
