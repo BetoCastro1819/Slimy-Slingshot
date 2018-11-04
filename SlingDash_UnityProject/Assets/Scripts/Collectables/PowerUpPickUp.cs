@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class PowerUpPickUp : MonoBehaviour
 {
+	public GameObject pickUpEffect;
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Player player = collision.gameObject.GetComponent<Player>();
+		PlayerSlimy player = collision.gameObject.GetComponent<PlayerSlimy>();
 		if (player != null)
 		{
-			Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-			rb.velocity = Vector2.zero;
-
-			player.playerState = Player.PlayerState.ON_DASH;
-
+			Instantiate(pickUpEffect, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

@@ -27,6 +27,12 @@ public class PlayerSlimy : MonoBehaviour
 	public StateAiming StateAiming { get; set; }
 	public StateKilled StateKilled { get; set; }
 
+	// PowerUp states
+	public StatePowerUpDash StatePowerUpDash { get; set; }
+
+	// List of Power Ups
+	private List<PlayerState> listOfPowerUps;
+
 	private PlayerState currentState;
 
 	private Camera cam;
@@ -38,11 +44,18 @@ public class PlayerSlimy : MonoBehaviour
 		PlayerRigidbody = GetComponent<Rigidbody2D>(); 
 		spriteRenderer = GetComponent<SpriteRenderer>();
 
+		// Initialize list
+		listOfPowerUps = new List<PlayerState>();
+
 		// Initialize States
 		StateMoving = GetComponent<StateMoving>();
 		StateAiming = GetComponent<StateAiming>();
 		StateKilled = GetComponent<StateKilled>();
 
+		// Initialize PowerUp states
+		StatePowerUpDash = GetComponent<StatePowerUpDash>();
+		listOfPowerUps.Add(StatePowerUpDash);
+		
 		// Set current state
 		currentState = StateMoving;
 		currentState.Enter();
@@ -111,11 +124,19 @@ public class PlayerSlimy : MonoBehaviour
 		{
 			KillPlayer();
 		}
+	}
 
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
 		if (collision.gameObject.tag == "PowerUp")
 		{
 			// Randomly pick one of the power up states
-			
+			//int randomIndex = Random.Range(0, listOfPowerUps.Count);
+
+			// Change state
+			currentState.Exit();
+			listOfPowerUps[0].Enter();
+			SetState(listOfPowerUps[0]);
 		}
 	}
 }
