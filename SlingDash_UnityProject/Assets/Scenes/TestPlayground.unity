@@ -4966,16 +4966,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnersParent: {fileID: 859767782}
-  spawners:
-  - {fileID: 1784460599}
-  - {fileID: 329901221}
-  - {fileID: 1371127403}
-  - {fileID: 768393599}
-  - {fileID: 942910859}
-  - {fileID: 1548354840}
-  weightForBranches: 1
-  weightForMovingEnemies: 10
-  weightForShootingEnemies: 1
+  spawnerLeft: {fileID: 768393599}
+  spawnerCenter: {fileID: 942910859}
+  spawnerRight: {fileID: 1548354840}
+  weightForBranchesLeft: 10
+  weightForBranchesRight: 10
+  weightForMovingEnemies: 5
+  weightForShootingEnemies: 3
   objectList:
   - {fileID: 1340109176481736, guid: 56a4436140b1347409a30bbfbb637e2b, type: 2}
   - {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
@@ -5500,34 +5497,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 308369784}
   m_CullTransparentMesh: 0
---- !u!1 &329901220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 329901221}
-  m_Layer: 0
-  m_Name: SpawnerBottomCenter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &329901221
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 329901220}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 859767782}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1001 &425344053
 Prefab:
   m_ObjectHideFlags: 0
@@ -7526,6 +7495,10 @@ Prefab:
       propertyPath: m_Name
       value: UI_PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 1898588615262958, guid: dc70c05e299d2784bb50121f86c24460, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc70c05e299d2784bb50121f86c24460, type: 2}
   m_IsPrefabAsset: 0
@@ -7543,7 +7516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 768393599}
   m_Layer: 0
-  m_Name: SpawnerTopLeft
+  m_Name: SpawnerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7556,11 +7529,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 768393598}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -2, y: 3, z: 0}
+  m_LocalPosition: {x: -3, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 859767782}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &778900802
 GameObject:
@@ -7855,9 +7828,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 12, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1784460599}
-  - {fileID: 329901221}
-  - {fileID: 1371127403}
   - {fileID: 768393599}
   - {fileID: 942910859}
   - {fileID: 1548354840}
@@ -8295,7 +8265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 942910859}
   m_Layer: 0
-  m_Name: SpawnerTopCenter
+  m_Name: SpawnerCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8312,7 +8282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 859767782}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &958132363
 GameObject:
@@ -9456,34 +9426,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1341280356}
   m_CullTransparentMesh: 0
---- !u!1 &1371127402
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1371127403}
-  m_Layer: 0
-  m_Name: SpawnerBottomRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1371127403
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1371127402}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 859767782}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1424318308
 GameObject:
   m_ObjectHideFlags: 0
@@ -14289,7 +14231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1548354840}
   m_Layer: 0
-  m_Name: SpawnerTopRight
+  m_Name: SpawnerRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14302,11 +14244,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1548354839}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 2, y: 3, z: 0}
+  m_LocalPosition: {x: 3, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 859767782}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1612246471
 GameObject:
@@ -14879,34 +14821,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1784460598
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1784460599}
-  m_Layer: 0
-  m_Name: SpawnerBottomLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1784460599
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1784460598}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 859767782}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1819922862
 GameObject:
   m_ObjectHideFlags: 0

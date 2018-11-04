@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
 				}
 				break;
 			case GameState.PAUSE:
+				Time.timeScale = 0;
 				break;
             case GameState.LEVEL_COMPLETE:
                 // enable LevelComplete screen

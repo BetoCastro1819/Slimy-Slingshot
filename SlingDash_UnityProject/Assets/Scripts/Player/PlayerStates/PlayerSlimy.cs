@@ -64,10 +64,13 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Update ()
 	{
-		CheckForHealth();
-		CheckPlayerBoundarie();
-		currentState.HandleInput();
-		currentState.UpdateState();
+		if (GameManager.GetInstance().GetState() != GameManager.GameState.PAUSE)
+		{
+			CheckForHealth();
+			CheckPlayerBoundarie();
+			currentState.HandleInput();
+			currentState.UpdateState();
+		}
 	}
 
 	void CheckPlayerBoundarie()

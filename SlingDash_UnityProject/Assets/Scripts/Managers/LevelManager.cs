@@ -17,15 +17,16 @@ public class LevelManager : MonoBehaviour
 	}
 	#endregion
 
-	public Transform spawnersParent;					    // GameObject parent of the group of spawners
-	public List<Transform> spawners;                        // Will hold the posible position to spawn the objects
-    public int weightForBranches;
+	public Transform spawnersParent;                        // GameObject parent of the group of spawners
+	public Transform spawnerLeft;
+	public Transform spawnerCenter;
+	public Transform spawnerRight;
+    public int weightForBranchesLeft;
+    public int weightForBranchesRight;
     public int weightForMovingEnemies;
     public int weightForShootingEnemies;
 
 	public List<GameObject> objectList;                     // List of posible objects to spawn on the MIDDLE spawners
-	//public List<GameObject> leftSideObjs;				    // List of posible objects to spawn on the LEFT SIDE spawners
-	//public List<GameObject> rigthSideObjs;                // List of posible objects to spawn on the RIGHT SIDE spawners
 	public MeterDetector meterDetector;					    // Player's current max height reached in meters
 	public List<MeterEvent> meterEventList;				    // List of the events based on player's current travelled distance (E.g: Boss Fight)
 	public float distBtwnObjects = 10f;                     // Distance between each spawned object
@@ -37,6 +38,7 @@ public class LevelManager : MonoBehaviour
     private float spawnObjectAt;						    // Position where to spawn next object
 
     private List<WeightedGameObject> listOfWeightedObjs;
+	private List<Transform> listOfSpawners;
 
 	//[System.Serializable]
     private struct WeightedGameObject
@@ -47,28 +49,38 @@ public class LevelManager : MonoBehaviour
 
 	void Start ()
 	{
-        listOfWeightedObjs = new List<WeightedGameObject>();
+		listOfSpawners = new List<Transform>
+		{
+			spawnerLeft,
+			spawnerCenter,
+			spawnerRight
+		};
 
-        spawnObjectAt = spawnersParent.transform.position.y;
+		listOfWeightedObjs = new List<WeightedGameObject>();
+
+		spawnObjectAt = spawnersParent.transform.position.y;
         instance.BoosIsActive = false;
-
 
         for (int i = 0; i < objectList.Count; i++)
         {
-            WeightedGameObject weightedGameObject = new WeightedGameObject();
+			WeightedGameObject weightedGameObject = new WeightedGameObject
+			{
+				go = objectList[i]
+			};
 
-            weightedGameObject.go = objectList[i];
-
-            switch (objectList[i].tag)
+			switch (objectList[i].tag)
             {
-                case "Branch":
-                    weightedGameObject.weight = weightForBranches;
+                case "BranchLeft":
+                    weightedGameObject.weight = weightForBranchesLeft;
                     break;
-                case "MovingEnemy":
-                    weightedGameObject.weight = weightForBranches;
+				case "BranchRight":
+					weightedGameObject.weight = weightForBranchesRight;
+					break;
+				case "MovingEnemy":
+                    weightedGameObject.weight = weightForMovingEnemies;
                     break;
                 case "ShootingEnemy":
-                    weightedGameObject.weight = weightForBranches;
+                    weightedGameObject.weight = weightForShootingEnemies;
                     break;
             }
 
@@ -88,7 +100,6 @@ public class LevelManager : MonoBehaviour
 
 	void SpawnObject()
 	{
-		int spawnerIndex = Random.Range(0, spawners.Count);				// Select random spanwer from the list of spawners
         sumOfWeights = 0;
 
         for (int i = 0; i < listOfWeightedObjs.Count; i++)
@@ -97,54 +108,27 @@ public class LevelManager : MonoBehaviour
         }
 
         int randomWeight = Random.Range(0, sumOfWeights);
-
         for (int i = 0; i < listOfWeightedObjs.Count; i++)
         {
             if (randomWeight < listOfWeightedObjs[i].weight)
             {
-                Instantiate(listOfWeightedObjs[i].go, spawners[spawnerIndex].transform.position, Quaternion.identity);
-                return;
+				if (listOfWeightedObjs[i].go.tag == "BranchLeft")
+				{
+					Instantiate(listOfWeightedObjs[i].go, spawnerLeft.transform.position, Quaternion.identity);
+				}
+				else if (listOfWeightedObjs[i].go.tag == "BranchRight")
+				{
+					Instantiate(listOfWeightedObjs[i].go, spawnerRight.transform.position, Quaternion.identity);
+				}
+				else
+				{
+					int spawnerIndex = Random.Range(0, listOfSpawners.Count);             
+					Instantiate(listOfWeightedObjs[i].go, listOfSpawners[spawnerIndex].transform.position, Quaternion.identity);
+				}
+				return;
             }
 
             randomWeight -= listOfWeightedObjs[i].weight; 
         }
-
-        /*
-		if (spawners[spawnerIndex].transform.position.x < 0)            // LEFT SIDE SPAWNER
-		{
-			SelectObjectAndSpawn(leftSideObjs, spawnerIndex);
-		}
-		else if (spawners[spawnerIndex].transform.position.x > 0)       // RIGHT SIDE SPAWNER
-		{
-			SelectObjectAndSpawn(rigthSideObjs, spawnerIndex);
-		}
-		else															// MIDDLE SPAWNER
-		{
-			SelectObjectAndSpawn(middleObjs, spawnerIndex);
-		}
-        */
     }
-
-    void SelectObjectAndSpawn(List<GameObject> objectToSpawn, int spawnerIndex)
-	{
-		int	objectIndex = Random.Range(0, objectToSpawn.Count);
-		Instantiate(objectToSpawn[objectIndex], spawners[spawnerIndex].transform.position, Quaternion.identity);
-	}
-
-    /*
-    int sum_of_weight = 0;
-    for(int i=0; i<num_choices; i++) 
-    {
-       sum_of_weight += choice_weight[i];
-    }
-
-    int rnd = random(sum_of_weight);
-    for(int i=0; i<num_choices; i++) 
-    {
-      if(rnd < choice_weight[i])
-        return i;
-
-      rnd -= choice_weight[i];
-    }
-     */
 }

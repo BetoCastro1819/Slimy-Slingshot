@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 50406501314415660}
   m_Layer: 9
   m_Name: Branch_Right
-  m_TagString: Branch
+  m_TagString: BranchRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,6 +14,8 @@ TagManager:
   - ShootingEnemy
   - Branch
   - PowerUp
+  - BranchLeft
+  - BranchRight
   layers:
   - Default
   - TransparentFX
