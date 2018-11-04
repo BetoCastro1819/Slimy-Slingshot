@@ -7,7 +7,7 @@ public class TrackingBullet : MonoBehaviour {
     public float speed = 5f;
     public float rotateSpeed = 200f;
 
-    private Player player;
+    private PlayerSlimy player;
     private Rigidbody2D rb;
 
     public void Start()
@@ -24,7 +24,8 @@ public class TrackingBullet : MonoBehaviour {
         rb.velocity = (transform.up * -1) * speed;
     }
 
-    public void SetPlayer(Player _player) {
+    public void SetPlayer(PlayerSlimy _player)
+	{
         player = _player;
     }
 

@@ -37,8 +37,10 @@ public class LevelManager : MonoBehaviour
     private float spawnObjectAt;						    // Position where to spawn next object
 
     private List<WeightedGameObject> listOfWeightedObjs;
-    public struct WeightedGameObject
-    {
+
+	[System.Serializable]
+    private struct WeightedGameObject
+	{
         public GameObject go;
         public int weight;
     }
@@ -98,7 +100,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < listOfWeightedObjs.Count; i++)
         {
-            if (randomWeight < sumOfWeights)
+            if (randomWeight < listOfWeightedObjs[i].weight)
             {
                 Instantiate(listOfWeightedObjs[i].go, spawners[spawnerIndex].transform.position, Quaternion.identity);
                 return;

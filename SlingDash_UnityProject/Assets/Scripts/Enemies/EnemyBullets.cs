@@ -30,7 +30,7 @@ public class EnemyBullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-		Player player = collision.gameObject.GetComponent<Player>();
+		PlayerSlimy player = collision.gameObject.GetComponent<PlayerSlimy>();
         if (player != null)
         {
 			player.TakeDamage(1);

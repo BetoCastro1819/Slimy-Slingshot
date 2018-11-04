@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
 
 	private Rigidbody2D rb;
 	private Camera cam;
-	private Player player;
+	private PlayerSlimy player;
 
 	private void Start()
     {
@@ -37,13 +37,6 @@ public class PlayerBullet : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
     {
-		Enemy e = collision.gameObject.GetComponent<Enemy>();
-
-		if (e != null && player != null)
-		{
-			player.RechargeEnergyBar(e.rechargeEnergyBarValue);
-		}
-
 		Instantiate(bulletEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

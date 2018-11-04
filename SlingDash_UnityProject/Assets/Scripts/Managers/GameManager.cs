@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject levelCompleteScreen;
-    public Player player;
+    public PlayerSlimy player;
 
 	// UI elements
     public GameObject startText;

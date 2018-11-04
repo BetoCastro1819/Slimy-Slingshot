@@ -9,14 +9,14 @@ public class ShootingEnemy : Enemy
     public Transform shootinPoint;
     public float fireRate = 1f;
 
-    private Player player;
+    private Transform playerPos;
     private float timer;
 
     override public void Start()
     {
         base.Start();
         timer = fireRate;
-        player = FindObjectOfType<Player>();
+        playerPos = GameManager.GetInstance().player.transform;
 		killed = false;
     }
 	
@@ -44,12 +44,15 @@ public class ShootingEnemy : Enemy
 
 	void AimTowardsPlayer()
 	{
-		if (player != null)
+		if (playerPos != null)
 		{
-			Vector2 dir = new Vector2(
+			Vector2 dir = transform.position - playerPos.position;
+				/*
+				new Vector2(
 				transform.position.x - player.transform.position.x,
 				transform.position.y - player.transform.position.y
 			);
+			*/
 			transform.up = dir;
 		}
 	}

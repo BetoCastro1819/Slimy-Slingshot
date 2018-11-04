@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-	public Player player;
+	public PlayerSlimy player;
 	public Transform playerPos;
 	public float yAxisOffset = 5f;
 	public float zAxisOffset = -10f;
@@ -21,24 +21,11 @@ public class CameraMovement : MonoBehaviour
 		cameraGuide.z = transform.position.z;
 	}
 
-	private void LateUpdate()
+	private void Update()
 	{
 		if (GameManager.GetInstance().GetState() == GameManager.GameState.PLAYING)
 		{
-			if (player != null &&
-				player.playerState == Player.PlayerState.ON_DASH) 
-			{
-				FollowPlayer();
-			}
-		}
-	}
-
-	void FixedUpdate ()
-	{
-		if (GameManager.GetInstance().GetState() == GameManager.GameState.PLAYING)
-		{
-			if (player != null &&
-				player.playerState != Player.PlayerState.ON_DASH)
+			if (player != null) 
 			{
 				FollowPlayer();
 			}
@@ -55,14 +42,8 @@ public class CameraMovement : MonoBehaviour
 		}
 
 		Vector3 cameraPos = new Vector3(0, cameraGuide.y + yAxisOffset, zAxisOffset);
-        Vector3 lerpMovement = Vector3.Lerp(transform.position, cameraPos, lerpSpeed * Time.fixedDeltaTime);
+        Vector3 lerpMovement = Vector3.Lerp(transform.position, cameraPos, lerpSpeed * Time.deltaTime);
 
-		if (player.playerState != Player.PlayerState.ON_DASH)
-		{
-		    transform.position = lerpMovement;
-		}
-		else
-			transform.position = cameraGuide;
-
+	    transform.position = lerpMovement;
 	}
 }

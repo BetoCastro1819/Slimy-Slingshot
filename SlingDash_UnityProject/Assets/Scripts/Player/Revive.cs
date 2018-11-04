@@ -27,10 +27,10 @@ public class Revive : MonoBehaviour
         // Destroys every object that has the "Erasable" component
 		Instantiate(clearScreenTrigger, revivePos, Quaternion.identity);
 
-        Player player = GameManager.GetInstance().player;
+        PlayerSlimy player = GameManager.GetInstance().player;
         player.gameObject.SetActive(true);
         player.transform.SetPositionAndRotation(revivePos, Quaternion.identity);
-        player.playerState = Player.PlayerState.MOVING;
+		player.SetState(player.StateMoving);
         player.health = 1;
 
 		GameManager.GetInstance().SetState(GameManager.GameState.ON_START);
