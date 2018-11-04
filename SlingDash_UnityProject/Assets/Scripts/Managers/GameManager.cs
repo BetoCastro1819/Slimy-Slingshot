@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
 				StartGame();
 				break;
 			case GameState.PLAYING:
-				CheckForPlayer();
 				CheckForMeterEvents();
                 isGameOver = false;
 				break;
@@ -154,14 +153,6 @@ public class GameManager : MonoBehaviour
 
 			Time.timeScale = 1;
 			gameState = GameState.PLAYING;
-		}
-	}
-
-    void CheckForPlayer()
-	{
-		if (player != null)
-		{
-			//float playerOffBound = cam.transform.position.y - cam.orthographicSize;
 		}
 	}
 
@@ -238,4 +229,9 @@ public class GameManager : MonoBehaviour
 	{
         return isGameOver;
     }
+
+	public void EnablePlayer()
+	{
+		player.gameObject.SetActive(true);
+	}
 }

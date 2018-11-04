@@ -11,6 +11,8 @@ public class StateKilled : PlayerState
 	{
 		base.Enter();
 
+		GameManager.GetInstance().SetState(GameManager.GameState.GAME_OVER);
+
 		Camera cam = Camera.main;
 
 		// Cameras lower edge 
@@ -35,15 +37,8 @@ public class StateKilled : PlayerState
 
 	public override void HandleInput()
 	{
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{
-			//Debug.Log("StateMoving -> StateAiming");
-
-			player.StateAiming.Enter();
-			player.SetState(player.StateAiming);
-		}
-
 		base.HandleInput();
+
 	}
 
 	public override void UpdateState()

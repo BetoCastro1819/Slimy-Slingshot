@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
 
     private List<WeightedGameObject> listOfWeightedObjs;
 
-	[System.Serializable]
+	//[System.Serializable]
     private struct WeightedGameObject
 	{
         public GameObject go;

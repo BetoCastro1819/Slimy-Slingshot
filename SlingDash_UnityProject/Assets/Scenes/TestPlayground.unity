@@ -4931,9 +4931,9 @@ MonoBehaviour:
   - {fileID: 768393599}
   - {fileID: 942910859}
   - {fileID: 1548354840}
-  weightForBranches: 10
-  weightForMovingEnemies: 4
-  weightForShootingEnemies: 2
+  weightForBranches: 1
+  weightForMovingEnemies: 10
+  weightForShootingEnemies: 1
   objectList:
   - {fileID: 1340109176481736, guid: 56a4436140b1347409a30bbfbb637e2b, type: 2}
   - {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
@@ -6072,7 +6072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reviveScreen: {fileID: 551435082}
-  meterDetector: {fileID: 0}
+  meterDetector: {fileID: 152269433}
   coinManager: {fileID: 1856836360}
   metersTravelled: {fileID: 249873469}
   coinsEarned: {fileID: 1994075649}
@@ -14890,7 +14890,7 @@ MonoBehaviour:
   playerPos: {fileID: 2108521918}
   yAxisOffset: 5
   zAxisOffset: -10
-  lerpSpeed: 2
+  lerpSpeed: 3
   constantSpeed: 0
 --- !u!4 &1971189619 stripped
 Transform:
@@ -15036,8 +15036,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clearScreenTrigger: {fileID: 1570348605590386, guid: de8a3b7643b011c44ac8c87d63795361,
     type: 2}
-  playerPrefab: {fileID: 1995908675237558, guid: ebef7a266a08edf46a4bc80e73cbe751,
+  reviveParticles: {fileID: 1918845332781758, guid: 92cfa1699c558894982ef73c2e4d5c65,
     type: 2}
+  timeOffsetToRevivePlayer: 0.05
 --- !u!4 &2091869716
 Transform:
   m_ObjectHideFlags: 0
@@ -15064,6 +15065,7 @@ GameObject:
   - component: {fileID: 2108521924}
   - component: {fileID: 2108521923}
   - component: {fileID: 2108521922}
+  - component: {fileID: 2108521926}
   - component: {fileID: 2108521921}
   - component: {fileID: 2108521920}
   - component: {fileID: 2108521919}
@@ -15216,9 +15218,9 @@ MonoBehaviour:
   crosshairDistanceFactor: 50
   dotedLine: {fileID: 1660362513}
   dotedLineOffsetPos: 0.5
-  maxDragLength: 6
+  maxDragLength: 5
   slingshotForce: 0
-  forceMultiplier: 12
+  forceMultiplier: 15
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
   minDragLengthForBulletSize: 2
@@ -15252,6 +15254,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   offBoundOffset: 2
+--- !u!114 &2108521926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2108521917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645a5ac2e2451d8448c53c9486fa49cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reviveParticles: {fileID: 1918845332781758, guid: 92cfa1699c558894982ef73c2e4d5c65,
+    type: 2}
+  reviveScreenTrigger: {fileID: 1570348605590386, guid: de8a3b7643b011c44ac8c87d63795361,
+    type: 2}
 --- !u!1001 &2108650145
 Prefab:
   m_ObjectHideFlags: 0

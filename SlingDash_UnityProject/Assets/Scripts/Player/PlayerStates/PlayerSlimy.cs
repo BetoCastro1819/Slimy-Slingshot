@@ -26,6 +26,7 @@ public class PlayerSlimy : MonoBehaviour
 	public StateMoving StateMoving { get; set; }
 	public StateAiming StateAiming { get; set; }
 	public StateKilled StateKilled { get; set; }
+	public StateRevive StateRevive { get; set; }
 
 	private PlayerState currentState;
 
@@ -42,6 +43,7 @@ public class PlayerSlimy : MonoBehaviour
 		StateMoving = GetComponent<StateMoving>();
 		StateAiming = GetComponent<StateAiming>();
 		StateKilled = GetComponent<StateKilled>();
+		StateRevive = GetComponent<StateRevive>();
 
 		// Set current state
 		currentState = StateMoving;

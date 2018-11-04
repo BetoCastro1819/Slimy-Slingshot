@@ -21,7 +21,7 @@ public class CoinManager : MonoBehaviour
 
 	private void Start()
 	{
-		coins = 0;
+		coins = 1000;
 	}
 
 	public int GetCoins()

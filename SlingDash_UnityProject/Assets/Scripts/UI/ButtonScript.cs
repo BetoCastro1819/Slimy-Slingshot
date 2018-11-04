@@ -79,7 +79,7 @@ public class ButtonScript : MonoBehaviour
         {
             Vector3 rpos = new Vector3(0, revive.GetReviveY());
 
-			revive.RevivePlayerAtPoint(rpos);
+			revive.SetRevivePlayerPosition(rpos);
 
             CoinManager.Get().AddCoins(-GameManager.GetInstance().coinsForRevive);
         }
