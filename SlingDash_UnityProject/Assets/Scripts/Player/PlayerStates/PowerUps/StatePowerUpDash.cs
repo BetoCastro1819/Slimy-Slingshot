@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatePowerUpDash : PlayerState
+public class StatePowerUpDash : PowerUpState
 {
 	public CameraMovement cameraMovement;
 	public GameObject clearScreenTrigger;
