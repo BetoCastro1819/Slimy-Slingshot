@@ -21,31 +21,37 @@ public class LevelManager : MonoBehaviour
 	public Transform spawnerLeft;
 	public Transform spawnerCenter;
 	public Transform spawnerRight;
-    public int weightForBranchesLeft;
-    public int weightForBranchesRight;
-    public int weightForMovingEnemies;
-    public int weightForShootingEnemies;
 
-	public List<GameObject> objectList;                     // List of posible objects to spawn on the MIDDLE spawners
-	public MeterDetector meterDetector;					    // Player's current max height reached in meters
-	public List<MeterEvent> meterEventList;				    // List of the events based on player's current travelled distance (E.g: Boss Fight)
+	public MeterDetector meterDetector;                     // Player's current max height reached in meters
+	public List<MeterEvent> meterEventList;                 // List of the events based on player's current travelled distance (E.g: Boss Fight)
 	public float distBtwnObjects = 10f;                     // Distance between each spawned object
-	public float spawningOffset = 2f;					    // Offset to spawn object out of camera view
+	public float spawningOffset = 2f;                       // Offset to spawn object out of camera view
+
+	public List<WeightedGameObject> listOfWeightedObjs;		// List of all possible objects to be spawned in the level
+
+	private int sumOfWeights;                               // Sum of all the weights of the gameObjects 
+	private float spawnObjectAt;                            // Position where to spawn next object
 
 	public bool BoosIsActive { get; set; }                  // Is true whenever a Boss Event is currently active
 
-    private int sumOfWeights;                               // Sum of all the weights of the gameObjects 
-    private float spawnObjectAt;						    // Position where to spawn next object
-
-    private List<WeightedGameObject> listOfWeightedObjs;
 	private List<Transform> listOfSpawners;
 
-	//[System.Serializable]
-    private struct WeightedGameObject
+	[System.Serializable]
+	public struct WeightedGameObject
 	{
-        public GameObject go;
-        public int weight;
-    }
+		public GameObject go;
+		public int weight;
+		public GameObjectKey key;
+	}
+
+	public enum GameObjectKey
+	{
+		LEFT_BRANCH,
+		RIGHT_BRANCH,
+		MOVING_ENEMY,
+		SHOOTING_ENEMY,
+		POWER_UP
+	}
 
 	void Start ()
 	{
@@ -56,37 +62,8 @@ public class LevelManager : MonoBehaviour
 			spawnerRight
 		};
 
-		listOfWeightedObjs = new List<WeightedGameObject>();
-
 		spawnObjectAt = spawnersParent.transform.position.y;
         instance.BoosIsActive = false;
-
-        for (int i = 0; i < objectList.Count; i++)
-        {
-			WeightedGameObject weightedGameObject = new WeightedGameObject
-			{
-				go = objectList[i]
-			};
-
-			switch (objectList[i].tag)
-            {
-                case "BranchLeft":
-                    weightedGameObject.weight = weightForBranchesLeft;
-                    break;
-				case "BranchRight":
-					weightedGameObject.weight = weightForBranchesRight;
-					break;
-				case "MovingEnemy":
-                    weightedGameObject.weight = weightForMovingEnemies;
-                    break;
-                case "ShootingEnemy":
-                    weightedGameObject.weight = weightForShootingEnemies;
-                    break;
-            }
-
-            listOfWeightedObjs.Add(weightedGameObject);
-        }
-        Debug.Log(listOfWeightedObjs.Count);
 	}
 	
 	void Update ()
@@ -112,11 +89,11 @@ public class LevelManager : MonoBehaviour
         {
             if (randomWeight < listOfWeightedObjs[i].weight)
             {
-				if (listOfWeightedObjs[i].go.tag == "BranchLeft")
+				if (listOfWeightedObjs[i].key == GameObjectKey.LEFT_BRANCH)
 				{
 					Instantiate(listOfWeightedObjs[i].go, spawnerLeft.transform.position, Quaternion.identity);
 				}
-				else if (listOfWeightedObjs[i].go.tag == "BranchRight")
+				else if (listOfWeightedObjs[i].key == GameObjectKey.RIGHT_BRANCH)
 				{
 					Instantiate(listOfWeightedObjs[i].go, spawnerRight.transform.position, Quaternion.identity);
 				}

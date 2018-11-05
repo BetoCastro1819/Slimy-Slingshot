@@ -5063,6 +5063,31 @@ MonoBehaviour:
   meterEventList: []
   distBtwnObjects: 15
   spawningOffset: 5
+  listOfWeightedObjs:
+  - go: {fileID: 1226026808183680, guid: d4d2e3c64cf5fe64d9b9e21d5699918c, type: 2}
+    weight: 6
+    key: 0
+  - go: {fileID: 1810539966881102, guid: a661290f4c57eda438fb58fc40d7019e, type: 2}
+    weight: 6
+    key: 0
+  - go: {fileID: 1971315494199188, guid: 1c484344e0a94bf45ac49116dc4081f3, type: 2}
+    weight: 6
+    key: 1
+  - go: {fileID: 1777143863474594, guid: 20a2591a79c48414dbcb79eb672197ff, type: 2}
+    weight: 6
+    key: 1
+  - go: {fileID: 1340109176481736, guid: 56a4436140b1347409a30bbfbb637e2b, type: 2}
+    weight: 3
+    key: 2
+  - go: {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
+    weight: 2
+    key: 3
+  - go: {fileID: 1685244714854422, guid: 0e162a5f244656640a740363d3920639, type: 2}
+    weight: 1
+    key: 4
+  - go: {fileID: 0}
+    weight: 0
+    key: 0
 --- !u!4 &149419386
 Transform:
   m_ObjectHideFlags: 0
@@ -6598,7 +6623,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1c105dcc4b5c27842b819710b7ca1b02, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9470cacb5d8b70540bcb2c13a7bbca6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9665,7 +9690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1213375756
 Transform:
   m_ObjectHideFlags: 0
@@ -15283,7 +15308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1660362514
 Transform:
   m_ObjectHideFlags: 0
