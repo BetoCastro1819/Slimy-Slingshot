@@ -378,7 +378,7 @@ public class Player : MonoBehaviour
 		Instantiate(standardDeathEffect, transform.position, Quaternion.identity);
 
 		// CAMERA SHAKE
-		StartCoroutine(cameraShake.Shake());
+		cameraShake.StartShake();
 
 		// Disable some gameObjects
 		MakeStuffDisappear();

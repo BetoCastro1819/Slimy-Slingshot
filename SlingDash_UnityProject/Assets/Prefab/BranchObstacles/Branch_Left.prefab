@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4280769971669046}
+  - component: {fileID: 114316741508189250}
   - component: {fileID: 114138427413811306}
   - component: {fileID: 114303717563659922}
   - component: {fileID: 212475407367199648}
@@ -26,7 +27,7 @@ GameObject:
   - component: {fileID: 50684602161638132}
   m_Layer: 9
   m_Name: Branch_Left
-  m_TagString: BranchLeft
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,6 +257,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4591d9409f4010647bfa2b620a2eeb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114316741508189250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1226026808183680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03d4da204e19fa48a4dc0b13d6b126d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyedObject: {fileID: 1563336352434262, guid: 12c4da2b3c4bb9f49a959970d6bcde79,
+    type: 2}
 --- !u!212 &212475407367199648
 SpriteRenderer:
   m_ObjectHideFlags: 1

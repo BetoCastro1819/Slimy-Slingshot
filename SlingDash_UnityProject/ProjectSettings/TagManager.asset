@@ -12,10 +12,7 @@ TagManager:
   - ClearScreenTrigger
   - MovingEnemy
   - ShootingEnemy
-  - Branch
   - PowerUp
-  - BranchLeft
-  - BranchRight
   layers:
   - Default
   - TransparentFX

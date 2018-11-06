@@ -17,10 +17,13 @@ public class StatePowerUpDash : PowerUpState
 	private float yPosToReach;
 	private float originalCameraLerpSpeed;
 
+	private CameraShake cameraShake;
 
 	public override void Enter()
 	{
 		base.Enter();
+
+		cameraShake = Camera.main.GetComponent<CameraShake>();
 
 		player.transform.up = Vector3.up;
 
@@ -81,6 +84,7 @@ public class StatePowerUpDash : PowerUpState
 	{
 		if (player.transform.position.y < yPosToReach)
 		{
+			cameraShake.StartShake();
 			player.transform.position += Vector3.up * dashVelocity * Time.deltaTime;
 		}
 		else

@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
 
 		if (cameraShake != null)
 		{
-			StartCoroutine(cameraShake.Shake());
+			cameraShake.StartShake();
 		}
 
 		UpdatePlayerScore();
