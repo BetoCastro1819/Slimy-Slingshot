@@ -5049,22 +5049,22 @@ MonoBehaviour:
   spawningOffset: 5
   listOfWeightedObjs:
   - go: {fileID: 1226026808183680, guid: d4d2e3c64cf5fe64d9b9e21d5699918c, type: 2}
-    weight: 0
+    weight: 10
     key: 0
   - go: {fileID: 1810539966881102, guid: a661290f4c57eda438fb58fc40d7019e, type: 2}
-    weight: 0
+    weight: 10
     key: 0
   - go: {fileID: 1971315494199188, guid: 1c484344e0a94bf45ac49116dc4081f3, type: 2}
-    weight: 0
+    weight: 10
     key: 1
   - go: {fileID: 1777143863474594, guid: 20a2591a79c48414dbcb79eb672197ff, type: 2}
-    weight: 0
+    weight: 10
     key: 1
   - go: {fileID: 1340109176481736, guid: 56a4436140b1347409a30bbfbb637e2b, type: 2}
-    weight: 0
+    weight: 4
     key: 2
   - go: {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
-    weight: 0
+    weight: 4
     key: 3
   - go: {fileID: 1685244714854422, guid: 0e162a5f244656640a740363d3920639, type: 2}
     weight: 1
@@ -20737,7 +20737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2108521925}
   playerPos: {fileID: 2108521918}
-  yAxisOffset: 5
+  yAxisOffset: 6
   zAxisOffset: -10
   lerpSpeed: 3
   constantSpeed: 0

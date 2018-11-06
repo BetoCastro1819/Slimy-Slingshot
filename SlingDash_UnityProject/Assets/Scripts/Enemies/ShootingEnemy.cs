@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class ShootingEnemy : Enemy
 {
+	public ParticleSystem chargeBulletEffect;
     public GameObject enemyBullet;
     public Transform bulletsParent;
     public Transform shootinPoint;
     public float fireRate = 1f;
 
-    private Transform playerPos;
+	private ParticleSystem.MainModule main;
+	private Transform playerPos;
     private float timer;
 
     override public void Start()
     {
         base.Start();
-        timer = fireRate;
+
+		main = chargeBulletEffect.main;
+		main.startLifetime = fireRate;
+
+        timer = 0;
         playerPos = GameManager.GetInstance().player.transform;
 		killed = false;
     }
@@ -39,6 +45,7 @@ public class ShootingEnemy : Enemy
 			GameObject bullets = Instantiate(enemyBullet, shootinPoint.position, shootinPoint.rotation);
 			bullets.transform.parent = bulletsParent;
 			timer = 0;
+			chargeBulletEffect.Play();
 		}
 	}
 
