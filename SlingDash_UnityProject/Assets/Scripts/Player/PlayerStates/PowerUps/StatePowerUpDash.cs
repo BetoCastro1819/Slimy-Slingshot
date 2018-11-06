@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class StatePowerUpDash : PowerUpState
 {
-	public CameraMovement cameraMovement;
+	[Header("Sprites")]
+	public Sprite defaultSprite;
+	public Sprite onHoldSprite;
+
+	[Header("Game Objects")]
 	public GameObject clearScreenTrigger;
+	public GameObject blurParticlesEffect;
+
+	public CameraMovement cameraMovement;
 
 	public int meterToDash = 50;
 	public float dashVelocity = 10f;
@@ -22,6 +29,8 @@ public class StatePowerUpDash : PowerUpState
 	public override void Enter()
 	{
 		base.Enter();
+
+		player.GetComponent<SpriteRenderer>().sprite = onHoldSprite;
 
 		cameraShake = Camera.main.GetComponent<CameraShake>();
 
@@ -67,6 +76,8 @@ public class StatePowerUpDash : PowerUpState
 	{
 		base.Exit();
 
+		blurParticlesEffect.SetActive(false);
+
 		cameraMovement.lerpSpeed = originalCameraLerpSpeed;
 
 		clearScreenTrigger.SetActive(false);
@@ -84,6 +95,11 @@ public class StatePowerUpDash : PowerUpState
 	{
 		if (player.transform.position.y < yPosToReach)
 		{
+			if (blurParticlesEffect.activeInHierarchy == false)
+			{
+				blurParticlesEffect.SetActive(true);
+			}
+			player.GetComponent<SpriteRenderer>().sprite = defaultSprite;
 			cameraShake.StartShake();
 			player.transform.position += Vector3.up * dashVelocity * Time.deltaTime;
 		}
