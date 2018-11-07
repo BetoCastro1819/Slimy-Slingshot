@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TilingBackground : MonoBehaviour
 {
+	public List<Sprite> sectionSprites;
+
 	public int offsetY = 2; // Para tilear la nueva imagen antes de que se vea cuando termina
 	public bool hasImageOnBottom = false;
 	public bool hasImageOnTop = false;
@@ -49,5 +51,6 @@ public class TilingBackground : MonoBehaviour
 
 		newImage.transform.parent = transform.parent;
 		newImage.GetComponent<TilingBackground>().hasImageOnBottom = true;
+		newImage.GetComponent<SpriteRenderer>().sprite = sectionSprites[LevelManager.GetInstance().CurrentSectionIndex];
 	}
 }

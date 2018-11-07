@@ -9,16 +9,19 @@ public class CameraMovement : MonoBehaviour
 	public Transform playerPos;
 	public float yAxisOffset = 5f;
 	public float zAxisOffset = -10f;
-	public float lerpSpeed = 0.5f;
+	public float defaultLerpSpeed = 0.5f;
+	public float bossFightLerpSpeed = 0.5f;
 	public float constantSpeed = 2f;
 
 	private Vector3 cameraGuide;
+	private float lerpSpeed;
 
 	private void Start()
 	{
 		cameraGuide = Vector3.zero;
 		cameraGuide.y -= yAxisOffset;
 		cameraGuide.z = transform.position.z;
+		lerpSpeed = defaultLerpSpeed;
 	}
 
 	private void Update()
@@ -34,6 +37,15 @@ public class CameraMovement : MonoBehaviour
 
 	void FollowPlayer()
 	{
+		if (LevelManager.GetInstance().LevelManagerState == LevelManager.LevelState.ON_BOSS_FIGHT)
+		{
+			lerpSpeed = bossFightLerpSpeed;
+		}
+		else
+		{
+			lerpSpeed = defaultLerpSpeed;
+		}
+
 		cameraGuide.y += constantSpeed * Time.unscaledDeltaTime;
 
 		if (player.transform.position.y > cameraGuide.y)

@@ -144,7 +144,7 @@ public class PlayerSlimy : MonoBehaviour
 
 		if (collision.gameObject.tag == "TutorialFinishLine")
 		{
-			LevelManager.GetInstance().onTutorial = false;
+			LevelManager.GetInstance().OnTutorial = false;
 			Debug.Log("Reached end of tutorial");
 
 		}

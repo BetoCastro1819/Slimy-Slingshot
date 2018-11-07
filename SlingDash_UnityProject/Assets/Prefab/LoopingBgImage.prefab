@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4b51bd4710ec443b81a2f8aba556e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sectionSprites:
+  - {fileID: 21300000, guid: 07b540589144e7840ae1d1e8264fa974, type: 3}
+  - {fileID: 21300000, guid: 79f4e32c07a9465489ae5a3993478e76, type: 3}
   offsetY: 2
   hasImageOnBottom: 0
   hasImageOnTop: 0

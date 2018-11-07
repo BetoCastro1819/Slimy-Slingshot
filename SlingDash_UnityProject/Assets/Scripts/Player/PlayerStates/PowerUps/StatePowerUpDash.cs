@@ -36,8 +36,8 @@ public class StatePowerUpDash : PowerUpState
 
 		player.transform.up = Vector3.up;
 
-		originalCameraLerpSpeed = cameraMovement.lerpSpeed;
-		cameraMovement.lerpSpeed = dashCameraLerpSpeed;
+		originalCameraLerpSpeed = cameraMovement.defaultLerpSpeed;
+		cameraMovement.defaultLerpSpeed = dashCameraLerpSpeed;
 
 		clearScreenTrigger.SetActive(true);
 
@@ -78,7 +78,7 @@ public class StatePowerUpDash : PowerUpState
 
 		blurParticlesEffect.SetActive(false);
 
-		cameraMovement.lerpSpeed = originalCameraLerpSpeed;
+		cameraMovement.defaultLerpSpeed = originalCameraLerpSpeed;
 
 		clearScreenTrigger.SetActive(false);
 
