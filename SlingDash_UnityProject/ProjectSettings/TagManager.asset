@@ -8,11 +8,11 @@ TagManager:
   - PlayerBullet
   - LevelComplete
   - Wall
-  - TutorialTrigger
   - ClearScreenTrigger
   - MovingEnemy
   - ShootingEnemy
   - PowerUp
+  - TutorialFinishLine
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CriticalHitBoss : MonoBehaviour {
+public class CriticalHitBoss : MonoBehaviour
+{
 
     public List<CriticalPoint> criticalPoints;
 
@@ -10,15 +11,15 @@ public class CriticalHitBoss : MonoBehaviour {
     public int criticalPointsQuant;
     public float timeToAttack = 2f;
 
-    private GameManager gm;
-    private Player player;
+    private LevelManager levelManager;
+    private PlayerSlimy player;
     private bool canBeKilled;
     private float timer;
 
     private void Start()
     {
-        gm = GameManager.GetInstance();
-        player = FindObjectOfType<Player>();
+        levelManager = LevelManager.GetInstance();
+        player = FindObjectOfType<PlayerSlimy>();
         criticalPointsQuant = criticalPoints.Count;
         canBeKilled = false;
     }
@@ -38,10 +39,13 @@ public class CriticalHitBoss : MonoBehaviour {
             {
                 if (criticalPoints[i].IsAlive())
                 {
-                    criticalPoints[i].Attack(player.transform.position);
-                    timer = 0;
-                    return;
-                }
+					if (player.enabled)
+					{
+						criticalPoints[i].Attack(player.transform.position);
+						timer = 0;
+						return;
+					}
+				}
             }
         }
     }
@@ -52,7 +56,8 @@ public class CriticalHitBoss : MonoBehaviour {
         {
             if (canBeKilled)
             {
-                gm.BossIsActive = false;
+                levelManager.BossIsActive = false;
+
                 Destroy(gameObject);
             }
         }

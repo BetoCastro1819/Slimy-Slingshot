@@ -141,5 +141,12 @@ public class PlayerSlimy : MonoBehaviour
 			listOfPowerUps[0].Enter();
 			SetState(listOfPowerUps[0]);
 		}
+
+		if (collision.gameObject.tag == "TutorialFinishLine")
+		{
+			LevelManager.GetInstance().onTutorial = false;
+			Debug.Log("Reached end of tutorial");
+
+		}
 	}
 }

@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4921231996788288}
+  - component: {fileID: 114252411189960300}
   - component: {fileID: 212293270177623436}
   - component: {fileID: 50193920886377120}
   - component: {fileID: 114762055652510010}
@@ -38,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4023900690804278}
-  - component: {fileID: 114215102767738716}
   - component: {fileID: 212020105260967740}
   - component: {fileID: 61028696978195882}
   - component: {fileID: 50643060710871118}
@@ -59,6 +59,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4003098143423914}
+  - component: {fileID: 114895085118564078}
   - component: {fileID: 212667218458508186}
   - component: {fileID: 50205574001094286}
   - component: {fileID: 114054265052411784}
@@ -78,6 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943345951601572}
+  - component: {fileID: 114124914655634070}
   - component: {fileID: 212313880381570516}
   - component: {fileID: 50282668045573530}
   - component: {fileID: 114294569768700158}
@@ -97,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4247692674977646}
+  - component: {fileID: 114645389558767998}
   - component: {fileID: 212382870335299928}
   - component: {fileID: 50584192014917952}
   - component: {fileID: 114548469951997554}
@@ -116,6 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4420924791845496}
+  - component: {fileID: 114059398115991990}
   - component: {fileID: 212322758841836198}
   - component: {fileID: 50423199759772494}
   - component: {fileID: 114056622212014460}
@@ -135,6 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4214240435661504}
+  - component: {fileID: 114635585290359448}
   - component: {fileID: 212062751530768756}
   - component: {fileID: 50921831498455810}
   - component: {fileID: 114707291058925662}
@@ -154,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4927447029887780}
+  - component: {fileID: 114340399006767140}
   - component: {fileID: 212260133975637028}
   - component: {fileID: 50243048406025882}
   - component: {fileID: 114250995155588914}
@@ -2166,17 +2172,30 @@ MonoBehaviour:
   offBoundsOffset: 2
   forceWhenKilled: 50
   myBoss: {fileID: 114671232112449838}
---- !u!114 &114215102767738716
+--- !u!114 &114059398115991990
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1363198640357784}
+  m_GameObject: {fileID: 1777133187009676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4591d9409f4010647bfa2b620a2eeb69, type: 3}
+  m_Script: {fileID: 11500000, guid: 00667b4c770ef8346849ffd8c2471d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetToDestroy: 4
+--- !u!114 &114124914655634070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509235606776016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00667b4c770ef8346849ffd8c2471d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetToDestroy: 4
 --- !u!114 &114250995155588914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2197,6 +2216,18 @@ MonoBehaviour:
   offBoundsOffset: 2
   forceWhenKilled: 50
   myBoss: {fileID: 114671232112449838}
+--- !u!114 &114252411189960300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199095308435230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00667b4c770ef8346849ffd8c2471d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetToDestroy: 4
 --- !u!114 &114294569768700158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2217,6 +2248,18 @@ MonoBehaviour:
   offBoundsOffset: 2
   forceWhenKilled: 50
   myBoss: {fileID: 114671232112449838}
+--- !u!114 &114340399006767140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898975373853560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00667b4c770ef8346849ffd8c2471d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetToDestroy: 4
 --- !u!114 &114548469951997554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2237,6 +2280,30 @@ MonoBehaviour:
   offBoundsOffset: 2
   forceWhenKilled: 50
   myBoss: {fileID: 114671232112449838}
+--- !u!114 &114635585290359448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782117536474738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00667b4c770ef8346849ffd8c2471d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetToDestroy: 4
+--- !u!114 &114645389558767998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1667034317256992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00667b4c770ef8346849ffd8c2471d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetToDestroy: 4
 --- !u!114 &114671232112449838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2298,6 +2365,18 @@ MonoBehaviour:
   offBoundsOffset: 2
   forceWhenKilled: 50
   myBoss: {fileID: 114671232112449838}
+--- !u!114 &114895085118564078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399216050274682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00667b4c770ef8346849ffd8c2471d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetToDestroy: 4
 --- !u!212 &212020105260967740
 SpriteRenderer:
   m_ObjectHideFlags: 1

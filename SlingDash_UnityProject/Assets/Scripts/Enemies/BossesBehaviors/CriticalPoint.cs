@@ -40,7 +40,8 @@ public class CriticalPoint : Enemy {
         return isAlive;
     }
 
-    public void Attack(Vector3 _targetPos) {
+    public void Attack(Vector3 _targetPos)
+	{
         targetPos = _targetPos;
         isAttacking = true;
     }

@@ -17,6 +17,9 @@ public class LevelManager : MonoBehaviour
 	}
 	#endregion
 
+	public GameObject tutorialEndTrigger;
+	public bool onTutorial = true;
+
 	public Transform spawnersParent;                        // GameObject parent of the group of spawners
 	public Transform spawnerLeft;
 	public Transform spawnerCenter;
@@ -32,7 +35,8 @@ public class LevelManager : MonoBehaviour
 	private int sumOfWeights;                               // Sum of all the weights of the gameObjects 
 	private float spawnObjectAt;                            // Position where to spawn next object
 
-	public bool BoosIsActive { get; set; }                  // Is true whenever a Boss Event is currently active
+	public bool BossIsActive { get; set; }                  // Is true whenever a Boss Event is currently active
+	public LevelState LevelManagerState { get; set; }
 
 	private List<Transform> listOfSpawners;
 
@@ -53,6 +57,14 @@ public class LevelManager : MonoBehaviour
 		POWER_UP
 	}
 
+	public enum LevelState
+	{
+		ON_TUTORIAL,
+		STANDARD_GAMEPLAY,
+		ON_BOSS_FIGHT
+		// NEXT_LEVEL?
+	}
+
 	void Start ()
 	{
 		listOfSpawners = new List<Transform>
@@ -63,10 +75,42 @@ public class LevelManager : MonoBehaviour
 		};
 
 		spawnObjectAt = spawnersParent.transform.position.y;
-        instance.BoosIsActive = false;
+		LevelManagerState = LevelState.ON_TUTORIAL;
+		BossIsActive = false;
+		onTutorial = true;
 	}
-	
+
 	void Update ()
+	{
+		UpdateState();
+	}
+
+	void UpdateState()
+	{
+		switch (LevelManagerState)
+		{
+			case LevelState.ON_TUTORIAL:
+				LevelTutorial();
+				break;
+			case LevelState.STANDARD_GAMEPLAY:
+				CheckPositionToSpawnObjects();
+				CheckForMeterEvents();
+				break;
+			case LevelState.ON_BOSS_FIGHT:
+				CheckBossCondition();
+				break;
+		}
+	}
+
+	void LevelTutorial()
+	{
+		if (!onTutorial)
+		{
+			LevelManagerState = LevelState.STANDARD_GAMEPLAY;
+		}
+	}
+
+	void CheckPositionToSpawnObjects()
 	{
 		if (spawnersParent.transform.position.y + spawningOffset > spawnObjectAt)
 		{
@@ -108,4 +152,66 @@ public class LevelManager : MonoBehaviour
             randomWeight -= listOfWeightedObjs[i].weight; 
         }
     }
+
+	void CheckBossCondition()
+	{
+		if (!BossIsActive)
+		{
+			// Enable portal for next sector
+			LevelManagerState = LevelState.STANDARD_GAMEPLAY;
+		}
+	}
+
+	void CheckForMeterEvents()
+	{
+		for (int i = 0; i < meterEventList.Count; i++)
+		{
+			switch (meterEventList[i].type)
+			{
+				case EventType.SPAWN:
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt && !BossIsActive)
+					{
+						// Spawn boss at next meter event point
+						SpawnBoss(meterEventList[i].prefabToSPAWN);    
+					}
+					break;
+					/*
+				case EventType.ENABLE_OBSTACLES:
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
+					{
+						if (obstaclesSpawnerLeft.activeInHierarchy == false)
+							obstaclesSpawnerLeft.SetActive(true);
+
+						if (obstaclesSpawnerRight.activeInHierarchy == false)
+							obstaclesSpawnerRight.SetActive(true);
+
+					}
+					break;
+				case EventType.ENABLE_MOVING_ENEMIES:
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
+					{
+						if (movingEnemiesSpawner.activeInHierarchy == false)
+							movingEnemiesSpawner.SetActive(true);
+					}
+					break;
+				case EventType.ENABLE_SHOOTING_ENEMIES:
+					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
+					{
+						if (shootingEnemiesSpawner.activeInHierarchy == false)
+							shootingEnemiesSpawner.SetActive(true);
+					}
+					break;
+				default:
+					break;
+					*/
+			}
+		}
+	}
+
+	private void SpawnBoss(GameObject spawn)
+	{
+		BossIsActive = true;
+		LevelManagerState = LevelState.ON_BOSS_FIGHT;
+		Instantiate(spawn, Camera.main.transform, false);
+	}
 }
