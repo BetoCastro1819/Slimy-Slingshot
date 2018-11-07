@@ -57,9 +57,7 @@ public class LevelManager : MonoBehaviour
 	{
 		LEFT_BRANCH,
 		RIGHT_BRANCH,
-		MOVING_ENEMY,
-		SHOOTING_ENEMY,
-		POWER_UP
+		NOT_BRANCH,
 	}
 
 	public enum LevelState
@@ -85,15 +83,14 @@ public class LevelManager : MonoBehaviour
 			spawnerRight
 		};
 
-		//LevelManagerState = LevelState.ON_TUTORIAL;
-		LevelManagerState = LevelState.STANDARD_GAMEPLAY;
+		LevelManagerState = LevelState.ON_TUTORIAL;
 
 		spawnObjectAt = spawnersParent.transform.position.y;
 		BossIsActive = false;
 		OnTutorial = true;
 		CurrentSectionIndex = 0;
 
-		Debug.Log("List of Sections: " + listOfSections.Count);
+		//Debug.Log("List of Sections: " + listOfSections.Count);
 	}
 
 	void Update ()
@@ -191,38 +188,9 @@ public class LevelManager : MonoBehaviour
 					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt * (CurrentSectionIndex + 1) && !BossIsActive)
 					{
 						// Spawn boss at next meter event point
-						SpawnBoss(meterEventList[i].prefabToSPAWN);    
+						SpawnBoss(meterEventList[i].prefabToSpawn[CurrentSectionIndex]);    
 					}
 					break;
-					/*
-				case EventType.ENABLE_OBSTACLES:
-					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
-					{
-						if (obstaclesSpawnerLeft.activeInHierarchy == false)
-							obstaclesSpawnerLeft.SetActive(true);
-
-						if (obstaclesSpawnerRight.activeInHierarchy == false)
-							obstaclesSpawnerRight.SetActive(true);
-
-					}
-					break;
-				case EventType.ENABLE_MOVING_ENEMIES:
-					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
-					{
-						if (movingEnemiesSpawner.activeInHierarchy == false)
-							movingEnemiesSpawner.SetActive(true);
-					}
-					break;
-				case EventType.ENABLE_SHOOTING_ENEMIES:
-					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt)
-					{
-						if (shootingEnemiesSpawner.activeInHierarchy == false)
-							shootingEnemiesSpawner.SetActive(true);
-					}
-					break;
-				default:
-					break;
-					*/
 			}
 		}
 	}

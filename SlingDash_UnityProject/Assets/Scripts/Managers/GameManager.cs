@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
 				case EventType.SPAWN:
 					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt && !BossIsActive)
 					{
-                          SpawnBoss(meterEventList[i].prefabToSPAWN);     // Spawn boss at next meter event point
+                          SpawnBoss(meterEventList[i].prefabToSpawn[0]);     // Spawn boss at next meter event point
 					}
 					break;
 				case EventType.ENABLE_OBSTACLES:

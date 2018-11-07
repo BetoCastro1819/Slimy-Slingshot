@@ -45,7 +45,7 @@ public class SheepBoss : Enemy {
 
         if (health <= 0)
         {
-            GameManager.GetInstance().BossIsActive = false;
+            LevelManager.GetInstance().BossIsActive = false;
             Destroy(gameObject);
         }
     }

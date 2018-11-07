@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 58001264683831602}
   - component: {fileID: 58933063063461238}
   - component: {fileID: 114881770833982072}
+  - component: {fileID: 114656508723936622}
   m_Layer: 10
   m_Name: GravityEnemy
   m_TagString: Untagged
@@ -104,6 +105,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &114656508723936622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997860502559026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4591d9409f4010647bfa2b620a2eeb69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114881770833982072
 MonoBehaviour:
   m_ObjectHideFlags: 1

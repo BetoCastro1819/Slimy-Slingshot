@@ -26,7 +26,13 @@ public class MovingPlatform : MonoBehaviour {
         }
     }
 
-    public void SetIsGoingLeft(bool _isGoingLeft) {
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		isGoingLeft = !isGoingLeft;
+	}
+
+	public void SetIsGoingLeft(bool _isGoingLeft)
+	{
         isGoingLeft = _isGoingLeft;
     }
 }

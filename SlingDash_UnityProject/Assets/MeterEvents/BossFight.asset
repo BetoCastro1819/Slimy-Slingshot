@@ -9,8 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9867e3a07771f046bf49c6684145172, type: 3}
-  m_Name: EnableShootingEnemies
+  m_Name: BossFight
   m_EditorClassIdentifier: 
-  eventAt: 160
-  type: 3
-  prefabToSPAWN: {fileID: 0}
+  eventAt: 200
+  type: 0
+  prefabToSpawn:
+  - {fileID: 1363198640357784, guid: d190b252eb0020043a5bb92960cfdd84, type: 2}
+  - {fileID: 1777073288879514, guid: 86a8b61d8d2ca5448b8a03000e2dad15, type: 2}

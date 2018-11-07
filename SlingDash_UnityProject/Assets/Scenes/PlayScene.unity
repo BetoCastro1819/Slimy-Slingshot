@@ -5242,11 +5242,20 @@ MonoBehaviour:
     key: 2
   - go: {fileID: 1269867708970640, guid: 99e7df512c639cc4c9c6753913e38463, type: 2}
     weight: 4
-    key: 3
+    key: 2
   - go: {fileID: 1685244714854422, guid: 0e162a5f244656640a740363d3920639, type: 2}
     weight: 2
-    key: 4
-  objectsSection2: []
+    key: 2
+  objectsSection2:
+  - go: {fileID: 1357563206427886, guid: 892e395e05ccf4146b6bbb3831cd81a1, type: 2}
+    weight: 10
+    key: 2
+  - go: {fileID: 1997860502559026, guid: 7bc10ceabe47732498eb14dacb5cce26, type: 2}
+    weight: 7
+    key: 2
+  - go: {fileID: 1685244714854422, guid: 0e162a5f244656640a740363d3920639, type: 2}
+    weight: 2
+    key: 2
   distBtwnObjects: 15
   spawningOffset: 5
 --- !u!4 &149419386
@@ -20870,8 +20879,8 @@ MonoBehaviour:
   playerPos: {fileID: 2108521918}
   yAxisOffset: 5
   zAxisOffset: -10
-  defaultLerpSpeed: 2
-  bossFightLerpSpeed: 0.1
+  defaultLerpSpeed: 3
+  bossFightLerpSpeed: 0.5
   constantSpeed: 0
 --- !u!4 &1941437555 stripped
 Transform:
@@ -21423,7 +21432,7 @@ MonoBehaviour:
   clearScreenTrigger: {fileID: 977914491}
   blurParticlesEffect: {fileID: 739813664}
   cameraMovement: {fileID: 1896514019}
-  meterToDash: 100
+  meterToDash: 50
   dashVelocity: 50
   timeToDash: 1
   forceAddedAfterDash: 1000
@@ -21442,7 +21451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2126684351
 Transform:
   m_ObjectHideFlags: 0

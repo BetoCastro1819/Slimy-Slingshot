@@ -15,5 +15,5 @@ public class MeterEvent : ScriptableObject
 {
     public int eventAt;
     public EventType type;
-    public GameObject prefabToSPAWN;
+	public List<GameObject> prefabToSpawn;
 }
