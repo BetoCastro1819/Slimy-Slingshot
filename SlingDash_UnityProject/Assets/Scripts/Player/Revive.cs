@@ -6,7 +6,8 @@ public class Revive : MonoBehaviour
 {
 	public GameObject clearScreenTrigger;
 	public GameObject reviveParticles;
-	public float timeOffsetToRevivePlayer = 0.1f;
+	public float timeOffsetToRevivePlayer = 0.05f;
+    public float timeOffsetToActivateCollider = 0.5f;
 
 	private MeterDetector meterDetector;
 	private bool particlesInstantiated;
@@ -15,11 +16,16 @@ public class Revive : MonoBehaviour
 
 	private float timeToRevivePlayer;
 	private float timer;
+    private PlayerSlimy player;
+    private Collider2D playerCollider;
 
-	private Vector3 revivePos;
+    private Vector3 revivePos;
 
 	private void Start()
     {
+
+        player = GameManager.GetInstance().player;
+        playerCollider = player.GetComponent<Collider2D>();
         meterDetector = FindObjectOfType<MeterDetector>();
 		playerWantsToRevive = false;
 		particlesInstantiated = false;
@@ -47,15 +53,23 @@ public class Revive : MonoBehaviour
 			{
 				RevivePlayer();
 			}
-		}
+        }
+        else if (!playerCollider.enabled)
+        {
+            timer += Time.deltaTime;
+            if (timer >= timeOffsetToActivateCollider)
+            {
+                playerCollider.enabled = true;
+                timer = 0;
+            }
+        }
     }
 
 	private void RevivePlayer()
 	{
-		PlayerSlimy player = GameManager.GetInstance().player;
-
 		player.gameObject.SetActive(true);
 		player.transform.SetPositionAndRotation(revivePos, Quaternion.identity);
+        playerCollider.enabled = false;
 		player.health = 1;
 
 		player.StateMoving.Enter();
