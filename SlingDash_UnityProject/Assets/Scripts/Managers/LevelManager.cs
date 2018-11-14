@@ -49,9 +49,9 @@ public class LevelManager : MonoBehaviour
 	private int sumOfWeights;                               // Sum of all the weights of the gameObjects 
 	private float spawnObjectAt;                            // Position where to spawn next object
 
-	private float spawnBossTimer;
 	private GameObject bossToSpawn;
-
+	private float spawnBossTimer;
+	private float spawnBossAtMeters;
 	[System.Serializable]
 	public struct WeightedGameObject
 	{
@@ -100,6 +100,10 @@ public class LevelManager : MonoBehaviour
 		UI_BossIncoming.SetActive(false);
 		BossIsActive = false;
 		spawnBossTimer = 0;
+
+		// TODO: make this better...
+		spawnBossAtMeters = meterEventList[0].eventAt;
+		Debug.Log("Spawn Boss at: " + spawnBossAtMeters);
 
 		//Debug.Log("List of Sections: " + listOfSections.Count);
 	}
@@ -198,7 +202,7 @@ public class LevelManager : MonoBehaviour
 			switch (meterEventList[i].type)
 			{
 				case EventType.SPAWN:
-					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt * (CurrentSectionIndex + 1) && !BossIsActive)
+					if (meterDetector.GetMetersTravelled() >= spawnBossAtMeters && !BossIsActive)
 					{
 						LevelManagerState = LevelState.BOSS_INCOMING;
 						SetBossToSpawn(meterEventList[i].prefabToSpawn[CurrentSectionIndex]);
@@ -229,6 +233,9 @@ public class LevelManager : MonoBehaviour
 		{
 			// Enable portal for next sector
 			LevelManagerState = LevelState.PLAYER_KILLED_BOSS;
+			spawnBossAtMeters = Camera.main.transform.position.y + meterEventList[0].eventAt;
+
+			Debug.Log("Spawn Boss at: " + spawnBossAtMeters);
 		}
 	}
 

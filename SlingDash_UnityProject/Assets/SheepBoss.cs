@@ -17,7 +17,6 @@ public class SheepBoss : Enemy {
     private float shootingTimer;
     private float spawningTimer;
 
-
     public new void Start()
     {
         shootingTimer = shootingTime;
@@ -59,6 +58,6 @@ public class SheepBoss : Enemy {
     public void SpawnPlatforms() {
         Instantiate(platformsPrefab, spawner_L.transform.position, Quaternion.identity);
         GameObject obj = Instantiate(platformsPrefab, spawner_R.transform.position, Quaternion.identity);
-        obj.GetComponent<MovingPlatform>().SetIsGoingLeft(true);
+        //obj.GetComponent<MovingPlatform>().SetIsGoingLeft(true);
     }
 }
