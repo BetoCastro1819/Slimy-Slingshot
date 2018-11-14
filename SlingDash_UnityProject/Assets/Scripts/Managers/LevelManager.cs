@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
 	}
 	#endregion
 
+	public int sectionIndex = 1;
+
 	[Header("Spawners")]
 	public Transform spawnersParent;                        // GameObject parent of the group of spawners
 
@@ -25,6 +27,8 @@ public class LevelManager : MonoBehaviour
 	public Transform spawnerRight;
 
 	[Header("Meter Events")]
+	public float timeToSpawnBoss;
+	public GameObject UI_BossIncoming;
 	public MeterDetector meterDetector;                     // Player's current max height reached in meters
 	public List<MeterEvent> meterEventList;                 // List of the events based on player's current travelled distance (E.g: Boss Fight)
 
@@ -45,6 +49,9 @@ public class LevelManager : MonoBehaviour
 	private int sumOfWeights;                               // Sum of all the weights of the gameObjects 
 	private float spawnObjectAt;                            // Position where to spawn next object
 
+	private float spawnBossTimer;
+	private GameObject bossToSpawn;
+
 	[System.Serializable]
 	public struct WeightedGameObject
 	{
@@ -64,6 +71,7 @@ public class LevelManager : MonoBehaviour
 	{
 		ON_TUTORIAL,
 		STANDARD_GAMEPLAY,
+		BOSS_INCOMING,
 		ON_BOSS_FIGHT,
 		PLAYER_KILLED_BOSS
 	}
@@ -86,9 +94,12 @@ public class LevelManager : MonoBehaviour
 		LevelManagerState = LevelState.ON_TUTORIAL;
 
 		spawnObjectAt = spawnersParent.transform.position.y;
-		BossIsActive = false;
 		OnTutorial = true;
-		CurrentSectionIndex = 0;
+		CurrentSectionIndex = sectionIndex;
+
+		UI_BossIncoming.SetActive(false);
+		BossIsActive = false;
+		spawnBossTimer = 0;
 
 		//Debug.Log("List of Sections: " + listOfSections.Count);
 	}
@@ -105,13 +116,20 @@ public class LevelManager : MonoBehaviour
 			case LevelState.ON_TUTORIAL:
 				LevelTutorial();
 				break;
+
 			case LevelState.STANDARD_GAMEPLAY:
 				CheckPositionToSpawnObjects();
 				CheckForMeterEvents();
 				break;
+
+			case LevelState.BOSS_INCOMING:
+				OnBossFightEnter();
+				break;
+
 			case LevelState.ON_BOSS_FIGHT:
 				CheckBossCondition();
 				break;
+
 			case LevelState.PLAYER_KILLED_BOSS:
 				GoToNextSection();
 				break;
@@ -139,44 +157,39 @@ public class LevelManager : MonoBehaviour
 	{
         sumOfWeights = 0;
 
-		for (int i = 0; i < listOfSections[CurrentSectionIndex].Count; i++)
+		var currentSectionObjs = listOfSections[CurrentSectionIndex];
+
+		for (int i = 0; i < currentSectionObjs.Count; i++)
 		{
-			sumOfWeights += listOfSections[CurrentSectionIndex][i].weight;
+			sumOfWeights += currentSectionObjs[i].weight;
 		}
 
         int randomWeight = Random.Range(0, sumOfWeights);
-        for (int i = 0; i < listOfSections[CurrentSectionIndex].Count; i++)
+        for (int i = 0; i < currentSectionObjs.Count; i++)
         {
-            if (randomWeight < listOfSections[CurrentSectionIndex][i].weight)
+            if (randomWeight < currentSectionObjs[i].weight)
             {
-				if (listOfSections[CurrentSectionIndex][i].key == GameObjectKey.LEFT_BRANCH)
+				if (currentSectionObjs[i].key == GameObjectKey.LEFT_BRANCH)
 				{
-					Instantiate(listOfSections[CurrentSectionIndex][i].go, spawnerLeft.transform.position, Quaternion.identity);
+					Instantiate(currentSectionObjs[i].go, spawnerLeft.transform.position, Quaternion.identity);
 				}
-				else if (listOfSections[CurrentSectionIndex][i].key == GameObjectKey.RIGHT_BRANCH)
+				else if (currentSectionObjs[i].key == GameObjectKey.RIGHT_BRANCH)
 				{
-					Instantiate(listOfSections[CurrentSectionIndex][i].go, spawnerRight.transform.position, Quaternion.identity);
+					Instantiate(currentSectionObjs[i].go, spawnerRight.transform.position, Quaternion.identity);
 				}
 				else
 				{
 					int spawnerIndex = Random.Range(0, listOfSpawners.Count);             
-					Instantiate(listOfSections[CurrentSectionIndex][i].go, listOfSpawners[spawnerIndex].transform.position, Quaternion.identity);
+					Instantiate(currentSectionObjs[i].go, listOfSpawners[spawnerIndex].transform.position, Quaternion.identity);
 				}
 				return;
             }
 
-            randomWeight -= listOfSections[CurrentSectionIndex][i].weight; 
+            randomWeight -= currentSectionObjs[i].weight; 
         }
     }
 
-	void CheckBossCondition()
-	{
-		if (!BossIsActive)
-		{
-			// Enable portal for next sector
-			LevelManagerState = LevelState.PLAYER_KILLED_BOSS;
-		}
-	}
+
 
 	void CheckForMeterEvents()
 	{
@@ -187,19 +200,50 @@ public class LevelManager : MonoBehaviour
 				case EventType.SPAWN:
 					if (meterDetector.GetMetersTravelled() >= meterEventList[i].eventAt * (CurrentSectionIndex + 1) && !BossIsActive)
 					{
-						// Spawn boss at next meter event point
-						SpawnBoss(meterEventList[i].prefabToSpawn[CurrentSectionIndex]);    
+						LevelManagerState = LevelState.BOSS_INCOMING;
+						SetBossToSpawn(meterEventList[i].prefabToSpawn[CurrentSectionIndex]);
 					}
 					break;
 			}
 		}
 	}
 
+	void OnBossFightEnter()
+	{
+		if (UI_BossIncoming.activeInHierarchy == false)
+		{
+			UI_BossIncoming.SetActive(true);
+		}
+
+		spawnBossTimer += Time.unscaledDeltaTime;
+		if (spawnBossTimer >= timeToSpawnBoss)
+		{
+			// Spawn boss at next meter event point
+			SpawnBoss(bossToSpawn);
+		}
+	}
+
+	void CheckBossCondition()
+	{
+		if (!BossIsActive)
+		{
+			// Enable portal for next sector
+			LevelManagerState = LevelState.PLAYER_KILLED_BOSS;
+		}
+	}
+
+	void SetBossToSpawn(GameObject boss)
+	{
+		bossToSpawn = boss;
+	}
+
 	private void SpawnBoss(GameObject spawn)
 	{
+		Instantiate(spawn, Camera.main.transform, false);
+		spawnBossTimer = 0;
+		UI_BossIncoming.SetActive(false);
 		BossIsActive = true;
 		LevelManagerState = LevelState.ON_BOSS_FIGHT;
-		Instantiate(spawn, Camera.main.transform, false);
 	}
 
 	private void GoToNextSection()

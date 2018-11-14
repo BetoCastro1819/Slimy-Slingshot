@@ -242,7 +242,7 @@ MonoBehaviour:
     type: 2}
   bulletsParent: {fileID: 4473175418301474}
   shootinPoint: {fileID: 4091280775192944}
-  fireRate: 1
+  fireRate: 1.5
 --- !u!198 &198806223691198288
 ParticleSystem:
   m_ObjectHideFlags: 1

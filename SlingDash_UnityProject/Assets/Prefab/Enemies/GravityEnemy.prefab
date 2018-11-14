@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 58933063063461238}
   - component: {fileID: 114881770833982072}
   - component: {fileID: 114656508723936622}
+  - component: {fileID: 50237881555980452}
   m_Layer: 10
   m_Name: GravityEnemy
   m_TagString: Untagged
@@ -75,6 +76,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50237881555980452
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997860502559026}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 3
 --- !u!58 &58001264683831602
 CircleCollider2D:
   m_ObjectHideFlags: 1

@@ -11,6 +11,8 @@ public class CriticalHitBoss : MonoBehaviour
     public int criticalPointsQuant;
     public float timeToAttack = 2f;
 
+	private Animator animator;
+
     private LevelManager levelManager;
     private PlayerSlimy player;
     private bool canBeKilled;
@@ -18,7 +20,8 @@ public class CriticalHitBoss : MonoBehaviour
 
     private void Start()
     {
-        levelManager = LevelManager.GetInstance();
+		animator = GetComponent<Animator>();
+		levelManager = LevelManager.GetInstance();
         player = FindObjectOfType<PlayerSlimy>();
         criticalPointsQuant = criticalPoints.Count;
         canBeKilled = false;
@@ -60,6 +63,7 @@ public class CriticalHitBoss : MonoBehaviour
 	{
 		canBeKilled = true;
 		gameObject.layer = LayerMask.NameToLayer("Boss");
+		animator.enabled = false;
 
 		transform.position = Vector3.Lerp(transform.position, player.transform.position, headAttackSpeed * Time.deltaTime);
 	}
