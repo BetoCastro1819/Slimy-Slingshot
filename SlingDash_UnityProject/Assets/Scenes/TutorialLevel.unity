@@ -10128,6 +10128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletEffect: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
+  trail: {fileID: 0}
   bulletSpeed: 1000
   outOfBoundsOffset: 2
 --- !u!1 &345236138
@@ -16689,7 +16690,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainScene
+          m_StringArgument: PlayScene
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -18258,6 +18259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletEffect: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
+  trail: {fileID: 0}
   bulletSpeed: 1000
   outOfBoundsOffset: 2
 --- !u!50 &1554938477
@@ -20077,6 +20079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletEffect: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
+  trail: {fileID: 0}
   bulletSpeed: 1000
   outOfBoundsOffset: 2
 --- !u!1 &2115692280

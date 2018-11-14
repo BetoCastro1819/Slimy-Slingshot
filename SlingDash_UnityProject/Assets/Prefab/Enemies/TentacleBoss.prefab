@@ -2323,6 +2323,7 @@ MonoBehaviour:
   - {fileID: 114548469951997554}
   - {fileID: 114054265052411784}
   - {fileID: 114707291058925662}
+  headAttackSpeed: 1
   criticalPointsQuant: 0
   timeToAttack: 3.5
 --- !u!114 &114707291058925662

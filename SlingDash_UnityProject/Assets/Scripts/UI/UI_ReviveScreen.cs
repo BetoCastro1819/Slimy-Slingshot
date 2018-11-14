@@ -36,14 +36,12 @@ public class UI_ReviveScreen : MonoBehaviour
 		{
 			previousCoinsEarned = coinManager.GetCoins();
 			coinsEarned.text = previousCoinsEarned.ToString("0");
-			Debug.Log("Coins Earned" + previousCoinsEarned);
 		}
 
 		if (previousMetersReached != meterDetector.GetMetersTravelled())
 		{
 			previousMetersReached = meterDetector.GetMetersTravelled();
 			metersTravelled.text = previousMetersReached.ToString("0m");
-			Debug.Log("Meters Travelled: " + previousMetersReached);
 		}
 	}
 

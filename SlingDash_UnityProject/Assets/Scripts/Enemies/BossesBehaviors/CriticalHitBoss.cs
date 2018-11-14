@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CriticalHitBoss : MonoBehaviour
 {
-
     public List<CriticalPoint> criticalPoints;
+	public float headAttackSpeed = 10f;
 
     [HideInInspector]
     public int criticalPointsQuant;
@@ -26,31 +26,45 @@ public class CriticalHitBoss : MonoBehaviour
 
     private void Update()
     {
-        if (criticalPointsQuant <= 0 )
-        {
-            canBeKilled = true;
-            gameObject.layer = LayerMask.NameToLayer("Boss");
-        }
+		if (criticalPointsQuant > 0)
+		{
+			timer += Time.deltaTime;
+			if (timer >= timeToAttack)
+			{
+				TentacleAttack();
+			}
+		}
+		else
+		{
+			HeadAttack();
+		}
+	}
 
-        timer += Time.deltaTime;
-        if (timer >= timeToAttack)
-        {
-            for (int i = 0; i < criticalPoints.Count; i++)
-            {
-                if (criticalPoints[i].IsAlive())
-                {
-					if (player.enabled)
-					{
-						criticalPoints[i].Attack(player.transform.position);
-						timer = 0;
-						return;
-					}
+	void TentacleAttack()
+	{
+		for (int i = 0; i < criticalPoints.Count; i++)
+		{
+			if (criticalPoints[i].IsAlive())
+			{
+				if (player.enabled)
+				{
+					criticalPoints[i].Attack(player.transform.position);
+					timer = 0;
+					return;
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+	void HeadAttack()
+	{
+		canBeKilled = true;
+		gameObject.layer = LayerMask.NameToLayer("Boss");
+
+		transform.position = Vector3.Lerp(transform.position, player.transform.position, headAttackSpeed * Time.deltaTime);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "PlayerBullet")
         {
@@ -61,5 +75,10 @@ public class CriticalHitBoss : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }
+
+		if (collision.gameObject.tag == "Player")
+		{
+			player.TakeDamage(10);
+		}
+	}
 }

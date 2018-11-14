@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour {
-
+public class MovingPlatform : MonoBehaviour
+{
     public float speed = 5f;
 
     private Rigidbody2D rb;
