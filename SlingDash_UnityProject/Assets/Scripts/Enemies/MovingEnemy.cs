@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MovingEnemy : Enemy
 {
-    private Vector3 dir = Vector3.right;
-	
-	// Update is called once per frame
+	private Vector3 dir = Vector3.right;
+
 	override public void Update ()
 	{
         base.Update();

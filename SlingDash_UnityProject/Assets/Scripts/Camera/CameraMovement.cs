@@ -37,6 +37,7 @@ public class CameraMovement : MonoBehaviour
 
 	void FollowPlayer()
 	{
+		/*
 		if (LevelManager.GetInstance().LevelManagerState == LevelManager.LevelState.ON_BOSS_FIGHT)
 		{
 			lerpSpeed = bossFightLerpSpeed;
@@ -45,7 +46,7 @@ public class CameraMovement : MonoBehaviour
 		{
 			lerpSpeed = defaultLerpSpeed;
 		}
-
+		*/
 		cameraGuide.y += constantSpeed * Time.unscaledDeltaTime;
 
 		if (player.transform.position.y > cameraGuide.y)

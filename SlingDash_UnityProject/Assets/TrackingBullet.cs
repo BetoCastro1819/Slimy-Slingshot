@@ -13,6 +13,7 @@ public class TrackingBullet : MonoBehaviour {
     public void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+		player = GameManager.GetInstance().player;
     }
 
     public void FixedUpdate()
@@ -31,6 +32,11 @@ public class TrackingBullet : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+		if (collision.gameObject.tag == "Player")
+		{
+			PlayerSlimy player = collision.gameObject.GetComponent<PlayerSlimy>();
+			player.TakeDamage(10);
+		}
         Destroy(gameObject);
     }
 }

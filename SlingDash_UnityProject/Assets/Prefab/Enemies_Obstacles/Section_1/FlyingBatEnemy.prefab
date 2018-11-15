@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114576858064147056}
   - component: {fileID: 95277437806298206}
   m_Layer: 10
-  m_Name: MovingEnemy
+  m_Name: FlyingBatEnemy
   m_TagString: MovingEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
