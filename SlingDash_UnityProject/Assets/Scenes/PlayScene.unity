@@ -8585,16 +8585,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114308651468359728, guid: ebef7a266a08edf46a4bc80e73cbe751,
-        type: 2}
-      propertyPath: analogStick
-      value: 
-      objectReference: {fileID: 443585365}
-    - target: {fileID: 114308651468359728, guid: ebef7a266a08edf46a4bc80e73cbe751,
-        type: 2}
-      propertyPath: stick
-      value: 
-      objectReference: {fileID: 443585363}
     - target: {fileID: 114108437187837142, guid: ebef7a266a08edf46a4bc80e73cbe751,
         type: 2}
       propertyPath: powerUpUI
@@ -8620,6 +8610,16 @@ Prefab:
       propertyPath: cameraMovement
       value: 
       objectReference: {fileID: 1896514019}
+    - target: {fileID: 114308651468359728, guid: ebef7a266a08edf46a4bc80e73cbe751,
+        type: 2}
+      propertyPath: analogStick
+      value: 
+      objectReference: {fileID: 443585365}
+    - target: {fileID: 114308651468359728, guid: ebef7a266a08edf46a4bc80e73cbe751,
+        type: 2}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 443585363}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebef7a266a08edf46a4bc80e73cbe751, type: 2}
   m_IsPrefabAsset: 0
