@@ -6,11 +6,12 @@ public class TentacleBoss : MonoBehaviour
 {
 	[Header("Movement")]
 	public float lerpMovementSpeed = 2f;
-	public float timeToLockPos = 2f;
+	public float timeToLockPosAndAttack = 2f;
+	public float timeToMoveAgain = 3f;
 
 	[Header("Attack")]
     public List<Tentacle> tentacles;
-    public float timeToAttack = 2f;
+    public float attackDuration = 2f;
 	public float headAttackSpeed = 10f;
 
 	[HideInInspector]
@@ -19,8 +20,9 @@ public class TentacleBoss : MonoBehaviour
     private LevelManager levelManager;
     private PlayerSlimy player;
     private bool canBeKilled;
-    private float attackTimer;
+    private float startMovingTimer;
 	private float lockPosTimer;
+	private bool canMove;
 
 	private TentacleBossStates bossState;
 	private enum TentacleBossStates
@@ -33,43 +35,23 @@ public class TentacleBoss : MonoBehaviour
 
 	private void Start()
     {
-		bossState = TentacleBossStates.HORIZONTAL_MOVEMENT;
-
 		levelManager = LevelManager.GetInstance();
         player = FindObjectOfType<PlayerSlimy>();
         criticalPointsQuant = tentacles.Count;
         canBeKilled = false;
 		lockPosTimer = 0;
+		startMovingTimer = 0;
+
+		bossState = TentacleBossStates.HORIZONTAL_MOVEMENT;
+		canMove = true;
 	}
 
-    private void Update()
+	private void Update()
     {
-		attackTimer += Time.deltaTime;
-		if (attackTimer >= timeToAttack)
-		{
-			TentacleAttack();
-		}
-
-		/*
 		if (player != null && player.enabled)
 		{
 			UpdateBossState();
 		}
-		
-		
-		if (criticalPointsQuant > 0)
-		{
-			attackTimer += Time.deltaTime;
-			if (attackTimer >= timeToAttack)
-			{
-				TentacleAttack();
-			}
-		}
-		else
-		{
-			HeadAttack();
-		}
-		*/
 	}
 
 	void UpdateBossState()
@@ -95,19 +77,19 @@ public class TentacleBoss : MonoBehaviour
 
 	void HorizontalMovement()
 	{
-		if (player.enabled)
+		if (canMove)
 		{
 			Vector2 smoothMovement = Vector2.Lerp(transform.position,                                               // Boss Position
 												  new Vector2(player.transform.position.x, transform.position.y),   // Lerp to player X axis position
 												  lerpMovementSpeed * Time.deltaTime);                              // Lerp speed
 
+
 			// Apply smooth movement
 			transform.position = smoothMovement;
 
-
 			// ATTACK
-			lockPosTimer += Time.unscaledDeltaTime;
-			if (lockPosTimer >= timeToLockPos)
+			lockPosTimer += Time.deltaTime;
+			if (lockPosTimer >= timeToLockPosAndAttack)
 			{
 				// Attack with tentacles if there are still any
 				if (criticalPointsQuant > 0)
@@ -118,6 +100,17 @@ public class TentacleBoss : MonoBehaviour
 				{
 					bossState = TentacleBossStates.HEAD_ATTACK;
 				}
+
+				lockPosTimer = 0;
+			}
+		}
+		else
+		{
+			startMovingTimer += Time.unscaledDeltaTime;
+			if (startMovingTimer >= timeToMoveAgain)
+			{
+				canMove = true;
+				startMovingTimer = 0;
 			}
 		}
 	}
@@ -125,31 +118,15 @@ public class TentacleBoss : MonoBehaviour
 	void TentacleAttack()
 	{
 		int randomTentacle = Random.Range(0, tentacles.Count);
+		Debug.Log("Tentacle index selected: " + randomTentacle);
 
 		if (tentacles[randomTentacle].IsAlive())
 		{
 			tentacles[randomTentacle].Attack();
 		}
 
-		attackTimer = 0;
-
-		/*
-		for (int i = 0; i < tentacles.Count; i++)
-		{
-
-			if (tentacles[i].IsAlive())
-			{
-				if (player.enabled)
-				{
-					//criticalPoints[i].Attack(player.transform.position);
-
-					tentacles[i].Attack();
-					attackTimer = 0;
-					return;
-				}
-			}
-		}
-		*/
+		canMove = false;
+		bossState = TentacleBossStates.HORIZONTAL_MOVEMENT;
 	}
 
 	void HeadAttack()

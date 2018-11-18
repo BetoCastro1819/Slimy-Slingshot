@@ -25,7 +25,6 @@ public class Tentacle : Enemy
 		animator.SetTrigger("AttackTrigger");
 	}
 
-
 	/*
     new private void Update()
     {
@@ -42,15 +41,27 @@ public class Tentacle : Enemy
 
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
+			animator.enabled = false;
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.constraints = RigidbodyConstraints2D.None;
 
             myBoss.criticalPointsQuant--;
             isAlive = false;
             isAttacking = false;
-            //Destroy(gameObject);
-        }
-    }
+
+			PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
+			if (polygonCollider == null)
+			{
+				Debug.Log("Collider not found");
+			}
+			else
+			{
+				polygonCollider.enabled = false;
+			}
+
+			//Destroy(gameObject);
+		}
+	}
 
     public bool IsAlive()
 	{
