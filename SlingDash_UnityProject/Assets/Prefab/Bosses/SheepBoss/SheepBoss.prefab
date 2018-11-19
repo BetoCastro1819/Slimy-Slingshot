@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 61963508529219946}
   - component: {fileID: 114990988342746078}
   - component: {fileID: 50719016461301592}
+  - component: {fileID: 95991927002321440}
   m_Layer: 11
   m_Name: SheepBoss
   m_TagString: Untagged
@@ -175,6 +176,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2103748, y: 1.2711562}
   m_EdgeRadius: 0
+--- !u!95 &95991927002321440
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777073288879514}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114990988342746078
 MonoBehaviour:
   m_ObjectHideFlags: 1

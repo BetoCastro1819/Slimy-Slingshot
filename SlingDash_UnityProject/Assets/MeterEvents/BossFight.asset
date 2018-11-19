@@ -14,5 +14,5 @@ MonoBehaviour:
   eventAt: 200
   type: 0
   prefabToSpawn:
-  - {fileID: 1363198640357784, guid: d190b252eb0020043a5bb92960cfdd84, type: 2}
+  - {fileID: 1313259685462566, guid: 37071d174e153fe47b5dfee1ae93d537, type: 2}
   - {fileID: 1777073288879514, guid: 86a8b61d8d2ca5448b8a03000e2dad15, type: 2}
