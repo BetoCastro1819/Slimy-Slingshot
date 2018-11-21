@@ -54,12 +54,13 @@ public class Revive : MonoBehaviour
 				RevivePlayer();
 			}
         }
-        else if (!playerCollider.enabled)
+        else //if (!playerCollider.enabled)
         {
             timer += Time.deltaTime;
             if (timer >= timeOffsetToActivateCollider)
             {
-                playerCollider.enabled = true;
+                //playerCollider.enabled = true;
+                player.gameObject.layer = LayerMask.NameToLayer("Default");
                 timer = 0;
             }
         }
@@ -69,7 +70,8 @@ public class Revive : MonoBehaviour
 	{
 		player.gameObject.SetActive(true);
 		player.transform.SetPositionAndRotation(revivePos, Quaternion.identity);
-        playerCollider.enabled = false;
+        //playerCollider.enabled = false;
+        player.gameObject.layer = LayerMask.NameToLayer("Inmune");
 		player.health = 1;
 
 		player.StateMoving.Enter();
