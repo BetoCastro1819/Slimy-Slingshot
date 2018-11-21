@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 198506647142908934}
   - component: {fileID: 199576234359470532}
   m_Layer: 0
-  m_Name: EnemyBulletEffect
+  m_Name: BulletCollisionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

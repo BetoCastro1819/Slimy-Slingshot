@@ -205,7 +205,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 1, b: 0.93035746, a: 1}
+      key0: {r: 1, g: 0.07661381, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf240913f94bb24c83e25ba3de9cd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletEffect: {fileID: 1026011240827350, guid: 84f0397d368ab344897da5421282b988,
+  bulletEffect: {fileID: 1730684588987226, guid: 633d7c0b374c5aa40b2f8033e4f447eb,
     type: 2}
   trail: {fileID: 1377164980976050}
   bulletSpeed: 2000
