@@ -63,4 +63,12 @@ public class ShootingEnemy : Enemy
 			transform.up = dir;
 		}
 	}
+
+	private void OnDestroy()
+	{
+		if (transform.parent != null)
+		{
+			Destroy(transform.parent.gameObject);
+		}
+	}
 }

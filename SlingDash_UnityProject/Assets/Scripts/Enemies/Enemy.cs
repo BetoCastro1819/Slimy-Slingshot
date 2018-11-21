@@ -38,10 +38,12 @@ public class Enemy : MonoBehaviour
 		{
 			Destroy(gameObject);
 
+			/*
 			if (transform.parent.gameObject != null)
 			{
 				Destroy(transform.parent.gameObject);
 			}
+			*/
 		}
 	}
 
