@@ -37,6 +37,11 @@ public class Enemy : MonoBehaviour
 		if (transform.position.y < offBounds)
 		{
 			Destroy(gameObject);
+
+			if (transform.parent.gameObject != null)
+			{
+				Destroy(transform.parent.gameObject);
+			}
 		}
 	}
 
@@ -58,7 +63,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	private void KillEnemy()
+	public virtual void KillEnemy()
 	{
 		Instantiate(coinParticleEffect, transform.position, Quaternion.identity);
 
