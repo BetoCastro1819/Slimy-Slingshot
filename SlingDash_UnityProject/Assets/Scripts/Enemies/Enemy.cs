@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action<Enemy> OnEnemyKilled;
+
     public GameObject coinParticleEffect;
 	public int health = 1;
     public int scoreValue = 50;
@@ -67,6 +70,11 @@ public class Enemy : MonoBehaviour
 
 	public virtual void KillEnemy()
 	{
+        if (OnEnemyKilled != null)
+        {
+            OnEnemyKilled(this);
+        }
+
 		Instantiate(coinParticleEffect, transform.position, Quaternion.identity);
 
 		killed = true;

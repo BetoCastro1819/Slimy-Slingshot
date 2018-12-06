@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class MeterDetector : MonoBehaviour
 {
+    public static event Action<float> OnMetersTraveled;
+
     private float metersTravelled;
 	private float startingOffset;
 
@@ -28,6 +31,11 @@ public class MeterDetector : MonoBehaviour
 
 			// Only updates UI when player's beats previous stored record
 			UI_Manager.Get().meterText.text = metersTravelled.ToString("0000") + " m";
+
+            if (OnMetersTraveled != null)
+            {
+                OnMetersTraveled(metersTravelled);
+            }
 		}
 	}
     
