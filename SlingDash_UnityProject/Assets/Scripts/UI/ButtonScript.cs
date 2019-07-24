@@ -17,11 +17,11 @@ public class ButtonScript : MonoBehaviour
 
     public void Quit() {
 #if UNITY_EDITOR
-		PlayerPrefs.DeleteAll();
+		//PlayerPrefs.DeleteAll();
 		UnityEditor.EditorApplication.isPlaying = false;
 
 #else
-		PlayerPrefs.DeleteAll();
+		//PlayerPrefs.DeleteAll();
 		Application.Quit();
 #endif
 	}
