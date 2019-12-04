@@ -30,7 +30,7 @@ public class MeterDetector : MonoBehaviour
 			metersTravelled = transform.position.y - startingOffset;
 
 			// Only updates UI when player's beats previous stored record
-			UI_Manager.Get().meterText.text = metersTravelled.ToString("0000") + " m";
+			//UI_Manager.Get().meterText.text = metersTravelled.ToString("0000") + " m";
 
             if (OnMetersTraveled != null)
             {

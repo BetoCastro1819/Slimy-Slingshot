@@ -87,7 +87,8 @@ public class StateAiming : PlayerState
 	{
 		base.UpdateState();
 
-		TimeManager.GetInstance().SetTime(TimeManager.TimeScales.SLOW_MO);
+		TimeScaleManager.Instance.EnableSlowMoTimeScale();
+
 		SetDirection();
 		SetForce();
 	}
@@ -96,7 +97,7 @@ public class StateAiming : PlayerState
 	{
 		base.Exit();
 
-		TimeManager.GetInstance().SetTime(TimeManager.TimeScales.DEFAULT);
+		TimeScaleManager.Instance.DisableSlowMoTimeScale();
 
 		tailSpriteRenderer.sprite = tailDefault;
 		tail.transform.localScale = new Vector3(1, 1, 1);
