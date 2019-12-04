@@ -1,28 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LevelBased
 {
 	public class GameManager : MonoBehaviour
 	{
-		private PersistentGameData gameData;
-
 		#region Singleton
-		private static GameManager instance;
-		public static GameManager GetInstance()
-		{
-			return instance;
-		}
+		public static GameManager Instance { get; private set; }
 
 		private void Awake()
 		{
-			instance = this;
+			Instance = this;
 
 			Application.targetFrameRate = 60;
-
-			gameData = new PersistentGameData();
-			gameData.AddOneToTimesPlayed();
 
 			DontDestroyOnLoad(this.gameObject);
 		}
@@ -30,16 +19,10 @@ namespace LevelBased
 
 		void Start()
 		{
-
 		}
 
 		void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.D))
-			{
-				Debug.Log("PlayerPrefs cleared");
-				PlayerPrefs.DeleteAll();
-			}
 		}
 	}
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	private PersistentGameData gameData;
-
 	#region Singleton
 	private static GameManager instance;
 	public static GameManager GetInstance()
@@ -18,9 +16,6 @@ public class GameManager : MonoBehaviour
 		instance = this;
 
 		Application.targetFrameRate = 60;
-
-		gameData = new PersistentGameData();
-		gameData.AddOneToTimesPlayed();
 
 		DontDestroyOnLoad(this.gameObject);
 	}
