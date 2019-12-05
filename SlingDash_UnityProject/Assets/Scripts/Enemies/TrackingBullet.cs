@@ -32,11 +32,10 @@ public class TrackingBullet : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-		if (collision.gameObject.tag == "Player")
-		{
-			PlayerSlimy player = collision.gameObject.GetComponent<PlayerSlimy>();
-			player.TakeDamage(10);
-		}
+		PlayerSlimy player = collision.gameObject.GetComponent<PlayerSlimy>();
+		if (player != null)
+			player.Kill();
+
         Destroy(gameObject);
     }
 }

@@ -45,8 +45,7 @@ public class PlayerSlimy : MonoBehaviour
 	{
 		Idle,
 		Aiming,
-		Killed,
-		Respawn
+		Respawning
 	}
 	private PlayerStateEnum stateEnum;
 
@@ -73,9 +72,7 @@ public class PlayerSlimy : MonoBehaviour
 				break;
 			case PlayerStateEnum.Aiming: Aiming(); 
 				break;
-			case PlayerStateEnum.Killed: Killed(); 
-				break;
-			case PlayerStateEnum.Respawn: Respawn(); 
+			case PlayerStateEnum.Respawning: Respawning(); 
 				break;
 		}
 	}
@@ -153,34 +150,9 @@ public class PlayerSlimy : MonoBehaviour
 		playerRigidbody.AddForce(transform.up * slingshotForce);
 	}
 
-	void Killed()
+	void Respawning()
 	{
 
-	}
-
-	void Respawn()
-	{
-
-	}
-
-	void KillPlayer()
-	{
-		StateKilled.Enter();
-		SetState(StateKilled);
-	}
-
-	public void SetState(PlayerState state)
-	{
-	}
-
-	public void SetSprite(Sprite sprite)
-	{
-		//spriteRenderer.sprite = sprite;
-	}
-
-	public void TakeDamage(int damage)
-	{
-		health -= damage;
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
@@ -188,6 +160,12 @@ public class PlayerSlimy : MonoBehaviour
 		Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
 		if (enemy != null)
-			KillPlayer();
+			Kill();
 	}
+
+	public void Kill()
+	{
+
+	}
+
 }

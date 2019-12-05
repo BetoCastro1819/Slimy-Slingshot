@@ -75,7 +75,7 @@ public class Revive : MonoBehaviour
 		//player.health = 1;
 
 		player.StateMoving.Enter();
-		player.SetState(player.StateMoving);
+		//player.SetState(player.StateMoving);
 
 		playerWantsToRevive = false;
 		particlesInstantiated = false;

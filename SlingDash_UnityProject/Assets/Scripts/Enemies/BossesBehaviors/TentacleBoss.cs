@@ -151,7 +151,7 @@ public class TentacleBoss : MonoBehaviour
 
 		if (collision.gameObject.tag == "Player")
 		{
-			player.TakeDamage(10);
+			player.Kill();
 		}
 	}
 }

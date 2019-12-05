@@ -88,7 +88,7 @@ public class StatePowerUpDash : PowerUpState
 		player.GetComponent<CircleCollider2D>().enabled = true;
 
 		player.StateMoving.Enter();
-		player.SetState(player.StateMoving);
+		//player.SetState(player.StateMoving);
 	}
 
 	private void Dash()

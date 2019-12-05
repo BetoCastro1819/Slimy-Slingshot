@@ -33,7 +33,7 @@ public class EnemyBullets : MonoBehaviour
 		PlayerSlimy player = collision.gameObject.GetComponent<PlayerSlimy>();
         if (player != null)
         {
-			player.TakeDamage(1);
+			player.Kill();
 		}
 
 		Instantiate(bulletEffect, transform.position, Quaternion.identity);

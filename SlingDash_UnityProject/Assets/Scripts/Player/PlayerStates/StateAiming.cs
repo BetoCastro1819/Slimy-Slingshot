@@ -54,7 +54,7 @@ public class StateAiming : PlayerState
 
 		player.PlayerRigidbody.interpolation = RigidbodyInterpolation2D.None;
 
-		player.SetSprite(playerAiming);
+		//player.SetSprite(playerAiming);
 		tailSpriteRenderer.sprite = tailStreched;
 
 		mousePos = Input.mousePosition;
@@ -77,7 +77,7 @@ public class StateAiming : PlayerState
 
 			Exit();
 			player.StateMoving.Enter();
-			player.SetState(player.StateMoving);
+			//player.SetState(player.StateMoving);
 		}
 
 		base.HandleInput();

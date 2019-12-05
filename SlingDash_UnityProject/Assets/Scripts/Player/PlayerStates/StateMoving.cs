@@ -12,7 +12,7 @@ public class StateMoving : PlayerState
 
 		player.PlayerRigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
 
-		player.SetSprite(playerDefaultSprite);
+		//player.SetSprite(playerDefaultSprite);
 
 		//Debug.Log("StateMoving.Enter()");
 	}
@@ -24,7 +24,7 @@ public class StateMoving : PlayerState
 			//Debug.Log("StateMoving -> StateAiming");
 
 			player.StateAiming.Enter();
-			player.SetState(player.StateAiming);
+			//player.SetState(player.StateAiming);
 		}
 
 		base.HandleInput();

@@ -370,7 +370,7 @@ MonoBehaviour:
   stick: {fileID: 1225092135}
   aimingArrow: {fileID: 1693864037}
   digitalAnalogLimit: 0.5
-  slingshotForce: 700
+  slingshotForce: 800
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
   playerDeathEffect: {fileID: 1983724992018360, guid: 43a1f00958667cb4abb23e23a19d6e16,
