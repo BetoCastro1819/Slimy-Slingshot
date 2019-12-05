@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSlimy : MonoBehaviour
 {
@@ -18,99 +16,114 @@ public class PlayerSlimy : MonoBehaviour
 	#endregion
 
 	public int health = 1;
-	public float offBoundOffset = 2f;
-	// Components
+
+	[Header("Aiming State")]
+	public Sprite playerAiming;
+	private SpriteRenderer tailSpriteRenderer;
+	public GameObject tail;
+	public Sprite tailStreched;
+	public Sprite tailDefault;
+	public GameObject analogStick;
+	public GameObject stick;
+	public GameObject aimingArrow;
+
 	public Rigidbody2D PlayerRigidbody { get; set; }
 
-	// States
 	public StateMoving StateMoving { get; set; }
 	public StateAiming StateAiming { get; set; }
 	public StateKilled StateKilled { get; set; }
 
-	// PowerUp states
-	public StatePowerUpDash StatePowerUpDash { get; set; }
-
-	// List of Power Ups
-	private List<PlayerState> listOfPowerUps;
-
-	private PlayerState currentState;
-
-	private Camera cam;
+	private Vector3 mousePos;
 	private SpriteRenderer spriteRenderer;
+
+	private enum PlayerStateEnum
+	{
+		Idle,
+		Aiming,
+		Killed,
+		Respawn
+	}
+	private PlayerStateEnum stateEnum;
 
 	void Start ()
 	{
-		cam = Camera.main;
-		PlayerRigidbody = GetComponent<Rigidbody2D>(); 
+		PlayerRigidbody = GetComponent<Rigidbody2D>();
+		PlayerRigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
+
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		tailSpriteRenderer = tail.GetComponent<SpriteRenderer>();
 
-		// Initialize list
-		listOfPowerUps = new List<PlayerState>();
-
-		// Initialize States
-		StateMoving = GetComponent<StateMoving>();
-		StateAiming = GetComponent<StateAiming>();
-		StateKilled = GetComponent<StateKilled>();
-
-		// Initialize PowerUp states
-		StatePowerUpDash = GetComponent<StatePowerUpDash>();
-		listOfPowerUps.Add(StatePowerUpDash);
-		
-		// Set current state
-		currentState = StateMoving;
-		currentState.Enter();
-
+		stateEnum = PlayerStateEnum.Idle;
 	}
 
 	void Update ()
 	{
+		UpdateState();
+	}
 
-		CheckForHealth();
-		CheckPlayerBoundarie();
-		currentState.HandleInput();
-		currentState.UpdateState();
-		
-		if (GameManager.GetInstance() == null) return;
-
-		if (GameManager.GetInstance().GetState() != GameManager.GameState.PAUSE)
+	void UpdateState()
+	{
+		switch(stateEnum)
 		{
+			case PlayerStateEnum.Idle: Idle(); 
+				break;
+			case PlayerStateEnum.Aiming: Aiming(); 
+				break;
+			case PlayerStateEnum.Killed: Killed(); 
+				break;
+			case PlayerStateEnum.Respawn: Respawn(); 
+				break;
 		}
 	}
 
-	void CheckPlayerBoundarie()
+	void Idle()
 	{
-		// Cameras lower edge 
-		float offBound = cam.transform.position.y - cam.orthographicSize - offBoundOffset;
-
-		// Check if player is below camera's view
-		if (transform.position.y < offBound)
+		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
-			KillPlayer();
-			
-			//Vector3 effectPos = new Vector3(transform.position.x, cam.transform.position.y - cam.orthographicSize, 0);
-			//Instantiate(offScreenDeathEffect, effectPos, Quaternion.identity);
-			//KillPlayer();
+			stateEnum = PlayerStateEnum.Aiming;
+			OnScreenTapped();
 		}
 	}
 
-	void CheckForHealth()
+	void OnScreenTapped()
 	{
-		if (health <= 0)
-		{
-			KillPlayer();
-		}
+		PlayerRigidbody.interpolation = RigidbodyInterpolation2D.None;
+
+		SetSprite(playerAiming);
+		tailSpriteRenderer.sprite = tailStreched;
+
+		mousePos = Input.mousePosition;
+		mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+		analogStick.transform.position = new Vector2(mousePos.x, mousePos.y);
+		analogStick.SetActive(true);
+
+		aimingArrow.SetActive(true);
+	}
+
+	void Aiming()
+	{
+
+	}
+
+	void Killed()
+	{
+
+	}
+
+	void Respawn()
+	{
+
 	}
 
 	void KillPlayer()
 	{
-		currentState.Exit();
 		StateKilled.Enter();
 		SetState(StateKilled);
 	}
 
 	public void SetState(PlayerState state)
 	{
-		currentState = state;
 	}
 
 	public void SetSprite(Sprite sprite)
@@ -130,27 +143,6 @@ public class PlayerSlimy : MonoBehaviour
 		if (enemy != null)
 		{
 			KillPlayer();
-		}
-	}
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.tag == "PowerUp")
-		{
-			// Randomly pick one of the power up states
-			//int randomIndex = Random.Range(0, listOfPowerUps.Count);
-
-			// Change state
-			currentState.Exit();
-			listOfPowerUps[0].Enter();
-			SetState(listOfPowerUps[0]);
-		}
-
-		if (collision.gameObject.tag == "TutorialFinishLine")
-		{
-			LevelManager.GetInstance().OnTutorial = false;
-			Debug.Log("Reached end of tutorial");
-
 		}
 	}
 }

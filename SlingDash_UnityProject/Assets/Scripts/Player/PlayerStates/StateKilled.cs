@@ -16,7 +16,7 @@ public class StateKilled : PlayerState
 		Camera cam = Camera.main;
 
 		// Cameras lower edge 
-		float offBound = cam.transform.position.y - cam.orthographicSize - player.offBoundOffset;
+		float offBound = cam.transform.position.y - cam.orthographicSize - 2.0f;
 
 		// If player is below camera's view
 		if (transform.position.y < offBound)
