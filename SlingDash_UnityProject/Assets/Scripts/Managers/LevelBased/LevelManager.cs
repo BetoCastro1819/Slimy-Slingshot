@@ -31,9 +31,12 @@ namespace LevelBased
 		void Start()
 		{
 			levelID = SceneManager.GetActiveScene().name;
-			PlayerSlimy.OnLevelComplete_Event += OnLevelComplete;
 
 			state = GameState.OnPlay;
+			
+			PlayerSlimy.OnLevelComplete_Event += OnLevelComplete;
+			Player_UI.OnPause_Event += OnPause;
+			PauseMenu_UI.OnResumeGame_Event += OnResume;
 		}
 
 		void OnLevelComplete()
@@ -44,10 +47,22 @@ namespace LevelBased
 			// Set the game to be on pause state
 		}
 
+		void OnResume()
+		{
+			Time.timeScale = 1;
+		}
+
+		void OnPause()
+		{
+			Time.timeScale = 0;
+		}
+
 		// Monobehaviour method
 		void OnDestroy() 
 		{
 			PlayerSlimy.OnLevelComplete_Event -= OnLevelComplete;
+			Player_UI.OnPause_Event -= OnPause;
+			PauseMenu_UI.OnResumeGame_Event -= OnResume;
 		}
 	}
 }

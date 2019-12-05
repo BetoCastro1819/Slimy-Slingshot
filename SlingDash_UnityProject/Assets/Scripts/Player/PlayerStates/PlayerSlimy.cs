@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerSlimy : MonoBehaviour
 {
@@ -64,6 +65,8 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Update ()
 	{
+		if (EventSystem.current.IsPointerOverGameObject()) return;
+
 		if (LevelBased.LevelManager.Instance.state != LevelBased.LevelManager.GameState.OnPause)
 		{
 			UpdateState();
