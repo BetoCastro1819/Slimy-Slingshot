@@ -1,19 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerSlimy : MonoBehaviour
 {
-	#region Singleton
-	private static PlayerSlimy instance;
-	public static PlayerSlimy Get()
-	{
-		return instance;
-	}
+	//#region Singleton
+	//private static PlayerSlimy instance;
+	//public static PlayerSlimy Get()
+	//{
+	//	return instance;
+	//}
+//
+	//private void Awake()
+	//{
+	//	instance = this;
+	//}
+	//#endregion
 
-	private void Awake()
-	{
-		instance = this;
-	}
-	#endregion
+	public static event Action OnLevelComplete_Event;
 
 	[SerializeField] int health = 1;
 
@@ -61,7 +64,10 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Update ()
 	{
-		UpdateState();
+		if (LevelBased.LevelManager.Instance.state != LevelBased.LevelManager.GameState.OnPause)
+		{
+			UpdateState();
+		}
 	}
 
 	void UpdateState()
@@ -152,6 +158,15 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Respawning()
 	{
+
+	}
+
+	private void OnTriggerEnter2D(Collider2D other) 
+	{
+		if (other.CompareTag("Portal"))
+		{
+			OnLevelComplete_Event();
+		}
 
 	}
 

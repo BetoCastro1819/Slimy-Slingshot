@@ -13,6 +13,7 @@ TagManager:
   - ShootingEnemy
   - PowerUp
   - TutorialFinishLine
+  - Portal
   layers:
   - Default
   - TransparentFX

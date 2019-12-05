@@ -8,7 +8,7 @@ public class PlayerState : MonoBehaviour
 
 	public virtual void Start()
 	{
-		player = PlayerSlimy.Get();
+		//player = PlayerSlimy.Get();
 		//Debug.Log("PlayerState.Start()");
 	}
 
