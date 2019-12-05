@@ -51,8 +51,6 @@ public class StateKilled : PlayerState
 	{
 		base.Exit();
 
-		player.health = 1;
-
 		//Debug.Log("StateMoving.Exit()");
 	}
 

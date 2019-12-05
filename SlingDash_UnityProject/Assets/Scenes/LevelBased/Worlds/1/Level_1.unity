@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 49281848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2060845715}
@@ -258,13 +258,10 @@ GameObject:
   m_Component:
   - component: {fileID: 247322495}
   - component: {fileID: 247322494}
-  - component: {fileID: 247322493}
-  - component: {fileID: 247322492}
-  - component: {fileID: 247322491}
-  - component: {fileID: 247322490}
   - component: {fileID: 247322489}
   - component: {fileID: 247322488}
   - component: {fileID: 247322487}
+  - component: {fileID: 247322496}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -356,93 +353,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &247322490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114108437187837142, guid: ebef7a266a08edf46a4bc80e73cbe751,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247322486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc2575e68d47514b802511e906fd7e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUpUI: {fileID: 0}
-  powerUpTextUI: {fileID: 0}
-  powerUpName: Dash
-  defaultSprite: {fileID: 21300000, guid: d7427c49074de04419d2053beb150ef4, type: 3}
-  onHoldSprite: {fileID: 21300000, guid: fb5553d67b9120444b6f1f7135abe042, type: 3}
-  clearScreenTrigger: {fileID: 0}
-  blurParticlesEffect: {fileID: 0}
-  cameraMovement: {fileID: 0}
-  meterToDash: 50
-  dashVelocity: 50
-  timeToDash: 1
-  forceAddedAfterDash: 1000
-  dashCameraLerpSpeed: 10
---- !u!114 &247322491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114088300314205978, guid: ebef7a266a08edf46a4bc80e73cbe751,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247322486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff3a8a82aed44743a5fa346a6611247, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDeathEffect: {fileID: 1983724992018360, guid: 43a1f00958667cb4abb23e23a19d6e16,
-    type: 2}
-  playerOffScreenDeathEffect: {fileID: 1070006641812860, guid: 16ecb6858ae5a20468783fa3ef9b81e2,
-    type: 2}
---- !u!114 &247322492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114308651468359728, guid: ebef7a266a08edf46a4bc80e73cbe751,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247322486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8f3ab847d787514bb852f37c978d8fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAiming: {fileID: 21300000, guid: fb5553d67b9120444b6f1f7135abe042, type: 3}
-  tail: {fileID: 837348854}
-  tailStreched: {fileID: 21300000, guid: 1c105dcc4b5c27842b819710b7ca1b02, type: 3}
-  tailDefault: {fileID: 21300000, guid: 9470cacb5d8b70540bcb2c13a7bbca6a, type: 3}
-  tailStretchFactor: 5
-  analogStick: {fileID: 1408161784}
-  stick: {fileID: 1225092135}
-  digitalAnalogLimit: 0.5
-  aimingCrosshair: {fileID: 704171087}
-  crosshairDistanceFactor: 50
-  dotedLine: {fileID: 1937556008}
-  dotedLineOffsetPos: 0.5
-  maxDragLength: 5
-  slingshotForce: 0
-  forceMultiplier: 15
-  playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
-    type: 2}
-  minDragLengthForBulletSize: 2
-  minBulletScale: 0.5
-  maxBulletScale: 15
---- !u!114 &247322493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114586260674553824, guid: ebef7a266a08edf46a4bc80e73cbe751,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 247322486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a77bab02dd1efb40b81a274b98bc005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDefaultSprite: {fileID: 21300000, guid: d7427c49074de04419d2053beb150ef4,
-    type: 3}
 --- !u!114 &247322494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,13 +366,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  playerAiming: {fileID: 21300000, guid: fb5553d67b9120444b6f1f7135abe042, type: 3}
-  tail: {fileID: 837348854}
-  tailStreched: {fileID: 21300000, guid: 1c105dcc4b5c27842b819710b7ca1b02, type: 3}
-  tailDefault: {fileID: 21300000, guid: 9470cacb5d8b70540bcb2c13a7bbca6a, type: 3}
   analogStick: {fileID: 1408161784}
   stick: {fileID: 1225092135}
   aimingArrow: {fileID: 1693864037}
+  digitalAnalogLimit: 0.5
+  slingshotForce: 700
+  playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
+    type: 2}
+  playerDeathEffect: {fileID: 1983724992018360, guid: 43a1f00958667cb4abb23e23a19d6e16,
+    type: 2}
+  timeToRespawn: 0
 --- !u!4 &247322495
 Transform:
   m_ObjectHideFlags: 0
@@ -482,6 +395,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &247322496
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 247322486}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c7573ef59d72494fb311d2d07c85bde, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &401677761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +939,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1076929871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.39, z: -10}
+  m_LocalPosition: {x: 0, y: -9.39, z: 0}
   m_LocalScale: {x: 34.14923, y: 2.687, z: 1}
   m_Children: []
   m_Father: {fileID: 49281849}
@@ -10533,7 +10464,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2060845714}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 49281849}

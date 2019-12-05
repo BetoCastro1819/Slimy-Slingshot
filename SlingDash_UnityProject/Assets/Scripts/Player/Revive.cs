@@ -72,7 +72,7 @@ public class Revive : MonoBehaviour
 		player.transform.SetPositionAndRotation(revivePos, Quaternion.identity);
         //playerCollider.enabled = false;
         player.gameObject.layer = LayerMask.NameToLayer("Inmune");
-		player.health = 1;
+		//player.health = 1;
 
 		player.StateMoving.Enter();
 		player.SetState(player.StateMoving);
