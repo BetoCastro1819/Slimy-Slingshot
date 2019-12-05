@@ -18,16 +18,6 @@ AnimationClip:
   m_FloatCurves:
   - curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: Panel/SplashScreen/HangingPlant
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
@@ -39,7 +29,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.5
+        time: 0.6666667
         value: 38
         inSlope: 0
         outSlope: 0
@@ -48,7 +38,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.575
+        time: 0.76666665
         value: 68
         inSlope: 0
         outSlope: 0
@@ -65,29 +55,9 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.z
-    path: Panel/SplashScreen/HangingPlant
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: Panel/SplashScreen/Title
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.6
+        time: 0.8
         value: 703
         inSlope: 0
         outSlope: 0
@@ -96,7 +66,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.15
+        time: 1.5333333
         value: 300
         inSlope: 0
         outSlope: 0
@@ -105,7 +75,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.225
+        time: 1.6333333
         value: 319
         inSlope: 0
         outSlope: 0
@@ -122,16 +92,6 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.z
-    path: Panel/SplashScreen/Title
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
@@ -143,7 +103,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.225
+        time: 1.6333333
         value: -181
         inSlope: 0
         outSlope: 0
@@ -171,7 +131,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.225
+        time: 1.6333333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -187,7 +147,7 @@ AnimationClip:
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
-  m_SampleRate: 40
+  m_SampleRate: 30
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -228,7 +188,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.225
+    m_StopTime: 1.6333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -246,16 +206,6 @@ AnimationClip:
   m_EditorCurves:
   - curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: Panel/SplashScreen/HangingPlant
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
@@ -267,7 +217,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.5
+        time: 0.6666667
         value: 38
         inSlope: 0
         outSlope: 0
@@ -276,7 +226,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.575
+        time: 0.76666665
         value: 68
         inSlope: 0
         outSlope: 0
@@ -293,29 +243,9 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.z
-    path: Panel/SplashScreen/HangingPlant
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: Panel/SplashScreen/Title
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.6
+        time: 0.8
         value: 703
         inSlope: 0
         outSlope: 0
@@ -324,7 +254,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.15
+        time: 1.5333333
         value: 300
         inSlope: 0
         outSlope: 0
@@ -333,7 +263,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.225
+        time: 1.6333333
         value: 319
         inSlope: 0
         outSlope: 0
@@ -350,16 +280,6 @@ AnimationClip:
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.z
-    path: Panel/SplashScreen/Title
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
@@ -371,7 +291,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.225
+        time: 1.6333333
         value: -181
         inSlope: 0
         outSlope: 0
@@ -399,7 +319,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.225
+        time: 1.6333333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
