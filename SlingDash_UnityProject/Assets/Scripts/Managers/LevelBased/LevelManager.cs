@@ -35,7 +35,6 @@ namespace LevelBased
 
 		[SerializeField] string m_nextLevelID;
 		[SerializeField] List<Star> stars;
-		[SerializeField] GameObject starPrefab;
 
 		public string nextLevelID { get { return m_nextLevelID; } }
 		public int currentScore { get; private set; }
