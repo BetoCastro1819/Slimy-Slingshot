@@ -5703,7 +5703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c4f98fe28235c4a8be8df1b4b8350c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_coinsForCollectingStar: 100
+  m_coinsForCollectingStar: 50
   starsForEachLevels:
   - levelID: Level_1-1
     starsRequiredToUnlock: 0

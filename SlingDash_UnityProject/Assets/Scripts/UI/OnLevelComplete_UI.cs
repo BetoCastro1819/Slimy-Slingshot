@@ -5,10 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class OnLevelComplete_UI : MonoBehaviour 
 {
+	[Header("Stats variables")]
 	[SerializeField] Text coinsForCompletingLevel;
 	[SerializeField] GameObject missionsParent;
 	[SerializeField] List<Image> stars;
 	[SerializeField] Text playerTotalCoins;
+	[SerializeField] Text playerTotalNumberOfStars;
+
+	[Header("Next level button")]
+	[SerializeField] Button nextLevelButton;
+	[SerializeField] GameObject unlockNextLevelInfo;
+	[SerializeField] Text starsToUnlockNextLevelText;
+	[SerializeField] GameObject nextLevelText;
 
 	void Start () 
 	{
@@ -35,7 +43,19 @@ public class OnLevelComplete_UI : MonoBehaviour
 
 		PersistentGameData.Instance.AddToCoins(totalCoinsEarned);
 
-		playerTotalCoins.text = PersistentGameData.Instance.gameData.coins.ToString("0");
+		playerTotalCoins.text = PersistentGameData.Instance.gameData.coins.ToString("0") + " x";
+		playerTotalNumberOfStars.text = PersistentGameData.Instance.gameData.stars.ToString("0") + " x";
+
+		string nextLevelID = LevelBased.LevelManager.Instance.nextLevelID;
+		int starsToUnlockNextLevel = PersistentGameData.Instance.gameData.levelsData[nextLevelID].starsRequiredToUnlock;
+		Debug.Log("Stars required for unlocking next level: " + starsToUnlockNextLevel);
+		if (PersistentGameData.Instance.gameData.stars < starsToUnlockNextLevel)
+		{
+			nextLevelText.SetActive(false);
+			unlockNextLevelInfo.SetActive(true);
+			starsToUnlockNextLevelText.text = starsToUnlockNextLevel.ToString("0");
+			nextLevelButton.interactable = false;
+		}
 
 		gameObject.SetActive(true);
 	}

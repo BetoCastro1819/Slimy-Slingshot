@@ -14,6 +14,7 @@ public class LevelButton_UI : MonoBehaviour
 	void Start()
 	{
 		starsRequiredToUnlock = LevelBased.GameManager.Instance.starsForUnlockingLevels[levelSceneName];
+		PersistentGameData.Instance.UpdateRequiredStarsToUnlockLevel(levelSceneName, starsRequiredToUnlock);
 
 		Debug.LogFormat("Stars required for unlockig {0}: {1}", levelSceneName, starsRequiredToUnlock);
 

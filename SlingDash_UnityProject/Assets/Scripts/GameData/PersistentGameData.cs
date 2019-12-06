@@ -68,6 +68,12 @@ public class PersistentGameData : MonoBehaviour
 		}
 	}
 
+	public void UpdateRequiredStarsToUnlockLevel(string levelID, int starsToUnlock)
+	{
+		gameData.levelsData[levelID].starsRequiredToUnlock = starsToUnlock;
+		UpdateLocalGameData();
+	}
+
 	public void AddToCoins(int coinsToAdd)
 	{
 		gameData.coins += coinsToAdd;

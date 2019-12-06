@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public abstract class Mission : MonoBehaviour{
 
@@ -10,7 +7,8 @@ public abstract class Mission : MonoBehaviour{
 
     public abstract bool IsComplete();
 
-    public void Reward() {
+    public void Reward() 
+	{
         CoinManager.Get().AddCoins(coinReward);
         Destroy(gameObject);
     }
