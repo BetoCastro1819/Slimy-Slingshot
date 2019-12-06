@@ -33,6 +33,8 @@ public class PersistentGameData : MonoBehaviour
 
 		LoadLocalGameData();
 
+		Debug.LogFormat("Current amount of collected stars: {0}", gameData.stars);
+
 		DontDestroyOnLoad(this.gameObject);
 	}
 
@@ -66,8 +68,15 @@ public class PersistentGameData : MonoBehaviour
 		}
 	}
 
+	public void AddToStarsCollected(int starsToAdd)
+	{
+		gameData.stars += starsToAdd;
+		UpdateLocalGameData();
+	}
+
 	public void UpdateLevelData(LevelData levelData)
 	{
+		Debug.Log("Updating level data of: " + levelData.levelID);
 		LevelData currentLevel = gameData.levelsData[levelData.levelID];
 
 		if (currentLevel.highscore < levelData.highscore)

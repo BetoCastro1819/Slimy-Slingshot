@@ -49,11 +49,14 @@ namespace LevelBased
 		public GameState state { get; private set; }
 
 		LevelData levelData;
+		int currentNumberOfCollectedStars;
 
 		void Start()
 		{
 			string levelID = SceneManager.GetActiveScene().name;
 			levelData = PersistentGameData.Instance.gameData.levelsData[levelID];
+			levelData.levelID = levelID;
+			Debug.Log("Current levelID: " + levelData.levelID);
 
 			state = GameState.OnPlay;
 			
@@ -63,7 +66,16 @@ namespace LevelBased
 
 			Star.OnStarPickedUp_Event += OnStarPickedUp;
 
+			InitializeStars();
 			DestroyAlreadyPickedUpStars();
+		}
+
+		void InitializeStars()
+		{
+			currentNumberOfCollectedStars = 0;
+
+			for (int starID = 0; starID < stars.Count; starID++)
+				stars[starID].starID = starID;
 		}
 
 		void DestroyAlreadyPickedUpStars()
@@ -78,9 +90,11 @@ namespace LevelBased
 		void OnLevelComplete()
 		{
 			Debug.Log("On level complete");
-			// Display level complete UI
 
-			// Set the game to be on pause state
+			PersistentGameData.Instance.AddToStarsCollected(currentNumberOfCollectedStars);
+			PersistentGameData.Instance.UpdateLevelData(levelData);
+
+			OnPause();
 		}
 
 		void OnResume()
@@ -96,6 +110,7 @@ namespace LevelBased
 		void OnStarPickedUp(int starID)
 		{
 			levelData.idsOfStarsPicked.Add(starID);
+			currentNumberOfCollectedStars++;
 		}
 
 		// Monobehaviour method

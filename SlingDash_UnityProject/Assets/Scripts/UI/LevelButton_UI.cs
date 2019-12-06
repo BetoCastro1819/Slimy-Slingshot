@@ -13,9 +13,12 @@ public class LevelButton_UI : MonoBehaviour
 	{
 		starsRequiredToUnlock = LevelBased.GameManager.Instance.starsForUnlockingLevels[levelSceneName];
 
-		Button button = GetComponent<Button>();
+		Debug.LogFormat("Stars required for unlockig {0}: {1}", levelSceneName, starsRequiredToUnlock);
 
-		if (PersistentGameData.Instance.gameData.stars > starsRequiredToUnlock)
+		Button button = GetComponent<Button>();
+		button.onClick.AddListener(OpenLevel); 
+
+		if (PersistentGameData.Instance.gameData.stars < starsRequiredToUnlock)
 		{
 			button.interactable = false;
 		}
