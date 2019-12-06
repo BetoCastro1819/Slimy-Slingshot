@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu_UI : MonoBehaviour 
 {
 	[SerializeField] GameObject mainMenuOptions;
+	[SerializeField] Text collectedStars;
+	[SerializeField] Text numberOfCoins;
 
 	private Animator animator;
 	private GameObject currentObjectOnDisplay;
@@ -11,6 +14,12 @@ public class MainMenu_UI : MonoBehaviour
 	private void Awake() 
 	{
 		animator = GetComponent<Animator>();
+	}
+
+	private void Start()
+	{
+		collectedStars.text = "x " + PersistentGameData.Instance.gameData.stars.ToString("0");
+		numberOfCoins.text = "x " + PersistentGameData.Instance.gameData.coins.ToString("0");
 	}
 
 	public void OnMenuExitFinished()

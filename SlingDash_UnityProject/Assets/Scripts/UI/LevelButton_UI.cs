@@ -5,8 +5,10 @@ using UnityEngine;
 public class LevelButton_UI : MonoBehaviour 
 {
 	[SerializeField] string levelSceneName;
+	[SerializeField] GameObject levelNumber;
+	[SerializeField] GameObject infoToUnlockLevel;
+	[SerializeField] Text starsToUnlock;
 
-	//private LevelData levelData;
 	private int starsRequiredToUnlock;
 
 	void Start()
@@ -21,6 +23,11 @@ public class LevelButton_UI : MonoBehaviour
 		if (PersistentGameData.Instance.gameData.stars < starsRequiredToUnlock)
 		{
 			button.interactable = false;
+
+			levelNumber.SetActive(false);
+
+			infoToUnlockLevel.SetActive(true);
+			starsToUnlock.text = starsRequiredToUnlock.ToString("0");
 		}
 	}
 	
