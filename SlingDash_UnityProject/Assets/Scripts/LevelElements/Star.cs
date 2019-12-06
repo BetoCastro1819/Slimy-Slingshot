@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Star : MonoBehaviour 
 {
-	[SerializeField] int score;
-
 	public int starID { get; set; }
 
 	public static event Action<int> OnStarPickedUp_Event;
@@ -13,10 +11,7 @@ public class Star : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			// Add star and score to level
-
 			OnStarPickedUp_Event(starID);
-
 			Destroy(gameObject);
 		}	
 	}

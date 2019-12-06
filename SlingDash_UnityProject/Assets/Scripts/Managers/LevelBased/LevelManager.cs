@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -6,7 +7,6 @@ using UnityEngine;
 public class LevelData
 {
 	public string levelID;
-	public int highscore;
 	public int starsRequiredToUnlock;
 	public List<int> idsOfStarsPicked;
 
@@ -15,7 +15,6 @@ public class LevelData
 	public LevelData()
 	{
 		levelID = "";
-		highscore = 0;
 		starsRequiredToUnlock = 0;
 		idsOfStarsPicked = new List<int>();
 	}
@@ -34,11 +33,13 @@ namespace LevelBased
 		#endregion
 
 		[SerializeField] string m_nextLevelID;
+		[SerializeField] int m_coinsForCompletingLevel;
 		[SerializeField] List<Star> stars;
 
+		public event Action<LevelData> OnLevelComplete_Event;
+
 		public string nextLevelID { get { return m_nextLevelID; } }
-		public int currentScore { get; private set; }
-		public int highscore { get; private set; }
+		public int coinsForCompletingLevel { get { return m_coinsForCompletingLevel; } }
 
 		public enum GameState
 		{
@@ -46,9 +47,9 @@ namespace LevelBased
 			OnPause
 		}
 		public GameState state { get; private set; }
+		public LevelData levelData { get; private set; }
 
-		LevelData levelData;
-		int currentNumberOfCollectedStars;
+		public int currentNumberOfCollectedStars { get; private set; }
 
 		void Start()
 		{
@@ -92,6 +93,8 @@ namespace LevelBased
 
 			PersistentGameData.Instance.AddToStarsCollected(currentNumberOfCollectedStars);
 			PersistentGameData.Instance.UpdateLevelData(levelData);
+
+			OnLevelComplete_Event(levelData);
 
 			OnPause();
 		}

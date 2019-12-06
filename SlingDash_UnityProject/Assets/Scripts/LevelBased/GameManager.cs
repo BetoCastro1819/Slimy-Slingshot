@@ -5,6 +5,9 @@ namespace LevelBased
 {
 	public class GameManager : MonoBehaviour
 	{
+		[SerializeField] int m_coinsForCollectingStar;
+		public int coinsForCollectingStar { get { return m_coinsForCollectingStar; } }
+
 		public Dictionary<string, int> starsForUnlockingLevels { get; private set; }
 
 		[System.Serializable]

@@ -68,6 +68,12 @@ public class PersistentGameData : MonoBehaviour
 		}
 	}
 
+	public void AddToCoins(int coinsToAdd)
+	{
+		gameData.coins += coinsToAdd;
+		UpdateLocalGameData();
+	}
+
 	public void AddToStarsCollected(int starsToAdd)
 	{
 		gameData.stars += starsToAdd;
@@ -78,9 +84,6 @@ public class PersistentGameData : MonoBehaviour
 	{
 		Debug.Log("Updating level data of: " + levelData.levelID);
 		LevelData currentLevel = gameData.levelsData[levelData.levelID];
-
-		if (currentLevel.highscore < levelData.highscore)
-			currentLevel.highscore = levelData.highscore;
 
 		currentLevel.starsRequiredToUnlock = levelData.starsRequiredToUnlock;
 
