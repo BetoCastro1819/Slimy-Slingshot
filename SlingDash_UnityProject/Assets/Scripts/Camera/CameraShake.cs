@@ -1,9 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+	#region Singleton
+	public static CameraShake Instance { get; private set; }
+	void Awake()
+	{
+		Instance = this;
+	}
+	#endregion
+
 	public float duration = 0.2f;
 	public float magnitude = 4f;
 
@@ -26,7 +32,7 @@ public class CameraShake : MonoBehaviour
 		}
 	}
 
-	public void Shake()
+	private void Shake()
 	{
 		timer += Time.unscaledDeltaTime;
 		if (timer < duration)
@@ -48,5 +54,4 @@ public class CameraShake : MonoBehaviour
 	{
 		startShake = true;
 	}
-
 }
