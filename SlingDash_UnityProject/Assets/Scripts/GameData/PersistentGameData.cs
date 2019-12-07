@@ -44,10 +44,10 @@ public class PersistentGameData : MonoBehaviour
 		if (!Application.isEditor)
 			gameDataLocalPath = Application.persistentDataPath + "/" + gameDataFileName;
 
-		if (File.Exists(gameDataFileName))
+		if (File.Exists(gameDataLocalPath))
 		{
 			BinaryFormatter binaryFormatter = new BinaryFormatter();
-			FileStream stream = new FileStream(gameDataFileName, FileMode.Open);
+			FileStream stream = new FileStream(gameDataLocalPath, FileMode.Open);
 
 			gameData = binaryFormatter.Deserialize(stream) as GameData;
 			stream.Close();
