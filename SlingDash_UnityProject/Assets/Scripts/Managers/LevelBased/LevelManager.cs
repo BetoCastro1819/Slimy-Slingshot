@@ -9,14 +9,14 @@ public class LevelData
 	public string levelID;
 	public int starsRequiredToUnlock;
 	public List<int> idsOfStarsPicked;
-
-	// public Mission[] missions
+	public Dictionary<string, bool> missions;
 
 	public LevelData()
 	{
 		levelID = "";
 		starsRequiredToUnlock = 0;
 		idsOfStarsPicked = new List<int>();
+		missions = new Dictionary<string, bool>();
 	}
 }
 
@@ -35,6 +35,7 @@ namespace LevelBased
 		[SerializeField] string m_nextLevelID;
 		[SerializeField] int m_coinsForCompletingLevel;
 		[SerializeField] List<Star> stars;
+		[SerializeField] List<Mission> missions;
 
 		public event Action<LevelData> OnLevelComplete_Event;
 
@@ -53,21 +54,39 @@ namespace LevelBased
 
 		void Start()
 		{
+			InitializeLevelID();
+			InitializeMissions();
+			SetupObserverMethods();
+			InitializeStars();
+			DestroyAlreadyPickedUpStars();
+
+			state = GameState.OnPlay;
+		}
+
+		void InitializeLevelID()
+		{
 			string levelID = SceneManager.GetActiveScene().name;
 			levelData = PersistentGameData.Instance.gameData.levelsData[levelID];
 			levelData.levelID = levelID;
-			Debug.Log("Current levelID: " + levelData.levelID);
+			//Debug.Log("Current levelID: " + levelData.levelID);
+		}
 
-			state = GameState.OnPlay;
-			
+		void InitializeMissions()
+		{
+			for (int i = 0; i < missions.Count; i++)
+			{
+				var persistentMissionsData = PersistentGameData.Instance.gameData.levelsData[levelData.levelID].missions;
+				if (!persistentMissionsData.ContainsKey(missions[i].missionID))
+					levelData.missions.Add(missions[i].missionID, missions[i].isComplete);
+			}
+		}
+
+		void SetupObserverMethods()
+		{
 			PlayerSlimy.OnLevelComplete_Event += OnLevelComplete;
 			Player_UI.OnPause_Event += OnPause;
 			PauseMenu_UI.OnResumeGame_Event += OnResume;
-
 			Star.OnStarPickedUp_Event += OnStarPickedUp;
-
-			InitializeStars();
-			DestroyAlreadyPickedUpStars();
 		}
 
 		void InitializeStars()
@@ -89,14 +108,29 @@ namespace LevelBased
 
 		void OnLevelComplete()
 		{
-			Debug.Log("On level complete");
+			//Debug.Log("On level complete");
 
 			PersistentGameData.Instance.AddToStarsCollected(currentNumberOfCollectedStars);
+			UpdatePersistentMissionsStates();
 			PersistentGameData.Instance.UpdateLevelData(levelData);
 
 			OnLevelComplete_Event(levelData);
 
 			OnPause();
+		}
+
+		void UpdatePersistentMissionsStates()
+		{
+			for (int i = 0; i < missions.Count; i++)
+			{
+				if (missions[i].IsComplete())
+				{
+					levelData.missions[missions[i].missionID] = missions[i].isComplete;
+				}
+
+				if (levelData.missions[missions[i].missionID])
+					Debug.LogFormat("Mission {0} was completed", missions[i].missionID);
+			}
 		}
 
 		void OnResume()

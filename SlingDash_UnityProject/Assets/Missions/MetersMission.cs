@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetersMission : Mission {
-
+public class MetersMission : Mission 
+{
     public float metersToComplete = 150;
     float metersTraveled = 0;
 

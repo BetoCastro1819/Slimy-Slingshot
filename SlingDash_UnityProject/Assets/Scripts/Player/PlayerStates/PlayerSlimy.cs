@@ -45,6 +45,9 @@ public class PlayerSlimy : MonoBehaviour
 	private Rigidbody2D playerRigidbody;
 	private Animator animator;
 
+	public static event Action<int> OnSlingshotCounterIncreased_Event;
+	private int slingshotCounter;
+
 	private enum PlayerStateEnum
 	{
 		Idle,
@@ -61,6 +64,8 @@ public class PlayerSlimy : MonoBehaviour
 		animator = GetComponent<Animator>();
 
 		stateEnum = PlayerStateEnum.Idle;
+
+		slingshotCounter = 0;
 	}
 
 	void Update ()
@@ -157,6 +162,9 @@ public class PlayerSlimy : MonoBehaviour
 
 		playerRigidbody.velocity = Vector2.zero;
 		playerRigidbody.AddForce(transform.up * slingshotForce);
+
+		slingshotCounter++;
+		OnSlingshotCounterIncreased_Event(slingshotCounter);
 	}
 
 	void Respawning()
