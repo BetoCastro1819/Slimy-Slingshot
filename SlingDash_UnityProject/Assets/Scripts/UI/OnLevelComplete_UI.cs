@@ -8,6 +8,7 @@ public class OnLevelComplete_UI : MonoBehaviour
 	[Header("Stats variables")]
 	[SerializeField] Text coinsForCompletingLevel;
 	[SerializeField] GameObject missionsParent;
+	[SerializeField] List<Mission_UI> missionsUI;
 	[SerializeField] List<Image> stars;
 	[SerializeField] Text playerTotalCoins;
 	[SerializeField] Text playerTotalNumberOfStars;
@@ -33,7 +34,10 @@ public class OnLevelComplete_UI : MonoBehaviour
 		coinsForCompletingLevel.text = "Coins for completing level: " + onLevelCompleteCoins.ToString("0") + " x";
 		totalCoinsEarned += onLevelCompleteCoins;
 
-		// Add missions on levelData to mission parent
+		foreach (Mission_UI mission in missionsUI)
+		{
+			mission.CrossMissionIfCompleted();
+		}
 
 		for (int i = 0; i < levelData.idsOfStarsPicked.Count; i++)
 			stars[i].color = Color.white;
