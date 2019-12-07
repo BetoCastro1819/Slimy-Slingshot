@@ -30,7 +30,7 @@ public class OnLevelComplete_UI : MonoBehaviour
 
 		int onLevelCompleteCoins = LevelBased.LevelManager.Instance.coinsForCompletingLevel;
 
-		coinsForCompletingLevel.text = "Coins for completing level: " + onLevelCompleteCoins.ToString("0");
+		coinsForCompletingLevel.text = "Coins for completing level: " + onLevelCompleteCoins.ToString("0") + " x";
 		totalCoinsEarned += onLevelCompleteCoins;
 
 		// Add missions on levelData to mission parent
