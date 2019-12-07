@@ -13,5 +13,29 @@ EditorBuildSettings:
     guid: 21341dd51a4c4be4390301fa41956331
   - enabled: 1
     path: Assets/Scenes/LevelBased/Worlds/1/Level_1-2.unity
-    guid: bb11d906790662445ad9e5c329385b09
+    guid: ce008867d8ddf324597e14e1866969e0
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-3.unity
+    guid: 3012dc360faee19409a011c4fa90bb93
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-4.unity
+    guid: 36b2527916c9c974699ad07bf2407cdf
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-5.unity
+    guid: 3fac1f0ccbda8bf49947313d35223b2d
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-6.unity
+    guid: cd78c3cdaeb29584581f0345ffceca42
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-7.unity
+    guid: 2cf94e28b2c03dc4bb2b4e39175cff8c
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-8.unity
+    guid: cc330a54853d0ab4581c44bc2e0c3bfc
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-9.unity
+    guid: 3b52f9f57c8505347a781101833fe0b3
+  - enabled: 1
+    path: Assets/Scenes/LevelBased/Worlds/1/Level_1-Boss.unity
+    guid: bf34e81ede6499c44a940a02e71e5318
   m_configObjects: {}

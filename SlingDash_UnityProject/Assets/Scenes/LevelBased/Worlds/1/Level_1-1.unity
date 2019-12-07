@@ -15091,6 +15091,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4213324026617212, guid: 379b9719a2cef3c49bf9d42e570c9967, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213324026617212, guid: 379b9719a2cef3c49bf9d42e570c9967, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213324026617212, guid: 379b9719a2cef3c49bf9d42e570c9967, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 379b9719a2cef3c49bf9d42e570c9967, type: 2}
   m_IsPrefabAsset: 0
@@ -20437,6 +20449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a4771f563ab6545a22596bd28837d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: -50
 --- !u!58 &1744565553
 CircleCollider2D:
   m_ObjectHideFlags: 0

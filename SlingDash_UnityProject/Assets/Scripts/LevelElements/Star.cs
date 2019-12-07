@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Star : MonoBehaviour 
 {
+	[SerializeField] GameObject onPickUpParticleEffect;
+
 	public int starID { get; set; }
 
 	public static event Action<int> OnStarPickedUp_Event;
@@ -11,6 +13,7 @@ public class Star : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
+			Instantiate(onPickUpParticleEffect, transform.position, Quaternion.identity);
 			OnStarPickedUp_Event(starID);
 			Destroy(gameObject);
 		}	
