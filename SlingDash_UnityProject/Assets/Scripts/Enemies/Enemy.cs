@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
             OnEnemyKilled(this);
         }
 
-		Instantiate(coinParticleEffect, transform.position, Quaternion.identity);
+		//Instantiate(coinParticleEffect, transform.position, Quaternion.identity);
 
 		killed = true;
 

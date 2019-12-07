@@ -4,19 +4,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerSlimy : MonoBehaviour
 {
-	//#region Singleton
-	//private static PlayerSlimy instance;
-	//public static PlayerSlimy Get()
-	//{
-	//	return instance;
-	//}
-//
-	//private void Awake()
-	//{
-	//	instance = this;
-	//}
-	//#endregion
-
 	public static event Action OnLevelComplete_Event;
 
 	[SerializeField] int health = 1;
@@ -31,6 +18,8 @@ public class PlayerSlimy : MonoBehaviour
 
 	[Header("Killed State")]
 	[SerializeField] GameObject playerDeathEffect;
+	[SerializeField] float forceToApplyOnKilled;
+	[SerializeField] float lowScreenBoundToRespawn;
 
 	[Header("Respawn State")]
 	[SerializeField] float timeToRespawn;
@@ -52,9 +41,11 @@ public class PlayerSlimy : MonoBehaviour
 	{
 		Idle,
 		Aiming,
-		Respawning
+		OnKilled
 	}
 	private PlayerStateEnum stateEnum;
+	private Vector2 spawnPosition;
+	private CameraShake cameraShake;
 
 	void Start ()
 	{
@@ -66,6 +57,10 @@ public class PlayerSlimy : MonoBehaviour
 		stateEnum = PlayerStateEnum.Idle;
 
 		slingshotCounter = 0;
+
+		spawnPosition = transform.position;
+
+		cameraShake = Camera.main.GetComponent<CameraShake>();
 	}
 
 	void Update ()
@@ -86,7 +81,7 @@ public class PlayerSlimy : MonoBehaviour
 				break;
 			case PlayerStateEnum.Aiming: Aiming(); 
 				break;
-			case PlayerStateEnum.Respawning: Respawning(); 
+			case PlayerStateEnum.OnKilled: OnKilled();
 				break;
 		}
 	}
@@ -167,9 +162,37 @@ public class PlayerSlimy : MonoBehaviour
 		OnSlingshotCounterIncreased_Event(slingshotCounter);
 	}
 
-	void Respawning()
+	void OnKilled()
 	{
+		transform.up = playerRigidbody.velocity;
 
+		if (transform.position.y < lowScreenBoundToRespawn)
+			Respawn();
+	}
+
+	void Respawn()
+	{
+		transform.position = spawnPosition;
+
+
+		if (playerRigidbody != null)
+		{
+			playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+			playerRigidbody.velocity = Vector2.zero;
+		}
+
+		Collider2D collider = GetComponent<Collider2D>();
+		if (collider != null)
+		{
+			collider.enabled = true;
+		}
+
+		transform.up = Vector2.up;
+
+		stateEnum = PlayerStateEnum.Idle;
+		animator.SetBool("OnKilled", false);
+
+		// Spawn particle effect as well
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) 
@@ -191,7 +214,26 @@ public class PlayerSlimy : MonoBehaviour
 
 	public void Kill()
 	{
+		animator.SetBool("OnKilled", true);
 
+		cameraShake.StartShake();
+
+		transform.up = -Vector2.up;
+
+		if (playerRigidbody != null)
+		{
+			playerRigidbody.constraints = RigidbodyConstraints2D.None;
+			playerRigidbody.AddForce(Vector2.up * forceToApplyOnKilled);
+		}
+
+		Collider2D collider = GetComponent<Collider2D>();
+		if (collider != null)
+		{
+			collider.enabled = false;
+		}
+
+		stateEnum = PlayerStateEnum.OnKilled;
+
+		Time.timeScale = 1;
 	}
-
 }
