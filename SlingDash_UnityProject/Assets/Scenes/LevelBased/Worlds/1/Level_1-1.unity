@@ -15197,6 +15197,8 @@ MonoBehaviour:
   unlockNextLevelInfo: {fileID: 242998793}
   starsToUnlockNextLevelText: {fileID: 1724749976}
   nextLevelText: {fileID: 899655582}
+  timeIntervalBetweenElements: 1
+  waitTimeToIncreaseNumberValue: 0.02
 --- !u!224 &1602205321
 RectTransform:
   m_ObjectHideFlags: 0

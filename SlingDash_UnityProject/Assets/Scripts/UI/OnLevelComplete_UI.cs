@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -19,6 +21,12 @@ public class OnLevelComplete_UI : MonoBehaviour
 	[SerializeField] Text starsToUnlockNextLevelText;
 	[SerializeField] GameObject nextLevelText;
 
+	[Header("Animation variables")]
+	[SerializeField] float timeIntervalBetweenElements;
+	[SerializeField] float waitTimeToIncreaseNumberValue;
+
+	private LevelData levelData;
+
 	void Start () 
 	{
 		LevelBased.LevelManager.Instance.OnLevelComplete_Event += OnLevelComplete;
@@ -26,6 +34,14 @@ public class OnLevelComplete_UI : MonoBehaviour
 	}
 	
 	void OnLevelComplete(LevelData levelData)
+	{
+		gameObject.SetActive(true);
+		this.levelData = levelData;
+
+		UpdateUIElements();
+	}
+
+	void UpdateUIElements()
 	{
 		int totalCoinsEarned = 0;
 
@@ -40,14 +56,23 @@ public class OnLevelComplete_UI : MonoBehaviour
 		}
 
 		for (int i = 0; i < levelData.idsOfStarsPicked.Count; i++)
+		{
 			stars[i].color = Color.white;
+		}
 
 		for (int i = 0; i < LevelBased.LevelManager.Instance.currentNumberOfCollectedStars; i++)
 			totalCoinsEarned += LevelBased.GameManager.Instance.coinsForCollectingStar;
 
+		int currentPlayerCoins = PersistentGameData.Instance.gameData.coins;
+		playerTotalCoins.text = currentPlayerCoins.ToString("0") + " x";
 		PersistentGameData.Instance.AddToCoins(totalCoinsEarned);
 
-		playerTotalCoins.text = PersistentGameData.Instance.gameData.coins.ToString("0") + " x";
+		while (currentPlayerCoins < PersistentGameData.Instance.gameData.coins)
+		{
+			currentPlayerCoins++;
+			playerTotalCoins.text = currentPlayerCoins.ToString("0") + " x";
+		}
+
 		playerTotalNumberOfStars.text = PersistentGameData.Instance.gameData.stars.ToString("0") + " x";
 
 		string nextLevelID = LevelBased.LevelManager.Instance.nextLevelID;
@@ -60,9 +85,7 @@ public class OnLevelComplete_UI : MonoBehaviour
 			starsToUnlockNextLevelText.text = starsToUnlockNextLevel.ToString("0");
 			nextLevelButton.interactable = false;
 		}
-
-		gameObject.SetActive(true);
-	}
+	} 
 
 	void OnDestroy() 
 	{
