@@ -11,6 +11,7 @@ public class ParticlesController : MonoBehaviour
 	private ParticleSystem.Particle[] particles;
 
 	private Vector3 playerPos;
+	private Transform playerTransform;
 
 	private float timer;
 
@@ -19,6 +20,7 @@ public class ParticlesController : MonoBehaviour
 		system = GetComponent<ParticleSystem>();
 		particles = new ParticleSystem.Particle[system.main.maxParticles];
 
+		playerTransform = FindObjectOfType<PlayerSlimy>().transform;
 
 		timer = 0;
 	}
@@ -34,7 +36,8 @@ public class ParticlesController : MonoBehaviour
 
 	private void ParticlesGoToPosition()
 	{
-		playerPos = GameManager.GetInstance().player.transform.position;
+		//playerPos = GameManager.GetInstance().player.transform.position;
+		playerPos = playerTransform.position;
 
 		// GetParticles is allocation free because we reuse the m_Particles buffer between updates
 		int numParticlesAlive = system.GetParticles(particles);

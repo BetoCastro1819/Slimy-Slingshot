@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 	public float speed = 5f;
 	public float offBoundsOffset = 2f;
 	public float forceWhenKilled = 50f;
+	public float flashDurationWhenKilled = 0.2f;
 
 	private Camera cam;
 	private CameraShake cameraShake;
@@ -100,7 +101,18 @@ public class Enemy : MonoBehaviour
 			collider.enabled = false;
 		}
 
+		Material material = GetComponent<SpriteRenderer>().material;
+		material.SetFloat("_FlashAmount", 1.0f);
+		Invoke("ResetFlashAmount", flashDurationWhenKilled);
+
+
         //Destroy(gameObject);
+	}
+
+	private void ResetFlashAmount()
+	{
+		Material material = GetComponent<SpriteRenderer>().material;
+		material.SetFloat("_FlashAmount", 0);
 	}
 
 	private void UpdatePlayerScore()

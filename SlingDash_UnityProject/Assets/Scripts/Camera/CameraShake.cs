@@ -11,7 +11,7 @@ public class CameraShake : MonoBehaviour
 	#endregion
 
 	public float duration = 0.2f;
-	public float magnitude = 4f;
+	public float magnitude = 0.2f;
 
 	private Vector3 originalPos;
 	private bool startShake;

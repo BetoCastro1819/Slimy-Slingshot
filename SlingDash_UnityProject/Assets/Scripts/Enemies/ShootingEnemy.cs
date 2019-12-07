@@ -18,11 +18,12 @@ public class ShootingEnemy : Enemy
     {
         base.Start();
 
-		//main = chargeBulletEffect.main;
-		//main.startLifetime = fireRate;
-
         timer = 0;
-        playerPos = GameManager.GetInstance().player.transform;
+
+        //playerPos = GameManager.GetInstance().player.transform;
+
+		playerPos = FindObjectOfType<PlayerSlimy>().transform;
+
 		killed = false;
     }
 	
@@ -32,8 +33,8 @@ public class ShootingEnemy : Enemy
 
 		if (!killed)
 		{
-			ShootBullet();
 			AimTowardsPlayer();
+			ShootBullet();
 		}
 	}
 
@@ -54,12 +55,6 @@ public class ShootingEnemy : Enemy
 		if (playerPos != null)
 		{
 			Vector2 dir = transform.position - playerPos.position;
-				/*
-				new Vector2(
-				transform.position.x - player.transform.position.x,
-				transform.position.y - player.transform.position.y
-			);
-			*/
 			transform.up = dir;
 		}
 	}
