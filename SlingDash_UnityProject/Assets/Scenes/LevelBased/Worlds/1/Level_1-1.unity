@@ -3472,6 +3472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mission: {fileID: 1259447713}
   crossline: {fileID: 1967469742}
+  crosslineMaxScaleX: 3.2
+  crossAnimationSpeed: 0.2
 --- !u!1 &694354966
 GameObject:
   m_ObjectHideFlags: 0
@@ -21029,7 +21031,7 @@ RectTransform:
   m_GameObject: {fileID: 1967469742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.14, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 670714440}
   m_RootOrder: 0
