@@ -166,6 +166,7 @@ public class PlayerSlimy : MonoBehaviour
 	{
 		transform.up = playerRigidbody.velocity;
 
+
 		if (transform.position.y < lowScreenBoundToRespawn)
 			Respawn();
 	}
@@ -214,6 +215,9 @@ public class PlayerSlimy : MonoBehaviour
 
 	public void Kill()
 	{
+		analogStick.SetActive(false);
+		aimingArrow.SetActive(false);
+
 		animator.SetBool("OnKilled", true);
 
 		cameraShake.StartShake();
