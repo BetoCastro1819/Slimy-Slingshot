@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 198001965399996578}
   - component: {fileID: 199069546601956490}
   m_Layer: 0
-  m_Name: PlayerDeathEffect
+  m_Name: PlayerRespawnEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -624,7 +624,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -827,7 +827,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 500
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2

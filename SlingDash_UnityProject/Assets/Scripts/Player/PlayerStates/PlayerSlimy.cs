@@ -17,11 +17,11 @@ public class PlayerSlimy : MonoBehaviour
 	[SerializeField] GameObject playerBulletPrefab;
 
 	[Header("Killed State")]
-	[SerializeField] GameObject playerDeathEffect;
 	[SerializeField] float forceToApplyOnKilled;
 	[SerializeField] float lowScreenBoundToRespawn;
 
 	[Header("Respawn State")]
+	[SerializeField] GameObject playerRespawnEffect;
 	[SerializeField] float timeToRespawn;
 
 	public Rigidbody2D PlayerRigidbody { get; set; }
@@ -175,7 +175,6 @@ public class PlayerSlimy : MonoBehaviour
 	{
 		transform.position = spawnPosition;
 
-
 		if (playerRigidbody != null)
 		{
 			playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -194,6 +193,7 @@ public class PlayerSlimy : MonoBehaviour
 		animator.SetBool("OnKilled", false);
 
 		// Spawn particle effect as well
+		Instantiate(playerRespawnEffect, transform.position, Quaternion.identity);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) 
@@ -227,6 +227,8 @@ public class PlayerSlimy : MonoBehaviour
 		if (playerRigidbody != null)
 		{
 			playerRigidbody.constraints = RigidbodyConstraints2D.None;
+
+			playerRigidbody.velocity = Vector2.zero;
 			playerRigidbody.AddForce(Vector2.up * forceToApplyOnKilled);
 		}
 

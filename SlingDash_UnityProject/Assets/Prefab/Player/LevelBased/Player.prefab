@@ -190,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148498245310988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.67, y: -4.52, z: 0}
+  m_LocalPosition: {x: -13.67, y: 5.8, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4376325460511558}
@@ -338,10 +338,10 @@ MonoBehaviour:
   slingshotForce: 800
   playerBulletPrefab: {fileID: 1405741431081630, guid: f7ef63a6b9ba18c4c8a20de2a1be449b,
     type: 2}
-  playerDeathEffect: {fileID: 1983724992018360, guid: 43a1f00958667cb4abb23e23a19d6e16,
-    type: 2}
-  forceToApplyOnKilled: 500
+  forceToApplyOnKilled: 200
   lowScreenBoundToRespawn: -12
+  playerRespawnEffect: {fileID: 1983724992018360, guid: 43a1f00958667cb4abb23e23a19d6e16,
+    type: 2}
   timeToRespawn: 1
 --- !u!198 &198816339570390466
 ParticleSystem:
