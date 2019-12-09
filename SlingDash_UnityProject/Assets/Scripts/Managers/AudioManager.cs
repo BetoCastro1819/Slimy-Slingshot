@@ -42,6 +42,11 @@ public class AudioManager : MonoBehaviour
 		UpdateMusicState();
 	}
 
+	public void ToggleSfx()
+	{
+		sfxAreEnabled = !sfxAreEnabled;
+	}
+
 	public void PlayAudioClip(AudioClip clip)
 	{
 		if (sfxAreEnabled)
