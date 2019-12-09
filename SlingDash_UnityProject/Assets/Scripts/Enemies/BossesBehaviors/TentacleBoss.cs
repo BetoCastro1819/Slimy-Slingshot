@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TentacleBoss : MonoBehaviour
+public class TentacleBoss : Enemy //MonoBehaviour
 {
+	[Header("OnSpawn")]
+	public float verticalDistanceToTravel;
+	public float entranceSpeed;
+
 	[Header("Movement")]
 	public float lerpMovementSpeed = 2f;
 	public float timeToLockPosAndAttack = 2f;
@@ -17,6 +21,7 @@ public class TentacleBoss : MonoBehaviour
 	[HideInInspector]
     public int criticalPointsQuant;
 
+	private Vector3 targetStartPosition;
     private LevelManager levelManager;
     private PlayerSlimy player;
     private bool canBeKilled;
@@ -27,14 +32,18 @@ public class TentacleBoss : MonoBehaviour
 	private TentacleBossStates bossState;
 	private enum TentacleBossStates
 	{
+		ON_SPAWN,
 		HORIZONTAL_MOVEMENT,
 		TENTACLE_ATTACK,
 		HEAD_ATTACK,
 		KILLED
 	}
 
-	private void Start()
+	public override void Start()
     {
+		base.Start();
+
+		targetStartPosition = new Vector3(transform.position.x, transform.position.y - verticalDistanceToTravel, transform.position.z);
 		levelManager = LevelManager.GetInstance();
         player = FindObjectOfType<PlayerSlimy>();
         criticalPointsQuant = tentacles.Count;
@@ -42,22 +51,29 @@ public class TentacleBoss : MonoBehaviour
 		lockPosTimer = 0;
 		startMovingTimer = 0;
 
-		bossState = TentacleBossStates.HORIZONTAL_MOVEMENT;
+		bossState = TentacleBossStates.ON_SPAWN;
 		canMove = true;
 	}
 
-	private void Update()
+	public override void Update()
     {
+		base.Update();
+
 		if (player != null && player.enabled)
-		{
 			UpdateBossState();
-		}
 	}
 
 	void UpdateBossState()
 	{
+		if (criticalPointsQuant <= 0)
+			bossState = TentacleBossStates.HEAD_ATTACK;
+		
 		switch (bossState)
 		{
+			case TentacleBossStates.ON_SPAWN:
+				OnSpawn();
+				break;
+
 			case TentacleBossStates.HORIZONTAL_MOVEMENT:
 				HorizontalMovement();
 				break;
@@ -73,6 +89,14 @@ public class TentacleBoss : MonoBehaviour
 			case TentacleBossStates.KILLED:
 				break;
 		}
+	}
+
+	void OnSpawn()
+	{
+		transform.position = Vector3.MoveTowards(transform.position, targetStartPosition, entranceSpeed * Time.deltaTime);
+
+		if (transform.position == targetStartPosition)
+			bossState = TentacleBossStates.HORIZONTAL_MOVEMENT;
 	}
 
 	void HorizontalMovement()
@@ -137,15 +161,22 @@ public class TentacleBoss : MonoBehaviour
 		transform.position = Vector3.Lerp(transform.position, player.transform.position, headAttackSpeed * Time.deltaTime);
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	public override void OnCollisionEnter2D(Collision2D collision)
     {
+		base.OnCollisionEnter2D(collision);
+
         if (collision.gameObject.tag == "PlayerBullet")
         {
             if (canBeKilled)
             {
-                levelManager.BossIsActive = false;
+				Rigidbody2D rb = GetComponent<Rigidbody2D>();
+				rb.constraints = RigidbodyConstraints2D.None;
 
-                Destroy(gameObject);
+				BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+				if (boxCollider)
+					boxCollider.enabled = false;
+
+				bossState = TentacleBossStates.KILLED;
             }
         }
 

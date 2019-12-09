@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     public GameObject coinParticleEffect;
 	public int health = 1;
     public int scoreValue = 50;
-	public int rechargeEnergyBarValue = 40;
 	public float speed = 5f;
 	public float offBoundsOffset = 2f;
 	public float forceWhenKilled = 50f;
