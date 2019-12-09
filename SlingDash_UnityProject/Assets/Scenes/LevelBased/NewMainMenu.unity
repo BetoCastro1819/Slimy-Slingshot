@@ -2884,6 +2884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae6fdb54a3201845be07c1c67cf7003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: c149a24756648d344a9b651b1f69bdca, type: 3}
   mainMenuOptions: {fileID: 360620170}
   collectedStars: {fileID: 810770321}
   numberOfCoins: {fileID: 23648764}

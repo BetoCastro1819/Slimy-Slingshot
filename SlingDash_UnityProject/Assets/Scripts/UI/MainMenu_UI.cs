@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu_UI : MonoBehaviour 
 {
+	[SerializeField] AudioClip buttonSound;
 	[SerializeField] GameObject mainMenuOptions;
 	[SerializeField] Text collectedStars;
 	[SerializeField] Text numberOfCoins;
@@ -39,16 +40,20 @@ public class MainMenu_UI : MonoBehaviour
 
 		objectToEnable.SetActive(true);
 		currentObjectOnDisplay = objectToEnable;
+
+		PlayButtonSound();
 	}
 
 	public void ScreenTapped()
 	{
 		animator.SetTrigger("ScreenTapped");
+		PlayButtonSound();
 	}
 
 	public void Play(string sceneName)
 	{
 		SceneManager.LoadScene(sceneName);
+		PlayButtonSound();
 	}
 
 	public void Back()
@@ -59,5 +64,12 @@ public class MainMenu_UI : MonoBehaviour
 		currentObjectOnDisplay.SetActive(false);
 
 		currentObjectOnDisplay = menuGameObject.previousScreen;
+
+		PlayButtonSound();
+	}
+
+	private void PlayButtonSound()
+	{
+		AudioManager.Instance.PlayAudioClip(buttonSound);
 	}
 }

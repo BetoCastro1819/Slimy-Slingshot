@@ -9,10 +9,11 @@ public class AudioManager : MonoBehaviour
 
 	public static AudioManager Instance { get; private set; }
 
+	private AudioSource audioSource;
+
 	private void Awake()
 	{
-		musicIsEnabled = false;
-		sfxAreEnabled = false;
+		audioSource = GetComponent<AudioSource>();
 
 		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
 		if (audioManager.Length == 1)
@@ -24,14 +25,26 @@ public class AudioManager : MonoBehaviour
 
 			DontDestroyOnLoad(gameObject);
 		}
+		UpdateMusicState();
+	}
+
+	private void UpdateMusicState()
+	{
+		if (musicIsEnabled)
+			musicSource.Play();
+		else
+			musicSource.Stop();
 	}
 
 	public void ToggleMusic()
 	{
 		musicIsEnabled = !musicIsEnabled;
-		if (musicIsEnabled)
-			musicSource.Play();
-		else
-			musicSource.Stop();
+		UpdateMusicState();
+	}
+
+	public void PlayAudioClip(AudioClip clip)
+	{
+		if (sfxAreEnabled)
+			audioSource.PlayOneShot(clip, 1);
 	}
 }
