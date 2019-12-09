@@ -30,11 +30,9 @@ public class PlayerSlimy : MonoBehaviour
 	public StateAiming StateAiming { get; set; }
 	public StateKilled StateKilled { get; set; }
 
-	private Vector2 mousePos;
-	private Rigidbody2D playerRigidbody;
-	private Animator animator;
 
 	public event Action<int> OnSlingshotCounterIncreased_Event;
+	public event Action OnLiveLost_Event;
 	private int slingshotCounter;
 
 	private enum PlayerStateEnum
@@ -44,8 +42,13 @@ public class PlayerSlimy : MonoBehaviour
 		OnKilled
 	}
 	private PlayerStateEnum stateEnum;
+
+	private Vector2 mousePos;
+	private Rigidbody2D playerRigidbody;
+	private Animator animator;
 	private Vector2 spawnPosition;
 	private CameraShake cameraShake;
+	private bool gameOver;
 
 	void Start ()
 	{
@@ -61,6 +64,8 @@ public class PlayerSlimy : MonoBehaviour
 		spawnPosition = transform.position;
 
 		cameraShake = Camera.main.GetComponent<CameraShake>();
+
+		gameOver = false;
 	}
 
 	void Update ()
@@ -168,7 +173,12 @@ public class PlayerSlimy : MonoBehaviour
 
 
 		if (transform.position.y < lowScreenBoundToRespawn)
-			Respawn();
+		{
+			if (!gameOver)
+				Respawn();
+			else
+				Time.timeScale = 0;
+		}
 	}
 
 	void Respawn()
@@ -192,7 +202,6 @@ public class PlayerSlimy : MonoBehaviour
 		stateEnum = PlayerStateEnum.Idle;
 		animator.SetBool("OnKilled", false);
 
-		// Spawn particle effect as well
 		Instantiate(playerRespawnEffect, transform.position, Quaternion.identity);
 	}
 
@@ -241,5 +250,12 @@ public class PlayerSlimy : MonoBehaviour
 		stateEnum = PlayerStateEnum.OnKilled;
 
 		Time.timeScale = 1;
+
+		OnLiveLost_Event();
+	}
+
+	public void OnGameOver()
+	{
+		gameOver = true;
 	}
 }
