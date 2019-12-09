@@ -222,7 +222,6 @@ MonoBehaviour:
     type: 2}
   health: 1
   scoreValue: 50
-  rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
   forceWhenKilled: 500
@@ -231,7 +230,7 @@ MonoBehaviour:
     type: 2}
   bulletsParent: {fileID: 4225279582889400}
   shootinPoint: {fileID: 4946843288139716}
-  fireRate: 1.5
+  fireRate: 2
 --- !u!114 &114589059737378982
 MonoBehaviour:
   m_ObjectHideFlags: 1
