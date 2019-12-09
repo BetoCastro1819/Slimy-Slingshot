@@ -27,6 +27,15 @@ public class PersistentGameData : MonoBehaviour
 
 	private void Start()
 	{
+		PersistentGameData[] persistentGameData = FindObjectsOfType<PersistentGameData>();
+		if (persistentGameData.Length == 1)
+		{
+			Initialize();
+		} 
+	}
+
+	private void Initialize()
+	{
 		Instance = this;
 
 		gameData = new GameData();

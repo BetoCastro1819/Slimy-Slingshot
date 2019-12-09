@@ -22,6 +22,15 @@ namespace LevelBased
 		
 		private void Awake()
 		{
+			GameManager[] gameManager = FindObjectsOfType<GameManager>();
+			if (gameManager.Length == 1)
+			{
+				Initialize();
+			}
+		}
+
+		private void Initialize()
+		{
 			Instance = this;
 
 			Application.targetFrameRate = 60;
@@ -33,10 +42,7 @@ namespace LevelBased
 					starsForEachLevels[i].levelID, starsForEachLevels[i].starsRequiredToUnlock
 				);
 			}
-
 			DontDestroyOnLoad(this.gameObject);
 		}
-
-
 	}
 }
