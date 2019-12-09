@@ -6,9 +6,13 @@ public class MaxSlingshotsMission : Mission
 
 	int slignshotCounter;
 
+	PlayerSlimy player;
+
 	private void Start()
 	{
-		PlayerSlimy.OnSlingshotCounterIncreased_Event += OnSlingshotCounterIncreased;
+		player = FindObjectOfType<PlayerSlimy>();
+		if (player)
+			player.OnSlingshotCounterIncreased_Event += OnSlingshotCounterIncreased;
 	}
 
 	public override bool IsComplete()

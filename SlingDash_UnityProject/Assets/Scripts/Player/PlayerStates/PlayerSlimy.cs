@@ -34,7 +34,7 @@ public class PlayerSlimy : MonoBehaviour
 	private Rigidbody2D playerRigidbody;
 	private Animator animator;
 
-	public static event Action<int> OnSlingshotCounterIncreased_Event;
+	public event Action<int> OnSlingshotCounterIncreased_Event;
 	private int slingshotCounter;
 
 	private enum PlayerStateEnum

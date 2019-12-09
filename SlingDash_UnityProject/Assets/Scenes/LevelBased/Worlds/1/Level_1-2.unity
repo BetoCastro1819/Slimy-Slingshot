@@ -9218,8 +9218,7 @@ MonoBehaviour:
   - {fileID: 1551367724}
   - {fileID: 743497226}
   - {fileID: 110693113}
-  missions:
-  - {fileID: 0}
+  missions: []
 --- !u!1 &1098767957
 GameObject:
   m_ObjectHideFlags: 0
