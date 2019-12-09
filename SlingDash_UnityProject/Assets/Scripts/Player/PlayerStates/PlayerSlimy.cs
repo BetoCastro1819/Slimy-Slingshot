@@ -6,7 +6,12 @@ public class PlayerSlimy : MonoBehaviour
 {
 	public static event Action OnLevelComplete_Event;
 
-	[SerializeField] int health = 1;
+	[Header("Audio")]
+	[SerializeField] AudioClip shotSound;
+	[SerializeField] AudioClip deathSound;
+	[SerializeField] AudioClip onLevelCompleteSound;
+
+	//[SerializeField] int health = 1;
 
 	[Header("Aiming State")]
 	[SerializeField] GameObject analogStick;
@@ -157,6 +162,8 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Shoot()
 	{
+		AudioManager.Instance.PlayAudioClip(shotSound);
+
 		GameObject bullet = Instantiate(playerBulletPrefab, transform.position + (-transform.up), transform.rotation);
 		bullet.transform.up = -transform.up;
 
@@ -209,6 +216,7 @@ public class PlayerSlimy : MonoBehaviour
 	{
 		if (other.CompareTag("Portal"))
 		{
+			AudioManager.Instance.PlayAudioClip(onLevelCompleteSound);
 			OnLevelComplete_Event();
 		}
 
@@ -224,6 +232,8 @@ public class PlayerSlimy : MonoBehaviour
 
 	public void Kill()
 	{
+		AudioManager.Instance.PlayAudioClip(deathSound);
+
 		analogStick.SetActive(false);
 		aimingArrow.SetActive(false);
 

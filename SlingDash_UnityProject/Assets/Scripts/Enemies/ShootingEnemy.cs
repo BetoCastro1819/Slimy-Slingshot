@@ -2,7 +2,6 @@
 
 public class ShootingEnemy : Enemy
 {
-	//public ParticleSystem chargeBulletEffect;
     public GameObject enemyBullet;
     public Transform bulletsParent;
     public Transform shootinPoint;

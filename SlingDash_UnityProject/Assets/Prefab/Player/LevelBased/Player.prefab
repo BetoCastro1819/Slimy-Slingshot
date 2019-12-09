@@ -190,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148498245310988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.67, y: 5.8, z: 0}
+  m_LocalPosition: {x: -13.67, y: -4.52, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4376325460511558}
@@ -330,7 +330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703f6f2cef3932a4f98261aa40908f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  shotSound: {fileID: 8300000, guid: 3083432cf61bd424f83dce8a19d57333, type: 3}
+  deathSound: {fileID: 8300000, guid: 4100c08f24cc92944912b2ac7811c0d5, type: 3}
+  onLevelCompleteSound: {fileID: 8300000, guid: f37d465bc5ffc8c40a42418b2554467f,
+    type: 3}
   analogStick: {fileID: 0}
   stick: {fileID: 0}
   aimingArrow: {fileID: 1543164246559268}

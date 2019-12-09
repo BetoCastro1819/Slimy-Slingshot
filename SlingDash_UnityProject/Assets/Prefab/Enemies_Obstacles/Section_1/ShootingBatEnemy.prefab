@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee6a5fc6481f3d46a96a92088547ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onHitSound: {fileID: 8300000, guid: 753ac7f3c8959f447b3843c982c8e7e8, type: 3}
   coinParticleEffect: {fileID: 1818375870569830, guid: 8b34d56a73dcbee4db6c05926c707b60,
     type: 2}
   health: 1

@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class OnLevelComplete_UI : MonoBehaviour 
 {
+	[Header("Audio")]
+	[SerializeField] AudioClip buttonSound;
+
 	[Header("Stats variables")]
 	[SerializeField] Text coinsForCompletingLevel;
 	[SerializeField] GameObject missionsParent;
@@ -94,17 +97,24 @@ public class OnLevelComplete_UI : MonoBehaviour
 
 	public void OnNextLevelPressed()
 	{
+		PlayButtonSound();
 		SceneManager.LoadScene(LevelBased.LevelManager.Instance.nextLevelID);
 	}
 
 	public void OnBackToMenuPressed()
 	{
+		PlayButtonSound();
 		SceneManager.LoadScene(0);
 	}
 
 	public void OnReplayPressed()
 	{
+		PlayButtonSound();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
+	private void PlayButtonSound()
+	{
+		AudioManager.Instance.PlayAudioClip(buttonSound);
+	}
 }

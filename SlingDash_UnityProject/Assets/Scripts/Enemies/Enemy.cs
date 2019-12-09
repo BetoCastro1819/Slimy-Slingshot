@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
 {
     public static event Action<Enemy> OnEnemyKilled;
 
-    public GameObject coinParticleEffect;
+	public AudioClip onHitSound;
+	public GameObject coinParticleEffect;
 	public int health = 1;
     public int scoreValue = 50;
 	public float speed = 5f;
@@ -59,6 +60,8 @@ public class Enemy : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "PlayerBullet")
 		{
+			AudioManager.Instance.PlayAudioClip(onHitSound);
+			
 			TakeDamage(1);
 
 			if (health <= 0)

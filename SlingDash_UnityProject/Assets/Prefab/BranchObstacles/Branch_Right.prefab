@@ -327,6 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03d4da204e19fa48a4dc0b13d6b126d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  branchOnDestroySound: {fileID: 8300000, guid: 2680a7d855646b8498cc90a3bde588d8,
+    type: 3}
   destroyedObject: {fileID: 1520449110827814, guid: a5176aecd92c1ed46b8ab441a4bb1ba0,
     type: 2}
 --- !u!212 &212806322065683410
