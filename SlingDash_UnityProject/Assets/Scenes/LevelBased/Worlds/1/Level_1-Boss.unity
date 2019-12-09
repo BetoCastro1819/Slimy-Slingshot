@@ -19842,6 +19842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a87827f573a404cac8b5c05516de96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsound: {fileID: 8300000, guid: c149a24756648d344a9b651b1f69bdca, type: 3}
   player: {fileID: 1349050874}
   playersMaxLives: 3
   boss: {fileID: 1662162650}

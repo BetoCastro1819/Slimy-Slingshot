@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class BossLevelManager : MonoBehaviour 
 {
+	[Header("Audio")]
+	[SerializeField] AudioClip buttonsound;
+
 	[Header("Player variables")]
 	[SerializeField] PlayerSlimy player;
 	[SerializeField] int playersMaxLives;
@@ -63,11 +66,18 @@ public class BossLevelManager : MonoBehaviour
 
 	public void OpenScene(string sceneName)
 	{
+		PlayButtonSound();
 		SceneManager.LoadScene(sceneName);
 	}
 
 	public void Replay()
 	{
+		PlayButtonSound();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	private void PlayButtonSound()
+	{
+		AudioManager.Instance.PlayAudioClip(buttonsound);
 	}
 }
