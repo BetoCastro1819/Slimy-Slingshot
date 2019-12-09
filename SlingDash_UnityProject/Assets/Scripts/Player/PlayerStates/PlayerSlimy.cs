@@ -152,7 +152,7 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Shoot()
 	{
-		GameObject bullet = Instantiate(playerBulletPrefab, transform.position, transform.rotation);
+		GameObject bullet = Instantiate(playerBulletPrefab, transform.position + (-transform.up), transform.rotation);
 		bullet.transform.up = -transform.up;
 
 		playerRigidbody.velocity = Vector2.zero;
