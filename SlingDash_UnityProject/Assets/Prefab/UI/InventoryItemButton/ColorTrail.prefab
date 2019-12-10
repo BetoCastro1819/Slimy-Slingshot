@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryParent: {fileID: 0}
+  buttonSound: {fileID: 8300000, guid: c149a24756648d344a9b651b1f69bdca, type: 3}
   itemEquippedMessage: {fileID: 1285537514209638}
   itemPath: trails/colors
 --- !u!114 &114569450884408294

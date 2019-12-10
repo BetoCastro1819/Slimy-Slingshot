@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class StoreItemButton_UI : MonoBehaviour 
 {
+	[Header("Audio")]
+	[SerializeField] AudioClip buttonSound;
+
 	[Header("Inventory items variables")]
 	[SerializeField] GameObject invetoryItemsParent;
 	[SerializeField] GameObject invetoryItemButtonPrefab;
@@ -30,6 +33,7 @@ public class StoreItemButton_UI : MonoBehaviour
 		int currentPlayerCoins = PersistentGameData.Instance.gameData.coins; 
 		if (currentPlayerCoins >= price)
 		{
+			AudioManager.Instance.PlayAudioClip(buttonSound);
 			PersistentGameData.Instance.SubstractFromCoins(price);
 			PersistentGameData.Instance.SetTrailAsCurrent(itemPath);
 			PersistentGameData.Instance.AddTrailToPurchaseList(itemPath);
