@@ -89,6 +89,12 @@ public class PersistentGameData : MonoBehaviour
 		UpdateLocalGameData();
 	}
 
+	public void AddTrailToPurchaseList(string trailPath)
+	{
+		gameData.trailsPurchased.Add(trailPath);
+		UpdateLocalGameData();
+	}
+
 	public void SetTrailAsCurrent(string trailPath)
 	{
 		gameData.currentPlayerTrail = trailPath;

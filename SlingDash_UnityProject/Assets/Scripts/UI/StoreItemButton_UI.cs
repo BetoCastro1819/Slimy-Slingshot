@@ -16,25 +16,42 @@ public class StoreItemButton_UI : MonoBehaviour
 
 	void Start()
 	{
-		// Check against persisten data to see if player already owns this product
-		// If he owns it, disable the button and display message
-
 		priceText.text = price.ToString() + " x";
+
+		if (PersistentGameData.Instance.gameData.trailsPurchased.Contains(itemPath))
+		{
+			AddItemToInventory();
+			Destroy(gameObject);
+		}
 	}
 
 	public void PurchaseItem()
 	{
-		PersistentGameData.Instance.SubstractFromCoins(price);
-		PersistentGameData.Instance.SetTrailAsCurrent(itemPath);
+		int currentPlayerCoins = PersistentGameData.Instance.gameData.coins; 
+		if (currentPlayerCoins >= price)
+		{
+			PersistentGameData.Instance.SubstractFromCoins(price);
+			PersistentGameData.Instance.SetTrailAsCurrent(itemPath);
+			PersistentGameData.Instance.AddTrailToPurchaseList(itemPath);
 
+			AddItemToInventory();
+		
+			Destroy(gameObject);
+		}
+	}
+
+	private void AddItemToInventory()
+	{
 		GameObject inventoryItem = Instantiate(invetoryItemButtonPrefab);
 		inventoryItem.name = invetoryItemButtonPrefab.name;
 		inventoryItem.transform.parent = invetoryItemsParent.transform;
 		inventoryItem.transform.localScale = Vector3.one;
 
-		Destroy(gameObject);
-
-		// Set item as owned
-		// Add item to player inventory list
+		InventoryItemsParent_UI inventoryParent = invetoryItemsParent.GetComponent<InventoryItemsParent_UI>();
+		InventoryItemButton_UI inventoryItemButton = inventoryItem.GetComponent<InventoryItemButton_UI>();
+		inventoryItemButton.inventoryParent = inventoryParent;
+		inventoryParent.inventoryItems.Add(inventoryItemButton);
+		inventoryParent.UpdateItemsState();
+		
 	}
 }

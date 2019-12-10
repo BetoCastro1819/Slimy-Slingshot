@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe8b7430253ab34d9e6d2aea840638d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryParent: {fileID: 0}
   itemEquippedMessage: {fileID: 1285537514209638}
   itemPath: trails/colors
 --- !u!114 &114569450884408294
@@ -160,8 +161,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: PurchaseItem
+      - m_Target: {fileID: 114441202778839458}
+        m_MethodName: EquipItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

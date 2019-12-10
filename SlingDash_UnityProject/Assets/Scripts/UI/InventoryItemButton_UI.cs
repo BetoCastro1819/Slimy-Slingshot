@@ -2,6 +2,8 @@
 
 public class InventoryItemButton_UI : MonoBehaviour 
 {
+	public InventoryItemsParent_UI inventoryParent;
+
 	[SerializeField] GameObject itemEquippedMessage;
 	[SerializeField] string itemPath;
 
@@ -14,9 +16,10 @@ public class InventoryItemButton_UI : MonoBehaviour
 	{
 		PersistentGameData.Instance.SetTrailAsCurrent(itemPath);
 		UpdateItemEquippedState();
+		inventoryParent.UpdateItemsState();
 	}
 
-	private void UpdateItemEquippedState()
+	public void UpdateItemEquippedState()
 	{
 		bool itemIsEquipped = (PersistentGameData.Instance.gameData.currentPlayerTrail == itemPath);
 		if (itemIsEquipped)
