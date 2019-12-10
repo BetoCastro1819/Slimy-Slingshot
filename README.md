@@ -26,10 +26,8 @@ This is a game (demo/protoype/vertical slice) developed by students from
 (in alphabetical order)
 
 - **Nombre Apellido** - *Programming* - <a href="LINK A RED"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/linkedin.svg" /></a> 
-
 <a href="LINK A RED"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/facebook.svg" /></a>
-<a href="LINK A RED"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/twitter.svg" /> <img height="16" width="16" 
-src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
+<a href="LINK A RED"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/twitter.svg" /> <img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
 <a href="LINK A RED"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/behance.svg" /></a>
 <a href="LINK A RED"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/artstation.svg" /></a>
 
@@ -66,7 +64,7 @@ This game was also possible thanks to the support of these professors:
 
 - **Federico Barra**
 
-- **Jorge Cuéllar**
+- **Jorge Cuï¿½llar**
 
 - **Fernando Puig**
 
@@ -77,7 +75,7 @@ This game was also possible thanks to the support of these professors:
 ## Acknowledgements
 
 
-Otras personas a las que quieran agradecerles, sino sacar este título
+Otras personas a las que quieran agradecerles, sino sacar este tï¿½tulo
 
 
 ##
