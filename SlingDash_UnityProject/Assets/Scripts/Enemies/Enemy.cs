@@ -119,19 +119,19 @@ public class Enemy : MonoBehaviour
 
 	private void UpdatePlayerScore()
 	{
-		if (ScoreManager.Get() != null)
-		{
-			ScoreManager.Get().AddScore(scoreValue);
-		}
-
-		if (CoinManager.Get() != null)
-		{
-			CoinManager.Get().AddCoins(20);
-		}
-
-		if (UI_Manager.Get() != null)
-		{
-			UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
-		}
+		//if (ScoreManager.Get() != null)
+		//{
+		//	ScoreManager.Get().AddScore(scoreValue);
+		//}
+//
+		//if (CoinManager.Get() != null)
+		//{
+		//	CoinManager.Get().AddCoins(20);
+		//}
+//
+		//if (UI_Manager.Get() != null)
+		//{
+		//	UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
+		//}
 	}
 }

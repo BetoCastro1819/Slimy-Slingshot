@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SheepBoss : Enemy {
 
@@ -44,15 +42,15 @@ public class SheepBoss : Enemy {
 
         if (health <= 0)
         {
-            LevelManager.GetInstance().BossIsActive = false;
+            //LevelManager.GetInstance().BossIsActive = false;
             Destroy(gameObject);
         }
     }
 
     public void Fire() {
         GameObject instantiatedbullet = Instantiate(bossBulettPrefab, shootingPoint.transform.position , Quaternion.identity);
-        TrackingBullet bullet = instantiatedbullet.GetComponent<TrackingBullet>();
-        bullet.SetPlayer(GameManager.GetInstance().player);
+        //TrackingBullet bullet = instantiatedbullet.GetComponent<TrackingBullet>();
+        //bullet.SetPlayer(GameManager.GetInstance().player);
     }
 
     public void SpawnPlatforms() {

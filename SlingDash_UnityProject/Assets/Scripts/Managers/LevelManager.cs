@@ -1,265 +1,163 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+[System.Serializable]
+public class LevelData
 {
-	#region Singleton
-	private static LevelManager instance;
-	public static LevelManager GetInstance()
+	public string levelID;
+	public int starsRequiredToUnlock;
+	public List<int> idsOfStarsPicked;
+	public Dictionary<string, bool> missions;
+
+	public LevelData()
 	{
-		return instance;
+		levelID = "";
+		starsRequiredToUnlock = 0;
+		idsOfStarsPicked = new List<int>();
+		missions = new Dictionary<string, bool>();
 	}
+}
 
-	private void Awake()
+namespace LevelBased
+{
+	public class LevelManager : MonoBehaviour
 	{
-		instance = this;
-	}
-	#endregion
-
-	public int sectionIndex = 1;
-
-	[Header("Spawners")]
-	public Transform spawnersParent;                        // GameObject parent of the group of spawners
-
-	public Transform spawnerLeft;
-	public Transform spawnerCenter;
-	public Transform spawnerRight;
-
-	[Header("Meter Events")]
-	public float timeToSpawnBoss;
-	public GameObject UI_BossIncoming;
-	public MeterDetector meterDetector;                     // Player's current max height reached in meters
-	public List<MeterEvent> meterEventList;                 // List of the events based on player's current travelled distance (E.g: Boss Fight)
-
-	[Header("List of GameObjects per section")]
-	public List<List<WeightedGameObject>> listOfSections;
-	public List<WeightedGameObject> objectsSection1;		// List of all possible objects to be spawned in the level
-	public List<WeightedGameObject> objectsSection2;		// List of all possible objects to be spawned in the level
-
-	public float distBtwnObjects = 10f;                     // Distance between each spawned object
-	public float spawningOffset = 2f;                       // Offset to spawn object out of camera view
-	
-	public LevelState LevelManagerState { get; set; }
-	public bool BossIsActive { get; set; }                  // Is true whenever a Boss Event is currently active
-	public bool OnTutorial { get; set; }
-	public int CurrentSectionIndex { get; set; }
-
-	private List<Transform> listOfSpawners;
-	private int sumOfWeights;                               // Sum of all the weights of the gameObjects 
-	private float spawnObjectAt;                            // Position where to spawn next object
-
-	private GameObject bossToSpawn;
-	private float spawnBossTimer;
-	private float spawnBossAtMeters;
-	[System.Serializable]
-	public struct WeightedGameObject
-	{
-		public GameObject go;
-		public int weight;
-		public GameObjectKey key;
-	}
-
-	public enum GameObjectKey
-	{
-		LEFT_BRANCH,
-		RIGHT_BRANCH,
-		NOT_BRANCH,
-	}
-
-	public enum LevelState
-	{
-		ON_TUTORIAL,
-		STANDARD_GAMEPLAY,
-		BOSS_INCOMING,
-		ON_BOSS_FIGHT,
-		PLAYER_KILLED_BOSS
-	}
-
-	void Start ()
-	{
-		listOfSections = new List<List<WeightedGameObject>>
+		#region Singleton
+		public static LevelManager Instance { get; private set; }
+		private void Awake() 
 		{
-			objectsSection1,
-			objectsSection2
-		};
-
-		listOfSpawners = new List<Transform>
-		{
-			spawnerLeft,
-			spawnerCenter,
-			spawnerRight
-		};
-
-		LevelManagerState = LevelState.ON_TUTORIAL;
-
-		spawnObjectAt = spawnersParent.transform.position.y;
-		OnTutorial = true;
-		CurrentSectionIndex = sectionIndex;
-
-		UI_BossIncoming.SetActive(false);
-		BossIsActive = false;
-		spawnBossTimer = 0;
-
-		// TODO: make this better...
-		spawnBossAtMeters = meterEventList[0].eventAt;
-		Debug.Log("Spawn Boss at: " + spawnBossAtMeters);
-
-		//Debug.Log("List of Sections: " + listOfSections.Count);
-	}
-
-	void Update ()
-	{
-		UpdateState();
-	}
-
-	void UpdateState()
-	{
-		switch (LevelManagerState)
-		{
-			case LevelState.ON_TUTORIAL:
-				LevelTutorial();
-				break;
-
-			case LevelState.STANDARD_GAMEPLAY:
-				CheckPositionToSpawnObjects();
-				CheckForMeterEvents();
-				break;
-
-			case LevelState.BOSS_INCOMING:
-				OnBossFightEnter();
-				break;
-
-			case LevelState.ON_BOSS_FIGHT:
-				CheckBossCondition();
-				break;
-
-			case LevelState.PLAYER_KILLED_BOSS:
-				GoToNextSection();
-				break;
+			Instance = this;	
 		}
-	}
+		#endregion
 
-	void LevelTutorial()
-	{
-		if (!OnTutorial)
+		[SerializeField] string m_nextLevelID;
+		[SerializeField] int m_coinsForCompletingLevel;
+		[SerializeField] List<Star> stars;
+		[SerializeField] List<Mission> missions;
+
+		public event Action<LevelData> OnLevelComplete_Event;
+
+		public string nextLevelID { get { return m_nextLevelID; } }
+		public int coinsForCompletingLevel { get { return m_coinsForCompletingLevel; } }
+
+		public enum GameState
 		{
-			LevelManagerState = LevelState.STANDARD_GAMEPLAY;
+			OnPlay,
+			OnPause
 		}
-	}
+		public GameState state { get; private set; }
+		public LevelData levelData { get; private set; }
 
-	void CheckPositionToSpawnObjects()
-	{
-		if (spawnersParent.transform.position.y + spawningOffset > spawnObjectAt)
+		public int currentNumberOfCollectedStars { get; private set; }
+
+		void Start()
 		{
-			SpawnObject();
-			spawnObjectAt = spawnersParent.transform.position.y + distBtwnObjects;
-		}
-	}
+			InitializeLevelID();
+			InitializeMissions();
+			SetupObserverMethods();
+			InitializeStars();
+			DestroyAlreadyPickedUpStars();
 
-	void SpawnObject()
-	{
-        sumOfWeights = 0;
-
-		var currentSectionObjs = listOfSections[CurrentSectionIndex];
-
-		for (int i = 0; i < currentSectionObjs.Count; i++)
-		{
-			sumOfWeights += currentSectionObjs[i].weight;
+			state = GameState.OnPlay;
 		}
 
-        int randomWeight = Random.Range(0, sumOfWeights);
-        for (int i = 0; i < currentSectionObjs.Count; i++)
-        {
-            if (randomWeight < currentSectionObjs[i].weight)
-            {
-				if (currentSectionObjs[i].key == GameObjectKey.LEFT_BRANCH)
-				{
-					Instantiate(currentSectionObjs[i].go, spawnerLeft.transform.position, Quaternion.identity);
-				}
-				else if (currentSectionObjs[i].key == GameObjectKey.RIGHT_BRANCH)
-				{
-					Instantiate(currentSectionObjs[i].go, spawnerRight.transform.position, Quaternion.identity);
-				}
-				else
-				{
-					int spawnerIndex = Random.Range(0, listOfSpawners.Count);             
-					Instantiate(currentSectionObjs[i].go, listOfSpawners[spawnerIndex].transform.position, Quaternion.identity);
-				}
-				return;
-            }
-
-            randomWeight -= currentSectionObjs[i].weight; 
-        }
-    }
-
-
-
-	void CheckForMeterEvents()
-	{
-		for (int i = 0; i < meterEventList.Count; i++)
+		void InitializeLevelID()
 		{
-			switch (meterEventList[i].type)
+			string levelID = SceneManager.GetActiveScene().name;
+			levelData = PersistentGameData.Instance.gameData.levelsData[levelID];
+			levelData.levelID = levelID;
+			//Debug.Log("Current levelID: " + levelData.levelID);
+		}
+
+		void InitializeMissions()
+		{
+			for (int i = 0; i < missions.Count; i++)
 			{
-				case EventType.SPAWN:
-					if (meterDetector.GetMetersTravelled() >= spawnBossAtMeters && !BossIsActive)
-					{
-						LevelManagerState = LevelState.BOSS_INCOMING;
-						SetBossToSpawn(meterEventList[i].prefabToSpawn[CurrentSectionIndex]);
-					}
-					break;
+				var persistentMissionsData = PersistentGameData.Instance.gameData.levelsData[levelData.levelID].missions;
+				if (!persistentMissionsData.ContainsKey(missions[i].missionID))
+					levelData.missions.Add(missions[i].missionID, missions[i].isComplete);
 			}
 		}
-	}
 
-	void OnBossFightEnter()
-	{
-		if (UI_BossIncoming.activeInHierarchy == false)
+		void SetupObserverMethods()
 		{
-			UI_BossIncoming.SetActive(true);
+			PlayerSlimy.OnLevelComplete_Event += OnLevelComplete;
+			Player_UI.OnPause_Event += OnPause;
+			PauseMenu_UI.OnResumeGame_Event += OnResume;
+			Star.OnStarPickedUp_Event += OnStarPickedUp;
 		}
 
-		spawnBossTimer += Time.unscaledDeltaTime;
-		if (spawnBossTimer >= timeToSpawnBoss)
+		void InitializeStars()
 		{
-			// Spawn boss at next meter event point
-			SpawnBoss(bossToSpawn);
-		}
-	}
+			currentNumberOfCollectedStars = 0;
 
-	void CheckBossCondition()
-	{
-		if (!BossIsActive)
-		{
-			// Enable portal for next sector
-			LevelManagerState = LevelState.PLAYER_KILLED_BOSS;
-			spawnBossAtMeters = Camera.main.transform.position.y + meterEventList[0].eventAt;
-
-			Debug.Log("Spawn Boss at: " + spawnBossAtMeters);
-		}
-	}
-
-	void SetBossToSpawn(GameObject boss)
-	{
-		bossToSpawn = boss;
-	}
-
-	private void SpawnBoss(GameObject spawn)
-	{
-		Instantiate(spawn, Camera.main.transform, false);
-		spawnBossTimer = 0;
-		UI_BossIncoming.SetActive(false);
-		BossIsActive = true;
-		LevelManagerState = LevelState.ON_BOSS_FIGHT;
-	}
-
-	private void GoToNextSection()
-	{
-		if (CurrentSectionIndex + 1 < listOfSections.Count)
-		{
-			CurrentSectionIndex++;
+			for (int starID = 0; starID < stars.Count; starID++)
+				stars[starID].starID = starID;
 		}
 
-		LevelManagerState = LevelState.STANDARD_GAMEPLAY;
+		void DestroyAlreadyPickedUpStars()
+		{
+			for (int i = 0; i < stars.Count; i++)
+			{
+				if (levelData.idsOfStarsPicked.Contains(stars[i].starID))
+					Destroy(stars[i].gameObject);
+			}
+		}
+
+		void OnLevelComplete()
+		{
+			//Debug.Log("On level complete");
+
+			PersistentGameData.Instance.AddToStarsCollected(currentNumberOfCollectedStars);
+			UpdatePersistentMissionsStates();
+			PersistentGameData.Instance.UpdateLevelData(levelData);
+
+			OnLevelComplete_Event(levelData);
+
+			OnPause();
+		}
+
+		void UpdatePersistentMissionsStates()
+		{
+			for (int i = 0; i < missions.Count; i++)
+			{
+				if (missions[i].IsComplete())
+				{
+					levelData.missions[missions[i].missionID] = missions[i].isComplete;
+				}
+
+				if (levelData.missions[missions[i].missionID])
+					Debug.LogFormat("Mission {0} was completed", missions[i].missionID);
+			}
+		}
+
+		void OnResume()
+		{
+			Time.timeScale = 1;
+		}
+
+		void OnPause()
+		{
+			Time.timeScale = 0;
+		}
+
+		void OnStarPickedUp(int starID)
+		{
+			levelData.idsOfStarsPicked.Add(starID);
+			currentNumberOfCollectedStars++;
+		}
+
+		// Monobehaviour method
+		void OnDestroy() 
+		{
+			PlayerSlimy.OnLevelComplete_Event -= OnLevelComplete;
+			Player_UI.OnPause_Event -= OnPause;
+			PauseMenu_UI.OnResumeGame_Event -= OnResume;
+
+			Star.OnStarPickedUp_Event -= OnStarPickedUp;
+		}
+
 	}
 }

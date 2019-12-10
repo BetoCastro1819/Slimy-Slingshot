@@ -34,11 +34,6 @@ public class PlayerSlimy : MonoBehaviour
 
 	public Rigidbody2D PlayerRigidbody { get; set; }
 
-	public StateMoving StateMoving { get; set; }
-	public StateAiming StateAiming { get; set; }
-	public StateKilled StateKilled { get; set; }
-
-
 	public event Action<int> OnSlingshotCounterIncreased_Event;
 	public event Action OnLiveLost_Event;
 	private int slingshotCounter;

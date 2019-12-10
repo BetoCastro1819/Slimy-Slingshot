@@ -12,7 +12,7 @@ public abstract class Mission : MonoBehaviour
 
     public void Reward() 
 	{
-        CoinManager.Get().AddCoins(coinReward);
+        //CoinManager.Get().AddCoins(coinReward);
         Destroy(gameObject);
     }
 

@@ -22,7 +22,7 @@ public class TentacleBoss : Enemy //MonoBehaviour
     public int criticalPointsQuant;
 
 	private Vector3 targetStartPosition;
-    private LevelManager levelManager;
+    //private LevelManager levelManager;
     private PlayerSlimy player;
     private bool canBeKilled;
     private float startMovingTimer;
@@ -44,7 +44,7 @@ public class TentacleBoss : Enemy //MonoBehaviour
 		base.Start();
 
 		targetStartPosition = new Vector3(transform.position.x, transform.position.y - verticalDistanceToTravel, transform.position.z);
-		levelManager = LevelManager.GetInstance();
+		//levelManager = LevelManager.GetInstance();
         player = FindObjectOfType<PlayerSlimy>();
         criticalPointsQuant = tentacles.Count;
         canBeKilled = false;
