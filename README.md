@@ -19,12 +19,12 @@ This is a game developed by students from <a href="https://www.imagecampus.edu.a
 
 - **Mercedes Albinati** - *Art* - <a href="https://azulrose.artstation.com/"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/artstation.svg" /></a>
 Mail: mechialbinati@gmail.com
-- **Jose Quintana** - *Programming* - <a href="https://github.com/Glyn06"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
+- **Jose Quintana Martín** - *Programming* - <a href="https://github.com/Glyn06"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
 Mail: jquintanamartin.games@gmail.com
 - **Alberto Castro** - *Programming* - <a href="https://www.linkedin.com/in/alberto-castro-baptista-a2132b131/"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/linkedin.svg" /></a> <a href="https://github.com/BetoCastro1819"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
 Mail: betocastro1819@gmail.com
 - **Sebastián Blejman** - *Audio* - 
-Mail: sebastian@blejman.com
+Mail: sebastian@blejman.com, peaceandnoise.estudio@gmail.com
 
 This game was also possible thanks to the support of these professors:
 
