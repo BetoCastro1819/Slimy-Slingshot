@@ -17,7 +17,7 @@ This is a game developed by students from <a href="https://www.imagecampus.edu.a
 
 ## Credits
 
-- **Mercedes Albinatti** - *Art* - <a href="https://azulrose.artstation.com/"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/artstation.svg" /></a>
+- **Mercedes Albinati** - *Art* - <a href="https://azulrose.artstation.com/"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/artstation.svg" /></a>
 Mail: mechialbinati@gmail.com
 - **Jose Quintana** - *Programming* - <a href="https://github.com/Glyn06"><img height="16" width="16" src="https://unpkg.com/simple-icons@latest/icons/github.svg" /></a>
 Mail: jquintanamartin.games@gmail.com
