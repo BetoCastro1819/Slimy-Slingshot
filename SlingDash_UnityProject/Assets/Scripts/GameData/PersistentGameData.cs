@@ -8,13 +8,17 @@ public class GameData
 {
 	public int stars;
 	public int coins;
+	public string currentPlayerTrail;
+	public List<string> trailsPurchased;
 	public Dictionary<string, LevelData> levelsData;
 
 	public GameData() 
 	{
-		levelsData = new Dictionary<string, LevelData>();
 		stars = 0;
 		coins = 0;
+		currentPlayerTrail = "trails/standard";
+		trailsPurchased = new List<string>();
+		levelsData = new Dictionary<string, LevelData>();
 	}
 }
 

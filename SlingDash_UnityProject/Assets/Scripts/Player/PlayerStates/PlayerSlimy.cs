@@ -6,6 +6,9 @@ public class PlayerSlimy : MonoBehaviour
 {
 	public static event Action OnLevelComplete_Event;
 
+	[Header("Trail particles")]
+	[SerializeField] ParticleSystem trailParticleSystem;
+
 	[Header("Audio")]
 	[SerializeField] AudioClip shotSound;
 	[SerializeField] AudioClip deathSound;
@@ -55,8 +58,13 @@ public class PlayerSlimy : MonoBehaviour
 	private CameraShake cameraShake;
 	private bool gameOver;
 
+
 	void Start ()
 	{
+		Renderer particleRenderer = trailParticleSystem.GetComponent<Renderer>();
+		string currentPlayerTrail = PersistentGameData.Instance.gameData.currentPlayerTrail;
+		particleRenderer.material = Resources.Load<Material>(currentPlayerTrail);
+		
 		playerRigidbody = GetComponent<Rigidbody2D>();
 		playerRigidbody.interpolation = RigidbodyInterpolation2D.Interpolate;
 

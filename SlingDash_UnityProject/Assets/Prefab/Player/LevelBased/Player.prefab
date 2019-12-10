@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703f6f2cef3932a4f98261aa40908f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailParticleSystem: {fileID: 198816339570390466}
   shotSound: {fileID: 8300000, guid: 3083432cf61bd424f83dce8a19d57333, type: 3}
   deathSound: {fileID: 8300000, guid: 4100c08f24cc92944912b2ac7811c0d5, type: 3}
   onLevelCompleteSound: {fileID: 8300000, guid: f37d465bc5ffc8c40a42418b2554467f,
@@ -9428,7 +9429,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c163ecfca1816be4fa09e34c3287325b, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
