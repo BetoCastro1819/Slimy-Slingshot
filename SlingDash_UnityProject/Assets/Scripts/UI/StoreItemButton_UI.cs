@@ -16,6 +16,7 @@ public class StoreItemButton_UI : MonoBehaviour
 
 	[Header("UI elements")]
 	[SerializeField] Text priceText;
+	[SerializeField] Animator notenoughCoinsPopUp;
 
 	void Start()
 	{
@@ -41,6 +42,10 @@ public class StoreItemButton_UI : MonoBehaviour
 			AddItemToInventory();
 		
 			Destroy(gameObject);
+		}
+		else
+		{
+			notenoughCoinsPopUp.SetTrigger("DisplayPopUp");
 		}
 	}
 
