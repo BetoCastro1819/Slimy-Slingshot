@@ -78,7 +78,7 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Update ()
 	{
-		if (EventSystem.current.IsPointerOverGameObject()) return;
+		if (EventSystem.current.IsPointerOverGameObject(0)) return;
 
 		if (LevelBased.LevelManager.Instance.state != LevelBased.LevelManager.GameState.OnPause)
 		{
