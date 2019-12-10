@@ -8,5 +8,7 @@ public class TutorialDisplayer : MonoBehaviour
 	{
 		if (PersistentGameData.Instance.gameData.timesPlayed <= 1)
 			tutorialCanvas.SetActive(true);
+		else
+			tutorialCanvas.SetActive(false);
 	}
 }
