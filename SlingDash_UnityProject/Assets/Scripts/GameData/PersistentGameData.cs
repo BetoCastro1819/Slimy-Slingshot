@@ -7,6 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+	public int timesPlayed;
 	public int stars;
 	public int coins;
 	public string currentPlayerTrail;
@@ -15,6 +16,7 @@ public class GameData
 
 	public GameData() 
 	{
+		timesPlayed = 0;
 		stars = 0;
 		coins = 0;
 		currentPlayerTrail = "trails/standard";
@@ -47,6 +49,8 @@ public class PersistentGameData : MonoBehaviour
 		gameData = new GameData();
 
 		LoadLocalGameData();
+
+		AddOneToTimesPlayed();
 
 		Debug.LogFormat("Current amount of collected stars: {0}", gameData.stars);
 
@@ -146,6 +150,12 @@ public class PersistentGameData : MonoBehaviour
 		UpdateLocalGameData();
 	}
 
+	private void AddOneToTimesPlayed()
+	{
+		gameData.timesPlayed++;
+		UpdateLocalGameData();
+	}
+
 	private void UpdateLocalGameData()
 	{
 		BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -159,4 +169,5 @@ public class PersistentGameData : MonoBehaviour
 		binaryFormatter.Serialize(stream, gameData);
 		stream.Close();
 	}
+
 }
