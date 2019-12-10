@@ -29,6 +29,14 @@ namespace LevelBased
 			}
 		}
 
+		private void Start()
+		{
+			for (int i = 0; i < starsForEachLevels.Count; i++)
+			{
+				PersistentGameData.Instance.UpdateRequiredStarsToUnlockLevel(starsForEachLevels[i].levelID, starsForEachLevels[i].starsRequiredToUnlock);
+			}
+		}
+
 		private void Initialize()
 		{
 			Instance = this;
