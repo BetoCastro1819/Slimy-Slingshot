@@ -1,39 +1,36 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
 public class DebugScreen : MonoBehaviour
 {
-    public GameObject panel;
-    public GameObject buttonPrefab;
+	[SerializeField] Button buttonToEnableDebugScreen;
+	[SerializeField] GameObject debugButtons;
+	[SerializeField] int coinAmountToAdd;
+	[SerializeField] int starsToAdd;
 
-    #region Singleton
-    private static DebugScreen instance;
-    public static DebugScreen Get()
-    {
-        return instance;
-    }
+	private void Start()
+	{
+		debugButtons.SetActive(false);
+		buttonToEnableDebugScreen.onClick.AddListener(EnableDebugScreen);
+	}
 
-    void Awake()
-    {
-        instance = this;
-    }
-    #endregion
+	private void EnableDebugScreen()
+	{
+		debugButtons.SetActive(true);
+	}
 
-    public void AddButton(string buttonName, Action action)
-    {
-        GameObject button = Instantiate(buttonPrefab);
+	public void HideDebugScreen()
+	{
+		debugButtons.SetActive(false);
+	}
 
-        Text buttonText = buttonPrefab.GetComponentInChildren<Text>();
-        buttonText.text = buttonName;
+	public void AddStars()
+	{
+		PersistentGameData.Instance.AddToStarsCollected(starsToAdd);
+	}
 
-        button.GetComponent<Button>().onClick.AddListener(() => action());
-
-        button.transform.parent = panel.transform;
-    }
-
-    void Update ()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-            panel.SetActive(!panel.activeSelf);
-    }
+	public void AddCoins()
+	{
+		PersistentGameData.Instance.AddToCoins(coinAmountToAdd);
+	}
 }

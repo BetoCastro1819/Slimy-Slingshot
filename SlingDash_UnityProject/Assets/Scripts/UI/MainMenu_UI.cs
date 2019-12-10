@@ -24,8 +24,8 @@ public class MainMenu_UI : MonoBehaviour
 
 	public void UpdateStarsAndCoinsUI()
 	{
-		collectedStars.text = "x " + PersistentGameData.Instance.gameData.stars.ToString("0");
-		numberOfCoins.text = "x " + PersistentGameData.Instance.gameData.coins.ToString("0");
+		collectedStars.text = "x " + PersistentGameData.Instance.gameData.stars.ToString();
+		numberOfCoins.text = "x " + PersistentGameData.Instance.gameData.coins.ToString();
 	}
 
 	public void OnMenuExitFinished()

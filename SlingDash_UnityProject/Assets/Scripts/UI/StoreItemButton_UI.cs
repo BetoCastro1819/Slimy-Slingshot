@@ -18,4 +18,13 @@ public class StoreItemButton_UI : MonoBehaviour
 
 		priceText.text = price.ToString() + " x";
 	}
+
+	public void PurchaseItem()
+	{
+		PersistentGameData.Instance.SubstractFromCoins(price);
+		PersistentGameData.Instance.SetTrailAsCurrent(itemPath);
+
+		// Set item as owned
+		// Add item to player inventory list
+	}
 }

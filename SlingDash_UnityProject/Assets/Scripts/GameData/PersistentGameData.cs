@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class GameData
 
 public class PersistentGameData : MonoBehaviour
 {
+	[SerializeField] MainMenu_UI mainMenu;
 	[SerializeField] string gameDataFileName;
 
 	public static PersistentGameData Instance { get; private set; }
@@ -87,15 +89,40 @@ public class PersistentGameData : MonoBehaviour
 		UpdateLocalGameData();
 	}
 
+	public void SetTrailAsCurrent(string trailPath)
+	{
+		gameData.currentPlayerTrail = trailPath;
+		UpdateLocalGameData();
+	}
+
+	public void SubstractFromCoins(int amountToSubstract)
+	{
+		gameData.coins -= amountToSubstract;
+		if (gameData.coins < 0) gameData.coins = 0;
+
+		if (mainMenu)
+			mainMenu.UpdateStarsAndCoinsUI();
+
+		UpdateLocalGameData();
+	}
+
 	public void AddToCoins(int coinsToAdd)
 	{
 		gameData.coins += coinsToAdd;
+
+		if (mainMenu)
+			mainMenu.UpdateStarsAndCoinsUI();
+
 		UpdateLocalGameData();
 	}
 
 	public void AddToStarsCollected(int starsToAdd)
 	{
 		gameData.stars += starsToAdd;
+
+		if (mainMenu)
+			mainMenu.UpdateStarsAndCoinsUI();
+
 		UpdateLocalGameData();
 	}
 
