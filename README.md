@@ -25,6 +25,9 @@ Mail: jquintanamartin.games@gmail.com
 Mail: betocastro1819@gmail.com
 - **Sebastián Blejman** - *Audio* - 
 Mail: sebastian@blejman.com, peaceandnoise.estudio@gmail.com
+- **José Hernán Canteros** - *QA* - 
+Mail: canteros.josehernan@gmail.com
+
 
 This game was also possible thanks to the support of these professors:
 
