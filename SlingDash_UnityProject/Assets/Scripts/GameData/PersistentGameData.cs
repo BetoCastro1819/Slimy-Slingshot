@@ -11,6 +11,8 @@ public class GameData
 	public int timesPlayed;
 	public int stars;
 	public int coins;
+	public bool musicIsEnabled;
+	public bool sfxAreEnabled;
 	public string currentPlayerTrail;
 	public List<string> trailsPurchased;
 	public Dictionary<string, LevelData> levelsData;
@@ -21,6 +23,8 @@ public class GameData
 		timesPlayed = 0;
 		stars = 0;
 		coins = 0;
+		musicIsEnabled = true;
+		sfxAreEnabled = true;
 		currentPlayerTrail = "trails/standard";
 		trailsPurchased = new List<string>();
 		levelsData = new Dictionary<string, LevelData>();
@@ -86,6 +90,18 @@ public class PersistentGameData : MonoBehaviour
 
 			Debug.Log("There is no local saved data");
 		}
+	}
+
+	public void UpdateSfxToggle(bool sfxAreEnabled)
+	{
+		gameData.sfxAreEnabled = sfxAreEnabled;
+		UpdateLocalGameData();
+	}
+
+	public void UpdateMusicToggle(bool muscicIsEnabled)
+	{
+		gameData.musicIsEnabled = muscicIsEnabled;
+		UpdateLocalGameData();
 	}
 
 	public void SetLastLevelPlayed(string levelSceneName)

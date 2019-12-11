@@ -11,7 +11,12 @@ public class AudioManager : MonoBehaviour
 
 	private AudioSource audioSource;
 
-	private void Awake()
+	private void Start()
+	{
+		Initialize();
+	}
+
+	private void Initialize()
 	{
 		audioSource = GetComponent<AudioSource>();
 
@@ -20,8 +25,8 @@ public class AudioManager : MonoBehaviour
 		{
 			Instance = this;
 
-			musicIsEnabled = true;
-			sfxAreEnabled = true;
+			musicIsEnabled = PersistentGameData.Instance.gameData.musicIsEnabled;
+			sfxAreEnabled = PersistentGameData.Instance.gameData.sfxAreEnabled;
 
 			DontDestroyOnLoad(gameObject);
 		}
@@ -34,6 +39,8 @@ public class AudioManager : MonoBehaviour
 			musicSource.Play();
 		else
 			musicSource.Stop();
+		
+		PersistentGameData.Instance.UpdateMusicToggle(musicIsEnabled);
 	}
 
 	public void ToggleMusic()
@@ -45,6 +52,7 @@ public class AudioManager : MonoBehaviour
 	public void ToggleSfx()
 	{
 		sfxAreEnabled = !sfxAreEnabled;
+		PersistentGameData.Instance.UpdateSfxToggle(sfxAreEnabled);
 	}
 
 	public void PlayAudioClip(AudioClip clip)

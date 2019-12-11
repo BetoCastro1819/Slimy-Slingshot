@@ -32,5 +32,6 @@ public class SfxToggle : MonoBehaviour
 			sfxOn.SetActive(false);
 			sfxOff.SetActive(true);
 		}
+		
 	}
 }
