@@ -50,9 +50,9 @@ public class MainMenu_UI : MonoBehaviour
 		PlayButtonSound();
 	}
 
-	public void Play(string sceneName)
+	public void Play()
 	{
-		SceneManager.LoadScene(sceneName);
+		SceneManager.LoadScene(PersistentGameData.Instance.gameData.lastLevelPlayed);
 		PlayButtonSound();
 	}
 

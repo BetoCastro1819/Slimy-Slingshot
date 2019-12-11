@@ -60,6 +60,8 @@ namespace LevelBased
 			InitializeStars();
 			DestroyAlreadyPickedUpStars();
 
+			PersistentGameData.Instance.SetLastLevelPlayed(levelData.levelID);
+
 			state = GameState.OnPlay;
 		}
 

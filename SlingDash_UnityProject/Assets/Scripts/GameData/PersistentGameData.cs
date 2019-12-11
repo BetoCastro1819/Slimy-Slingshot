@@ -7,6 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+	public string lastLevelPlayed;
 	public int timesPlayed;
 	public int stars;
 	public int coins;
@@ -14,8 +15,9 @@ public class GameData
 	public List<string> trailsPurchased;
 	public Dictionary<string, LevelData> levelsData;
 
-	public GameData() 
+	public GameData(string firstLevelSceneName) 
 	{
+		lastLevelPlayed = firstLevelSceneName;
 		timesPlayed = 0;
 		stars = 0;
 		coins = 0;
@@ -27,6 +29,7 @@ public class GameData
 
 public class PersistentGameData : MonoBehaviour
 {
+	[SerializeField] string firstLevelSceneName;
 	[SerializeField] MainMenu_UI mainMenu;
 	[SerializeField] string gameDataFileName;
 
@@ -45,8 +48,6 @@ public class PersistentGameData : MonoBehaviour
 	private void Initialize()
 	{
 		Instance = this;
-
-		gameData = new GameData();
 
 		LoadLocalGameData();
 
@@ -73,7 +74,7 @@ public class PersistentGameData : MonoBehaviour
 		}
 		else
 		{
-			gameData = new GameData();
+			gameData = new GameData(firstLevelSceneName);
 
 			for (int i = 0; i < LevelBased.GameManager.Instance.starsForUnlockingLevels.Count; i++)
 			{
@@ -85,6 +86,12 @@ public class PersistentGameData : MonoBehaviour
 
 			Debug.Log("There is no local saved data");
 		}
+	}
+
+	public void SetLastLevelPlayed(string levelSceneName)
+	{
+		gameData.lastLevelPlayed = levelSceneName;
+		UpdateLocalGameData();
 	}
 
 	public void UpdateRequiredStarsToUnlockLevel(string levelID, int starsToUnlock)
