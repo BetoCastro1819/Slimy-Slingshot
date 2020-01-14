@@ -102,4 +102,9 @@ public class MovingObject : MonoBehaviour
 		if (transform.position == startPosition)
 			state = MovingObjectState.OnStartPosition;
 	}
+
+	public void SetDelay(float delay)
+	{
+		this.delay = delay;
+	}
 }
