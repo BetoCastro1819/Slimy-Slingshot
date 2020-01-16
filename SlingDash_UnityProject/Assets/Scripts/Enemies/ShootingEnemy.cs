@@ -15,13 +15,10 @@ public class ShootingEnemy : Enemy
     {
         base.Start();
 
-        timer = 0;
-
-        //playerPos = GameManager.GetInstance().player.transform;
-
 		playerPos = FindObjectOfType<PlayerSlimy>().transform;
 
 		killed = false;
+        timer = 0;
     }
 	
 	override public void Update ()
@@ -42,6 +39,7 @@ public class ShootingEnemy : Enemy
 		{
 			GameObject bullets = Instantiate(enemyBullet, shootinPoint.position, shootinPoint.rotation);
 			bullets.transform.parent = bulletsParent;
+			bullets.GetComponent<TrackerBullet>().SetPlayerPosition(playerPos);
 			timer = 0;
 			//chargeBulletEffect.Play();
 		}

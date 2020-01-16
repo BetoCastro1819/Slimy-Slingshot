@@ -19,10 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4234875113047570}
-  - component: {fileID: 114175222488374232}
+  - component: {fileID: 114361071965189040}
   - component: {fileID: 212307539207994966}
   - component: {fileID: 50672818478063720}
-  - component: {fileID: 114937011181300582}
   - component: {fileID: 60920046467496360}
   m_Layer: 15
   m_Name: BossBullet
@@ -366,7 +365,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &114175222488374232
+--- !u!114 &114361071965189040
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,22 +373,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1405741431081630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4591d9409f4010647bfa2b620a2eeb69, type: 3}
+  m_Script: {fileID: 11500000, guid: eb11d41365985924996372b086098fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114937011181300582
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1405741431081630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cec46547960c8744a97b53d96af65b97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bulletEffect: {fileID: 1730684588987226, guid: 633d7c0b374c5aa40b2f8033e4f447eb,
+    type: 2}
   speed: 5
-  rotateSpeed: 200
+  rotationSpeed: 200
 --- !u!198 &198700759834538748
 ParticleSystem:
   m_ObjectHideFlags: 1
