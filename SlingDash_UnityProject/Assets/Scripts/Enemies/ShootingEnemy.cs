@@ -39,9 +39,12 @@ public class ShootingEnemy : Enemy
 		{
 			GameObject bullets = Instantiate(enemyBullet, shootinPoint.position, shootinPoint.rotation);
 			bullets.transform.parent = bulletsParent;
-			bullets.GetComponent<TrackerBullet>().SetPlayerPosition(playerPos);
+
+			TrackerBullet trackerBullet = bullets.GetComponent<TrackerBullet>();
+			if (trackerBullet)
+				trackerBullet.SetPlayerPosition(playerPos);
+		
 			timer = 0;
-			//chargeBulletEffect.Play();
 		}
 	}
 
