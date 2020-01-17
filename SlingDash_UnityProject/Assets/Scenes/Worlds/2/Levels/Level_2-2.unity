@@ -13606,7 +13606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca4157f5eeef2a438c981e0c0ee7afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_nextLevelID: Level_1-Boss
+  m_nextLevelID: Level_2-3
   m_coinsForCompletingLevel: 20
   stars:
   - {fileID: 1551367724}
