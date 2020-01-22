@@ -34,7 +34,7 @@ public class TrackerBullet : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-	public void SetPlayerPosition(Transform playerTransform)
+	public void SetPlayerTransform(Transform playerTransform)
 	{
 		this.playerTransform = playerTransform;
 	}

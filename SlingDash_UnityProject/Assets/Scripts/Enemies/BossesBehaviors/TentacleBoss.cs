@@ -22,7 +22,6 @@ public class TentacleBoss : Enemy //MonoBehaviour
     public int criticalPointsQuant;
 
 	private Vector3 targetStartPosition;
-    //private LevelManager levelManager;
     private PlayerSlimy player;
     private bool canBeKilled;
     private float startMovingTimer;

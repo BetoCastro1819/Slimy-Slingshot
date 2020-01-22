@@ -33,21 +33,15 @@ public class Enemy : MonoBehaviour
 
 	public virtual void Update()
 	{
+		if (cam == null)
+			cam = Camera.main;
+
 		if (cam != null)
-		{
 			offBounds = cam.transform.position.y - cam.orthographicSize - offBoundsOffset;
-		}
-		// Check if enemy is below cameras limit
+
 		if (transform.position.y < offBounds)
 		{
 			Destroy(gameObject);
-
-			/*
-			if (transform.parent.gameObject != null)
-			{
-				Destroy(transform.parent.gameObject);
-			}
-			*/
 		}
 	}
 

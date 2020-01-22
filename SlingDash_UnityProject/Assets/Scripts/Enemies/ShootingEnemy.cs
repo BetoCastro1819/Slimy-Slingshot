@@ -42,7 +42,7 @@ public class ShootingEnemy : Enemy
 
 			TrackerBullet trackerBullet = bullets.GetComponent<TrackerBullet>();
 			if (trackerBullet)
-				trackerBullet.SetPlayerPosition(playerPos);
+				trackerBullet.SetPlayerTransform(playerPos);
 		
 			timer = 0;
 		}

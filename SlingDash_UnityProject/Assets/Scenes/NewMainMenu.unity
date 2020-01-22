@@ -9438,7 +9438,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1373160276}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93013a3641ef90646bf9cd7453ba55e4, type: 3}
   m_Name: 
@@ -9481,7 +9481,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1373160280}
   m_OnClick:
     m_PersistentCalls:
@@ -12220,23 +12220,23 @@ MonoBehaviour:
   - levelID: Level_1-1
     starsRequiredToUnlock: 0
   - levelID: Level_1-2
-    starsRequiredToUnlock: 1
+    starsRequiredToUnlock: 0
   - levelID: Level_1-3
-    starsRequiredToUnlock: 3
+    starsRequiredToUnlock: 0
   - levelID: Level_1-4
-    starsRequiredToUnlock: 5
+    starsRequiredToUnlock: 0
   - levelID: Level_1-5
-    starsRequiredToUnlock: 7
+    starsRequiredToUnlock: 0
   - levelID: Level_1-6
-    starsRequiredToUnlock: 9
+    starsRequiredToUnlock: 0
   - levelID: Level_1-7
-    starsRequiredToUnlock: 11
+    starsRequiredToUnlock: 0
   - levelID: Level_1-8
-    starsRequiredToUnlock: 12
+    starsRequiredToUnlock: 0
   - levelID: Level_1-9
-    starsRequiredToUnlock: 14
+    starsRequiredToUnlock: 0
   - levelID: Level_1-Boss
-    starsRequiredToUnlock: 16
+    starsRequiredToUnlock: 0
   - levelID: Level_2-1
     starsRequiredToUnlock: 0
   - levelID: Level_2-2
@@ -12254,6 +12254,8 @@ MonoBehaviour:
   - levelID: Level_2-8
     starsRequiredToUnlock: 0
   - levelID: Level_2-9
+    starsRequiredToUnlock: 0
+  - levelID: Level_2-Boss
     starsRequiredToUnlock: 0
 --- !u!4 &1674452984
 Transform:

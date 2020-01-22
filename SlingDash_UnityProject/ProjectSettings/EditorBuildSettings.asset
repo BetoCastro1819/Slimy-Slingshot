@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Worlds/2/Levels/Level_2-9.unity
     guid: 770821797c4ba974bb6bc366f9e7ece5
+  - enabled: 1
+    path: Assets/Scenes/Worlds/2/Levels/Level_2-Boss.unity
+    guid: b5410b478c0451a43a884be109ebdcd1
   m_configObjects: {}
