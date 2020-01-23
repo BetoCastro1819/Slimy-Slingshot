@@ -1,16 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SheepBoss : Enemy 
 {
+	public Action<int> LostHealth_Event;
+	public Action ArrivedToPosition_Event;
+
 	[Header("Shooting Points")]
 	public Transform shootingPointTop;
 	public Transform shootingPointBottom;
 	public Transform shootingPointLeft;
 	public Transform shootingPointRight;
 
-	[Header("OnSpawn")]
+	[Header("OnEntrance")]
 	public float entranceSpeed;
 	public float verticalDistanceToTravel;
+
+	[Header("OnHoldPosition")]
+	public float holdPositionForSeconds;
 
 	[Header("OnAttack")]
 	public float movementSpeed = 10f;
@@ -19,23 +26,29 @@ public class SheepBoss : Enemy
 
 	private PlayerSlimy player;
 	private Vector3 targetStartPosition;
-    private float shootingTimer;
+    private float timer;
+	private bool canTakeDamage;
 
 	private SheepBossState bossState;
 	private enum SheepBossState
 	{
 		ON_SPAWN,
+		ON_HOLD_POSITION,
 		ON_ATTACK,
 		KILLED
 	}
 
-    public new void Start()
+    public override void Start()
     {
+		base.Start();
+
 		targetStartPosition = new Vector3(transform.position.x, transform.position.y - verticalDistanceToTravel, transform.position.z);
 
 		player = FindObjectOfType<PlayerSlimy>();
 
-        shootingTimer = 0;
+        timer = 0;
+
+		canTakeDamage = false;
     }
 
     public override void Update()
@@ -43,7 +56,6 @@ public class SheepBoss : Enemy
 		base.Update();
 
 		UpdateState();
-
     }
 
 	public void UpdateState()
@@ -52,6 +64,9 @@ public class SheepBoss : Enemy
 		{
 			case SheepBossState.ON_SPAWN:
 				OnSpawn();
+				break;
+			case SheepBossState.ON_HOLD_POSITION:
+				OnHoldPosition();
 				break;
 			case SheepBossState.ON_ATTACK:
 				OnAttack();
@@ -66,13 +81,27 @@ public class SheepBoss : Enemy
 		transform.position = Vector3.MoveTowards(transform.position, targetStartPosition, entranceSpeed * Time.deltaTime);
 
 		if (transform.position == targetStartPosition)
+		{
+			bossState = SheepBossState.ON_HOLD_POSITION;
+			ArrivedToPosition_Event();
+		}
+	}
+
+	private void OnHoldPosition()
+	{
+		timer += Time.deltaTime;
+		if (timer >= holdPositionForSeconds)
+		{
 			bossState = SheepBossState.ON_ATTACK;
+			canTakeDamage = true;
+			timer = 0;
+		}
 	}
 
 	public void OnAttack()
 	{
 		UpdateShooting();
-		//UpdateMovement();
+		UpdateMovement();
 
 		if (health <= 0)
 			bossState = SheepBossState.KILLED;
@@ -80,17 +109,17 @@ public class SheepBoss : Enemy
 
 	public void UpdateMovement()
 	{
-		Vector2 dirToPlayer = transform.position - player.transform.position;
+		Vector2 dirToPlayer = player.transform.position - transform.position;
 		transform.position += (Vector3)(dirToPlayer.normalized * movementSpeed * Time.deltaTime);
 	}
 
 	public void UpdateShooting()
 	{
-		shootingTimer += Time.deltaTime;
-		if (shootingTimer >= shootingRate)
+		timer += Time.deltaTime;
+		if (timer >= shootingRate)
 		{
 			Fire();
-			shootingTimer = 0;
+			timer = 0;
 		}
 	}
 
@@ -109,5 +138,21 @@ public class SheepBoss : Enemy
 
 		bullet = Instantiate(bossBulettPrefab, shootingPointRight.position, shootingPointRight.rotation);
 		bullet.GetComponent<TrackerBullet>().SetPlayerTransform(player.transform);
+	}
+
+	public override void OnCollisionEnter2D(Collision2D other) 
+	{
+		if (other.collider.CompareTag("PlayerBullet"))
+		{
+			AudioManager.Instance.PlayAudioClip(onHitSound);
+
+			if (canTakeDamage)
+				TakeDamage(1);
+
+			if (health <= 0)
+				KillEnemy();
+
+			LostHealth_Event(health);
+		}
 	}
 }

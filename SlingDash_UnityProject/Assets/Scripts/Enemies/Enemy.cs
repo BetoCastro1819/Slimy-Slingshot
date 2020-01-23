@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
 	private Camera cam;
 	private CameraShake cameraShake;
 	private Rigidbody2D rb;
+	private Material material;
 
 	protected bool killed;
 	protected float offBounds;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
 		cameraShake = cam.GetComponent<CameraShake>();
 		offBounds = cam.transform.position.y - cam.orthographicSize - offBoundsOffset;
 		rb = GetComponent<Rigidbody2D>();
+		material = GetComponent<SpriteRenderer>().material;
 	}
 
 	public virtual void Update()
@@ -48,6 +50,8 @@ public class Enemy : MonoBehaviour
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
+		material.SetFloat("_FlashAmount", 1.0f);
+		Invoke("ResetFlashAmount", flashDurationWhenKilled);
 	}
 
 	public virtual void OnCollisionEnter2D(Collision2D collision)
@@ -68,20 +72,12 @@ public class Enemy : MonoBehaviour
 	public virtual void KillEnemy()
 	{
         if (OnEnemyKilled != null)
-        {
             OnEnemyKilled(this);
-        }
-
-		//Instantiate(coinParticleEffect, transform.position, Quaternion.identity);
 
 		killed = true;
 
 		if (cameraShake != null)
-		{
 			cameraShake.StartShake();
-		}
-
-		UpdatePlayerScore();
 
 		transform.Rotate(0, 0, 180);
 
@@ -93,39 +89,12 @@ public class Enemy : MonoBehaviour
 
 		Collider2D collider = GetComponent<Collider2D>();
 		if (collider != null)
-		{
 			collider.enabled = false;
-		}
-
-		Material material = GetComponent<SpriteRenderer>().material;
-		material.SetFloat("_FlashAmount", 1.0f);
-		Invoke("ResetFlashAmount", flashDurationWhenKilled);
-
-
-        //Destroy(gameObject);
 	}
 
 	private void ResetFlashAmount()
 	{
 		Material material = GetComponent<SpriteRenderer>().material;
 		material.SetFloat("_FlashAmount", 0);
-	}
-
-	private void UpdatePlayerScore()
-	{
-		//if (ScoreManager.Get() != null)
-		//{
-		//	ScoreManager.Get().AddScore(scoreValue);
-		//}
-//
-		//if (CoinManager.Get() != null)
-		//{
-		//	CoinManager.Get().AddCoins(20);
-		//}
-//
-		//if (UI_Manager.Get() != null)
-		//{
-		//	UI_Manager.Get().scoreText.text = ScoreManager.Get().GetScore().ToString("0000") + "p";
-		//}
 	}
 }
