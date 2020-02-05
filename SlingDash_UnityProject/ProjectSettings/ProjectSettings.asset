@@ -721,9 +721,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: afe16722-84a5-44e5-b4b1-ab6e7bef59a2
+  projectName: Slimy Slingshot
+  organizationId: betocastro1819
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
