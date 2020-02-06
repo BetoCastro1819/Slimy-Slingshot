@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBullets : MonoBehaviour
 {
+	public AudioClip onCollisionSound;
 	public GameObject bulletEffect;
     public float bulletSpeed = 20f;
 	public float outOfBoundsOffset = 2f;
@@ -36,6 +37,7 @@ public class EnemyBullets : MonoBehaviour
 			player.Kill();
 		}
 
+		AudioManager.Instance.PlayAudioClip(onCollisionSound);
 		Instantiate(bulletEffect, transform.position, Quaternion.identity);
 		Destroy(gameObject);
 	}

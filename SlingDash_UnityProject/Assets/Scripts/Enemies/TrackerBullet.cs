@@ -2,6 +2,7 @@
 
 public class TrackerBullet : MonoBehaviour 
 {
+	[SerializeField] AudioClip onCollisionSound;
 	[SerializeField] GameObject bulletEffect;
 	[SerializeField] float speed = 5f;
 	[SerializeField] float rotationSpeed = 200f;
@@ -30,6 +31,7 @@ public class TrackerBullet : MonoBehaviour
 			player.Kill();
 		}
 
+		AudioManager.Instance.PlayAudioClip(onCollisionSound);
 		Instantiate(bulletEffect, transform.position, Quaternion.identity);
 		Destroy(gameObject);
 	}

@@ -2761,7 +2761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62907a1ddea46bb438c2fe69d22f7cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSound: {fileID: 8300000, guid: b3b79e81673e0ef4ca5bcd0d9b5c727e, type: 3}
+  buttonSound: {fileID: 8300000, guid: 86afd68f277a2f04a871a0157acdd9be, type: 3}
   invetoryItemsParent: {fileID: 700928047}
   invetoryItemButtonPrefab: {fileID: 1007406159783596, guid: 3793e35283927a14bbb7bd913aa4fbf9,
     type: 2}
@@ -3771,7 +3771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &536614781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4921,7 +4921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62907a1ddea46bb438c2fe69d22f7cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSound: {fileID: 8300000, guid: b3b79e81673e0ef4ca5bcd0d9b5c727e, type: 3}
+  buttonSound: {fileID: 8300000, guid: 86afd68f277a2f04a871a0157acdd9be, type: 3}
   invetoryItemsParent: {fileID: 700928047}
   invetoryItemButtonPrefab: {fileID: 1259195484038292, guid: 2ef285c7cae52c143a1c4a439149feba,
     type: 2}
@@ -12385,7 +12385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62907a1ddea46bb438c2fe69d22f7cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSound: {fileID: 8300000, guid: b3b79e81673e0ef4ca5bcd0d9b5c727e, type: 3}
+  buttonSound: {fileID: 8300000, guid: 86afd68f277a2f04a871a0157acdd9be, type: 3}
   invetoryItemsParent: {fileID: 700928047}
   invetoryItemButtonPrefab: {fileID: 1888321285766702, guid: ce523352728a0474daebb33466042f3c,
     type: 2}

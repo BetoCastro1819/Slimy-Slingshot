@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ece61b7a59605142bd4ae340fcb7903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onStarPickedUpSound: {fileID: 8300000, guid: 4da1ab25be2dac644801c5896049e42e, type: 3}
+  onStarPickedUpSound: {fileID: 8300000, guid: 2a5e2eb4ad3d2ca4886f4ac7beed7ff4, type: 3}
   onPickUpParticleEffect: {fileID: 1983724992018360, guid: 1f6ca8b46b69c054e94d82234c2fc421,
     type: 2}
 --- !u!198 &198353634919343828

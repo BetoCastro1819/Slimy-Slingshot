@@ -187,14 +187,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee6a5fc6481f3d46a96a92088547ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onHitSound: {fileID: 8300000, guid: 460b803800a41cf47a1b9ea486c8fdee, type: 3}
   coinParticleEffect: {fileID: 1818375870569830, guid: 8b34d56a73dcbee4db6c05926c707b60,
     type: 2}
   health: 1
   scoreValue: 50
-  rechargeEnergyBarValue: 40
   speed: 0
   offBoundsOffset: 2
   forceWhenKilled: 500
+  flashDurationWhenKilled: 0.2
+  shootSound: {fileID: 8300000, guid: f94edaa43fdc9264f9e502e8b0d91093, type: 3}
   enemyBullet: {fileID: 1405741431081630, guid: 82a86716020498149876c0fa13d913ba,
     type: 2}
   bulletsParent: {fileID: 4552399388020752}

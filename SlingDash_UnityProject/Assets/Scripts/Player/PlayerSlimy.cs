@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,8 @@ public class PlayerSlimy : MonoBehaviour
 	[SerializeField] AudioClip shotSound;
 	[SerializeField] AudioClip deathSound;
 	[SerializeField] AudioClip onLevelCompleteSound;
+	[SerializeField] AudioClip onRevive;
+	[SerializeField] List<AudioClip> onRelease;
 
 	//[SerializeField] int health = 1;
 
@@ -166,6 +169,8 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Shoot()
 	{
+		int soundIndex = UnityEngine.Random.Range(0, onRelease.Count);
+		AudioManager.Instance.PlayAudioClip(onRelease[soundIndex]);
 		AudioManager.Instance.PlayAudioClip(shotSound);
 
 		GameObject bullet = Instantiate(playerBulletPrefab, transform.position + (-transform.up), transform.rotation);
@@ -194,6 +199,8 @@ public class PlayerSlimy : MonoBehaviour
 
 	void Respawn()
 	{
+		AudioManager.Instance.PlayAudioClip(onRevive);
+
 		transform.position = spawnPosition;
 
 		if (playerRigidbody != null)

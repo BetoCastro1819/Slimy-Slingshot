@@ -13,6 +13,7 @@ public class SheepBoss : Enemy
 	public Transform shootingPointRight;
 
 	[Header("OnEntrance")]
+	public AudioClip onSpawnSound;
 	public float entranceSpeed;
 	public float verticalDistanceToTravel;
 
@@ -23,6 +24,9 @@ public class SheepBoss : Enemy
 	public float movementSpeed = 10f;
     public float shootingRate = 2f;
     public GameObject bossBulettPrefab;
+
+	[Header("OnKilled")]
+	public AudioClip onKilledSound;
 
 	private PlayerSlimy player;
 	private Vector3 targetStartPosition;
@@ -49,6 +53,9 @@ public class SheepBoss : Enemy
         timer = 0;
 
 		canTakeDamage = false;
+
+		bossState = SheepBossState.ON_SPAWN;
+		AudioManager.Instance.PlayAudioClip(onSpawnSound);
     }
 
     public override void Update()
@@ -104,7 +111,10 @@ public class SheepBoss : Enemy
 		UpdateMovement();
 
 		if (health <= 0)
+		{
 			bossState = SheepBossState.KILLED;
+			AudioManager.Instance.PlayAudioClip(onKilledSound);
+		}
 	}
 
 	public void UpdateMovement()

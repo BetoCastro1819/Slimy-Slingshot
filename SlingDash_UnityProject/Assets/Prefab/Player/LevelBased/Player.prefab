@@ -323,6 +323,11 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 9e786f011cce57a44beb9dedfc5a5d76, type: 3}
   onLevelCompleteSound: {fileID: 8300000, guid: 23bbeb0d36f8c85428e6b95590deed3f,
     type: 3}
+  onRevive: {fileID: 8300000, guid: d21b5a1adc8202c438adf0d5fd9ea9bb, type: 3}
+  onRelease:
+  - {fileID: 8300000, guid: 76533d191f7230c48883933a161b7b8a, type: 3}
+  - {fileID: 8300000, guid: 7001085d44b43ac4ca487be33b90a900, type: 3}
+  - {fileID: 8300000, guid: f23a4e78483fbd544a0040e1c12426d6, type: 3}
   analogStick: {fileID: 0}
   stick: {fileID: 0}
   aimingArrow: {fileID: 1543164246559268}

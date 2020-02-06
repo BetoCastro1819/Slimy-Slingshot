@@ -2,6 +2,7 @@
 
 public class ShootingEnemy : Enemy
 {
+	public AudioClip shootSound;
     public GameObject enemyBullet;
     public Transform bulletsParent;
     public Transform shootinPoint;
@@ -37,6 +38,8 @@ public class ShootingEnemy : Enemy
 		timer += Time.deltaTime;
 		if (timer > fireRate)
 		{
+			AudioManager.Instance.PlayAudioClip(shootSound);
+
 			GameObject bullets = Instantiate(enemyBullet, shootinPoint.position, shootinPoint.rotation);
 			bullets.transform.parent = bulletsParent;
 

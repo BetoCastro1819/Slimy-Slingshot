@@ -5,6 +5,7 @@ using UnityEngine;
 public class TentacleBoss : Enemy //MonoBehaviour
 {
 	[Header("OnSpawn")]
+	public AudioClip onSpawnSound;
 	public float verticalDistanceToTravel;
 	public float entranceSpeed;
 
@@ -49,6 +50,8 @@ public class TentacleBoss : Enemy //MonoBehaviour
         canBeKilled = false;
 		lockPosTimer = 0;
 		startMovingTimer = 0;
+
+		AudioManager.Instance.PlayAudioClip(onSpawnSound);
 
 		bossState = TentacleBossStates.ON_SPAWN;
 		canMove = true;

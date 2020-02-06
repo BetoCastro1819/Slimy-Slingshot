@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
+	public AudioClip onCollisionSound;
 	public GameObject bulletEffect;
 	public GameObject trail;
 	public float bulletSpeed = 20f;
@@ -31,6 +32,7 @@ public class PlayerBullet : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
     {
+		AudioManager.Instance.PlayAudioClip(onCollisionSound);
 		Instantiate(bulletEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

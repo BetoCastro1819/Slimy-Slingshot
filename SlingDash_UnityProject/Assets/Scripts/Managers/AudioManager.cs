@@ -10,15 +10,22 @@ public class AudioManager : MonoBehaviour
 	public bool sfxAreEnabled { get; private set; }
 
 	public static AudioManager Instance { get; private set; }
+	public float musicVolume { get { return musicSource.volume; } }
 
 	private AudioSource audioSource;
 	private float musicNormalVolume;
 	private float sfxNormalVolume;
 	private float ambientNormalVolume;
 
+	private bool initialized = false;
+
 	private void Awake()
 	{
-		Instance = this;
+		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
+		if (audioManager.Length == 1)
+			Instance = this;
+
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Start()
@@ -28,8 +35,6 @@ public class AudioManager : MonoBehaviour
 
 	private void Initialize()
 	{
-		audioSource = GetComponent<AudioSource>();
-
 		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
 		if (audioManager.Length == 1)
 		{
@@ -45,6 +50,8 @@ public class AudioManager : MonoBehaviour
 			DontDestroyOnLoad(gameObject);
 		}
 		UpdateAmbientSoundState();
+
+		initialized = true;
 	}
 
 	public void UpdateAmbientSoundState() 
@@ -103,6 +110,8 @@ public class AudioManager : MonoBehaviour
 
 	public void RiseVolumeToGameplayLevel()
 	{
+		if (!initialized) return;
+
 		musicSource.volume = musicNormalVolume;
 		audioSource.volume = sfxNormalVolume;
 		ambientSoundsSource.volume = ambientNormalVolume;

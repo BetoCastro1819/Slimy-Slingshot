@@ -738,7 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67eb1e12206a4af4d8770ac25d45c5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSound: {fileID: 8300000, guid: c149a24756648d344a9b651b1f69bdca, type: 3}
+  buttonSound: {fileID: 8300000, guid: b3b79e81673e0ef4ca5bcd0d9b5c727e, type: 3}
   coinsForCompletingLevel: {fileID: 1725752174}
   missionsParent: {fileID: 1137256433}
   missionsUI:

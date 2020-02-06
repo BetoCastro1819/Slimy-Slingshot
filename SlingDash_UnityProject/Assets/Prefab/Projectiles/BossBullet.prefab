@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb11d41365985924996372b086098fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onCollisionSound: {fileID: 8300000, guid: 58a5f84643bf82141b0b1281e9630f46, type: 3}
   bulletEffect: {fileID: 1730684588987226, guid: 633d7c0b374c5aa40b2f8033e4f447eb,
     type: 2}
   speed: 5
