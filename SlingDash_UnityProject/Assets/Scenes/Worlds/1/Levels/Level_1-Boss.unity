@@ -19249,7 +19249,7 @@ MonoBehaviour:
   offBoundsOffset: 2
   forceWhenKilled: 50
   flashDurationWhenKilled: 0.2
-  onSpawnSound: {fileID: 0}
+  onSpawnSound: {fileID: 8300000, guid: 03714c0d39651324e83057241e246003, type: 3}
   verticalDistanceToTravel: 15
   entranceSpeed: 20
   lerpMovementSpeed: 0.5
