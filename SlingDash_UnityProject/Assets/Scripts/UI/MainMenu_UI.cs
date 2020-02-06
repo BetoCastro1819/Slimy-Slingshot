@@ -48,6 +48,7 @@ public class MainMenu_UI : MonoBehaviour
 	{
 		animator.SetTrigger("ScreenTapped");
 		PlayButtonSound();
+		AudioManager.Instance.UpdateMusicState();
 	}
 
 	public void Play()

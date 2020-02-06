@@ -3,6 +3,7 @@
 public class AudioManager : MonoBehaviour 
 {
 	[SerializeField] AudioSource musicSource;
+	[SerializeField] AudioSource ambientSoundsSource;
 
 	public bool musicIsEnabled { get; private set; }
 	public bool sfxAreEnabled { get; private set; }
@@ -30,10 +31,18 @@ public class AudioManager : MonoBehaviour
 
 			DontDestroyOnLoad(gameObject);
 		}
-		UpdateMusicState();
+		UpdateAmbientSoundState();
 	}
 
-	private void UpdateMusicState()
+	private void UpdateAmbientSoundState() 
+	{
+		if (sfxAreEnabled)
+			ambientSoundsSource.Play();
+		else
+			ambientSoundsSource.Stop();
+	}
+
+	public void UpdateMusicState()
 	{
 		if (musicIsEnabled)
 			musicSource.Play();
@@ -52,6 +61,7 @@ public class AudioManager : MonoBehaviour
 	public void ToggleSfx()
 	{
 		sfxAreEnabled = !sfxAreEnabled;
+		UpdateAmbientSoundState();
 		PersistentGameData.Instance.UpdateSfxToggle(sfxAreEnabled);
 	}
 

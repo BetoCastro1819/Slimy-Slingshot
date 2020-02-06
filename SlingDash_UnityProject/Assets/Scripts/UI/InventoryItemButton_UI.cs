@@ -28,6 +28,9 @@ public class InventoryItemButton_UI : MonoBehaviour
 
 	public void UpdateItemEquippedState()
 	{
+		if (!button)
+			button = GetComponent<Button>();
+
 		bool itemIsEquipped = (PersistentGameData.Instance.gameData.currentPlayerTrail == itemPath);
 		if (itemIsEquipped)
 		{

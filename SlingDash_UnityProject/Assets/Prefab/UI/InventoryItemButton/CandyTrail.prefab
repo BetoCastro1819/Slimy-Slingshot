@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryParent: {fileID: 0}
-  buttonSound: {fileID: 8300000, guid: c149a24756648d344a9b651b1f69bdca, type: 3}
+  buttonSound: {fileID: 8300000, guid: b3b79e81673e0ef4ca5bcd0d9b5c727e, type: 3}
   itemEquippedMessage: {fileID: 1053980250898748}
   itemPath: trails/candy
 --- !u!114 &114273513679820432
