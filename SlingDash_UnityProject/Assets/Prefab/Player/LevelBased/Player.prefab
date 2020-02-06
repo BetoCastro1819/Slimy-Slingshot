@@ -55,7 +55,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943931979310928}
-  - component: {fileID: 114602450072147836}
   m_Layer: 0
   m_Name: MeterDetector
   m_TagString: Untagged
@@ -308,17 +307,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114602450072147836
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1379122208509552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6e773e3f264e2438caa5297f5afd9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114886375709196360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,9 +319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailParticleSystem: {fileID: 198816339570390466}
-  shotSound: {fileID: 8300000, guid: 3083432cf61bd424f83dce8a19d57333, type: 3}
-  deathSound: {fileID: 8300000, guid: 4100c08f24cc92944912b2ac7811c0d5, type: 3}
-  onLevelCompleteSound: {fileID: 8300000, guid: f37d465bc5ffc8c40a42418b2554467f,
+  shotSound: {fileID: 8300000, guid: 6a45d768053f2654c8cc95cd2fe1561a, type: 3}
+  deathSound: {fileID: 8300000, guid: 9e786f011cce57a44beb9dedfc5a5d76, type: 3}
+  onLevelCompleteSound: {fileID: 8300000, guid: 23bbeb0d36f8c85428e6b95590deed3f,
     type: 3}
   analogStick: {fileID: 0}
   stick: {fileID: 0}

@@ -2,6 +2,7 @@
 
 public class AudioManager : MonoBehaviour 
 {
+	[SerializeField] float volumeOnPause;
 	[SerializeField] AudioSource musicSource;
 	[SerializeField] AudioSource ambientSoundsSource;
 
@@ -11,6 +12,14 @@ public class AudioManager : MonoBehaviour
 	public static AudioManager Instance { get; private set; }
 
 	private AudioSource audioSource;
+	private float musicNormalVolume;
+	private float sfxNormalVolume;
+	private float ambientNormalVolume;
+
+	private void Awake()
+	{
+		Instance = this;
+	}
 
 	private void Start()
 	{
@@ -24,22 +33,31 @@ public class AudioManager : MonoBehaviour
 		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
 		if (audioManager.Length == 1)
 		{
-			Instance = this;
+			//Instance = this;
 
 			musicIsEnabled = PersistentGameData.Instance.gameData.musicIsEnabled;
 			sfxAreEnabled = PersistentGameData.Instance.gameData.sfxAreEnabled;
+
+			musicNormalVolume = musicSource.volume;
+			sfxNormalVolume = audioSource.volume;
+			ambientNormalVolume = ambientSoundsSource.volume;
 
 			DontDestroyOnLoad(gameObject);
 		}
 		UpdateAmbientSoundState();
 	}
 
-	private void UpdateAmbientSoundState() 
+	public void UpdateAmbientSoundState() 
 	{
 		if (sfxAreEnabled)
 			ambientSoundsSource.Play();
 		else
 			ambientSoundsSource.Stop();
+	}
+
+	public void PauseAmbientSounds()
+	{
+		ambientSoundsSource.Stop();
 	}
 
 	public void UpdateMusicState()
@@ -69,5 +87,24 @@ public class AudioManager : MonoBehaviour
 	{
 		if (sfxAreEnabled)
 			audioSource.PlayOneShot(clip, 1);
+	}
+
+	public void StopMusic()
+	{
+		musicSource.Stop();
+	}
+
+	public void LowerVolumeOnPause()
+	{
+		musicSource.volume = volumeOnPause;
+		audioSource.volume = volumeOnPause;
+		ambientSoundsSource.volume = volumeOnPause;
+	}
+
+	public void RiseVolumeToGameplayLevel()
+	{
+		musicSource.volume = musicNormalVolume;
+		audioSource.volume = sfxNormalVolume;
+		ambientSoundsSource.volume = ambientNormalVolume;
 	}
 }

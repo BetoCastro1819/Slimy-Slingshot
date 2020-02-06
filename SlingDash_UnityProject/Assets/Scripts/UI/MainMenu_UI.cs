@@ -19,6 +19,7 @@ public class MainMenu_UI : MonoBehaviour
 
 	private void Start()
 	{
+		AudioManager.Instance.StopMusic();
 		UpdateStarsAndCoinsUI();
 	}
 

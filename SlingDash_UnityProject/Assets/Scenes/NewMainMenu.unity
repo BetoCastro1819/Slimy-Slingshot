@@ -7127,6 +7127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cc436fc2903e44289070ea9239b17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeOnPause: 0.1
   musicSource: {fileID: 721261835}
   ambientSoundsSource: {fileID: 976328653}
 --- !u!82 &1017805162

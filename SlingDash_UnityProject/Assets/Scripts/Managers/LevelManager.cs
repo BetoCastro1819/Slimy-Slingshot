@@ -54,6 +54,8 @@ namespace LevelBased
 
 		void Start()
 		{
+			AudioManager.Instance.UpdateAmbientSoundState();
+
 			InitializeLevelID();
 			InitializeMissions();
 			SetupObserverMethods();
@@ -112,13 +114,15 @@ namespace LevelBased
 		{
 			//Debug.Log("On level complete");
 
+			AudioManager.Instance.PauseAmbientSounds();
+
 			PersistentGameData.Instance.AddToStarsCollected(currentNumberOfCollectedStars);
 			UpdatePersistentMissionsStates();
 			PersistentGameData.Instance.UpdateLevelData(levelData);
 
 			OnLevelComplete_Event(levelData);
 
-			OnPause();
+			Time.timeScale = 0;
 		}
 
 		void UpdatePersistentMissionsStates()
@@ -126,9 +130,7 @@ namespace LevelBased
 			for (int i = 0; i < missions.Count; i++)
 			{
 				if (missions[i].IsComplete())
-				{
 					levelData.missions[missions[i].missionID] = missions[i].isComplete;
-				}
 
 				if (levelData.missions[missions[i].missionID])
 					Debug.LogFormat("Mission {0} was completed", missions[i].missionID);
@@ -138,11 +140,13 @@ namespace LevelBased
 		void OnResume()
 		{
 			Time.timeScale = 1;
+			AudioManager.Instance.RiseVolumeToGameplayLevel();
 		}
 
 		void OnPause()
 		{
 			Time.timeScale = 0;
+			AudioManager.Instance.LowerVolumeOnPause();
 		}
 
 		void OnStarPickedUp(int starID)
