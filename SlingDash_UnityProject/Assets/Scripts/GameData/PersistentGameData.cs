@@ -16,6 +16,7 @@ public class GameData
 	public string currentPlayerTrail;
 	public List<string> trailsPurchased;
 	public Dictionary<string, LevelData> levelsData;
+	public Dictionary<Achievements, bool> achievementsData;
 
 	public GameData(string firstLevelSceneName) 
 	{
@@ -28,6 +29,7 @@ public class GameData
 		currentPlayerTrail = "trails/standard";
 		trailsPurchased = new List<string>();
 		levelsData = new Dictionary<string, LevelData>();
+		achievementsData = new Dictionary<Achievements, bool>();
 	}
 }
 
@@ -40,7 +42,8 @@ public class PersistentGameData : MonoBehaviour
 	public static PersistentGameData Instance { get; private set; }
 	public GameData gameData { get; private set; }
 
-	private void Start()
+	//private void Start()
+	private void Awake()
 	{
 		PersistentGameData[] persistentGameData = FindObjectsOfType<PersistentGameData>();
 		if (persistentGameData.Length == 1)
@@ -146,6 +149,8 @@ public class PersistentGameData : MonoBehaviour
 		if (mainMenu)
 			mainMenu.UpdateStarsAndCoinsUI();
 
+		AchievementsManager.Instance.CheckForUnlockingCoinsAchievement(gameData.coins);
+
 		UpdateLocalGameData();
 	}
 
@@ -173,6 +178,12 @@ public class PersistentGameData : MonoBehaviour
 		UpdateLocalGameData();
 	}
 
+	public void UpdateAchivements(Dictionary<Achievements, bool> achievementsData)
+	{
+		gameData.achievementsData = achievementsData;
+		UpdateLocalGameData();
+	}
+
 	private void AddOneToTimesPlayed()
 	{
 		gameData.timesPlayed++;
@@ -192,5 +203,4 @@ public class PersistentGameData : MonoBehaviour
 		binaryFormatter.Serialize(stream, gameData);
 		stream.Close();
 	}
-
 }
