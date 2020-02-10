@@ -24,20 +24,21 @@ namespace LevelBased
 		{
 			// Check if there is more than ONE instance of this class
 			GameManager[] gameManager = FindObjectsOfType<GameManager>();
-			if (gameManager.Length != 1) return;
-	
-			Instance = this;
-
-			Application.targetFrameRate = 60;
-
-			starsForUnlockingLevels = new Dictionary<string, int>();
-			for (int i = 0; i < starsForEachLevels.Count; i++)
+			if (gameManager.Length == 1)
 			{
-				starsForUnlockingLevels.Add(
-					starsForEachLevels[i].levelID, starsForEachLevels[i].starsRequiredToUnlock
-				);
+				Instance = this;
+
+				Application.targetFrameRate = 60;
+
+				starsForUnlockingLevels = new Dictionary<string, int>();
+				for (int i = 0; i < starsForEachLevels.Count; i++)
+				{
+					starsForUnlockingLevels.Add(
+						starsForEachLevels[i].levelID, starsForEachLevels[i].starsRequiredToUnlock
+					);
+				}
+				DontDestroyOnLoad(this.gameObject);
 			}
-			DontDestroyOnLoad(this.gameObject);
 		}
 
 		private void Start()

@@ -46,17 +46,18 @@ public class PersistentGameData : Initializable
 	{
 		// Check if there is more than ONE instance of this class
 		PersistentGameData[] persistentGameData = FindObjectsOfType<PersistentGameData>();
-		if (persistentGameData.Length != 1) return;
+		if (persistentGameData.Length == 1)
+		{
+			Instance = this;
 
-		Instance = this;
-		
-		LoadLocalGameData();
+			LoadLocalGameData();
 
-		AddOneToTimesPlayed();
+			AddOneToTimesPlayed();
 
-		Debug.LogFormat("Current amount of collected stars: {0}", gameData.stars);
+			Debug.LogFormat("Current amount of collected stars: {0}", gameData.stars);
 
-		DontDestroyOnLoad(this.gameObject);
+			DontDestroyOnLoad(this.gameObject);
+		}
 	}
 
 	private void LoadLocalGameData()
