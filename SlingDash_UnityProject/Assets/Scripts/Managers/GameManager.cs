@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LevelBased
 {
-	public class GameManager : MonoBehaviour
+	public class GameManager : Initializable
 	{
 		[SerializeField] int m_coinsForCollectingStar;
 		public int coinsForCollectingStar { get { return m_coinsForCollectingStar; } }
@@ -20,17 +20,12 @@ namespace LevelBased
 
 		public static GameManager Instance { get; private set; }
 		
-		private void Awake()
+		public override void Initialize()
 		{
+			// Check if there is more than ONE instance of this class
 			GameManager[] gameManager = FindObjectsOfType<GameManager>();
-			if (gameManager.Length == 1)
-			{
-				Initialize();
-			}
-		}
-
-		private void Initialize()
-		{
+			if (gameManager.Length != 1) return;
+	
 			Instance = this;
 
 			Application.targetFrameRate = 60;

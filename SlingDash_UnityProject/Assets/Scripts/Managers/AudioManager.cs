@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class AudioManager : MonoBehaviour 
+public class AudioManager : Initializable
 {
 	[SerializeField] float volumeOnPause;
 	[SerializeField] AudioSource musicSource;
@@ -19,36 +19,25 @@ public class AudioManager : MonoBehaviour
 
 	private bool initialized = false;
 
-	private void Awake()
+	public override void Initialize()
 	{
+		// Check if there is more than ONE instance of this class
 		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
-		if (audioManager.Length == 1)
-			Instance = this;
+		if (audioManager.Length != 1) return;
+
+		Instance = this;
 
 		audioSource = GetComponent<AudioSource>();
-	}
 
-	private void Start()
-	{
-		Initialize();
-	}
+		musicIsEnabled = PersistentGameData.Instance.gameData.musicIsEnabled;
+		sfxAreEnabled = PersistentGameData.Instance.gameData.sfxAreEnabled;
 
-	private void Initialize()
-	{
-		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
-		if (audioManager.Length == 1)
-		{
-			//Instance = this;
+		musicNormalVolume = musicSource.volume;
+		sfxNormalVolume = audioSource.volume;
+		ambientNormalVolume = ambientSoundsSource.volume;
 
-			musicIsEnabled = PersistentGameData.Instance.gameData.musicIsEnabled;
-			sfxAreEnabled = PersistentGameData.Instance.gameData.sfxAreEnabled;
+		DontDestroyOnLoad(gameObject);
 
-			musicNormalVolume = musicSource.volume;
-			sfxNormalVolume = audioSource.volume;
-			ambientNormalVolume = ambientSoundsSource.volume;
-
-			DontDestroyOnLoad(gameObject);
-		}
 		UpdateAmbientSoundState();
 
 		initialized = true;

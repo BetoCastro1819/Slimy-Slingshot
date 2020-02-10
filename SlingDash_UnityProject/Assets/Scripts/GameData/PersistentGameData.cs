@@ -33,7 +33,7 @@ public class GameData
 	}
 }
 
-public class PersistentGameData : MonoBehaviour
+public class PersistentGameData : Initializable
 {
 	[SerializeField] string firstLevelSceneName;
 	[SerializeField] MainMenu_UI mainMenu;
@@ -42,20 +42,14 @@ public class PersistentGameData : MonoBehaviour
 	public static PersistentGameData Instance { get; private set; }
 	public GameData gameData { get; private set; }
 
-	//private void Start()
-	private void Awake()
+	public override void Initialize()
 	{
+		// Check if there is more than ONE instance of this class
 		PersistentGameData[] persistentGameData = FindObjectsOfType<PersistentGameData>();
-		if (persistentGameData.Length == 1)
-		{
-			Initialize();
-		} 
-	}
+		if (persistentGameData.Length != 1) return;
 
-	private void Initialize()
-	{
 		Instance = this;
-
+		
 		LoadLocalGameData();
 
 		AddOneToTimesPlayed();

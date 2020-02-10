@@ -9,30 +9,21 @@ public enum Achievements
 	EARN_MORE_THAN_1000_COINS
 }
 
-public class AchievementsManager : MonoBehaviour 
+public class AchievementsManager : Initializable
 {
-	#region Singleton
 	public static AchievementsManager Instance { get; private set; }
-	void Awake() 
-	{
-		Instance = this;	
-	}
-	#endregion
 
 	private Dictionary<Achievements, bool> achievementsData;
 	private PersistentGameData persistentGameData;
 
-	private void Start()
+	public override void Initialize()
 	{
+		// Check if there is more than ONE instance of this class
 		AchievementsManager[] achievementsManager = FindObjectsOfType<AchievementsManager>();
-		if (achievementsManager.Length == 1)
-		{
-			Initialize();
-		}
-	}
+		if (achievementsManager.Length != 1) return;
 
-	private void Initialize()
-	{
+		Instance = this;
+
 		// TODO initialize achievements with values saved on persistentData
 		persistentGameData = PersistentGameData.Instance;
 		achievementsData = persistentGameData.gameData.achievementsData;
