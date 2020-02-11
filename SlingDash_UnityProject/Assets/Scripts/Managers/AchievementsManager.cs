@@ -11,6 +11,8 @@ public enum Achievements
 
 public class AchievementsManager : Initializable
 {
+	[SerializeField] AchievementsScreen_UI achievementsScreen;
+
 	public static AchievementsManager Instance { get; private set; }
 
 	private Dictionary<Achievements, bool> achievementsData;
@@ -37,6 +39,7 @@ public class AchievementsManager : Initializable
 
 				PersistentGameData.Instance.UpdateAchivements(achievementsData);
 			}
+			achievementsScreen.SetupAchievementsDisplay(achievementsData);
 
 			DontDestroyOnLoad(this.gameObject);
 		}
