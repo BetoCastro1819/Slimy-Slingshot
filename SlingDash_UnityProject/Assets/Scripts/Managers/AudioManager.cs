@@ -19,29 +19,33 @@ public class AudioManager : Initializable
 
 	private bool initialized = false;
 
+	private void Start()
+	{
+		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
+		if (audioManager[0] != this)
+		{
+			Destroy(gameObject);
+		}
+	}
+
 	public override void Initialize()
 	{
-		// Check if there is more than ONE instance of this class
-		AudioManager[] audioManager = FindObjectsOfType<AudioManager>();
-		if (audioManager.Length == 1)
-		{
-			Instance = this;
+		Instance = this;
 
-			audioSource = GetComponent<AudioSource>();
+		audioSource = GetComponent<AudioSource>();
 
-			musicIsEnabled = PersistentGameData.Instance.gameData.musicIsEnabled;
-			sfxAreEnabled = PersistentGameData.Instance.gameData.sfxAreEnabled;
+		musicIsEnabled = PersistentGameData.Instance.gameData.musicIsEnabled;
+		sfxAreEnabled = PersistentGameData.Instance.gameData.sfxAreEnabled;
 
-			musicNormalVolume = musicSource.volume;
-			sfxNormalVolume = audioSource.volume;
-			ambientNormalVolume = ambientSoundsSource.volume;
+		musicNormalVolume = musicSource.volume;
+		sfxNormalVolume = audioSource.volume;
+		ambientNormalVolume = ambientSoundsSource.volume;
 
-			DontDestroyOnLoad(gameObject);
+		DontDestroyOnLoad(gameObject);
 
-			UpdateAmbientSoundState();
+		UpdateAmbientSoundState();
 
-			initialized = true;
-		}
+		initialized = true;
 	}
 
 	public void UpdateAmbientSoundState() 

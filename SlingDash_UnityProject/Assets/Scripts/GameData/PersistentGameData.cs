@@ -42,22 +42,26 @@ public class PersistentGameData : Initializable
 	public static PersistentGameData Instance { get; private set; }
 	public GameData gameData { get; private set; }
 
+	private void Start()
+	{
+		PersistentGameData[] persistentGameData = FindObjectsOfType<PersistentGameData>();
+		if (persistentGameData[0] != this)
+		{
+			Destroy(gameObject);
+		}
+	}
+
 	public override void Initialize()
 	{
-		// Check if there is more than ONE instance of this class
-		PersistentGameData[] persistentGameData = FindObjectsOfType<PersistentGameData>();
-		if (persistentGameData.Length == 1)
-		{
-			Instance = this;
+		Instance = this;
 
-			LoadLocalGameData();
+		LoadLocalGameData();
 
-			AddOneToTimesPlayed();
+		AddOneToTimesPlayed();
 
-			Debug.LogFormat("Current amount of collected stars: {0}", gameData.stars);
+		Debug.LogFormat("Current amount of collected stars: {0}", gameData.stars);
 
-			DontDestroyOnLoad(this.gameObject);
-		}
+		DontDestroyOnLoad(this.gameObject);
 	}
 
 	private void LoadLocalGameData()
@@ -131,8 +135,7 @@ public class PersistentGameData : Initializable
 		gameData.coins -= amountToSubstract;
 		if (gameData.coins < 0) gameData.coins = 0;
 
-		if (mainMenu)
-			mainMenu.UpdateStarsAndCoinsUI();
+		TryToUpdateMainMenuValues();
 
 		UpdateLocalGameData();
 	}
@@ -141,8 +144,7 @@ public class PersistentGameData : Initializable
 	{
 		gameData.coins += coinsToAdd;
 
-		if (mainMenu)
-			mainMenu.UpdateStarsAndCoinsUI();
+		TryToUpdateMainMenuValues();
 
 		AchievementsManager.Instance.CheckForUnlockingCoinsAchievement(gameData.coins);
 
@@ -153,8 +155,7 @@ public class PersistentGameData : Initializable
 	{
 		gameData.stars += starsToAdd;
 
-		if (mainMenu)
-			mainMenu.UpdateStarsAndCoinsUI();
+		TryToUpdateMainMenuValues();
 
 		UpdateLocalGameData();
 	}
@@ -177,6 +178,21 @@ public class PersistentGameData : Initializable
 	{
 		gameData.achievementsData = achievementsData;
 		UpdateLocalGameData();
+	}
+
+	private void TryToUpdateMainMenuValues()
+	{
+		if (!mainMenu)
+		{
+			mainMenu = FindObjectOfType<MainMenu_UI>();
+
+			if (mainMenu)
+				mainMenu.UpdateStarsAndCoinsUI();
+		}
+		else
+		{
+			mainMenu.UpdateStarsAndCoinsUI();
+		}
 	}
 
 	private void AddOneToTimesPlayed()

@@ -23,6 +23,9 @@ public class Initializer : MonoBehaviour
 			}
 			initialized = true;
 		}
-		Debug.Log("Objects already initialized");
+		else
+		{
+			Debug.Log("Objects already initialized");
+		}
 	}
 }

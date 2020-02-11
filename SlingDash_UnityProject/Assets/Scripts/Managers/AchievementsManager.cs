@@ -16,33 +16,39 @@ public class AchievementsManager : Initializable
 	public static AchievementsManager Instance { get; private set; }
 
 	public Dictionary<Achievements, bool> achievementsData { get; private set;}
+
 	private PersistentGameData persistentGameData;
+	private Animator animator;
+
+	private void Start() 
+	{
+		AchievementsManager[] achievementsManager = FindObjectsOfType<AchievementsManager>();
+		if (achievementsManager[0] != this)
+		{
+			Destroy(gameObject);
+		}
+
+		animator = GetComponent<Animator>();
+	}
 
 	public override void Initialize()
 	{
-		// Check if there is more than ONE instance of this class
-		AchievementsManager[] achievementsManager = FindObjectsOfType<AchievementsManager>();
-		if (achievementsManager.Length == 1) 
+		Instance = this;
+
+		persistentGameData = PersistentGameData.Instance;
+		achievementsData = persistentGameData.gameData.achievementsData;
+
+		if (achievementsData.Count <= 0)
 		{
-			Instance = this;
+			achievementsData = new Dictionary<Achievements, bool>();
+			achievementsData.Add(Achievements.EARN_MORE_THAN_100_COINS, false);
+			achievementsData.Add(Achievements.EARN_MORE_THAN_500_COINS, false);
+			achievementsData.Add(Achievements.EARN_MORE_THAN_1000_COINS, false);
 
-			// TODO initialize achievements with values saved on persistentData
-			persistentGameData = PersistentGameData.Instance;
-			achievementsData = persistentGameData.gameData.achievementsData;
-
-			if (achievementsData.Count <= 0)
-			{
-				achievementsData = new Dictionary<Achievements, bool>();
-				achievementsData.Add(Achievements.EARN_MORE_THAN_100_COINS, false);
-				achievementsData.Add(Achievements.EARN_MORE_THAN_500_COINS, false);
-				achievementsData.Add(Achievements.EARN_MORE_THAN_1000_COINS, false);
-
-				PersistentGameData.Instance.UpdateAchivements(achievementsData);
-			}
-			//achievementsScreen.SetupAchievementsDisplay(achievementsData);
-
-			DontDestroyOnLoad(this.gameObject);
+			PersistentGameData.Instance.UpdateAchivements(achievementsData);
 		}
+
+		DontDestroyOnLoad(this.gameObject);
 	}
 
 	public void CheckForUnlockingCoinsAchievement(int coins)
@@ -67,8 +73,6 @@ public class AchievementsManager : Initializable
 				if (coins >= 100)
 				{
 					achievementsData[achievementToCheck] = true;
-					persistentGameData.UpdateAchivements(achievementsData);
-					Debug.Log("Achievement Unlocked: " + achievementToCheck.ToString());
 				}
 				break;
 
@@ -76,9 +80,6 @@ public class AchievementsManager : Initializable
 				if (coins >= 500)
 				{
 					achievementsData[achievementToCheck] = true;
-					persistentGameData.UpdateAchivements(achievementsData);
-
-					Debug.Log("Achievement Unlocked: " + achievementToCheck.ToString());
 				}
 				break;
 
@@ -86,11 +87,11 @@ public class AchievementsManager : Initializable
 				if (coins >= 1000)
 				{
 					achievementsData[achievementToCheck] = true;
-					persistentGameData.UpdateAchivements(achievementsData);
-
-					Debug.Log("Achievement Unlocked: " + achievementToCheck.ToString());
 				}
 				break;
 		}
+		animator.SetTrigger("OnUnlock");
+		persistentGameData.UpdateAchivements(achievementsData);
+		Debug.Log("Achievement Unlocked: " + achievementToCheck.ToString());
 	}
 }

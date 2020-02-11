@@ -20,31 +20,33 @@ namespace LevelBased
 
 		public static GameManager Instance { get; private set; }
 		
-		public override void Initialize()
-		{
-			// Check if there is more than ONE instance of this class
-			GameManager[] gameManager = FindObjectsOfType<GameManager>();
-			if (gameManager.Length == 1)
-			{
-				Instance = this;
-
-				Application.targetFrameRate = 60;
-
-				starsForUnlockingLevels = new Dictionary<string, int>();
-				for (int i = 0; i < starsForEachLevels.Count; i++)
-				{
-					starsForUnlockingLevels.Add(
-						starsForEachLevels[i].levelID, starsForEachLevels[i].starsRequiredToUnlock
-					);
-				}
-				DontDestroyOnLoad(this.gameObject);
-			}
-		}
-
 		private void Start()
 		{
+			GameManager[] gameManager = FindObjectsOfType<GameManager>();
+			if (gameManager[0] != this)
+			{
+				Destroy(gameObject);
+				return;
+			}
+
 			for (int i = 0; i < starsForEachLevels.Count; i++)
 				PersistentGameData.Instance.UpdateRequiredStarsToUnlockLevel(starsForEachLevels[i].levelID, starsForEachLevels[i].starsRequiredToUnlock);
+		}
+
+		public override void Initialize()
+		{
+			Instance = this;
+
+			Application.targetFrameRate = 60;
+
+			starsForUnlockingLevels = new Dictionary<string, int>();
+			for (int i = 0; i < starsForEachLevels.Count; i++)
+			{
+				starsForUnlockingLevels.Add(
+					starsForEachLevels[i].levelID, starsForEachLevels[i].starsRequiredToUnlock
+				);
+			}
+			DontDestroyOnLoad(this.gameObject);
 		}
 	}
 }
