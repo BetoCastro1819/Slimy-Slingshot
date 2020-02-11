@@ -15,7 +15,7 @@ public class AchievementsManager : Initializable
 
 	public static AchievementsManager Instance { get; private set; }
 
-	private Dictionary<Achievements, bool> achievementsData;
+	public Dictionary<Achievements, bool> achievementsData { get; private set;}
 	private PersistentGameData persistentGameData;
 
 	public override void Initialize()
@@ -39,7 +39,7 @@ public class AchievementsManager : Initializable
 
 				PersistentGameData.Instance.UpdateAchivements(achievementsData);
 			}
-			achievementsScreen.SetupAchievementsDisplay(achievementsData);
+			//achievementsScreen.SetupAchievementsDisplay(achievementsData);
 
 			DontDestroyOnLoad(this.gameObject);
 		}
