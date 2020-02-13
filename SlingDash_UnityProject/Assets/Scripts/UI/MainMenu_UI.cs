@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu_UI : MonoBehaviour 
 {
+	[SerializeField] AudioClip tapOnSplashScreenSound;
 	[SerializeField] AudioClip buttonSound;
 	[SerializeField] GameObject mainMenuOptions;
 	[SerializeField] Text collectedStars;
 	[SerializeField] Text numberOfCoins;
 
+	private AudioManager audioManager;
 	private Animator animator;
 	private GameObject currentObjectOnDisplay;
 
@@ -19,8 +21,9 @@ public class MainMenu_UI : MonoBehaviour
 
 	private void Start()
 	{
-		AudioManager.Instance.StopMusic();
-		AudioManager.Instance.RiseVolumeToGameplayLevel();
+		audioManager = AudioManager.Instance;
+		audioManager.StopMusic();
+		audioManager.RiseVolumeToGameplayLevel();
 		
 		UpdateStarsAndCoinsUI();
 	}
@@ -35,6 +38,7 @@ public class MainMenu_UI : MonoBehaviour
 	{
 		mainMenuOptions.SetActive(true);
 		currentObjectOnDisplay = mainMenuOptions;
+		audioManager.UpdateMusicState();
 	}
 
 	public void EnableObjectAndHideCurrent(GameObject objectToEnable)
@@ -50,8 +54,7 @@ public class MainMenu_UI : MonoBehaviour
 	public void ScreenTapped()
 	{
 		animator.SetTrigger("ScreenTapped");
-		PlayButtonSound();
-		AudioManager.Instance.UpdateMusicState();
+		audioManager.PlayAudioClip(tapOnSplashScreenSound);
 	}
 
 	public void Play()
@@ -74,6 +77,6 @@ public class MainMenu_UI : MonoBehaviour
 
 	private void PlayButtonSound()
 	{
-		AudioManager.Instance.PlayAudioClip(buttonSound);
+		audioManager.PlayAudioClip(buttonSound);
 	}
 }
