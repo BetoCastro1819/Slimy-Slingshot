@@ -24,14 +24,6 @@ namespace LevelBased
 {
 	public class LevelManager : MonoBehaviour
 	{
-		#region Singleton
-		public static LevelManager Instance { get; private set; }
-		private void Awake() 
-		{
-			Instance = this;	
-		}
-		#endregion
-
 		[SerializeField] string m_nextLevelID;
 		[SerializeField] int m_coinsForCompletingLevel;
 		[SerializeField] List<Star> stars;
@@ -51,9 +43,14 @@ namespace LevelBased
 		public LevelData levelData { get; private set; }
 
 		public int currentNumberOfCollectedStars { get; private set; }
+		public int numberOfEnemiesInLevel { get; private set; } 
 
-		void Start()
+		public static LevelManager Instance { get; private set; }
+
+		void Awake()
 		{
+			Instance = this;	
+
 			AudioManager.Instance.UpdateAmbientSoundState();
 
 			InitializeLevelID();
@@ -63,6 +60,11 @@ namespace LevelBased
 			DestroyAlreadyPickedUpStars();
 
 			PersistentGameData.Instance.SetLastLevelPlayed(levelData.levelID);
+
+			Enemy[] enemiesInLevel = FindObjectsOfType<Enemy>();
+			numberOfEnemiesInLevel = (enemiesInLevel != null) ? enemiesInLevel.Length : 0;
+
+			Debug.Log("Number of enemies in the level: " + numberOfEnemiesInLevel);
 
 			state = GameState.OnPlay;
 
@@ -93,6 +95,7 @@ namespace LevelBased
 			Player_UI.OnPause_Event += OnPause;
 			PauseMenu_UI.OnResumeGame_Event += OnResume;
 			Star.OnStarPickedUp_Event += OnStarPickedUp;
+			Enemy.OnEnemyKilled += OnEnemyKilled;
 		}
 
 		void InitializeStars()
@@ -157,15 +160,20 @@ namespace LevelBased
 			currentNumberOfCollectedStars++;
 		}
 
+		void OnEnemyKilled()
+		{
+			Debug.Log("Enemy killed");
+			numberOfEnemiesInLevel--;
+		}
+
 		// Monobehaviour method
 		void OnDestroy() 
 		{
 			PlayerSlimy.OnLevelComplete_Event -= OnLevelComplete;
 			Player_UI.OnPause_Event -= OnPause;
 			PauseMenu_UI.OnResumeGame_Event -= OnResume;
-
 			Star.OnStarPickedUp_Event -= OnStarPickedUp;
+			Enemy.OnEnemyKilled -= OnEnemyKilled;
 		}
-
 	}
 }

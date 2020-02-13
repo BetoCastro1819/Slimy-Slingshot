@@ -24,6 +24,8 @@ public class Mission_UI : MonoBehaviour
 		string levelID = LevelBased.LevelManager.Instance.levelData.levelID;
 		bool currentMissionState = PersistentGameData.Instance.gameData.levelsData[levelID].missions[mission.missionID];
 
+		Debug.Log("Mission ID: " + mission.missionID + "	isComplete: " + currentMissionState);
+
 		crossline.SetActive(currentMissionState);
 
 		shouldAnimate = currentMissionState;

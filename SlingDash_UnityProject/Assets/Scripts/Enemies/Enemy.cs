@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static event Action<Enemy> OnEnemyKilled;
+    public static event Action OnEnemyKilled;
 
 	public AudioClip onHitSound;
 	public GameObject coinParticleEffect;
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
 	public virtual void KillEnemy()
 	{
         if (OnEnemyKilled != null)
-            OnEnemyKilled(this);
+            OnEnemyKilled();
 
 		killed = true;
 

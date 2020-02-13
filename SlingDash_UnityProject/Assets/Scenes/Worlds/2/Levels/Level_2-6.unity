@@ -11702,8 +11702,8 @@ MonoBehaviour:
   playSoundOnlyAtTargetPos: 0
   soundOnImpact: {fileID: 8300000, guid: 263ffe76ec70195449938f052a3ab256, type: 3}
   target: {fileID: 262400506}
-  speedToTarget: 7
-  speedToInitialPos: 7
+  speedToTarget: 5
+  speedToInitialPos: 5
   delay: 0
   timeOnStartPos: 0
   timeOnTargetPos: 0
@@ -12564,8 +12564,8 @@ MonoBehaviour:
   playSoundOnlyAtTargetPos: 0
   soundOnImpact: {fileID: 8300000, guid: 263ffe76ec70195449938f052a3ab256, type: 3}
   target: {fileID: 539191572}
-  speedToTarget: 7
-  speedToInitialPos: 7
+  speedToTarget: 5
+  speedToInitialPos: 5
   delay: 0
   timeOnStartPos: 0
   timeOnTargetPos: 0

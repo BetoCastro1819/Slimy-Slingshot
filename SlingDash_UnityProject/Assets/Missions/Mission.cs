@@ -10,14 +10,8 @@ public abstract class Mission : MonoBehaviour
 
     public abstract bool IsComplete();
 
-    public void Reward() 
-	{
-        //CoinManager.Get().AddCoins(coinReward);
-        Destroy(gameObject);
-    }
-
-    private void Update()
-    {
-        //isComplete = IsComplete();
-    }
+    //public void Reward() 
+	//{
+    //    Destroy(gameObject);
+    //}
 }
