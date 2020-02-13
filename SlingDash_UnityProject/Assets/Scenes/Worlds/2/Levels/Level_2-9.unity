@@ -583,7 +583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -162.73}
+  m_AnchoredPosition: {x: 0, y: -161.44194}
   m_SizeDelta: {x: 0, y: 66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &152253097
@@ -8871,6 +8871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2e327e8b3b84a4bbdb1ef6fbdb7554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnlyAtTargetPos: 1
+  soundOnImpact: {fileID: 8300000, guid: 73447ca9e16314445bd4c81fe6b2c74f, type: 3}
   target: {fileID: 2100823412}
   speedToTarget: 20
   speedToInitialPos: 5
@@ -8994,7 +8996,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.000030517578, y: -61.69995}
-  m_SizeDelta: {x: 452.6, y: 215.73}
+  m_SizeDelta: {x: 452.6, y: 214.44194}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &630429994
 MonoBehaviour:
@@ -9443,6 +9445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2e327e8b3b84a4bbdb1ef6fbdb7554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnlyAtTargetPos: 1
+  soundOnImpact: {fileID: 8300000, guid: 73447ca9e16314445bd4c81fe6b2c74f, type: 3}
   target: {fileID: 630522743}
   speedToTarget: 20
   speedToInitialPos: 5
@@ -9985,6 +9989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2e327e8b3b84a4bbdb1ef6fbdb7554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnlyAtTargetPos: 1
+  soundOnImpact: {fileID: 8300000, guid: 73447ca9e16314445bd4c81fe6b2c74f, type: 3}
   target: {fileID: 684669581}
   speedToTarget: 20
   speedToInitialPos: 5
@@ -10188,8 +10194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 184.60002, y: -107.229996}
-  m_SizeDelta: {x: 369.2, y: 25}
+  m_AnchoredPosition: {x: 184.60002, y: -106.263954}
+  m_SizeDelta: {x: 369.2, y: 24.355972}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945781364
 MonoBehaviour:
@@ -11030,7 +11036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 212.44986, y: -59.864998}
+  m_AnchoredPosition: {x: 212.44986, y: -59.22097}
   m_SizeDelta: {x: 424.9, y: 49.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137256435
@@ -11324,6 +11330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2e327e8b3b84a4bbdb1ef6fbdb7554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnlyAtTargetPos: 1
+  soundOnImpact: {fileID: 8300000, guid: 73447ca9e16314445bd4c81fe6b2c74f, type: 3}
   target: {fileID: 1046276756}
   speedToTarget: 20
   speedToInitialPos: 5
@@ -12911,8 +12919,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 148.945, y: -12.5}
-  m_SizeDelta: {x: 297.89, y: 25}
+  m_AnchoredPosition: {x: 148.945, y: -12.177986}
+  m_SizeDelta: {x: 297.89, y: 24.355972}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1725752173
 CanvasRenderer:
@@ -13628,6 +13636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2e327e8b3b84a4bbdb1ef6fbdb7554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playSoundOnlyAtTargetPos: 1
+  soundOnImpact: {fileID: 8300000, guid: 73447ca9e16314445bd4c81fe6b2c74f, type: 3}
   target: {fileID: 2112149391}
   speedToTarget: 20
   speedToInitialPos: 5

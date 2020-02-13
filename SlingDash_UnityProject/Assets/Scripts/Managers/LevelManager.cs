@@ -65,6 +65,8 @@ namespace LevelBased
 			PersistentGameData.Instance.SetLastLevelPlayed(levelData.levelID);
 
 			state = GameState.OnPlay;
+
+			Time.timeScale = 1;
 		}
 
 		void InitializeLevelID()

@@ -1093,7 +1093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 33.9}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 500, y: 67.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &153294957
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5881,7 +5881,7 @@ GameObject:
   - component: {fileID: 846888268}
   - component: {fileID: 846888272}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainMenu_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5995,6 +5995,7 @@ MonoBehaviour:
   tapOnSplashScreenSound: {fileID: 8300000, guid: f5aa83087e3b4ce449790baa46f8a7de,
     type: 3}
   buttonSound: {fileID: 8300000, guid: b3b79e81673e0ef4ca5bcd0d9b5c727e, type: 3}
+  splashScreenInvisibleButton: {fileID: 319579669}
   mainMenuOptions: {fileID: 360620170}
   collectedStars: {fileID: 810770321}
   numberOfCoins: {fileID: 23648764}

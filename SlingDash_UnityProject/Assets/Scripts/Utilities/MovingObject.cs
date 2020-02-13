@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovingObject : MonoBehaviour 
 {
+	[SerializeField] bool playSoundOnlyAtTargetPos;
+	[SerializeField] AudioClip soundOnImpact;
 	[SerializeField] Transform target;
 	[SerializeField] float speedToTarget = 10;
 	[SerializeField] float speedToInitialPos = 10;
@@ -82,7 +84,10 @@ public class MovingObject : MonoBehaviour
 		transform.position = Vector3.MoveTowards(transform.position, targetPosition, speedToTarget * Time.deltaTime);
 
 		if (transform.position == targetPosition)
+		{
+			AudioManager.Instance.PlayAudioClip(soundOnImpact);
 			state = MovingObjectState.OnTargetPosition;
+		}
 	}
 
 	private void OnTargetPosition()
@@ -100,7 +105,12 @@ public class MovingObject : MonoBehaviour
 		transform.position = Vector3.MoveTowards(transform.position, startPosition, speedToInitialPos * Time.deltaTime);
 
 		if (transform.position == startPosition)
+		{
+			if (!playSoundOnlyAtTargetPos)
+				AudioManager.Instance.PlayAudioClip(soundOnImpact);
+	
 			state = MovingObjectState.OnStartPosition;
+		}
 	}
 
 	public void SetDelay(float delay)

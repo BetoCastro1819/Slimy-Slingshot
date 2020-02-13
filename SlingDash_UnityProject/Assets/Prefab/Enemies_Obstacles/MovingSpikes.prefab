@@ -669,7 +669,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1316799490526918}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.39, y: -5.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -973,6 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2e327e8b3b84a4bbdb1ef6fbdb7554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundOnImpact: {fileID: 8300000, guid: a33f96f4a24a8ef40a78e9dedf6bfc16, type: 3}
   target: {fileID: 4756006895636512}
   speedToTarget: 7
   speedToInitialPos: 7
