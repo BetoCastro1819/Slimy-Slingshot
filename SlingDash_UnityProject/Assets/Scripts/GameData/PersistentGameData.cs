@@ -146,7 +146,7 @@ public class PersistentGameData : Initializable
 
 		TryToUpdateMainMenuValues();
 
-		AchievementsManager.Instance.CheckForUnlockingCoinsAchievement(gameData.coins);
+		AchievementsManager.Instance.TryToUnlockAchievement_Coins(gameData.coins);
 
 		UpdateLocalGameData();
 	}
@@ -156,6 +156,8 @@ public class PersistentGameData : Initializable
 		gameData.stars += starsToAdd;
 
 		TryToUpdateMainMenuValues();
+
+		AchievementsManager.Instance.TryToUnlockAchievement_Stars(gameData.stars);
 
 		UpdateLocalGameData();
 	}

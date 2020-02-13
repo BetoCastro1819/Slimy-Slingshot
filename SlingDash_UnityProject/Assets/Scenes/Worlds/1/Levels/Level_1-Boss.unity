@@ -1408,7 +1408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &318700775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12078,7 +12078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca4157f5eeef2a438c981e0c0ee7afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_nextLevelID: Level_1-Boss
+  m_nextLevelID: Level_2-1
   m_coinsForCompletingLevel: 20
   stars:
   - {fileID: 1551367724}
@@ -13092,7 +13092,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1259991464}
   m_OnClick:
     m_PersistentCalls:
@@ -13354,7 +13354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1361972825
 RectTransform:
   m_ObjectHideFlags: 0
