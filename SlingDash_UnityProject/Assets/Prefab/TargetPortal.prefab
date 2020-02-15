@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4741688617023264}
   - component: {fileID: 58553388181432308}
+  - component: {fileID: 95183450135773422}
   m_Layer: 10
   m_Name: TargetPortal
   m_TagString: Portal
@@ -503,6 +504,24 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &95183450135773422
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096408741679778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ed3a56f8ccee5a4aad9b33005305523, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!198 &198021862989930790
 ParticleSystem:
   m_ObjectHideFlags: 1

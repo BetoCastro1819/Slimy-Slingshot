@@ -17,8 +17,6 @@ public class PlayerSlimy : MonoBehaviour
 	[SerializeField] AudioClip onRevive;
 	[SerializeField] List<AudioClip> onRelease;
 
-	//[SerializeField] int health = 1;
-
 	[Header("Aiming State")]
 	[SerializeField] GameObject analogStick;
 	[SerializeField] GameObject stick;
