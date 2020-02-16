@@ -62,7 +62,10 @@ public class SheepBoss : Enemy
     {
 		base.Update();
 
-		UpdateState();
+		if (player != null && player.GetState() != PlayerSlimy.PlayerStateEnum.OnKilled)
+		{
+			UpdateState();
+		}
     }
 
 	public void UpdateState()

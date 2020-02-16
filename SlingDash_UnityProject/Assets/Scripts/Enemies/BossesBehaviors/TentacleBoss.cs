@@ -61,8 +61,10 @@ public class TentacleBoss : Enemy //MonoBehaviour
     {
 		base.Update();
 
-		if (player != null && player.enabled)
+		if (player != null && player.GetState() != PlayerSlimy.PlayerStateEnum.OnKilled)
+		{
 			UpdateBossState();
+		}
 	}
 
 	void UpdateBossState()

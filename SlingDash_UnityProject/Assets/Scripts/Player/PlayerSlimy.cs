@@ -39,7 +39,7 @@ public class PlayerSlimy : MonoBehaviour
 	public event Action OnLiveLost_Event;
 	private int slingshotCounter;
 
-	private enum PlayerStateEnum
+	public enum PlayerStateEnum
 	{
 		Idle,
 		Aiming,
@@ -276,5 +276,10 @@ public class PlayerSlimy : MonoBehaviour
 	public void OnGameOver()
 	{
 		gameOver = true;
+	}
+
+	public PlayerStateEnum GetState()
+	{
+		return stateEnum;
 	}
 }
