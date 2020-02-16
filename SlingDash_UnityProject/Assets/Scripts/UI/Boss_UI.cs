@@ -20,7 +20,5 @@ public class Boss_UI : MonoBehaviour
 	void UpdateHealthbar(int health) 
 	{
 		healthbar.value = health;
-		Debug.Log(health);
-		Debug.Log(healthbar.value);
 	}
 }

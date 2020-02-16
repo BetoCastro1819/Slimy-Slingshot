@@ -32,6 +32,7 @@ public class PlayerSlimy : MonoBehaviour
 	[Header("Respawn State")]
 	[SerializeField] GameObject playerRespawnEffect;
 	[SerializeField] float timeToRespawn;
+	[SerializeField] float inmortalTimeAfterRespawn;
 
 	public Rigidbody2D PlayerRigidbody { get; set; }
 
@@ -52,6 +53,7 @@ public class PlayerSlimy : MonoBehaviour
 	private Animator animator;
 	private Vector2 spawnPosition;
 	private CameraShake cameraShake;
+	private bool canBeKilled;
 	private bool gameOver;
 
 
@@ -73,6 +75,8 @@ public class PlayerSlimy : MonoBehaviour
 		spawnPosition = transform.position;
 
 		cameraShake = Camera.main.GetComponent<CameraShake>();
+
+		canBeKilled = true;
 
 		gameOver = false;
 	}
@@ -219,6 +223,14 @@ public class PlayerSlimy : MonoBehaviour
 		animator.SetBool("OnKilled", false);
 
 		Instantiate(playerRespawnEffect, transform.position, Quaternion.identity);
+
+		canBeKilled = false;
+		Invoke("RemortalizePlayer", inmortalTimeAfterRespawn);
+	}
+
+	void RemortalizePlayer()
+	{
+		canBeKilled = true;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) 
@@ -236,11 +248,16 @@ public class PlayerSlimy : MonoBehaviour
 		Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
 		if (enemy != null)
+		{
 			Kill();
+		}
 	}
 
 	public void Kill()
 	{
+		if (canBeKilled == false) return;
+
+
 		AudioManager.Instance.PlayAudioClip(deathSound);
 
 		analogStick.SetActive(false);

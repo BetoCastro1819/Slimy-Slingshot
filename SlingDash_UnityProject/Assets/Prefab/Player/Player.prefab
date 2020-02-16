@@ -340,6 +340,7 @@ MonoBehaviour:
   playerRespawnEffect: {fileID: 1983724992018360, guid: 43a1f00958667cb4abb23e23a19d6e16,
     type: 2}
   timeToRespawn: 1
+  inmortalTimeAfterRespawn: 1
 --- !u!198 &198816339570390466
 ParticleSystem:
   m_ObjectHideFlags: 1
