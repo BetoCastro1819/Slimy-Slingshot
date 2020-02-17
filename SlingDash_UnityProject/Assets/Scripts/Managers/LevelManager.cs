@@ -47,6 +47,8 @@ namespace LevelBased
 
 		public static LevelManager Instance { get; private set; }
 
+		private List<int> starsPicked;
+
 		void Awake()
 		{
 			Instance = this;	
@@ -63,6 +65,8 @@ namespace LevelBased
 
 			Enemy[] enemiesInLevel = FindObjectsOfType<Enemy>();
 			numberOfEnemiesInLevel = (enemiesInLevel != null) ? enemiesInLevel.Length : 0;
+
+			starsPicked = new List<int>();
 
 			Debug.Log("Number of enemies in the level: " + numberOfEnemiesInLevel);
 
@@ -122,6 +126,12 @@ namespace LevelBased
 			AudioManager.Instance.PauseAmbientSounds();
 
 			PersistentGameData.Instance.AddToStarsCollected(currentNumberOfCollectedStars);
+
+			foreach(int starID in starsPicked)
+			{
+				levelData.idsOfStarsPicked.Add(starID);
+			}
+
 			UpdatePersistentMissionsStates();
 			PersistentGameData.Instance.UpdateLevelData(levelData);
 
@@ -156,7 +166,9 @@ namespace LevelBased
 
 		void OnStarPickedUp(int starID)
 		{
-			levelData.idsOfStarsPicked.Add(starID);
+			//levelData.idsOfStarsPicked.Add(starID);
+
+			starsPicked.Add(starID);
 			currentNumberOfCollectedStars++;
 		}
 
