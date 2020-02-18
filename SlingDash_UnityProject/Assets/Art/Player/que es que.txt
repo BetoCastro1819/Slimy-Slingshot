@@ -1,8 +1,0 @@
-player_default es el estado del pj normal
-player_tap es el estado cuando el jugador toca la pantalla
-player_hold es el estado cuando el jugador sostiene en la pantalla
-player_release es el estado cuando el jugador suelta la pantalla (el disparo)
-player_reset es el estado cuando intermedio entre el paso anterior y volver a default
-
-todas las animaciones suceden muy rapidamente porque el jugo tiene cierto dinamismo
-:)
