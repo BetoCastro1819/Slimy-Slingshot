@@ -4,7 +4,7 @@
 
 # SlimySlingshot
 
-Slimy-Slingshot is a 2D level-based mobile game, where the player will have to learn to dominate Slimys particular way of movement. He will have to master the hability to shot in one direction, and move towards the opposite. Our players will face difficult obstacles and enemies, and at the end of each world, they will have to fight a boss in order their adventure going.
+Slimy-Slingshot is a 2D level-based mobile game, where the player will have to learn to dominate Slimys particular way of movement. He will have to master the hability to shoot in one direction, and move towards the opposite. Our players will face difficult obstacles and enemies, and at the end of each world, they will have to fight a boss in order their adventure going.
 
 This is a game developed by students from <a href="https://www.imagecampus.edu.ar/">Image Campus</a>
 

@@ -3341,6 +3341,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1303345428}
   - {fileID: 860043344}
   - {fileID: 1725178672}
   - {fileID: 1245400457}
@@ -3349,8 +3350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -56.2}
-  m_SizeDelta: {x: -188.1, y: -231.49}
+  m_AnchoredPosition: {x: 0, y: -49.74}
+  m_SizeDelta: {x: -87.98, y: -123.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &462470746
 MonoBehaviour:
@@ -6381,7 +6382,7 @@ GameObject:
   - component: {fileID: 860043346}
   - component: {fileID: 860043345}
   m_Layer: 5
-  m_Name: LeftColumn_text
+  m_Name: Lower_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6398,12 +6399,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462470745}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137.37, y: -0.0000038146973}
-  m_SizeDelta: {x: 274.72, y: 153.77}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -82.4}
+  m_SizeDelta: {x: -43.1, y: -164.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &860043345
 MonoBehaviour:
@@ -6451,8 +6452,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\rArt\r Direction: \n- Mercedes Albinati\n\nProgramming / Game Design:\n-
-    Jose Quintana Mart\xEDn\n- Alberto Castro"
+  m_Text: "This game was also possible thanks to the support of these professors:\n-
+    Sergio Baretto\r\n- Federico Barra\r\n- Juan Pablo Bettini\r\n- Jorge Cu\xE9llar\r\n-
+    Fernando Puig\r\n- Eugenio Taboada\r"
 --- !u!222 &860043347
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10234,7 +10236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1245400457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10246,7 +10248,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462470745}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10562,6 +10564,98 @@ MonoBehaviour:
   debugButtons: {fileID: 1503942378}
   coinAmountToAdd: 100
   starsToAdd: 10
+--- !u!1 &1303345427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1303345428}
+  - component: {fileID: 1303345431}
+  - component: {fileID: 1303345430}
+  - component: {fileID: 1303345429}
+  m_Layer: 5
+  m_Name: Upper_text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1303345428
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1303345427}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 462470745}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -43.1, y: -44.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1303345429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1303345427}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1303345430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1303345427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a7b7e2c256c074e47973de1d34beae2f, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 30
+    m_Alignment: 1
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Mercedes Albinat - Art & Game Design\nJose Quintana Mart\xEDn - Programming
+    & Game Desgin\nAlberto Castro - Programming & Game Desgin\n\rSebasti\xE1n Blejman
+    - Audio Design\nJos\xE9 Hern\xE1n Canteros - Game Testing"
+--- !u!222 &1303345431
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1303345427}
+  m_CullTransparentMesh: 0
 --- !u!1 &1306648071
 GameObject:
   m_ObjectHideFlags: 0
@@ -14264,7 +14358,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 584.11, y: 320}
+  m_SizeDelta: {x: 584.11, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1682814191
 MonoBehaviour:
@@ -14700,7 +14794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1725178672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14712,7 +14806,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462470745}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18192,9 +18286,9 @@ RectTransform:
   m_Father: {fileID: 206624494}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 145}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 420.7, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089658833
